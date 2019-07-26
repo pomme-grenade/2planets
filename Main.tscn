@@ -5,7 +5,7 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="planet0" type="Node2D" parent="."]
-position = Vector2( 115, 311 )
+position = Vector2( 200, 200 )
 script = ExtResource( 1 )
-planetRadius = 200
+planetRadius = 50
 
