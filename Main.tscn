@@ -8,17 +8,21 @@
 position = Vector2( 200, 200 )
 script = ExtResource( 1 )
 playerNumber = 1
+income = 1
 
 [node name="Label" type="Label" parent="planet0"]
 margin_right = 40.0
 margin_bottom = 14.0
+align = 1
 
 [node name="planet1" type="Node2D" parent="."]
 position = Vector2( 600, 200 )
 script = ExtResource( 1 )
 playerNumber = 2
+income = 1
 
 [node name="Label" type="Label" parent="planet1"]
 margin_right = 40.0
 margin_bottom = 14.0
+align = 1
 
