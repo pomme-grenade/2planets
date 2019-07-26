@@ -8,4 +8,3 @@
 position = Vector2( 200, 200 )
 script = ExtResource( 1 )
 planetRadius = 50
-
