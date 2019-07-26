@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://planet.gd" type="Script" id=1]
+[ext_resource path="res://rocket.gd" type="Script" id=2]
 
 [node name="Node2D" type="Node2D"]
 
@@ -22,3 +23,6 @@ playerNumber = 2
 margin_right = 40.0
 margin_bottom = 14.0
 
+[node name="rocket" type="Node2D" parent="."]
+position = Vector2( 108, 229 )
+script = ExtResource( 2 )
