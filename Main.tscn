@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://planet.gd" type="Script" id=1]
 [ext_resource path="res://rocket.gd" type="Script" id=2]
-[ext_resource path="res://building.gd" type="Script" id=3]
+[ext_resource path="res://brownDrill.png" type="Texture" id=3]
+[ext_resource path="res://building.gd" type="Script" id=4]
 
 [node name="Node2D" type="Node2D"]
 
@@ -15,6 +16,7 @@ color = Color( 0.956863, 0.309804, 0.137255, 1 )
 [node name="Label" type="Label" parent="planet0"]
 margin_right = 40.0
 margin_bottom = 14.0
+align = 1
 
 [node name="planet1" type="Node2D" parent="."]
 position = Vector2( 600, 200 )
@@ -25,6 +27,7 @@ color = Color( 0.713726, 0.992157, 0.101961, 1 )
 [node name="Label" type="Label" parent="planet1"]
 margin_right = 40.0
 margin_bottom = 14.0
+align = 1
 
 [node name="rocket" type="Node2D" parent="."]
 position = Vector2( 275.997, 289.149 )
@@ -36,6 +39,8 @@ position = Vector2( 256.277, 304.582 )
 rotation = 1.74533
 script = ExtResource( 2 )
 
-[node name="building" type="Node2D" parent="."]
-position = Vector2( 555.751, 205.2 )
-script = ExtResource( 3 )
+[node name="building" type="Sprite" parent="."]
+position = Vector2( 200, 200 )
+texture = ExtResource( 3 )
+centered = false
+script = ExtResource( 4 )
