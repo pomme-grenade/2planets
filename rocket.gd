@@ -2,16 +2,23 @@ extends Node2D
 
 var target
 var velocity
+var rotation_speed = 0.7
 
 func _ready():
 	target = $'../planet1'
-	rotation_degrees = 180
-	velocity = Vector2(3, 0).rotated(rotation)
+	velocity = Vector2(60, 0).rotated(rotation)
 
 func _draw():
-	draw_rect(Rect2(Vector2(0, 0), Vector2(15, 5)), Color(0, 0, 255))
+	draw_rect(Rect2(Vector2(0, 0), Vector2(4, 1)), Color(0, 50, 255))
 
 func _process(delta):
-	velocity += velocity.rotated(position.angle_to(target.position) * 0.01)
+	var target_angle = position.direction_to(target.position)
+	var angle_diff = velocity.angle_to(target_angle)
+	var rotation_direction = sign(angle_diff)
+	velocity = velocity.rotated(rotation_direction * rotation_speed * delta)
+
+	var acceleration = clamp(1 - abs(angle_diff), 0.1, 0.6) * delta
+	velocity = velocity * (1 + acceleration)
+
 	position += velocity * delta
 	rotation = velocity.angle()
