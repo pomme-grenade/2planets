@@ -89,4 +89,5 @@ player2_down={
 
 [rendering]
 
+environment/default_clear_color=Color( 0.0666667, 0.0431373, 0.109804, 1 )
 environment/default_environment="res://default_env.tres"
