@@ -11,6 +11,7 @@ var money = 0
 
 func _ready():
 	player = preload("res://player.gd").new()
+	player.planet = self
 	add_child(player)
 	player.position.y -= planetRadius
 	player.playerNumber = playerNumber

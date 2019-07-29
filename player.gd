@@ -3,6 +3,7 @@ extends Node2D
 var size = Vector2(5, 10)
 var playerNumber
 var movementDirection = 0
+var planet
 
 export var speed = 1
 
