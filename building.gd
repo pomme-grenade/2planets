@@ -4,6 +4,8 @@ var health = 1
 var planet
 # 'attack', 'defense' or 'income'
 var type
+var rocket_amount_max = 5
+var rocket_amount = 0
 
 const rocket_spawn_rate = 5
 
@@ -23,7 +25,7 @@ func init():
 	texture = textures[type]
 	if type == 'attack':
 		var attackTimer = Timer.new()
-		attackTimer.connect('timeout', self, 'fire_rocket')
+		attackTimer.connect('timeout', self, 'add_rocket')
 		attackTimer.start(rocket_spawn_rate)
 		add_child(attackTimer)
 
@@ -35,6 +37,10 @@ func on_damage():
 func fire_rocket():
 	var target_player_number = 2 if planet.playerNumber == 1 else 1
 	var rocket = preload("res://rocket.gd").new(target_player_number)
-	rocket.position = global_position - Vector2(5, 0).rotated(rotation)
-	rocket.rotation = global_rotation + PI
+	rocket.position = global_position - Vector2(5, 0).rotated(global_rotation)
+	rocket.rotation = global_rotation + PI 
 	$'/root/Node2D'.add_child(rocket)
+
+func add_rocket():
+	if rocket_amount <= rocket_amount_max:
+		rocket_amount += 1
