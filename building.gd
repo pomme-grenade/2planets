@@ -33,8 +33,8 @@ func on_damage():
 		queue_free()
 
 func fire_rocket():
-	var rocket = preload("res://rocket.gd").new()
+	var target_player_number = 2 if planet.playerNumber == 1 else 1
+	var rocket = preload("res://rocket.gd").new(target_player_number)
 	rocket.position = global_position - Vector2(5, 0).rotated(rotation)
 	rocket.rotation = global_rotation + PI
-	rocket.target_player = 2 if planet.playerNumber == 1 else 1
 	$'/root/Node2D'.add_child(rocket)

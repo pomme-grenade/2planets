@@ -62,13 +62,20 @@ func _input(event):
 
 
 func spawn_building():
-	var building = preload("res://building.gd").new()
-	building.planet = player.planet
-	building.position = player.position
-	building.type = index_to_types[cursor_index]
-	player.planet.add_child(building)
-	building.init()
-	planet.money -=  cost[current_cost]
+	var type = index_to_types[cursor_index]
+	if type == 'defense':
+		var satellite = preload("res://satellite.gd").new()
+		satellite.position = player.position * 1.5
+		satellite.player_number = player.playerNumber
+		player.planet.add_child(satellite)
+	else:
+		var building = preload("res://building.gd").new()
+		building.planet = player.planet
+		building.position = player.position
+		building.type = type
+		player.planet.add_child(building)
+		building.init()
+		planet.money -=  cost[current_cost]
 
 	if (index_to_types[cursor_index] == "income"):
 		planet.income += house_bonus_income_lvl1
