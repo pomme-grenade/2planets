@@ -7,7 +7,7 @@ export var color = Color(0, 255, 0)
 var player
 var angle = 0
 export var income = 0 
-var money = 0 
+var money = 0
 
 func _ready():
 	player = preload("res://player.gd").new()

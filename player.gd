@@ -4,6 +4,7 @@ var size = Vector2(5, 10)
 var playerNumber
 var movementDirection = 0
 var planet
+var money
 
 export var speed = 1
 
@@ -29,5 +30,6 @@ func _unhandled_input(event):
 		var ui = preload("res://add_building_ui.gd").new()
 		add_child(ui)
 		ui.player = self
+		ui.planet = planet
 	else:
 		movementDirection = 0
