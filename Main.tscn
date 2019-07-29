@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://planet.gd" type="Script" id=1]
-[ext_resource path="res://rocket.gd" type="Script" id=2]
 
 [node name="Node2D" type="Node2D"]
 
@@ -28,13 +27,3 @@ income = 1
 margin_right = 40.0
 margin_bottom = 14.0
 align = 1
-
-[node name="rocket" type="Node2D" parent="."]
-position = Vector2( 275.997, 289.149 )
-rotation = 1.74533
-script = ExtResource( 2 )
-
-[node name="rocket2" type="Node2D" parent="."]
-position = Vector2( 256.277, 304.582 )
-rotation = 1.74533
-script = ExtResource( 2 )
