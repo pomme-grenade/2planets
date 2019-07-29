@@ -51,7 +51,7 @@ func _input(event):
 	if direction != 0:
 		cursor_index = clamp(cursor_index + direction, -1, 1)
 		update()
-
+ 
 	current_cost = index_to_types[cursor_index] + "_" + "cost"
 
 	if event.is_action_pressed(player_key + "up"):

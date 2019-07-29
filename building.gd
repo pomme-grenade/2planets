@@ -19,7 +19,7 @@ func _ready():
 	connect('damage', self, 'on_damage')
 
 func init():
-	rotation = position.direction_to(Vector2(0, 0)).angle() - PI / 2
+	rotation = position.direction_to(Vector2(0, 0)).angle()
 	texture = textures[type]
 	if type == 'attack':
 		var attackTimer = Timer.new()
