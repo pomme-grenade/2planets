@@ -34,3 +34,9 @@ func _unhandled_input(event):
 		planet.add_child(ui)
 		ui.player = self
 		ui.planet = planet
+
+	if event.is_action_pressed(player_key + "down"):
+		for building in get_tree().get_nodes_in_group('building' + str(planet.playerNumber)):
+				if building.type == 'attack' and ((position.distance_to(building.position)) < 2) and building.rocket_amount > 0:
+					building.fire_rocket()
+					building.rocket_amount -= 1

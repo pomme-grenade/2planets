@@ -25,3 +25,4 @@ func _draw():
 func _process(delta):
 	money += income * delta
 	$Label.text = str(int(money))
+	rotation_degrees += 0.08
