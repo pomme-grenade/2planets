@@ -10,6 +10,7 @@ position = Vector2( 200, 200 )
 script = ExtResource( 1 )
 playerNumber = 1
 color = Color( 0.956863, 0.309804, 0.137255, 1 )
+income = 1
 
 [node name="Label" type="Label" parent="planet0"]
 margin_right = 40.0
@@ -21,6 +22,7 @@ position = Vector2( 600, 200 )
 script = ExtResource( 1 )
 playerNumber = 2
 color = Color( 0.713726, 0.992157, 0.101961, 1 )
+income = 1
 
 [node name="Label" type="Label" parent="planet1"]
 margin_right = 40.0
