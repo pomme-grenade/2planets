@@ -75,7 +75,8 @@ func spawn_building():
 		building.type = type
 		player.planet.add_child(building)
 		building.init()
-		planet.money -=  cost[current_cost]
+
+	planet.money -=  cost[current_cost]
 
 	if (index_to_types[cursor_index] == "income"):
 		planet.income += house_bonus_income_lvl1
