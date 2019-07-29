@@ -28,7 +28,7 @@ func _unhandled_input(event):
 		movementDirection = -1
 	elif event.is_action_pressed(player_key + "up"):
 		var ui = preload("res://add_building_ui.gd").new()
-		add_child(ui)
+		planet.add_child(ui)
 		ui.player = self
 		ui.planet = planet
 	else:

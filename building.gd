@@ -17,7 +17,7 @@ func _ready():
 	connect('damage', self, 'on_damage')
 
 func init():
-	rotation = position.direction_to(planet.position).angle() - PI / 2
+	rotation = position.direction_to(Vector2(0, 0)).angle() - PI / 2
 	texture = textures[type]
 
 func on_damage():

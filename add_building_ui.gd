@@ -18,9 +18,6 @@ const index_to_types = {
 	1: 'attack'
 }
 
-func _ready():
-	pass
-
 func _draw():
 	# highlight
 	var gap = 15
