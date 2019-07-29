@@ -3,6 +3,12 @@ extends Control
 var player
 var cursor_index = 0
 
+const index_to_types = {
+	-1: 'defense',
+	0: 'income',
+	1: 'attack'
+}
+
 func _ready():
 	pass
 
@@ -11,15 +17,14 @@ func _draw():
 	var gap = 15
 	var item_size = 10
 	var cursor_size = 12
-	var cursor_x = cursor_index * (gap + item_size/2) - cursor_size/2
-	draw_rect(Rect2(Vector2(cursor_x, -5), Vector2(cursor_size, cursor_size)), Color(1, 1, 1))
+	var cursor_x = cursor_index * gap - cursor_size/2
+	draw_rect(Rect2(Vector2(cursor_x, -20), Vector2(cursor_size, cursor_size)), Color(1, 1, 1))
 
-	# defense
-	draw_circle(Vector2(-gap-item_size/2, 0), item_size/2, Color(0, 0.4, 1))
-	# income
-	draw_polygon([Vector2(-item_size/2, -item_size/2), Vector2(item_size/2, -item_size/2), Vector2(0, item_size/2)], [Color(200, 0, 0)])
-	# attack
-	draw_polygon([Vector2(gap, item_size/2), Vector2(gap + item_size, item_size/2), Vector2(gap + item_size/2, -item_size/2)], [Color(200, 0, 0)])
+	var textures = preload("building.gd").textures
+	var i = -1
+	for type in textures:
+		draw_texture(textures[type], Vector2(gap * i - 3, -20))
+		i += 1
 
 func _input(event):
 	var player_key = "player" + str(player.playerNumber) + "_"
@@ -40,4 +45,9 @@ func _input(event):
 		queue_free()
 
 func spawn_building():
-	pass
+	var building = preload("res://building.gd").new()
+	building.planet = player.planet
+	building.position = player.position
+	building.type = index_to_types[cursor_index]
+	player.planet.add_child(building)
+	building.init()
