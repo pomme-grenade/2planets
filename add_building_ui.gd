@@ -34,6 +34,10 @@ func _draw():
 
 func _input(event):
 	var player_key = "player" + str(player.playerNumber) + "_"
+
+	if event.is_action(player_key + 'left') or event.is_action(player_key + 'right') or event.is_action(player_key + 'up'):
+		get_tree().set_input_as_handled()
+
 	var direction = 0
 	if event.is_action_pressed(player_key + "left"):
 		direction = -1
@@ -43,7 +47,6 @@ func _input(event):
 		current_building = "attack"
 
 	if direction != 0:
-		get_tree().set_input_as_handled()
 		cursor_index = clamp(cursor_index + direction, -1, 1)
 		update()
 
@@ -53,7 +56,6 @@ func _input(event):
 		get_tree().set_input_as_handled()
 		if (planet.money >= cost[current_cost]):
 			spawn_building()
-			get_tree().set_input_as_handled()
 			queue_free()
 
 
