@@ -26,10 +26,11 @@ func _unhandled_input(event):
 		movementDirection = 1
 	elif Input.is_action_pressed(leftAction):
 		movementDirection = -1
-	elif event.is_action_pressed(player_key + "up"):
+	else:
+		movementDirection = 0
+	if event.is_action_pressed(player_key + "up"):
+		movementDirection = 0
 		var ui = preload("res://add_building_ui.gd").new()
 		planet.add_child(ui)
 		ui.player = self
 		ui.planet = planet
-	else:
-		movementDirection = 0
