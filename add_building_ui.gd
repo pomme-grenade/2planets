@@ -4,12 +4,12 @@ var player
 var player_planet
 var cursor_index = 0
 var planet
-var current_building = "income"
 var cost = {
 	defense_cost = 4,
 	income_cost = 2,
 	attack_cost = 1,
 }
+var house_bonus_income_lvl1 = 0.5
 var current_cost
 
 const index_to_types = {
@@ -41,16 +41,14 @@ func _input(event):
 	var direction = 0
 	if event.is_action_pressed(player_key + "left"):
 		direction = -1
-		current_building = "defense"
 	elif event.is_action_pressed(player_key + "right"):
 		direction = 1
-		current_building = "attack"
 
 	if direction != 0:
 		cursor_index = clamp(cursor_index + direction, -1, 1)
 		update()
 
-	current_cost = current_building + "_" + "cost"
+	current_cost = index_to_types[cursor_index] + "_" + "cost"
 
 	if event.is_action_pressed(player_key + "up"):
 		get_tree().set_input_as_handled()
@@ -67,3 +65,6 @@ func spawn_building():
 	player.planet.add_child(building)
 	building.init()
 	planet.money -=  cost[current_cost]
+
+	if (index_to_types[cursor_index] == "income"):
+		planet.income += house_bonus_income_lvl1
