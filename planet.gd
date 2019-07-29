@@ -17,12 +17,11 @@ func _ready():
 	player.playerNumber = playerNumber
 	$Label.rect_position.x -= $Label.rect_size.x / 2
 	$Label.rect_position.y -= $Label.rect_size.y / 2
+	add_to_group('planet')
 
 func _draw():
 	draw_circle(Vector2(0, 0), planetRadius, color)
 
 func _process(delta):
-	# player.position = player.position.rotated(0.5 * delta)
-	# player.rotation += 0.5 * delta
 	money += income * delta
 	$Label.text = str(int(money))

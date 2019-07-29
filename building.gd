@@ -34,7 +34,7 @@ func on_damage():
 
 func fire_rocket():
 	var rocket = preload("res://rocket.gd").new()
-	rocket.position = global_position
+	rocket.position = global_position - Vector2(5, 0).rotated(rotation + PI / 2)
 	rocket.rotation = global_rotation - PI / 2
 	rocket.target_player = 2 if planet.playerNumber == 1 else 1
 	$'/root/Node2D'.add_child(rocket)

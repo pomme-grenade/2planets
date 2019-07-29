@@ -32,6 +32,11 @@ func _process(delta):
 			target.emit_signal('damage')
 			return
 
+	for planet in get_tree().get_nodes_in_group('planet'):
+		if position.distance_to(planet.global_position) - planet.planetRadius < 1:
+			queue_free()
+			return
+
 	position += velocity * delta
 	rotation = velocity.angle()
 
