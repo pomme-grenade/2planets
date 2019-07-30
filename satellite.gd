@@ -28,7 +28,7 @@ func _process(dt):
 	var enemy_group = 'rocket' + str(1 if player_number == 2 else 2)
 	for rocket in get_tree().get_nodes_in_group(enemy_group):
 		if global_position.distance_to(rocket.global_position) < attack_range:
-			fire_position = rocket.global_position - global_position
+			fire_position = to_local(rocket.global_position)
 			cooldown = cooldown_time
 			rocket.queue_free()
 			break
