@@ -7,12 +7,12 @@ var cooldown = 0
 var cooldown_time = 5
 
 func _draw():
-	draw_circle(Vector2(0, 0), 3, Color(0, 0.3, 1))
+	draw_texture(preload("building.gd").textures['defense'], Vector2(-4, -4))
 
 	if fire_position != null:
 		var alpha = cooldown + 1 - cooldown_time
 		if alpha > 0:
-			draw_line(Vector2(5, 0).rotated(fire_position.angle()), fire_position, Color(0.9, 0.9, 1, alpha))
+			draw_line(Vector2(4, 0).rotated(fire_position.angle()), fire_position, Color(0.9, 0.9, 1, alpha))
 		else:
 			fire_position = null
 

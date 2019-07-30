@@ -27,10 +27,8 @@ func _draw():
 	draw_rect(Rect2(Vector2(cursor_x, -20), Vector2(cursor_size, cursor_size)), Color(1, 1, 1))
 
 	var textures = preload("building.gd").textures
-	var i = -1
-	for type in textures:
-		draw_texture(textures[type], Vector2(gap * i - 3, -20))
-		i += 1
+	for index in index_to_types:
+		draw_texture(textures[index_to_types[index]], Vector2(gap * index - 3, -20))
 
 func _input(event):
 	var player_key = "player" + str(player.playerNumber) + "_"
@@ -67,6 +65,7 @@ func spawn_building():
 		var satellite = preload("res://satellite.gd").new()
 		satellite.position = player.position * 1.5
 		satellite.player_number = player.playerNumber
+		satellite.rotation = player.rotation
 		player.planet.add_child(satellite)
 	else:
 		var building = preload("res://building.gd").new()

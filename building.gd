@@ -11,7 +11,7 @@ const rocket_spawn_rate = 5
 
 const textures = {
 	attack = preload('res://brownDrill.png'),
-	defense = preload('res://brownDrill.png'),
+	defense = preload('res://satellite.png'),
 	income = preload('res://brownDrill.png')
 }
 
