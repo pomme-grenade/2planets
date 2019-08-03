@@ -12,7 +12,7 @@ var target_player_number
 const rocket_spawn_rate = 1
 
 const textures = {
-	attack = preload('res://brownDrill.png'),
+	attack = preload('res://img/rocketlauncher.png'),
 	defense = preload('res://satellite.png'),
 	income = preload('res://brownDrill.png')
 }
