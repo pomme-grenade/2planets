@@ -24,15 +24,7 @@ func _draw():
 
 func _process(delta):
 	if not is_instance_valid(target):
-		var potential_targets = get_tree().get_nodes_in_group('building' + str(target_player_number))
-		if potential_targets.size() > 0:
-			target = potential_targets[0]
-		else:
-			if planet.playerNumber == 1:
-				target = get_node("/root/Node2D/planet1")
-			else:
-				target = get_node("/root/Node2D/planet0")
-
+		target = find_new_target()
 	if is_instance_valid(target):
 		var target_angle = position.direction_to(target.global_position)
 		var angle_diff = velocity.angle_to(target_angle)
@@ -58,5 +50,16 @@ func _process(delta):
 	position += velocity * delta
 	rotation = velocity.angle()
 
-		
+func is_closer(a, b):
+	return global_position.distance_to(a.global_position) < global_position.distance_to(b.global_position)
 
+func find_new_target():
+	var potential_targets = get_tree().get_nodes_in_group('building' + str(target_player_number))
+	potential_targets.sort_custom(self, 'is_closer')
+	if potential_targets.size() > 0:
+		return potential_targets[0]
+	else:
+		if planet.playerNumber == 1:
+			return get_node("/root/Node2D/planet1")
+		else:
+			return get_node("/root/Node2D/planet0")
