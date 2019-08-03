@@ -5,6 +5,7 @@ var playerNumber
 var movementDirection = 0
 var planet
 var money
+var rocketGroup
 
 export var speed = 1
 
@@ -22,6 +23,7 @@ func _unhandled_input(event):
 	var player_key = "player" + str(playerNumber) + "_"
 	var rightAction = player_key + "right"
 	var leftAction = player_key + "left"
+	var rocketGroup = get_tree().get_nodes_in_group("rocket" + str(playerNumber))
 	if Input.is_action_pressed(rightAction):
 		movementDirection = 1
 	elif Input.is_action_pressed(leftAction):
@@ -39,5 +41,6 @@ func _unhandled_input(event):
 	if event.is_action_pressed(player_key + "down"):
 		for building in get_tree().get_nodes_in_group('building' + str(planet.playerNumber)):
 				if building.type == 'attack' and ((position.distance_to(building.position)) < 8) and building.rocket_amount > 0:
+					# rocketGroup[rocketGroup.size() - 1].ready = true
+					# rocketGroup[rocketGroup.size() - 1].rocket_amount -= 1
 					building.fire_rocket()
-					building.rocket_amount -= 1
