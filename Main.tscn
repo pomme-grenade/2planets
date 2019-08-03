@@ -8,7 +8,7 @@
 position = Vector2( 600, 200 )
 script = ExtResource( 1 )
 playerNumber = 2
-color = Color( 0.0235294, 0.478431, 0.0431373, 1 )
+color = Color( 0.141176, 0.407843, 0.270588, 1 )
 income = 0.2
 start_money = 15
 
@@ -16,6 +16,6 @@ start_money = 15
 position = Vector2( 200, 200 )
 script = ExtResource( 1 )
 playerNumber = 1
-color = Color( 0.956863, 0.309804, 0.137255, 1 )
+color = Color( 0.588235, 0.227451, 0.129412, 1 )
 income = 0.2
 start_money = 15

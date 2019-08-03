@@ -8,6 +8,7 @@ var rocket_amount_max = 3
 var rocket_amount = 0
 var rocket
 var target_player_number
+var player_is_close
 
 const rocket_spawn_rate = 5
 
@@ -26,6 +27,7 @@ func _ready():
 	add_user_signal('damage')
 	connect('damage', self, 'on_damage')
 	target_player_number = 2 if planet.playerNumber == 1 else 1
+	self.centered = true
 
 func init():
 	rotation = position.direction_to(Vector2(0, 0)).angle()

@@ -6,11 +6,16 @@ var movementDirection = 0
 var planet
 var money
 var rocketGroup
+var current_building
+var player_color 
 
 export var speed = 1
 
 func _ready():
-	pass
+	call_deferred('init')
+
+func init():
+	player_color = planet.color.lightened(0.25)
 
 func _draw():
 	draw_rect(Rect2(Vector2(-size.x / 2, -size.y), size), get_parent().color)
@@ -18,6 +23,11 @@ func _draw():
 func _process(delta):
 	position = position.rotated(movementDirection * speed  * delta)
 	rotation += movementDirection * speed * delta
+	if current_building != null:
+		current_building.modulate = player_color
+	current_building = get_building_in_range()
+	if current_building != null:
+		current_building.modulate = player_color.lightened(0.5)
 
 func _unhandled_input(event):
 	var player_key = "player" + str(playerNumber) + "_"
@@ -32,7 +42,7 @@ func _unhandled_input(event):
 		movementDirection = 0
 
 	if event.is_action_pressed(player_key + "up"):
-		if get_building_in_range() != null:
+		if current_building != null:
 			return
 
 		movementDirection = 0
@@ -43,13 +53,12 @@ func _unhandled_input(event):
 		ui.planet = planet
 
 	if event.is_action_pressed(player_key + "down"):
-		var building = get_building_in_range()
-		if building and building.rocket_amount > 0 and building.type == 'attack':
+		if current_building != null and current_building.type == 'attack' and current_building.rocket_amount > 0:
 			# rocketGroup[rocketGroup.size() - 1].ready = true
 			# rocketGroup[rocketGroup.size() - 1].rocket_amount -= 1
-			building.fire_rocket()
+			current_building.fire_rocket()
 
 func get_building_in_range():
 	for building in get_tree().get_nodes_in_group('building' + str(planet.playerNumber)):
-		if position.distance_to(building.position) < 8:
+		if position.distance_to(building.position) < 12:
 			return building
