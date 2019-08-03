@@ -30,7 +30,11 @@ func _unhandled_input(event):
 		movementDirection = -1
 	else:
 		movementDirection = 0
+
 	if event.is_action_pressed(player_key + "up"):
+		if get_building_in_range() != null:
+			return
+
 		movementDirection = 0
 		var ui = preload("res://add_building_ui.gd").new()
 		get_node("/root/Node2D").add_child(ui)
@@ -39,8 +43,13 @@ func _unhandled_input(event):
 		ui.planet = planet
 
 	if event.is_action_pressed(player_key + "down"):
-		for building in get_tree().get_nodes_in_group('building' + str(planet.playerNumber)):
-				if building.type == 'attack' and ((position.distance_to(building.position)) < 8) and building.rocket_amount > 0:
-					# rocketGroup[rocketGroup.size() - 1].ready = true
-					# rocketGroup[rocketGroup.size() - 1].rocket_amount -= 1
-					building.fire_rocket()
+		var building = get_building_in_range()
+		if building and building.rocket_amount > 0 and building.type == 'attack':
+			# rocketGroup[rocketGroup.size() - 1].ready = true
+			# rocketGroup[rocketGroup.size() - 1].rocket_amount -= 1
+			building.fire_rocket()
+
+func get_building_in_range():
+	for building in get_tree().get_nodes_in_group('building' + str(planet.playerNumber)):
+		if position.distance_to(building.position) < 8:
+			return building
