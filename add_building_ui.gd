@@ -6,8 +6,8 @@ var cursor_index = 0
 var planet
 var cost = {
 	defense_cost = 4,
-	income_cost = 2,
-	attack_cost = 1,
+	income_cost = 4,
+	attack_cost = 4,
 }
 var house_bonus_income_lvl1 = 0.5
 var current_cost
@@ -24,7 +24,7 @@ func _draw():
 	var item_size = 10
 	var cursor_size = 12
 	var cursor_x = cursor_index * gap - cursor_size/2
-	draw_rect(Rect2(Vector2(cursor_x, -20), Vector2(cursor_size, cursor_size)), Color(1, 1, 1))
+	draw_rect(Rect2(Vector2(cursor_x, -22), Vector2(cursor_size, cursor_size)), Color("#a3883e"))
 
 	var textures = preload("building.gd").textures
 	for index in index_to_types:

@@ -4,12 +4,12 @@ var health = 1
 var planet
 # 'attack', 'defense' or 'income'
 var type
-var rocket_amount_max = 2
+var rocket_amount_max = 3
 var rocket_amount = 0
 var rocket
 var target_player_number
 
-const rocket_spawn_rate = 1
+const rocket_spawn_rate = 5
 
 const textures = {
 	attack = preload('res://img/rocketlauncher.png'),
