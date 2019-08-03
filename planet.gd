@@ -3,7 +3,7 @@ extends Node2D
 export var planetRadius = 100
 export (int) var playerNumber
 export var color = Color(0, 255, 0)
-export var health = 10
+export var health = 1000
 
 var player
 var angle = 0

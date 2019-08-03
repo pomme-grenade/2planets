@@ -16,6 +16,10 @@ const textures = {
 	defense = preload('res://satellite.png'),
 	income = preload('res://brownDrill.png')
 }
+func _draw():
+	for i in range(rocket_amount):
+	# draw_set_transform(Vector2(global_position.x, global_position.y), rotation, Vector2(1, 1))
+		draw_rect(Rect2(Vector2(0, -5 - (i * 3)), Vector2(4, 1)), Color(0, 50, 255))
 
 func _ready():
 	add_to_group('building' + str(planet.playerNumber))
@@ -38,17 +42,18 @@ func on_damage():
 		queue_free()
 
 func fire_rocket():
-	rocket.ready = true
-
-func add_rocket():
-	if rocket_amount < rocket_amount_max:
-		rocket_amount += 1
-
 	rocket = preload("res://rocket.gd").new(target_player_number)
+	rocket.ready = true
+	rocket_amount -= 1
 	rocket.position = global_position - Vector2(5, 0).rotated(global_rotation)
 	rocket.rotation = global_rotation + PI 
 	rocket.planet = planet
 	rocket.building = self
-	rocket.rocket_amount = rocket_amount
 	$'/root/Node2D'.add_child(rocket)
+	update()
+
+func add_rocket():
+	if rocket_amount < rocket_amount_max:
+		rocket_amount += 1
+		update()
 

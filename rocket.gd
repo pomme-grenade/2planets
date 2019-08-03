@@ -55,14 +55,8 @@ func _process(delta):
 			queue_free()
 			return
 
-	if ready == true:
-		position += velocity * delta
-		rotation = velocity.angle()
-	else:
-		# position = building.global_position - Vector2(0, 10).rotated(rotation) 
-		position = building.global_position + Vector2(50, rocket_amount * 10).rotated(rotation)
-		rotation_degrees += 0.08
-
+	position += velocity * delta
+	rotation = velocity.angle()
 
 		
 
