@@ -4,10 +4,15 @@ var target
 var velocity
 var rotation_speed = 0.7
 var target_player_number
+var planet 
+var ready
+var building
+var rocket_amount
 
 func _ready():
-	target = $'../building'
 	velocity = Vector2(60, 0).rotated(rotation)
+
+	ready = false
 
 func _init(target_player_number):
 	self.target_player_number = target_player_number
@@ -22,6 +27,11 @@ func _process(delta):
 		var potential_targets = get_tree().get_nodes_in_group('building' + str(target_player_number))
 		if potential_targets.size() > 0:
 			target = potential_targets[0]
+		else:
+			if planet.playerNumber == 1:
+				target = get_node("/root/Node2D/planet1")
+			else:
+				target = get_node("/root/Node2D/planet0")
 
 	if is_instance_valid(target):
 		var target_angle = position.direction_to(target.global_position)
@@ -39,9 +49,20 @@ func _process(delta):
 
 	for planet in get_tree().get_nodes_in_group('planet'):
 		if position.distance_to(planet.global_position) - planet.planetRadius < 1:
+			planet.health -= 5
+			if planet.health <= 0:
+				get_tree().change_scene("res://RightWins.tscn")
 			queue_free()
 			return
 
-	position += velocity * delta
-	rotation = velocity.angle()
+	if ready == true:
+		position += velocity * delta
+		rotation = velocity.angle()
+	else:
+		# position = building.global_position - Vector2(0, 10).rotated(rotation) 
+		position = building.global_position + Vector2(50, rocket_amount * 10).rotated(rotation)
+		rotation_degrees += 0.08
+
+
+		
 

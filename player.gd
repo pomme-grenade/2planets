@@ -31,12 +31,13 @@ func _unhandled_input(event):
 	if event.is_action_pressed(player_key + "up"):
 		movementDirection = 0
 		var ui = preload("res://add_building_ui.gd").new()
-		planet.add_child(ui)
+		get_node("/root/Node2D").add_child(ui)
+		ui.rect_position = planet.position
 		ui.player = self
 		ui.planet = planet
 
 	if event.is_action_pressed(player_key + "down"):
 		for building in get_tree().get_nodes_in_group('building' + str(planet.playerNumber)):
-				if building.type == 'attack' and ((position.distance_to(building.position)) < 2) and building.rocket_amount > 0:
+				if building.type == 'attack' and ((position.distance_to(building.position)) < 8) and building.rocket_amount > 0:
 					building.fire_rocket()
 					building.rocket_amount -= 1

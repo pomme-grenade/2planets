@@ -1,0 +1,11 @@
+[gd_scene format=2]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+margin_left = 300.0
+margin_top = 150.0
+margin_right = 364.0
+margin_bottom = 164.0
+rect_scale = Vector2( 3, 3 )
+text = "Left Wins!"

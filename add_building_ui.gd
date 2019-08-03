@@ -79,3 +79,6 @@ func spawn_building():
 
 	if (index_to_types[cursor_index] == "income"):
 		planet.income += house_bonus_income_lvl1
+
+# func _process(delta):
+# 	rect_rotation =  
