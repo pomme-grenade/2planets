@@ -8,6 +8,7 @@ var money
 var rocketGroup
 var current_building
 var player_color 
+var ui
 
 export var speed = 1
 
@@ -23,10 +24,10 @@ func _draw():
 func _process(delta):
 	position = position.rotated(movementDirection * speed  * delta)
 	rotation += movementDirection * speed * delta
-	if current_building != null:
+	if is_instance_valid(current_building):
 		current_building.modulate = player_color
 	current_building = get_building_in_range()
-	if current_building != null:
+	if is_instance_valid(current_building):
 		current_building.modulate = player_color.lightened(0.5)
 
 func _unhandled_input(event):
@@ -34,19 +35,21 @@ func _unhandled_input(event):
 	var rightAction = player_key + "right"
 	var leftAction = player_key + "left"
 	var rocketGroup = get_tree().get_nodes_in_group("rocket" + str(playerNumber))
-	if Input.is_action_pressed(rightAction):
-		movementDirection = 1
-	elif Input.is_action_pressed(leftAction):
-		movementDirection = -1
+	if not is_instance_valid(ui):
+		if Input.is_action_pressed(rightAction):
+			movementDirection = 1
+		elif Input.is_action_pressed(leftAction):
+			movementDirection = -1
+		else:
+			movementDirection = 0
 	else:
 		movementDirection = 0
 
 	if event.is_action_pressed(player_key + "up"):
-		if current_building != null:
+		if  is_instance_valid(current_building):
 			return
 
-		movementDirection = 0
-		var ui = preload("res://add_building_ui.gd").new()
+		ui = preload("res://add_building_ui.gd").new()
 		get_node("/root/Node2D").add_child(ui)
 		ui.rect_position = planet.position
 		ui.player = self

@@ -1,13 +1,14 @@
 extends Sprite
 
 var player_number
-var attack_range = 50
+var attack_range = 80
 var fire_position
 var cooldown = 0
-var cooldown_time = 5
+var cooldown_time = 3
 
 func _draw():
 	draw_texture(preload("building.gd").textures['defense'], Vector2(-4, -4))
+	draw_circle(Vector2(0, 0), attack_range, Color(0.1, 0.2, 0.9, 0.3))
 
 	if fire_position != null:
 		var alpha = cooldown + 1 - cooldown_time
