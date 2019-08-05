@@ -32,13 +32,11 @@ func _draw():
 
 func _input(event):
 	var player_key = "player" + str(player.playerNumber) + "_"
+	print(player_key)
 
 	if event.is_action_pressed(player_key + 'down'):
 		queue_free()
 		return
-
-	if event.is_action(player_key + 'left') or event.is_action(player_key + 'right') or event.is_action(player_key + 'up'):
-		get_tree().set_input_as_handled()
 
 	var direction = 0
 	if event.is_action_pressed(player_key + "left"):
@@ -53,7 +51,7 @@ func _input(event):
 	current_cost = index_to_types[cursor_index] + "_" + "cost"
 
 	if event.is_action_pressed(player_key + "up"):
-		get_tree().set_input_as_handled()
+		accept_event()
 		if (planet.money >= cost[current_cost]):
 			spawn_building()
 			queue_free()
@@ -79,6 +77,3 @@ func spawn_building():
 
 	if (index_to_types[cursor_index] == "income"):
 		planet.income += house_bonus_income_lvl1
-
-# func _process(delta):
-# 	rect_rotation =  

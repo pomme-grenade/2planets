@@ -35,6 +35,17 @@ func _unhandled_input(event):
 	var rightAction = player_key + "right"
 	var leftAction = player_key + "left"
 	var rocketGroup = get_tree().get_nodes_in_group("rocket" + str(playerNumber))
+
+	if event.is_action_pressed(player_key + "up"):
+		if is_instance_valid(current_building) or is_instance_valid(ui):
+			return
+
+		ui = preload("res://add_building_ui.gd").new()
+		get_node("/root/Node2D").add_child(ui)
+		ui.rect_position = planet.position
+		ui.player = self
+		ui.planet = planet
+
 	if not is_instance_valid(ui):
 		if Input.is_action_pressed(rightAction):
 			movementDirection = 1
@@ -44,16 +55,6 @@ func _unhandled_input(event):
 			movementDirection = 0
 	else:
 		movementDirection = 0
-
-	if event.is_action_pressed(player_key + "up"):
-		if  is_instance_valid(current_building):
-			return
-
-		ui = preload("res://add_building_ui.gd").new()
-		get_node("/root/Node2D").add_child(ui)
-		ui.rect_position = planet.position
-		ui.player = self
-		ui.planet = planet
 
 	if event.is_action_pressed(player_key + "down"):
 		if current_building != null and current_building.type == 'attack' and current_building.rocket_amount > 0:
