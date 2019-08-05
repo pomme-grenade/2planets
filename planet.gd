@@ -12,22 +12,18 @@ export var start_money = 0
 var money = 0
 var income_label1
 var income_label2
-var label 
+var label
 
 func _ready():
 	money += start_money
-	# income_label1 = get_node("/root/Node2D/Label")
 	label = Label.new()
 	get_node("/root/Node2D").call_deferred("add_child", label)
 
-	# income_label2 = get_node("/root/Node2D/Label2")
 	player = preload("res://player.gd").new()
 	player.planet = self
 	add_child(player)
 	player.position.y -= planetRadius
 	player.playerNumber = playerNumber
-	# get_node("/root/Node2D").add_child("")
-	
 	add_to_group('planet')
 
 func _draw():
