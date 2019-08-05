@@ -51,7 +51,6 @@ func _input(event):
 	current_cost = index_to_types[cursor_index] + "_" + "cost"
 
 	if event.is_action_pressed(player_key + "up"):
-		accept_event()
 		if (planet.money >= cost[current_cost]):
 			spawn_building()
 			queue_free()

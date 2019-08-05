@@ -36,10 +36,8 @@ func _unhandled_input(event):
 	var leftAction = player_key + "left"
 	var rocketGroup = get_tree().get_nodes_in_group("rocket" + str(playerNumber))
 
-	if event.is_action_pressed(player_key + "up"):
-		if is_instance_valid(current_building) or is_instance_valid(ui):
-			return
-
+	var can_open_menu = not (is_instance_valid(current_building) or is_instance_valid(ui))
+	if event.is_action_pressed(player_key + "up") and can_open_menu:
 		ui = preload("res://add_building_ui.gd").new()
 		get_node("/root/Node2D").add_child(ui)
 		ui.rect_position = planet.position
