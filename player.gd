@@ -54,7 +54,9 @@ func _unhandled_input(event):
 		spawn_menu()
 
 	if event.is_action_pressed("menu"):
-		get_tree().change_scene("res://menu.tscn")
+		var scene = preload('res://menu.tscn').instance()
+		get_node('/root/Node2D').add_child(scene)
+		get_tree().paused = true
 
 
 	if event.is_action_pressed(player_key + "down"):

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://planet.gd" type="Script" id=1]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node"]
 
 [node name="planet1" type="Node2D" parent="."]
 position = Vector2( 600, 200 )
