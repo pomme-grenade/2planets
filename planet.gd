@@ -35,7 +35,7 @@ func _draw():
 
 func _process(delta):
 	money += income * delta
-	if playerNumber == 1: 
+	if playerNumber == 1:
 		rotation_degrees -= 0.08
 	elif playerNumber == 2:
 		rotation_degrees += 0.08

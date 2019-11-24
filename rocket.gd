@@ -64,13 +64,13 @@ func is_closer(a, b):
 	return global_position.distance_to(a.global_position) < global_position.distance_to(b.global_position)
 
 func find_new_target(potential_targets):
-	potential_targets.sort_custom(self, 'is_closer')
-	for target in potential_targets:
-		if not target.is_targeted:
-			# potential_targets[0].is_targeted = true
-			target.is_targeted = true
-			target.targeted_by = self
-			return target
+	# potential_targets.sort_custom(self, 'is_closer')
+	# for target in potential_targets:
+	# 	if not target.is_targeted:
+	# 		# potential_targets[0].is_targeted = true
+	# 		target.is_targeted = true
+	# 		target.targeted_by = self
+	# 		return target
 	# elif potential_targets.size() > 0 and potential_targets[0].is_targeted:
 	# 	potential_targets.erase(potential_targets[0])
 		# potential_targets.sort_custom(self, 'is_closer')
