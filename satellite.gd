@@ -1,5 +1,6 @@
 extends Sprite
 
+var planet
 var player_number
 var attack_range = 80
 var fire_position
@@ -46,6 +47,7 @@ func _process(dt):
 			fire_position = to_local(rocket.global_position)
 			cooldown = cooldown_time
 			rocket.queue_free()
+			planet.money += 1
 			break
 
 func on_damage():

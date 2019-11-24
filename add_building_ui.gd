@@ -65,6 +65,7 @@ func spawn_building():
 		satellite.player_number = player.playerNumber
 		satellite.rotation = player.rotation
 		player.planet.add_child(satellite)
+		satellite.planet = planet
 	else:
 		var building = preload("res://building.gd").new()
 		building.planet = player.planet

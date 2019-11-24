@@ -1,0 +1,31 @@
+IDEEN
+	- upgrades
+		- verschieden Raketen
+			- antisatelit rakete
+			- laserraketen instantschuss gerader schuss
+	- raketen launch gebaeude
+	- mehr tower defense raumschiffe die planeten anfliegen
+	- planet upgrade 
+	- limitierte slots in planet
+		mehr slots upgrade
+	- planet upgrade fuer bessere einheiten (neues set einheiten) (neue waffenarten)
+	- verkaufen
+
+
+
+
+
+THEMEN
+	- lategame taktik nicht existent
+	- snoballing, comeback
+	- Raketenkontrolle
+		suche art von gebaeude, raketen suchen nach art
+	- bestrafung von fehlangriff
+
+
+TODO
+	- restart am ende des spiels
+	- left must be able to win :(
+	- HQ bauen 
+		alle raketen schiessen auf HQ
+

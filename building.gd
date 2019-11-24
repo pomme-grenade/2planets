@@ -50,16 +50,19 @@ func on_damage():
 		queue_free()
 
 func fire_rocket():
-	delayTimer.stop()
-	rocket = preload("res://rocket.gd").new(target_player_number)
-	rocket.ready = true
-	rocket_amount -= 1
-	rocket.position = global_position - Vector2(5, 0).rotated(global_rotation)
-	rocket.rotation = global_rotation + PI 
-	rocket.planet = planet
-	rocket.building = self
-	$'/root/Node2D'.add_child(rocket)
-	update()
+	if planet.money >= 1:
+		planet.money -= 1
+		planet.income += 0.05
+		delayTimer.stop()
+		rocket = preload("res://rocket.gd").new(target_player_number)
+		rocket.ready = true
+		rocket_amount -= 1
+		rocket.position = global_position - Vector2(5, 0).rotated(global_rotation)
+		rocket.rotation = global_rotation + PI 
+		rocket.planet = planet
+		rocket.building = self
+		$'/root/Node2D'.add_child(rocket)
+		update()
 
 func add_rocket():
 	if rocket_amount < rocket_amount_max:
@@ -68,9 +71,9 @@ func add_rocket():
 
 func fire_all():
 	fire_rocket()
-	for i in range(rocket_amount):
-		delayTimer.connect('timeout', self, 'fire_rocket')
-		delayTimer.start(0.2)
-		add_child(delayTimer)
+	# for i in range(rocket_amount):
+	# 	delayTimer.connect('timeout', self, 'fire_rocket')
+	# 	delayTimer.start(0.2)
+	# 	add_child(delayTimer)
 		
 
