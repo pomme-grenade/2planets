@@ -63,7 +63,6 @@ func _unhandled_input(event):
 		# 					  current_building.rocket_amount > 0
 		# if can_fire_rocket:
 
-		
 		for building in get_tree().get_nodes_in_group("building" + str(playerNumber)):
 			if building.type == 'attack' and building.rocket_amount > 0:
 				building.fire_all()

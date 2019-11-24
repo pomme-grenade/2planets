@@ -35,6 +35,7 @@ func _input(event):
 	var player_key = "player" + str(player.playerNumber) + "_"
 
 	if event.is_action_pressed(player_key + 'down'):
+		accept_event()
 		destroy()
 
 	var direction = 0
