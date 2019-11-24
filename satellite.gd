@@ -5,7 +5,7 @@ var player_number
 var attack_range = 80
 var fire_position
 var cooldown = 0
-var cooldown_time = 1
+var cooldown_time = 0.5
 var health
 var type = 'defense'
 var is_targeted = false
