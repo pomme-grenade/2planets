@@ -51,7 +51,7 @@ func _process(delta):
 		if position.distance_to(planet.global_position) - planet.planetRadius < 1:
 			planet.health -= planet_rocket_damage
 			if planet.health <= 0:
-				get_tree().change_scene("res://RightWins.tscn")
+				sceneSwitcher.change_scene('res://gameOver.tscn', {"winner": target_player_number})
 			target.is_targeted = false
 			target.targeted_by = target
 			queue_free()
