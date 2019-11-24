@@ -64,7 +64,7 @@ func _unhandled_input(event):
 		# if can_fire_rocket:
 
 		for building in get_tree().get_nodes_in_group("building" + str(playerNumber)):
-			if building.type == 'attack' and building.rocket_amount > 0:
+			if building.type == 'attack':
 				building.fire_all()
 
 func get_building_in_range():
@@ -77,7 +77,7 @@ func get_building_in_range():
 func spawn_menu():
 	var ui = preload("res://add_building_ui.gd").new()
 	get_node("/root/Node2D").add_child(ui)
-	ui.rect_position = planet.position
+	ui.rect_position = planet.position + Vector2(0, -20)
 	ui.player = self
 	ui.planet = planet
 	ui.connect('close', self, 'ui_was_closed')

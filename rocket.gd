@@ -7,7 +7,6 @@ var target_player_number
 var planet 
 var ready
 var building
-var rocket_amount
 var planet_rocket_damage
 
 func _ready():
