@@ -9,9 +9,12 @@ var rocket_amount = 0
 var rocket
 var target_player_number
 var player_is_close
+var delayTimer
+var is_targeted
+var targeted_by 
 
 const rocket_spawn_rate = 5
-
+ 
 const textures = {
 	attack = preload('res://img/rocketlauncher.png'),
 	defense = preload('res://satellite.png'),
@@ -23,11 +26,14 @@ func _draw():
 		draw_rect(Rect2(Vector2(0, -5 - (i * 3)), Vector2(4, 1)), Color(0, 50, 255))
 
 func _ready():
+	targeted_by = self
 	add_to_group('building' + str(planet.playerNumber))
 	add_user_signal('damage')
 	connect('damage', self, 'on_damage')
 	target_player_number = 2 if planet.playerNumber == 1 else 1
 	self.centered = true
+	delayTimer = Timer.new()
+	is_targeted = false
 
 func init():
 	rotation = position.direction_to(Vector2(0, 0)).angle()
@@ -44,6 +50,7 @@ func on_damage():
 		queue_free()
 
 func fire_rocket():
+	delayTimer.stop()
 	rocket = preload("res://rocket.gd").new(target_player_number)
 	rocket.ready = true
 	rocket_amount -= 1
@@ -58,4 +65,12 @@ func add_rocket():
 	if rocket_amount < rocket_amount_max:
 		rocket_amount += 1
 		update()
+
+func fire_all():
+	fire_rocket()
+	for i in range(rocket_amount):
+		delayTimer.connect('timeout', self, 'fire_rocket')
+		delayTimer.start(0.2)
+		add_child(delayTimer)
+		
 

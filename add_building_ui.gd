@@ -9,7 +9,7 @@ var cost = {
 	income_cost = 4,
 	attack_cost = 4,
 }
-var house_bonus_income_lvl1 = 0.2
+var house_bonus_income_lvl1 = 0.1
 var current_cost
 signal close
 

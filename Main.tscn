@@ -9,13 +9,9 @@ position = Vector2( 600, 200 )
 script = ExtResource( 1 )
 playerNumber = 2
 color = Color( 0.141176, 0.407843, 0.270588, 1 )
-income = 0.2
-start_money = 15
 
 [node name="planet0" type="Node2D" parent="."]
 position = Vector2( 200, 200 )
 script = ExtResource( 1 )
 playerNumber = 1
 color = Color( 0.588235, 0.227451, 0.129412, 1 )
-income = 0.2
-start_money = 15

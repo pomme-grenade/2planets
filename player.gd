@@ -51,16 +51,26 @@ func _unhandled_input(event):
 	if event.is_action_pressed(player_key + "up") and can_open_menu:
 		spawn_menu()
 
+	if event.is_action_pressed("menu"):
+		get_tree().change_scene("res://menu.tscn")
+
+
 	if event.is_action_pressed(player_key + "down"):
-		var can_fire_rocket = is_instance_valid(current_building) and \
-							  current_building.type == 'attack' and \
-							  current_building.rocket_amount > 0
-		if can_fire_rocket:
-			current_building.fire_rocket()
+		# var can_fire_rocket = is_instance_valid(current_building) and \
+		# 					  current_building.type == 'attack' and \
+		# 					  current_building.rocket_amount > 0
+		# if can_fire_rocket:
+
+		
+		for building in get_tree().get_nodes_in_group("building" + str(playerNumber)):
+			if building.type == 'attack' and building.rocket_amount > 0:
+				building.fire_all()
 
 func get_building_in_range():
 	for building in get_tree().get_nodes_in_group('building' + str(planet.playerNumber)):
-		if position.distance_to(building.position) < 12:
+		if building.type != 'defense' and position.distance_to(building.position) < 12:
+			return building
+		elif building.type == 'defense' and position.distance_to(building.position) < 60:
 			return building
 
 func spawn_menu():

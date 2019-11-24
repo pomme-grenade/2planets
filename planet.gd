@@ -7,14 +7,17 @@ export var health = 100
 
 var player
 var angle = 0
-export var income = 0.1
-export var start_money = 0
+var income = 0.15
+var start_money = 12
 var money = 0
 var income_label1
 var income_label2
 var label
+var is_targeted
+var targeted_by
 
 func _ready():
+	is_targeted = false
 	money += start_money
 	label = Label.new()
 	get_node("/root/Node2D").call_deferred("add_child", label)
@@ -32,6 +35,10 @@ func _draw():
 
 func _process(delta):
 	money += income * delta
-	rotation_degrees += 0.08
+	if playerNumber == 1: 
+		rotation_degrees -= 0.08
+	elif playerNumber == 2:
+		rotation_degrees += 0.08
+
 	label.rect_position = Vector2(position.x - label.rect_size.x / 2, position.y - label.rect_size.y / 2)
 	label.text = str(int(money)) + "\n" + str(health)
