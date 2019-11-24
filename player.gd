@@ -46,6 +46,9 @@ func _process(delta):
 		current_building.modulate = player_color.lightened(0.5)
 
 func _unhandled_input(event):
+	if not is_instance_valid(player_key):
+		return
+
 	var can_open_menu = not (is_instance_valid(current_building) or ui_is_open)
 
 	if event.is_action_pressed(player_key + "up") and can_open_menu:
