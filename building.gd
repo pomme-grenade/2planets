@@ -12,6 +12,7 @@ var player_is_close
 var delayTimer
 var is_targeted
 var targeted_by 
+var incomeTimer
 
 const rocket_spawn_rate = 5
  
@@ -33,16 +34,25 @@ func _ready():
 	target_player_number = 2 if planet.playerNumber == 1 else 1
 	self.centered = true
 	delayTimer = Timer.new()
+
 	is_targeted = false
 
 func init():
 	rotation = position.direction_to(Vector2(0, 0)).angle()
 	texture = textures[type]
+	if type == 'income':
+		incomeTimer = Timer.new()
+		incomeTimer.connect('timeout', self, 'add_income')
+		incomeTimer.start(1)
+		add_child(incomeTimer)
 	# if type == 'attack':
 		# var attackTimer = Timer.new()
 		# attackTimer.connect('timeout', self, 'add_rocket')
 		# attackTimer.start(rocket_spawn_rate)
 		# add_child(attackTimer)
+		
+func add_income():
+	planet.income += 0.003
 
 func on_damage():
 	health -= 1
@@ -52,7 +62,7 @@ func on_damage():
 func fire_rocket():
 	if planet.money >= 1:
 		planet.money -= 1
-		planet.income += 0.05
+		planet.income += 0.02
 		delayTimer.stop()
 		rocket = preload("res://rocket.gd").new(target_player_number)
 		rocket.ready = true

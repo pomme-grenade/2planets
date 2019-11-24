@@ -76,9 +76,6 @@ func spawn_building():
 
 	planet.money -=  cost[current_cost]
 
-	if (index_to_types[cursor_index] == "income"):
-		planet.income += house_bonus_income_lvl1
-
 func destroy():
 	emit_signal('close')
 	queue_free()
