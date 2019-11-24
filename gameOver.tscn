@@ -5,10 +5,12 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="Label" type="Label" parent="."]
-margin_left = 300.0
-margin_top = 150.0
-margin_right = 486.0
-margin_bottom = 268.0
+anchor_right = 1.0
+margin_top = 5.0
+margin_right = 265.0
+margin_bottom = 136.0
 rect_scale = Vector2( 3, 3 )
-text = "Right Wins!"
+text = "No one wins!"
+align = 1
+valign = 1
 script = ExtResource( 1 )
