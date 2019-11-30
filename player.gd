@@ -50,16 +50,16 @@ func _process(delta):
 func _unhandled_input(event):
 	var can_open_menu = not (is_instance_valid(current_building) or ui_is_open)
 
-	if event.is_action_pressed(player_key + "up") and can_open_menu:
+	if event.is_action_pressed(player_key + "build") and can_open_menu:
 		spawn_menu()
 
-	if event.is_action_pressed("menu"):
+	if event.is_action_pressed("pause"):
 		var scene = preload('res://menu.tscn').instance()
 		get_node('/root/Node2D').add_child(scene)
 		get_tree().paused = true
 
 
-	if event.is_action_pressed(player_key + "down"):
+	if event.is_action_pressed(player_key + "fire_rocket"):
 		# var can_fire_rocket = is_instance_valid(current_building) and \
 		# 					  current_building.type == 'attack' and \
 		# 					  current_building.rocket_amount > 0
