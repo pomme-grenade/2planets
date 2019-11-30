@@ -9,15 +9,15 @@ func _process(delta):
 	pass
 
 func _unhandled_input(event):
-	if event.is_action_pressed("player2_down"):
+	if event.is_action_pressed("player2_build"):
 		$Label.set("custom_colors/font_color", Color(1, 1, 1))
 		$Label2.set("custom_colors/font_color", Color(1, 1, 0))
 		current_label = $Label2
-	if event.is_action_pressed("player2_up"):
+	if event.is_action_pressed("player2_fire_rocket"):
 		$Label2.set("custom_colors/font_color", Color(1, 1, 1))
 		$Label.set("custom_colors/font_color", Color(1, 1, 0))
 		current_label = $Label1
-	if event.is_action_pressed('menu'):
+	if event.is_action_pressed('pause'):
 		get_tree().set_input_as_handled()
 		get_tree().paused = false
 		queue_free()

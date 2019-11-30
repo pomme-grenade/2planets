@@ -34,7 +34,7 @@ func _draw():
 func _input(event):
 	var player_key = "player" + str(player.playerNumber) + "_"
 
-	if event.is_action_pressed(player_key + 'down'):
+	if event.is_action_pressed(player_key + 'fire_rocket'):
 		accept_event()
 		destroy()
 
@@ -50,7 +50,7 @@ func _input(event):
  
 	current_cost = index_to_types[cursor_index] + "_" + "cost"
 
-	if event.is_action_pressed(player_key + "up"):
+	if event.is_action_pressed(player_key + "build"):
 		accept_event()
 		if (planet.money >= cost[current_cost]):
 			spawn_building()
