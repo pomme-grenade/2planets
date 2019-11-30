@@ -4,12 +4,20 @@
 
 [node name="Node2D" type="Node2D"]
 
+[node name="Label2" type="Label" parent="."]
+margin_left = 1.0
+margin_top = 242.0
+margin_right = 798.0
+margin_bottom = 258.0
+text = "press enter to restart"
+align = 1
+
 [node name="Label" type="Label" parent="."]
 anchor_right = 1.0
-margin_top = 5.0
-margin_right = 265.0
-margin_bottom = 136.0
-rect_scale = Vector2( 3, 3 )
+margin_left = 0.598694
+margin_top = 199.281
+margin_right = 799.599
+margin_bottom = 231.281
 text = "No one wins!"
 align = 1
 valign = 1
