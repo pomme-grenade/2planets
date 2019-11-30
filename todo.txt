@@ -19,6 +19,8 @@ THEMEN
 	- Raketenkontrolle
 		suche art von gebaeude, raketen suchen nach art
 	- bestrafung von fehlangriff
+	- verkaufen
+	
 
 
 TODO
@@ -28,4 +30,5 @@ TODO
 	- HQ bauen 
 		alle raketen schiessen auf HQ
 	- steuerung anpassen
+	- blinken bei schaden und kein geld
 
