@@ -22,7 +22,6 @@ THEMEN
 
 
 TODO
-	- restart am ende des spiels
     - slots für gebäude
     - rotes aufblinken wenn man kaufen will und nicht genug geld hat
 	- HQ bauen 
