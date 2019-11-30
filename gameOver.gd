@@ -12,6 +12,10 @@ func _ready():
 	else:
 		text = "Left player wins!"
 
+func _unhandled_input(event):
+	if event.is_action_pressed("enter"):
+		get_tree().change_scene("res://Main.tscn")
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

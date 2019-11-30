@@ -28,4 +28,5 @@ TODO
 	- left must be able to win :(
 	- HQ bauen 
 		alle raketen schiessen auf HQ
+	- steuerung anpassen
 

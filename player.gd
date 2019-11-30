@@ -17,7 +17,7 @@ func _ready():
 	call_deferred('init')
 
 func init():
-	player_color = planet.color.lightened(0.25)
+	player_color = planet.color.lightened(0.4)
 	player_key = "player" + str(playerNumber) + "_"
 	set_process_unhandled_input(true)
 
