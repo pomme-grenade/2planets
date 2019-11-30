@@ -69,7 +69,8 @@ func spawn_building():
 	else:
 		var building = preload("res://building.gd").new()
 		building.planet = player.planet
-		building.position = player.position
+		var offset = 0.97 if type == 'income' else 1.04
+		building.position = player.position * offset
 		building.type = type
 		player.planet.add_child(building)
 		building.init()
