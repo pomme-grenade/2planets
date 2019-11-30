@@ -41,4 +41,5 @@ func _process(delta):
 		rotation_degrees += 0.08
 
 	label.rect_position = Vector2(position.x - label.rect_size.x / 2, position.y - label.rect_size.y / 2)
-	label.text = str(int(money)) + "\n" + str(health) + "\n" + str(income)
+	label.text = "%s  ♥\n%0.1f$\n+%0.1f$" % [health, money, income]
+	label.align = label.ALIGN_RIGHT

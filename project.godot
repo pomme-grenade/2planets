@@ -30,6 +30,10 @@ window/size/height=400
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
+[gui]
+
+theme/custom_font="res://font/font.tres"
+
 [input]
 
 ui_left={

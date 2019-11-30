@@ -23,6 +23,7 @@ THEMEN
 
 TODO
 	- restart am ende des spiels
+    - slots für gebäude
 	- HQ bauen 
 		alle raketen schiessen auf HQ
 
