@@ -21,7 +21,7 @@ func _init(target_player_number):
 	add_to_group('rocket' + str(owning_player_number))
 
 func _draw():
-	draw_rect(Rect2(Vector2(0, 0), Vector2(4, 1)), Color(0, 50, 255))
+	draw_rect(Rect2(Vector2(0, 0), Vector2(4, 1)), Color(0, 0.5, 2))
 
 func _process(delta):
 	if not is_instance_valid(target):

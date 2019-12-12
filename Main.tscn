@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://planet.gd" type="Script" id=1]
+
+[sub_resource type="Environment" id=1]
+background_mode = 4
+auto_exposure_enabled = true
+auto_exposure_min_luma = 0.1
+auto_exposure_max_luma = 4.0
+glow_enabled = true
 
 [node name="Node2D" type="Node2D"]
 
@@ -15,3 +22,6 @@ position = Vector2( 200, 200 )
 script = ExtResource( 1 )
 playerNumber = 1
 color = Color( 0.588235, 0.227451, 0.129412, 1 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
