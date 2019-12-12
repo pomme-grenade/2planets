@@ -25,7 +25,7 @@ func _draw():
 	var item_size = 10
 	var cursor_size = 12
 	var cursor_x = cursor_index * gap - cursor_size/2
-	draw_rect(Rect2(Vector2(cursor_x, -22), Vector2(cursor_size, cursor_size)), Color("#a3883e"))
+	draw_rect(Rect2(Vector2(cursor_x, -22), Vector2(cursor_size, cursor_size)), Color(0, 0, 0, 0.3))
 
 	var textures = preload("building.gd").textures
 	for index in index_to_types:
