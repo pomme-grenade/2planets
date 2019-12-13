@@ -1,0 +1,6 @@
+- gegner planeten einnehmen
+  - gebäude die rüber fliegen und hp klauen
+- random modifier
+- planeten heilen für mehr lategame
+- es sollte einen counter fuer alles geben, vorausgesetzt man hat genug geld
+  - burst protection!
