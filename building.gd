@@ -52,7 +52,7 @@ func init():
 		# add_child(attackTimer)
 		
 func add_income():
-	planet.income += 0.003
+	planet.income += 0.0015
 
 func on_damage():
 	health -= 1
@@ -62,7 +62,7 @@ func on_damage():
 func fire_rocket():
 	if planet.money >= 1:
 		planet.money -= 1
-		planet.income += 0.02
+		planet.income += 0.005
 		delayTimer.stop()
 		rocket = preload("res://rocket.gd").new(target_player_number)
 		rocket.ready = true
