@@ -96,7 +96,7 @@ func can_build(type):
 func spawn_building(type):
 	if type == 'defense':
 		var satellite = preload("res://satellite.gd").new()
-		satellite.position = position * 1.5
+		satellite.position = planet.current_slot_position() * 1.5
 		satellite.player_number = playerNumber
 		satellite.rotation = rotation
 		planet.add_child(satellite)
