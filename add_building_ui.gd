@@ -1,7 +1,7 @@
 extends Control
 
 var house_bonus_income_lvl1 = 0.1
-var current_cost
+var player
 
 func _draw():
 	var gap = 15
@@ -10,4 +10,5 @@ func _draw():
 	var textures = preload("building.gd").textures
 	var types = ['attack', 'defense', 'income']
 	for index in range(len(types)):
-		draw_texture(textures[types[index]], Vector2(gap * index - 3, -20))
+		draw_texture(textures[types[index]], Vector2(gap * index - 3, 0))
+

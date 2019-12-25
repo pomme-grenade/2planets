@@ -8,6 +8,7 @@ var money
 var current_building
 var player_color
 var player_key
+var ui
 
 var building_types = [
 	'attack',
@@ -43,8 +44,10 @@ func _process(delta):
 
 	if Input.is_action_pressed(rightAction):
 		movementDirection = 1
+		planet.update()
 	elif Input.is_action_pressed(leftAction):
 		movementDirection = -1
+		planet.update()
 	else:
 		movementDirection = 0
 
@@ -55,7 +58,7 @@ func _process(delta):
 		current_building.modulate = player_color
 	current_building = get_building_in_range()
 	if is_instance_valid(current_building):
-		current_building.modulate = player_color.lightened(0.5)
+		current_building.modulate = player_color.lightened(2)
 
 func _unhandled_input(event):
 	for type in building_types:
@@ -81,9 +84,7 @@ func _unhandled_input(event):
 
 func get_building_in_range():
 	for building in get_tree().get_nodes_in_group('building' + str(planet.playerNumber)):
-		if building.type != 'defense' and position.distance_to(building.position) < 12:
-			return building
-		elif building.type == 'defense' and position.distance_to(building.position) < 60:
+		if abs(position.angle_to(building.position)) < (PI / planet.slot_count) / 2:
 			return building
 
 
@@ -104,7 +105,7 @@ func spawn_building(type):
 		var building = preload("res://building.gd").new()
 		building.planet = planet
 		var offset = 0.97 if type == 'income' else 1.04
-		building.position = position * offset
+		building.position = planet.current_slot_position() * offset
 		building.type = type
 		planet.add_child(building)
 		building.init()
@@ -112,6 +113,7 @@ func spawn_building(type):
 	planet.money -=  building_cost[type]
 
 func spawn_menu():
-    var ui = preload("res://add_building_ui.gd").new()
+    ui = preload("res://add_building_ui.gd").new()
     get_node("/root/Node2D").add_child(ui)
-    ui.rect_position = planet.position + Vector2(-15, -20)
+    ui.rect_position = planet.position + Vector2(-15, -40)
+    ui.player = self

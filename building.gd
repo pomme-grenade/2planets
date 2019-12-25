@@ -50,7 +50,7 @@ func init():
 		# attackTimer.connect('timeout', self, 'add_rocket')
 		# attackTimer.start(rocket_spawn_rate)
 		# add_child(attackTimer)
-		
+
 func add_income():
 	planet.income += 0.0015
 
