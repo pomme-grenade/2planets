@@ -8,7 +8,7 @@ func _draw():
 	var item_size = 10
 
 	var textures = preload("building.gd").textures
-	var types = ['attack', 'defense', 'income']
+	var types = ['defense', 'income', 'attack']
 	for index in range(len(types)):
 		draw_texture(textures[types[index]], Vector2(gap * index - 3, 0))
 
