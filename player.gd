@@ -7,8 +7,19 @@ var planet
 var money
 var current_building
 var player_color
-var ui_is_open = false
 var player_key
+
+var building_types = [
+	'attack',
+	'defense',
+	'income',
+]
+
+var building_cost = {
+	attack = 4,
+	defense = 4,
+	income = 4,
+}
 
 export var speed = 1
 
@@ -21,20 +32,19 @@ func init():
 	player_key = "player" + str(playerNumber) + "_"
 	set_process_unhandled_input(true)
 
+	spawn_menu()
+
 func _draw():
 	draw_rect(Rect2(Vector2(-size.x / 2, -size.y), size), get_parent().color)
 
 func _process(delta):
-	if not ui_is_open:
-		var rightAction = player_key + "right"
-		var leftAction = player_key + "left"
+	var rightAction = player_key + "right"
+	var leftAction = player_key + "left"
 
-		if Input.is_action_pressed(rightAction):
-			movementDirection = 1
-		elif Input.is_action_pressed(leftAction):
-			movementDirection = -1
-		else:
-			movementDirection = 0
+	if Input.is_action_pressed(rightAction):
+		movementDirection = 1
+	elif Input.is_action_pressed(leftAction):
+		movementDirection = -1
 	else:
 		movementDirection = 0
 
@@ -48,10 +58,10 @@ func _process(delta):
 		current_building.modulate = player_color.lightened(0.5)
 
 func _unhandled_input(event):
-	var can_open_menu = not (is_instance_valid(current_building) or ui_is_open)
-
-	if event.is_action_pressed(player_key + "build") and can_open_menu:
-		spawn_menu()
+	for type in building_types:
+		if (event.is_action_pressed(player_key + "build_" + type)
+			and can_build(type)):
+			spawn_building(type)
 
 	if event.is_action_pressed("pause"):
 		var scene = preload('res://menu.tscn').instance()
@@ -76,14 +86,32 @@ func get_building_in_range():
 		elif building.type == 'defense' and position.distance_to(building.position) < 60:
 			return building
 
-func spawn_menu():
-	var ui = preload("res://add_building_ui.gd").new()
-	get_node("/root/Node2D").add_child(ui)
-	ui.rect_position = planet.position + Vector2(0, -20)
-	ui.player = self
-	ui.planet = planet
-	ui.connect('close', self, 'ui_was_closed')
-	self.ui_is_open = true
 
-func ui_was_closed():
-	self.ui_is_open = false
+func can_build(type):
+	return (planet.money >= building_cost[type]
+		and not is_instance_valid(current_building))
+
+
+func spawn_building(type):
+	if type == 'defense':
+		var satellite = preload("res://satellite.gd").new()
+		satellite.position = position * 1.5
+		satellite.player_number = playerNumber
+		satellite.rotation = rotation
+		planet.add_child(satellite)
+		satellite.planet = planet
+	else:
+		var building = preload("res://building.gd").new()
+		building.planet = planet
+		var offset = 0.97 if type == 'income' else 1.04
+		building.position = position * offset
+		building.type = type
+		planet.add_child(building)
+		building.init()
+
+	planet.money -=  building_cost[type]
+
+func spawn_menu():
+    var ui = preload("res://add_building_ui.gd").new()
+    get_node("/root/Node2D").add_child(ui)
+    ui.rect_position = planet.position + Vector2(-15, -20)

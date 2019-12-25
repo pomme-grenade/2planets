@@ -1,82 +1,13 @@
 extends Control
 
-var player
-var player_planet
-var cursor_index = 0
-var planet
-var cost = {
-	defense_cost = 4,
-	income_cost = 4,
-	attack_cost = 4,
-}
 var house_bonus_income_lvl1 = 0.1
 var current_cost
-signal close
-
-const index_to_types = {
-	-1: 'defense',
-	0: 'income',
-	1: 'attack'
-}
 
 func _draw():
-	# highlight
 	var gap = 15
 	var item_size = 10
-	var cursor_size = 12
-	var cursor_x = cursor_index * gap - cursor_size/2
-	draw_rect(Rect2(Vector2(cursor_x, -22), Vector2(cursor_size, cursor_size)), Color(0, 0, 0, 0.3))
 
 	var textures = preload("building.gd").textures
-	for index in index_to_types:
-		draw_texture(textures[index_to_types[index]], Vector2(gap * index - 3, -20))
-
-func _input(event):
-	var player_key = "player" + str(player.playerNumber) + "_"
-
-	if event.is_action_pressed(player_key + 'fire_rocket'):
-		accept_event()
-		destroy()
-
-	var direction = 0
-	if event.is_action_pressed(player_key + "left"):
-		direction = -1
-	elif event.is_action_pressed(player_key + "right"):
-		direction = 1
-
-	if direction != 0:
-		cursor_index = clamp(cursor_index + direction, -1, 1)
-		update()
- 
-	current_cost = index_to_types[cursor_index] + "_" + "cost"
-
-	if event.is_action_pressed(player_key + "build"):
-		accept_event()
-		if (planet.money >= cost[current_cost]):
-			spawn_building()
-			self.destroy()
-
-
-func spawn_building():
-	var type = index_to_types[cursor_index]
-	if type == 'defense':
-		var satellite = preload("res://satellite.gd").new()
-		satellite.position = player.position * 1.5
-		satellite.player_number = player.playerNumber
-		satellite.rotation = player.rotation
-		player.planet.add_child(satellite)
-		satellite.planet = planet
-	else:
-		var building = preload("res://building.gd").new()
-		building.planet = player.planet
-		var offset = 0.97 if type == 'income' else 1.04
-		building.position = player.position * offset
-		building.type = type
-		player.planet.add_child(building)
-		building.init()
-
-	planet.money -=  cost[current_cost]
-
-func destroy():
-	emit_signal('close')
-	queue_free()
+	var types = ['attack', 'defense', 'income']
+	for index in range(len(types)):
+		draw_texture(textures[types[index]], Vector2(gap * index - 3, -20))
