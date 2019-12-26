@@ -1,4 +1,6 @@
-extends Node2D
+extends AnimatedSprite
+
+export var player_color = Color(1, 1, 1)
 
 var size = Vector2(5, 10)
 var playerNumber
@@ -6,7 +8,6 @@ var movementDirection = 0
 var planet
 var money
 var current_building
-var player_color
 var player_key
 var ui
 
@@ -26,30 +27,34 @@ export var speed = 1
 
 func _ready():
 	set_process_unhandled_input(false)
-	call_deferred('init')
+	call_deferred("init")
 
 func init():
-	player_color = planet.color.lightened(0.4)
 	player_key = "player" + str(playerNumber) + "_"
 	set_process_unhandled_input(true)
 
 	spawn_menu()
 
-func _draw():
-	draw_rect(Rect2(Vector2(-size.x / 2, -size.y), size), get_parent().color)
+# func _draw():
+# 	draw_rect(Rect2(Vector2(-size.x / 2, -size.y), size), get_parent().color)
 
 func _process(delta):
 	var rightAction = player_key + "right"
 	var leftAction = player_key + "left"
 
 	if Input.is_action_pressed(rightAction):
+		flip_h = true
+		play("move")
 		movementDirection = 1
 		planet.update()
 	elif Input.is_action_pressed(leftAction):
+		flip_h = false
+		play("move")
 		movementDirection = -1
 		planet.update()
 	else:
 		movementDirection = 0
+		stop()
 
 	position = position.rotated(movementDirection * speed  * delta)
 	rotation += movementDirection * speed * delta
@@ -114,6 +119,6 @@ func spawn_building(type):
 
 func spawn_menu():
     ui = preload("res://add_building_ui.gd").new()
-    get_node("/root/Node2D").add_child(ui)
+    get_node("/root/Node2D").call_deferred("add_child", ui)
     ui.rect_position = planet.position + Vector2(-15, -40)
     ui.player = self

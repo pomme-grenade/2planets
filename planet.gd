@@ -2,7 +2,7 @@ extends Node2D
 
 export var planetRadius = 100
 export (int) var playerNumber
-export var color = Color(0, 255, 0)
+export var color
 export var health = 100
 
 var player
@@ -19,18 +19,20 @@ var slot_count = 20
 var slot_width
 
 func _ready():
+
 	is_targeted = false
 	money += start_money
 	label = Label.new()
 	get_node("/root/Node2D").call_deferred("add_child", label)
 
-	player = preload("res://player.gd").new()
-	player.planet = self
+	player = preload('res://Player.tscn').instance()
 	add_child(player)
+	player.planet = self
 	player.position.y -= planetRadius
 	player.playerNumber = playerNumber
 	add_to_group('planet')
 	slot_width = planetRadius * PI / slot_count
+
 
 func _draw():
 	draw_circle(Vector2(0, 0), planetRadius, color)
@@ -45,7 +47,7 @@ func _process(delta):
 		rotation_degrees += 0.08
 
 	label.rect_position = Vector2(position.x - label.rect_size.x / 2, position.y - label.rect_size.y / 2)
-	label.text = "%s  ♥\n%0.1f$\n+%0.1f$" % [health, money, income]
+	label.text = "%s ♥\n%0.1f$\n+%0.1f$" % [health, money, income]
 	label.align = label.ALIGN_RIGHT
 
 
