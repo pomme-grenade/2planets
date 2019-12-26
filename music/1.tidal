@@ -1,0 +1,45 @@
+setcps (120/60/4)
+
+d1
+  $ sound "[808bd*4, [~ hh:5]*2]"
+
+d2
+  $ rev
+  $ chop 8
+  $ loopAt 2
+  $ slow 2
+  $ sound "numbers:1 ~ ~ ~"
+  # hpf 700
+  # end 0.4
+  # room 0.7
+  # delay 0.5
+  # speed 1.075
+  # delayfeedback 0.4
+  # delaytime 0.7
+
+d2 $ silence
+
+d3
+  $ (0.125 <~)
+  $ slow 4
+  $ (|> hpf (slow 4 $ range 0 2500 tri))
+  $ chop 16
+  $ sound "fm:10"
+  # speed 0.49
+  # gain 0.7
+
+
+d4 $ sound "~ ~ breath ~" # end 0.65 # hpf 400
+
+
+d5
+  $ chop (run 8)
+  $ every 8 (degradeBy 0.3)
+  $ every 4 (fast 2)
+  $ sound "arpy*8" # n (fast 2 $ scale "minor" "[2 <4 4 4 5> 3 1]")
+  # pan (fast 3 $ range 0.2 0.8 square)
+  # gain "[0.65 0.6]*2"
+  # delay 0.2 # delayfeedback 0.2 # delaytime 0.2
+
+
+hush
