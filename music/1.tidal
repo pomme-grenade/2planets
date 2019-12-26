@@ -1,45 +1,63 @@
 setcps (120/60/4)
 
-d1
+xfadeIn 1 16
   $ sound "[808bd*4, [~ hh:5]*2]"
 
-d2
+xfadeIn 3 16 $ silence
+
+d1 $ silence
+
+jumpMod 2 4
   $ rev
   $ chop 8
-  $ loopAt 2
-  $ slow 2
+  $ slow 4
   $ sound "numbers:1 ~ ~ ~"
-  # hpf 700
+  # bpf 700
   # end 0.4
   # room 0.7
   # delay 0.5
   # speed 1.075
+  # pan (slow 2 $ square)
   # delayfeedback 0.4
-  # delaytime 0.7
+  # delaytime 0.75
+  # gain 0.7
+  # orbit 1
 
-d2 $ silence
 
-d3
+xfadeIn 3 16
   $ (0.125 <~)
   $ slow 4
-  $ (|> hpf (slow 4 $ range 0 2500 tri))
+  $ (|> hpf (slow 8 $ range 0 2000 tri))
   $ chop 16
   $ sound "fm:10"
   # speed 0.49
   # gain 0.7
+  # lpf 1500
 
 
-d4 $ sound "~ ~ breath ~" # end 0.65 # hpf 400
+xfadeIn 4 16
+  $ sound "~ ~ breath ~" # end 0.75 # hpf 400
 
 
-d5
+clutchIn 5 8
   $ chop (run 8)
   $ every 8 (degradeBy 0.3)
   $ every 4 (fast 2)
   $ sound "arpy*8" # n (fast 2 $ scale "minor" "[2 <4 4 4 5> 3 1]")
   # pan (fast 3 $ range 0.2 0.8 square)
-  # gain "[0.65 0.6]*2"
-  # delay 0.2 # delayfeedback 0.2 # delaytime 0.2
+  # gain "[0.45 0.4]*2"
+
+
+d6
+  $ (|> lpf ( slow 8 $ range 100 500 sine))
+  $ slow 4
+  $ chop 8
+  $ slow 2
+  $ n "<a5 a5 a5 b5> d5*2" # s "supersaw"
+  # release 2
+  # attack 2
+  # orbit 1
+  # gain 0.9
 
 
 hush
