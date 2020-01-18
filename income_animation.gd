@@ -19,3 +19,4 @@ func _ready():
 
 func do_anim_finished():
 	queue_free()
+
