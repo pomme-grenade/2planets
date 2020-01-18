@@ -7,8 +7,8 @@ export var health = 100
 
 var player
 var angle = 0
-var income = 0.3
-var start_money = 6
+var income = 3
+var start_money = 120
 var money = 0
 var income_label1
 var income_label2
@@ -47,7 +47,7 @@ func _process(delta):
 		rotation_degrees += 0.08
 
 	label.rect_position = Vector2(position.x - label.rect_size.x / 2, position.y - label.rect_size.y / 2)
-	label.text = "%s ♥\n%0.1f$\n+%0.1f$" % [health, money, income]
+	label.text = "%s  ♥\n%0.0f  $\n+%0.1f$" % [health, money, income]
 	label.align = label.ALIGN_RIGHT
 
 

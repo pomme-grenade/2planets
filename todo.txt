@@ -24,10 +24,8 @@ THEMEN
 
 
 TODO
-    - slots für gebäude
     - rotes aufblinken wenn man kaufen will und nicht genug geld hat
 	- HQ bauen 
-		alle raketen schiessen auf HQ
-	- steuerung anpassen
+		alle raketen schiessen auf HQ?
 	- blinken bei schaden und kein geld
 
