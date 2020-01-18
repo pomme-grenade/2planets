@@ -109,14 +109,14 @@ func can_build(type):
 
 func spawn_building(type):
 	if type == 'defense':
-		var satellite = preload("res://satellite.gd").new()
+		var satellite = preload("res://building/satellite.gd").new()
 		satellite.position = planet.current_slot_position() * 1.5
 		satellite.player_number = playerNumber
 		satellite.rotation = rotation
 		planet.add_child(satellite)
 		satellite.planet = planet
 	else:
-		var building = preload("res://building.gd").new()
+		var building = preload("res://building/building.gd").new()
 		building.planet = planet
 		var offset = 0.97 if type == 'income' else 1.04
 		building.position = planet.current_slot_position() * offset
@@ -127,7 +127,7 @@ func spawn_building(type):
 	planet.money -=  building_cost[type]
 
 func spawn_menu():
-    ui = preload("res://add_building_ui.gd").new()
+    ui = preload("res://planet_ui/add_building_ui.gd").new()
     get_node("/root/Node2D").call_deferred("add_child", ui)
     ui.rect_position = planet.position + Vector2(-15, -40)
     ui.player = self

@@ -48,7 +48,7 @@ func _process(dt):
 			fire_position = to_local(rocket.global_position)
 			cooldown = cooldown_time
 			rocket.queue_free()
-			planet.money += 5
+			planet.money += 0.5
 			break
 
 func on_damage():

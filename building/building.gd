@@ -11,16 +11,16 @@ var target_player_number
 var player_is_close
 var delayTimer
 var is_targeted
-var targeted_by
+var targeted_by 
 var incomeTimer
 var is_destroyed = false
 
 const rocket_spawn_rate = 5
-
+ 
 const textures = {
-	attack = preload('res://img/rocketlauncher.png'),
-	defense = preload('res://satellite.png'),
-	income = preload('res://img/white_drill.png')
+	attack = preload('res://building/rocketlauncher.png'),
+	defense = preload('res://building/satellite.png'),
+	income = preload('res://building/white_drill.png')
 }
 # func _draw():
 	# for i in range(rocket_amount):

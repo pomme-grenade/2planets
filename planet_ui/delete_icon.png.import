@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/white_drill.png-e16590163fb7a69e47e6f464e48d3145.stex"
+path="res://.import/delete_icon.png-9593bc0b6fa56fc8860ade488c9d7913.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://img/white_drill.png"
-dest_files=[ "res://.import/white_drill.png-e16590163fb7a69e47e6f464e48d3145.stex" ]
+source_file="res://planet_ui/delete_icon.png"
+dest_files=[ "res://.import/delete_icon.png-9593bc0b6fa56fc8860ade488c9d7913.stex" ]
 
 [params]
 

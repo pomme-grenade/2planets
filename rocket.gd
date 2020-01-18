@@ -4,7 +4,7 @@ var target
 var velocity
 var rotation_speed = 0.7
 var target_player_number
-var planet 
+var planet
 var ready
 var building
 var planet_rocket_damage

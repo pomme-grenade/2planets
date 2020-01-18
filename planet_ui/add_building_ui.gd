@@ -6,8 +6,8 @@ var player
 func _draw():
 	var gap = 15
 	var item_size = 10
-	var textures = preload("building.gd").textures
-	var delete = preload('res://img/delete_icon.png')
+	var textures = preload('res://building/building.gd').textures
+	var delete = preload('res://planet_ui/delete_icon.png')
 
 
 	if is_instance_valid(player.current_building):
