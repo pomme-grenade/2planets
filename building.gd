@@ -11,12 +11,12 @@ var target_player_number
 var player_is_close
 var delayTimer
 var is_targeted
-var targeted_by 
+var targeted_by
 var incomeTimer
 var is_destroyed = false
 
 const rocket_spawn_rate = 5
- 
+
 const textures = {
 	attack = preload('res://img/rocketlauncher.png'),
 	defense = preload('res://satellite.png'),
@@ -53,7 +53,7 @@ func init():
 		# add_child(attackTimer)
 
 func add_income():
-	planet.income += 0.0015
+	planet.income += 0.015
 
 func on_damage():
 	health -= 1
@@ -61,9 +61,9 @@ func on_damage():
 		queue_free()
 
 func fire_rocket():
-	if planet.money >= 1:
-		planet.money -= 1
-		planet.income += 0.005
+	if planet.money >= 10:
+		planet.money -= 10
+		planet.income += 0.05
 		delayTimer.stop()
 		rocket = preload("res://rocket.gd").new(target_player_number)
 		rocket.ready = true
@@ -77,5 +77,4 @@ func fire_rocket():
 
 func fire_all():
 	fire_rocket()
-		
 

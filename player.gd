@@ -6,7 +6,6 @@ var size = Vector2(5, 10)
 var playerNumber
 var movementDirection = 0
 var planet
-var money
 var current_building
 var player_key
 var ui
@@ -18,9 +17,9 @@ var building_types = [
 ]
 
 var building_cost = {
-	attack = 4,
-	defense = 4,
-	income = 4,
+	attack = 40,
+	defense = 40,
+	income = 40,
 }
 
 export var speed = 1
