@@ -14,6 +14,7 @@ var is_targeted
 var targeted_by 
 var incomeTimer
 var is_destroyed = false
+var income_animation
 
 const rocket_spawn_rate = 5
  
@@ -36,6 +37,7 @@ func _ready():
 	self.centered = true
 	delayTimer = Timer.new()
 
+
 	is_targeted = false
 
 func init():
@@ -53,7 +55,12 @@ func init():
 		# add_child(attackTimer)
 
 func add_income():
+	income_animation = preload('res://Income_animation.tscn').instance()
 	planet.income += 0.015
+	add_child(income_animation)
+	income_animation.label.text = "0.015"
+
+	
 
 func on_damage():
 	health -= 1
