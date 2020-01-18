@@ -2,7 +2,7 @@ extends Node2D
 
 var target
 var velocity
-var rotation_speed = 0.7
+var rotation_speed = 0.75
 var target_player_number
 var planet
 var ready
@@ -10,7 +10,7 @@ var building
 var planet_rocket_damage
 
 func _ready():
-	velocity = Vector2(60, 0).rotated(rotation)
+	velocity = Vector2(40, 0).rotated(rotation)
 	planet_rocket_damage = 5
 
 	ready = false
@@ -37,7 +37,7 @@ func _process(delta):
 		var rotation_direction = sign(angle_diff)
 		velocity = velocity.rotated(rotation_direction * rotation_speed * delta)
 
-		var acceleration = clamp(1 - abs(angle_diff), 0.1, 0.6) * delta
+		var acceleration = clamp(1 - abs(angle_diff), 0.25, 0.6) * delta
 		velocity = velocity * (1 + acceleration)
 
 		if position.distance_to(target.global_position) < 10:

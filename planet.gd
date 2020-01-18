@@ -1,6 +1,6 @@
 extends Node2D
 
-export var planetRadius = 100
+export var planetRadius = 80
 export (int) var playerNumber
 export (Color) var color
 export var health = 100
@@ -25,16 +25,16 @@ func _ready():
 	life_label = Label.new()
 	life_label.align = Label.ALIGN_RIGHT
 	get_node("/root/Node2D").call_deferred("add_child", life_label)
-	life_label.rect_position = Vector2(position.x - 20, position.y - 30)
+	life_label.rect_position = Vector2(position.x - 20, position.y - 20)
 
 	current_money_label = preload('res://planet_ui/current_money_label.tscn').instance()
 	current_money_label.align = Label.ALIGN_RIGHT
-	current_money_label.rect_position = Vector2(position.x - 12, position.y - 15)
+	current_money_label.rect_position = Vector2(position.x - 12, position.y - 5)
 	get_node("/root/Node2D").call_deferred("add_child", current_money_label)
 
 	income_label = Label.new()
 	income_label.align = Label.ALIGN_RIGHT
-	income_label.rect_position = Vector2(position.x - 20, position.y)
+	income_label.rect_position = Vector2(position.x - 20, position.y + 10)
 	get_node("/root/Node2D").call_deferred("add_child", income_label)
 
 	player = preload('res://Player.tscn').instance()
