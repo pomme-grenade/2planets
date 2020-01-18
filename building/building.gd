@@ -46,7 +46,7 @@ func init():
 	if type == 'income':
 		incomeTimer = Timer.new()
 		incomeTimer.connect('timeout', self, 'add_income')
-		incomeTimer.start(1)
+		incomeTimer.start(2)
 		add_child(incomeTimer)
 	# if type == 'attack':
 		# var attackTimer = Timer.new()
@@ -56,11 +56,12 @@ func init():
 
 func add_income():
 	income_animation = preload('res://Income_animation.tscn').instance()
-	planet.income += 0.015
+	income_animation.position = Vector2(-10, 5)
+	income_animation.rotation_degrees = -90
+	planet.income += 0.03
 	add_child(income_animation)
-	income_animation.label.text = "0.015"
+	income_animation.label.text = "0.03"
 
-	
 
 func on_damage():
 	health -= 1
@@ -76,11 +77,13 @@ func fire_rocket():
 		rocket.ready = true
 		# rocket_amount -= 1
 		rocket.position = global_position - Vector2(5, 0).rotated(global_rotation)
-		rocket.rotation = global_rotation + PI 
+		rocket.rotation = global_rotation + PI
 		rocket.planet = planet
 		rocket.building = self
 		$'/root/Node2D'.add_child(rocket)
 		update()
+	else:
+		planet.current_money_label.flash()
 
 func fire_all():
 	fire_rocket()
