@@ -21,7 +21,8 @@ func _init(target_player_number):
 	add_to_group('rocket' + str(owning_player_number))
 
 func _draw():
-	draw_rect(Rect2(Vector2(0, 0), Vector2(4, 1)), Color(0, 0.5, 2))
+	var length = 3 + velocity.length() / 50
+	draw_rect(Rect2(Vector2(0, 0), Vector2(length, 1)), Color(0, 0.5, 2))
 
 func _process(delta):
 	if not is_instance_valid(target):
@@ -30,7 +31,7 @@ func _process(delta):
 		target = find_new_target(get_tree().get_nodes_in_group('building' + str(target_player_number)))
 	if is_instance_valid(target) and (target.is_targeted == false or target.targeted_by == self):
 		# target.is_targeted = true
-		
+
 		var target_angle = position.direction_to(target.global_position)
 		var angle_diff = velocity.angle_to(target_angle)
 		var rotation_direction = sign(angle_diff)
@@ -58,6 +59,7 @@ func _process(delta):
 
 	position += velocity * delta
 	rotation = velocity.angle()
+	update()
 
 func is_closer(a, b):
 	return global_position.distance_to(a.global_position) < global_position.distance_to(b.global_position)
