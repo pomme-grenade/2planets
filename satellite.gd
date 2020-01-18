@@ -10,6 +10,7 @@ var health
 var type = 'defense'
 var is_targeted = false
 var targeted_by = null
+var is_destroyed = false
 
 signal damage
 

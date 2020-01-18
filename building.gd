@@ -13,6 +13,7 @@ var delayTimer
 var is_targeted
 var targeted_by 
 var incomeTimer
+var is_destroyed = false
 
 const rocket_spawn_rate = 5
  
@@ -74,16 +75,7 @@ func fire_rocket():
 		$'/root/Node2D'.add_child(rocket)
 		update()
 
-# func add_rocket():
-# 	if rocket_amount < rocket_amount_max:
-# 		rocket_amount += 1
-# 		update()
-
 func fire_all():
 	fire_rocket()
-	# for i in range(rocket_amount):
-	# 	delayTimer.connect('timeout', self, 'fire_rocket')
-	# 	delayTimer.start(0.2)
-	# 	add_child(delayTimer)
 		
 

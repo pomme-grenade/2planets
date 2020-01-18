@@ -2,13 +2,13 @@ extends Node2D
 
 export var planetRadius = 100
 export (int) var playerNumber
-export var color
+export (Color) var color
 export var health = 100
 
 var player
 var angle = 0
-var income = 0.15
-var start_money = 12
+var income = 0.3
+var start_money = 6
 var money = 0
 var income_label1
 var income_label2

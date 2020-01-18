@@ -61,7 +61,11 @@ func _process(delta):
 
 	if is_instance_valid(current_building):
 		current_building.modulate = player_color
-	current_building = get_building_in_range()
+	var new_building = get_building_in_range()
+	if new_building != current_building:
+		ui.update()
+		current_building = new_building
+
 	if is_instance_valid(current_building):
 		current_building.modulate = player_color.lightened(2)
 
@@ -70,6 +74,12 @@ func _unhandled_input(event):
 		if (event.is_action_pressed(player_key + "build_" + type)
 			and can_build(type)):
 			spawn_building(type)
+		elif is_instance_valid(current_building):
+			if (event.is_action_pressed(player_key + "build_income")
+					and not current_building.is_destroyed):	
+				planet.money += building_cost[current_building.type] / 4
+				current_building.is_destroyed = true
+				current_building.queue_free()
 
 	if event.is_action_pressed("pause"):
 		var scene = preload('res://menu.tscn').instance()
