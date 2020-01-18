@@ -70,9 +70,11 @@ func _process(delta):
 
 func _unhandled_input(event):
 	for type in building_types:
-		if (event.is_action_pressed(player_key + "build_" + type)
-			and can_build(type)):
-			spawn_building(type)
+		if event.is_action_pressed(player_key + "build_" + type):
+			if can_build(type):
+				spawn_building(type)
+			else:
+				planet.current_money_label.flash()
 		elif is_instance_valid(current_building):
 			if (event.is_action_pressed(player_key + "build_income")
 					and not current_building.is_destroyed):	

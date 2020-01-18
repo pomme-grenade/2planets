@@ -10,9 +10,9 @@ var angle = 0
 var income = 3
 var start_money = 120
 var money = 0
-var income_label1
-var income_label2
-var label
+var life_label
+var current_money_label
+var income_label
 var is_targeted
 var targeted_by
 var slot_count = 20
@@ -22,8 +22,20 @@ func _ready():
 
 	is_targeted = false
 	money += start_money
-	label = Label.new()
-	get_node("/root/Node2D").call_deferred("add_child", label)
+	life_label = Label.new()
+	life_label.align = Label.ALIGN_RIGHT
+	get_node("/root/Node2D").call_deferred("add_child", life_label)
+	life_label.rect_position = Vector2(position.x - 20, position.y - 30)
+
+	current_money_label = preload('res://planet_ui/current_money_label.tscn').instance()
+	current_money_label.align = Label.ALIGN_RIGHT
+	current_money_label.rect_position = Vector2(position.x - 12, position.y - 15)
+	get_node("/root/Node2D").call_deferred("add_child", current_money_label)
+
+	income_label = Label.new()
+	income_label.align = Label.ALIGN_RIGHT
+	income_label.rect_position = Vector2(position.x - 20, position.y)
+	get_node("/root/Node2D").call_deferred("add_child", income_label)
 
 	player = preload('res://Player.tscn').instance()
 	add_child(player)
@@ -46,9 +58,9 @@ func _process(delta):
 	elif playerNumber == 2:
 		rotation_degrees += 0.08
 
-	label.rect_position = Vector2(position.x - label.rect_size.x / 2, position.y - label.rect_size.y / 2)
-	label.text = "%s  ♥\n%0.0f  $\n+%0.1f$" % [health, money, income]
-	label.align = label.ALIGN_RIGHT
+	life_label.text = "%s ♥" % health
+	current_money_label.text = "%0.0f$" % money
+	income_label.text = "+%0.1f$" % income
 
 
 func current_slot_position():
