@@ -23,6 +23,8 @@ jobs:
     - name: copy build to repo
       run: cp -R /home/runner/.local/share/godot/builds/0 ./web-build
 
+    - run: ls -la ./web-build
+
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@3.1.5
       with:
