@@ -1,4 +1,4 @@
-name: CI
+name: Export game
 
 on: [push]
 
@@ -9,6 +9,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+
+    - run: sudo apt-get install pulseaudio
     - name: export game
       # Use version 1.0.0 (see releases for all versions)
       uses: firebelley/godot-export@v1.0.1
