@@ -44,6 +44,12 @@ func _process(dt):
 		if global_position.distance_to(rocket.global_position) < attack_range:
 			fire_position = to_local(rocket.global_position)
 			cooldown = cooldown_time
+			var income_animation = preload('res://Income_animation.tscn').instance()
+			income_animation.position = Vector2(-2, -5)
+			add_child(income_animation)
+			income_animation.label.text = "0.5"
+
 			rocket.queue_free()
 			planet.money += 0.5
+
 			break
