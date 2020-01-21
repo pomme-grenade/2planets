@@ -1,11 +1,9 @@
 extends Control
 
-var house_bonus_income_lvl1 = 0.1
 var player
 
 func _draw():
 	var gap = 15
-	var item_size = 10
 	var textures = preload('res://building/building.gd').textures
 	var delete = preload('res://planet_ui/delete_icon.png')
 

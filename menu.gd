@@ -5,9 +5,6 @@ var current_label
 func _ready():
 	$Label.set("custom_colors/font_color", Color(1, 1, 0))
 
-func _process(delta):
-	pass
-
 func _unhandled_input(event):
 	if event.is_action_pressed("player2_build"):
 		$Label.set("custom_colors/font_color", Color(1, 1, 1))
@@ -24,7 +21,6 @@ func _unhandled_input(event):
 	if event.is_action_pressed("enter"):
 		if current_label == $Label1:
 			get_tree().paused = false
-			get_tree().change_scene("res://Main.tscn")
-			# get_tree().reload_current_scene()
+			sceneSwitcher.change_scene('res://Main.tscn')
 		if current_label == $Label2:
 			get_tree().quit()

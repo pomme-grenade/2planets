@@ -7,12 +7,10 @@ var fire_position
 var cooldown = 0
 var cooldown_time = 0.5
 var health
+# warning-ignore:unused_class_variable
 var type = 'defense'
-var is_targeted = false
-var targeted_by = null
+#warning-ignore:unused_class_variable
 var is_destroyed = false
-
-signal damage
 
 func _ready():
 	call_deferred('init')
@@ -20,7 +18,6 @@ func _ready():
 func init():
 	add_to_group('building' + str(player_number))
 	health = 1
-	connect('damage', self, 'on_damage')
 
 func _draw():
 	draw_texture(preload("building.gd").textures['defense'], Vector2(-4, -4))
@@ -50,8 +47,3 @@ func _process(dt):
 			rocket.queue_free()
 			planet.money += 0.5
 			break
-
-func on_damage():
-	health -= 1
-	if health < 1:
-		queue_free()

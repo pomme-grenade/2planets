@@ -2,7 +2,6 @@ extends AnimatedSprite
 
 export var player_color = Color(1, 1, 1)
 
-var size = Vector2(5, 10)
 var playerNumber
 var movementDirection = 0
 var planet
@@ -33,9 +32,6 @@ func init():
 	set_process_unhandled_input(true)
 
 	spawn_menu()
-
-# func _draw():
-# 	draw_rect(Rect2(Vector2(-size.x / 2, -size.y), size), get_parent().color)
 
 func _process(delta):
 	var rightAction = player_key + "right"

@@ -6,14 +6,15 @@ export (Color) var color
 export var health = 100
 
 var player
-var angle = 0
 var income = 3
 var start_money = 120
 var money = 0
 var life_label
 var current_money_label
 var income_label
+# warning-ignore:unused_class_variable
 var is_targeted
+# warning-ignore:unused_class_variable
 var targeted_by
 var slot_count = 20
 var slot_width

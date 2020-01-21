@@ -6,12 +6,12 @@ var rotation_speed = 0.75
 var target_player_number
 var planet
 var ready
+#warning-ignore:unused_class_variable
 var building
-var planet_rocket_damage
+var planet_rocket_damage = 5
 
 func _ready():
 	velocity = Vector2(40, 0).rotated(rotation)
-	planet_rocket_damage = 5
 
 	ready = false
 
@@ -26,9 +26,9 @@ func _draw():
 
 func _process(delta):
 	if not is_instance_valid(target):
-		target = find_new_target(get_tree().get_nodes_in_group('building' + str(target_player_number)))
+		target = find_new_target()
 	elif target.is_targeted and target.targeted_by != self:
-		target = find_new_target(get_tree().get_nodes_in_group('building' + str(target_player_number)))
+		target = find_new_target()
 	if is_instance_valid(target) and (target.is_targeted == false or target.targeted_by == self):
 		# target.is_targeted = true
 
@@ -44,7 +44,6 @@ func _process(delta):
 			target.is_targeted = false
 			target.targeted_by = target
 			queue_free()
-			target.emit_signal('damage')
 			return
 
 	for planet in get_tree().get_nodes_in_group('planet'):
@@ -64,20 +63,7 @@ func _process(delta):
 func is_closer(a, b):
 	return global_position.distance_to(a.global_position) < global_position.distance_to(b.global_position)
 
-func find_new_target(potential_targets):
-	# potential_targets.sort_custom(self, 'is_closer')
-	# for target in potential_targets:
-	# 	if not target.is_targeted:
-	# 		# potential_targets[0].is_targeted = true
-	# 		target.is_targeted = true
-	# 		target.targeted_by = self
-	# 		return target
-	# elif potential_targets.size() > 0 and potential_targets[0].is_targeted:
-	# 	potential_targets.erase(potential_targets[0])
-		# potential_targets.sort_custom(self, 'is_closer')
-		# potential_targets[0].is_targeted = true
-		# potential_targets[0].targeted_by = self
-		# return potential_targets[0]
+func find_new_target():
 	if planet.playerNumber == 1:
 		return get_node("/root/Node2D/planet1")
 	else:
