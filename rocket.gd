@@ -27,10 +27,7 @@ func _draw():
 func _process(delta):
 	if not is_instance_valid(target):
 		target = find_new_target()
-	elif target.is_targeted and target.targeted_by != self:
-		target = find_new_target()
-	if is_instance_valid(target) and (target.is_targeted == false or target.targeted_by == self):
-		# target.is_targeted = true
+	if is_instance_valid(target):
 
 		var target_angle = position.direction_to(target.global_position)
 		var angle_diff = velocity.angle_to(target_angle)
@@ -41,8 +38,6 @@ func _process(delta):
 		velocity = velocity * (1 + acceleration)
 
 		if position.distance_to(target.global_position) < 10:
-			target.is_targeted = false
-			target.targeted_by = target
 			queue_free()
 			return
 
@@ -51,8 +46,6 @@ func _process(delta):
 			planet.health -= planet_rocket_damage
 			if planet.health <= 0:
 				sceneSwitcher.change_scene('res://gameOver.tscn', {"loser": target_player_number})
-			target.is_targeted = false
-			target.targeted_by = target
 			queue_free()
 			return
 

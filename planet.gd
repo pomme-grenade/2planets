@@ -13,15 +13,11 @@ var life_label
 var current_money_label
 var income_label
 # warning-ignore:unused_class_variable
-var is_targeted
 # warning-ignore:unused_class_variable
-var targeted_by
 var slot_count = 20
 var slot_width
 
 func _ready():
-
-	is_targeted = false
 	money += start_money
 	life_label = Label.new()
 	life_label.align = Label.ALIGN_RIGHT
