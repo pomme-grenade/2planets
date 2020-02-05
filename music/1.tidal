@@ -12,6 +12,7 @@ jumpMod 2 4
   $ chop 8
   $ slow 4
   $ sound "numbers:1 ~ ~ ~"
+  # n "<1 2 3 4>"
   # bpf 700
   # end 0.4
   # room 0.7
@@ -48,6 +49,8 @@ clutchIn 5 8
   # gain "[0.45 0.4]*2"
 
 
+xfadeIn 6 4 silence
+
 d6
   $ (|> lpf ( slow 8 $ range 100 500 sine))
   $ slow 4
@@ -57,7 +60,13 @@ d6
   # release 2
   # attack 2
   # orbit 1
-  # gain 0.9
+  # gain 0.7
 
+d7
+  $ n "[[c3*4 e3*<2 2 2 4>] [[g3, a3] bs3*2]]"
+  # s "supersquare"
+  # legato 0.5
+  -- # release 0
+  # gain "0.7 0.6"
 
 hush
