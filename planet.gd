@@ -57,7 +57,7 @@ func _process(delta):
 
 	life_label.text = "%s ♥" % health
 	current_money_label.text = "%0.0f$" % money
-	income_label.text = "+%0.1f$" % income
+	income_label.text = "+%0.1f$/s" % income
 
 
 func current_slot_position():

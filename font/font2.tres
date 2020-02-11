@@ -4,5 +4,5 @@
 font_path = "res://font/SourceCodePro-Regular.ttf"
 
 [resource]
-size = 5
+size = 6
 font_data = SubResource( 1 )
