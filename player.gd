@@ -106,21 +106,17 @@ func can_build(type):
 
 
 func spawn_building(type):
-	if type == 'defense':
-		var satellite = preload("res://building/satellite.gd").new()
-		satellite.position = planet.current_slot_position() * 1.5
-		satellite.player_number = playerNumber
-		satellite.rotation = rotation
-		planet.add_child(satellite)
-		satellite.planet = planet
-	else:
-		var building = preload("res://building/building.gd").new()
-		building.planet = planet
-		var offset = 0.97 if type == 'income' else 1.04
-		building.position = planet.current_slot_position() * offset
-		building.type = type
-		planet.add_child(building)
-		building.init()
+	var building = preload("res://building/building.gd").new()
+	building.planet = planet
+	var offsets = {
+		income = 0.97,
+		attack = 1.04,
+		defense = 1.5
+	}
+	building.position = planet.current_slot_position() * offsets[type]
+	building.type = type
+	planet.add_child(building)
+	building.init()
 
 	planet.money -=  building_cost[type]
 

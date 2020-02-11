@@ -10,6 +10,12 @@ var incomeTimer
 #warning-ignore:unused_class_variable
 var is_destroyed = false
 
+# defense-specific fields
+var attack_range = 80
+var fire_position
+var cooldown = 0
+var cooldown_time = 0.5
+
 const rocket_spawn_rate = 5
 
 const textures = {
@@ -32,10 +38,45 @@ func init():
 		incomeTimer.start(4)
 		add_child(incomeTimer)
 
+func _process(dt):
+	if type != 'defense':
+		return
+
+	if fire_position != null:
+		update()
+
+	cooldown -= dt
+
+	if cooldown > 0:
+		return
+
+	var enemy_group = 'rocket' + str(1 if planet.playerNumber == 2 else 2)
+	for rocket in get_tree().get_nodes_in_group(enemy_group):
+		if global_position.distance_to(rocket.global_position) < attack_range:
+			fire_position = to_local(rocket.global_position)
+			cooldown = cooldown_time
+			show_income_animation("0.5")
+
+			rocket.queue_free()
+			planet.money += 0.5
+
+			break
+
+func _draw():
+	draw_texture(textures[type], Vector2(-4, -4))
+	if type == 'defense':
+		draw_circle(Vector2(0, 0), attack_range, Color(0.1, 0.2, 0.7, 0.1))
+
+		if fire_position != null:
+			var alpha = cooldown + 1 - cooldown_time
+			if alpha > 0:
+				draw_line(Vector2(4, 0).rotated(fire_position.angle()), fire_position, Color(0.9, 0.9, 1, alpha))
+			else:
+				fire_position = null
+
 func add_income():
 	show_income_animation("0.06/s")
 	planet.income += 0.06
-
 
 func fire_rocket():
 	if planet.money >= 10:
