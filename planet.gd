@@ -63,6 +63,9 @@ func _process(delta):
 func current_slot_position():
 	var slot_angle_width = PI / slot_count
 	var slot_index = round(player.rotation / slot_angle_width)
-	return Vector2(0, -planetRadius) \
+	var offset = 1
+	if is_instance_valid(player.current_building) and not player.current_building.is_destroyed:
+		offset = player.current_building.position_offsets[player.current_building.type]
+	return Vector2(0, -planetRadius * offset) \
 		.rotated(slot_index * slot_angle_width)
 

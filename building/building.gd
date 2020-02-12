@@ -24,6 +24,12 @@ const textures = {
 	income = preload('res://building/white_drill.png')
 }
 
+const position_offsets = {
+	income = 0.97,
+	attack = 1.04,
+	defense = 1.5
+}
+
 func _ready():
 	add_to_group('building' + str(planet.playerNumber))
 	target_player_number = 2 if planet.playerNumber == 1 else 1
@@ -32,6 +38,7 @@ func _ready():
 func init():
 	rotation = position.direction_to(Vector2(0, 0)).angle()
 	texture = textures[type]
+	position *= position_offsets[type]
 	if type == 'income':
 		incomeTimer = Timer.new()
 		incomeTimer.connect('timeout', self, 'add_income')
@@ -49,12 +56,15 @@ func _process(dt):
 
 	if cooldown > 0:
 		return
+	else:
+		self_modulate.a = 1
 
 	var enemy_group = 'rocket' + str(1 if planet.playerNumber == 2 else 2)
 	for rocket in get_tree().get_nodes_in_group(enemy_group):
 		if global_position.distance_to(rocket.global_position) < attack_range:
 			fire_position = to_local(rocket.global_position)
 			cooldown = cooldown_time
+			self_modulate.a = 0.5
 			show_income_animation("0.5")
 
 			rocket.queue_free()
@@ -63,16 +73,17 @@ func _process(dt):
 			break
 
 func _draw():
-	draw_texture(textures[type], Vector2(-4, -4))
-	if type == 'defense':
-		draw_circle(Vector2(0, 0), attack_range, Color(0.1, 0.2, 0.7, 0.1))
+	if type != 'defense':
+		return
 
-		if fire_position != null:
-			var alpha = cooldown + 1 - cooldown_time
-			if alpha > 0:
-				draw_line(Vector2(4, 0).rotated(fire_position.angle()), fire_position, Color(0.9, 0.9, 1, alpha))
-			else:
-				fire_position = null
+	draw_circle(Vector2(0, 0), attack_range, Color(0.1, 0.2, 0.7, 0.1))
+
+	if fire_position != null:
+		var alpha = cooldown + 1 - cooldown_time
+		if alpha > 0:
+			draw_line(Vector2(4, 0).rotated(fire_position.angle()), fire_position, Color(0.9, 0.9, 1, alpha))
+		else:
+			fire_position = null
 
 func add_income():
 	show_income_animation("0.06/s")
@@ -101,7 +112,3 @@ func show_income_animation(text):
 	income_animation.rotation_degrees = -90
 	add_child(income_animation)
 	income_animation.label.text = text
-
-func fire_all():
-	fire_rocket()
-

@@ -54,15 +54,10 @@ func _process(delta):
 	position = position.rotated(movementDirection * speed  * delta)
 	rotation += movementDirection * speed * delta
 
-	if is_instance_valid(current_building):
-		current_building.modulate = player_color
 	var new_building = get_building_in_range()
 	if new_building != current_building:
 		ui.update()
 		current_building = new_building
-
-	if is_instance_valid(current_building):
-		current_building.modulate = player_color.lightened(2)
 
 func _unhandled_input(event):
 	for type in building_types:
@@ -77,6 +72,8 @@ func _unhandled_input(event):
 				planet.money += building_cost[current_building.type] / 4
 				current_building.is_destroyed = true
 				current_building.queue_free()
+				ui.update()
+				planet.update()
 
 	if event.is_action_pressed("pause"):
 		var scene = preload('res://menu.tscn').instance()
@@ -92,7 +89,7 @@ func _unhandled_input(event):
 
 		for building in get_tree().get_nodes_in_group("building" + str(playerNumber)):
 			if building.type == 'attack':
-				building.fire_all()
+				building.fire_rocket()
 
 func get_building_in_range():
 	for building in get_tree().get_nodes_in_group('building' + str(planet.playerNumber)):
@@ -108,15 +105,14 @@ func can_build(type):
 func spawn_building(type):
 	var building = preload("res://building/building.gd").new()
 	building.planet = planet
-	var offsets = {
-		income = 0.97,
-		attack = 1.04,
-		defense = 1.5
-	}
-	building.position = planet.current_slot_position() * offsets[type]
+	building.position = planet.current_slot_position()
 	building.type = type
 	planet.add_child(building)
+	# re-draw circle highlighting the new building
 	building.init()
+	current_building = building
+	ui.update()
+	planet.update()
 
 	planet.money -=  building_cost[type]
 

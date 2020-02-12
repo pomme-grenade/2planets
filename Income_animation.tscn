@@ -14,7 +14,7 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 0.307786, 1 ),
+"transitions": PoolRealArray( 0.329877, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, 6 ) ]
 }
