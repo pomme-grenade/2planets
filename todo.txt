@@ -19,3 +19,4 @@ TODO
 	- HQ gameplay testen & balancen
 	- blinken bei schaden
     - multiplayer
+    - add building ui refactoren: child nodes mit sprites statt _draw-function
