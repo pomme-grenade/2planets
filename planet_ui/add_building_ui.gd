@@ -1,9 +1,10 @@
 extends Control
 
 var player
-var destroy_pressed_timer
+var action_pressed_timer
 var building_to_destroy
-var time_to_destroy = 0.7
+var building_to_build
+var timer_wait_time = 0.7
 
 const building_types = [
 	'attack',
@@ -13,11 +14,17 @@ const building_types = [
 
 func _ready():
 	set_process_unhandled_input(true)
+	action_pressed_timer = Timer.new()
+	action_pressed_timer.one_shot = true
+	action_pressed_timer.connect('timeout', self, 'action_timer_timeout')
+	add_child(action_pressed_timer)
 
 func _draw():
 	var gap = 15
 	var textures = preload('res://building/building.gd').textures
 	var delete = preload('res://planet_ui/delete_icon.png')
+
+	var timer_progress = (timer_wait_time - action_pressed_timer.time_left) / timer_wait_time
 
 	if is_instance_valid(player.current_building):
 		draw_rect(Rect2(Vector2(-3, 0), Vector2(10, 10)), Color(1, 1, 1))
@@ -26,52 +33,65 @@ func _draw():
 			draw_set_transform(Vector2(1.8, 0.5), 0, Vector2(0.9, 0.9))
 		draw_texture(delete, Vector2(gap - 3, 0))
 		if is_instance_valid(building_to_destroy):
-			var destroy_progress = destroy_pressed_timer.time_left / time_to_destroy
-			draw_rect(Rect2(Vector2(gap - 3, 10), Vector2(10, - 10 + 10 * destroy_progress)), Color(0.8, 0, 0, 0.6))
+			draw_rect(Rect2(Vector2(gap - 3, 10), Vector2(10, - 10 * timer_progress)), Color(0.8, 0, 0, 0.6))
 			draw_set_transform(Vector2(0, 0), 0, Vector2(1, 1))
-		# draw_rect(Rect2(Vector2(gap - 3, 0), Vector2(10, 10)), Color(0, 0, 0))
 		draw_rect(Rect2(Vector2(2 * gap - 3, 0), Vector2(10, 10)), Color(1, 1, 1))
 	else:
 		var types = ['defense', 'income', 'attack']
 		# rotate all icons by 90 degrees
-		draw_set_transform(Vector2(0, 0), PI/2, Vector2(1, 1))
 		for index in range(len(types)):
-			draw_texture(textures[types[index]], Vector2(0, -gap * index - 5))
+			var scale = 0.9 if building_to_build == types[index] else 1
+			draw_set_transform(Vector2(0, 0), PI/2, Vector2(scale, scale))
+			var y_pos = (- gap * index - 5) - (1 - scale) * gap
+			draw_texture(textures[types[index]], Vector2(0, y_pos))
+			if building_to_build == types[index]:
+				draw_set_transform(Vector2(0, 0), 0, Vector2(scale, scale))
+				draw_rect(Rect2(Vector2(- y_pos - 9, 10), Vector2(10, - 10 * timer_progress)), Color(0, 0.6, 0.3, 0.6))
 
 func _process(dt):
-	if is_instance_valid(building_to_destroy):
+	if (is_instance_valid(building_to_destroy)
+		or building_to_build != null):
 		update()
 
 func _unhandled_input(event):
 	for type in building_types:
 		if (event.is_action_pressed(player.player_key + "build_" + type)
-			and not is_instance_valid(player.current_building)):
-			player.spawn_building(type)
+			  and not is_instance_valid(player.current_building)):
+			start_build_timer(type)
 			return
+		if (event.is_action_released(player.player_key + 'build_' + type)):
+			action_pressed_timer.stop()
+			building_to_destroy = null
+			building_to_build = null
+			update()
 
 	if (is_instance_valid(player.current_building) and
 	  event.is_action_pressed(player.player_key + 'build_income')
 	  and not player.current_building.is_destroyed):
 	    start_destroy_timer(player.current_building)
-	elif (event.is_action_released(player.player_key + 'build_income') and
-		  is_instance_valid(building_to_destroy)):
-		destroy_pressed_timer.stop()
-		building_to_destroy = null
-		update()
+
+func start_build_timer(type):
+	building_to_build = type
+	action_pressed_timer.start(timer_wait_time)
+	update()
 
 func start_destroy_timer(building):
 	building_to_destroy = building
-	destroy_pressed_timer = Timer.new()
-	destroy_pressed_timer.one_shot = true
-	destroy_pressed_timer.connect('timeout', self, 'destroy_timer_timeout')
-	destroy_pressed_timer.start(time_to_destroy)
-	add_child(destroy_pressed_timer)
+	action_pressed_timer.start(timer_wait_time)
 	update()
 
-func destroy_timer_timeout():
-	if (player.current_building == building_to_destroy and
-	  Input.is_action_pressed(player.player_key + 'build_income')):
+func action_timer_timeout():
+	print(player.current_building , building_to_destroy)
+	if (is_instance_valid(building_to_destroy) and
+		  player.current_building == building_to_destroy and
+		  Input.is_action_pressed(player.player_key + 'build_income')):
 		player.destroy_building(building_to_destroy)
-		building_to_destroy = null
+	elif (building_to_build != null and
+		  Input.is_action_pressed(player.player_key + 'build_' + building_to_build)
+		  and not is_instance_valid(player.current_building)):
+		player.spawn_building(building_to_build)
+
+	building_to_destroy = null
+	building_to_build = null
 	update()
 
