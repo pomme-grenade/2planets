@@ -26,7 +26,7 @@ func _draw():
 
 	var timer_progress = (timer_wait_time - action_pressed_timer.time_left) / timer_wait_time
 
-	if is_instance_valid(player.current_building):
+	if is_instance_valid(player.current_building) and building_to_build == null:
 		draw_rect(Rect2(Vector2(-3, 0), Vector2(10, 10)), Color(1, 1, 1))
 		if is_instance_valid(building_to_destroy):
 			# make the delete icon smaller
@@ -81,7 +81,6 @@ func start_destroy_timer(building):
 	update()
 
 func action_timer_timeout():
-	print(player.current_building , building_to_destroy)
 	if (is_instance_valid(building_to_destroy) and
 		  player.current_building == building_to_destroy and
 		  Input.is_action_pressed(player.player_key + 'build_income')):
