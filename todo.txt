@@ -11,6 +11,7 @@ IDEEN
 	- planet upgrade fuer bessere einheiten (neues set einheiten) (neue waffenarten)
 	- verkaufen
     - verschiedene modifier um das meta spannend zu halten
+	- buildings highlighten beim laufen
 
 
 THEMEN
