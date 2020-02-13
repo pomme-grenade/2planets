@@ -5,6 +5,12 @@ var destroy_pressed_timer
 var building_to_destroy
 var time_to_destroy = 0.7
 
+const building_types = [
+	'attack',
+	'defense',
+	'income',
+]
+
 func _ready():
 	set_process_unhandled_input(true)
 
@@ -37,6 +43,12 @@ func _process(dt):
 		update()
 
 func _unhandled_input(event):
+	for type in building_types:
+		if (event.is_action_pressed(player.player_key + "build_" + type)
+			and not is_instance_valid(player.current_building)):
+			player.spawn_building(type)
+			return
+
 	if (is_instance_valid(player.current_building) and
 	  event.is_action_pressed(player.player_key + 'build_income')
 	  and not player.current_building.is_destroyed):

@@ -9,12 +9,6 @@ var current_building
 var player_key
 var ui
 
-var building_types = [
-	'attack',
-	'defense',
-	'income',
-]
-
 var building_cost = {
 	attack = 40,
 	defense = 40,
@@ -60,14 +54,6 @@ func _process(delta):
 		current_building = new_building
 
 func _unhandled_input(event):
-	for type in building_types:
-		if (event.is_action_pressed(player_key + "build_" + type)
-		  and not is_instance_valid(current_building)):
-			if can_build(type):
-				spawn_building(type)
-			else:
-				planet.current_money_label.flash()
-
 	if event.is_action_pressed("pause"):
 		var scene = preload('res://menu.tscn').instance()
 		get_node('/root/Node2D').add_child(scene)
@@ -96,6 +82,9 @@ func can_build(type):
 
 
 func spawn_building(type):
+	if not can_build(type):
+		planet.current_money_label.flash()
+		return
 	var building = preload("res://building/building.gd").new()
 	building.planet = planet
 	building.position = planet.current_slot_position()
