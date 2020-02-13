@@ -19,6 +19,7 @@ var building_cost = {
 	attack = 40,
 	defense = 40,
 	income = 40,
+	headquarter = 0
 }
 
 export var speed = 1
@@ -27,11 +28,14 @@ func _ready():
 	set_process_unhandled_input(false)
 	call_deferred("init")
 
+	
+
 func init():
 	player_key = "player" + str(playerNumber) + "_"
 	set_process_unhandled_input(true)
-
 	spawn_menu()
+	spawn_building('headquarter')
+
 
 func _process(delta):
 	var rightAction = player_key + "right"
