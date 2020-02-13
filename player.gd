@@ -9,12 +9,6 @@ var current_building
 var player_key
 var ui
 
-var building_types = [
-	'attack',
-	'defense',
-	'income',
-]
-
 var building_cost = {
 	attack = 40,
 	defense = 40,
@@ -64,21 +58,6 @@ func _process(delta):
 		current_building = new_building
 
 func _unhandled_input(event):
-	for type in building_types:
-		if event.is_action_pressed(player_key + "build_" + type):
-			if can_build(type):
-				spawn_building(type)
-			else:
-				planet.current_money_label.flash()
-		elif is_instance_valid(current_building):
-			if (event.is_action_pressed(player_key + "build_income")
-					and not current_building.is_destroyed):	
-				planet.money += building_cost[current_building.type] / 4
-				current_building.is_destroyed = true
-				current_building.queue_free()
-				ui.update()
-				planet.update()
-
 	if event.is_action_pressed("pause"):
 		var scene = preload('res://menu.tscn').instance()
 		get_node('/root/Node2D').add_child(scene)
@@ -107,6 +86,9 @@ func can_build(type):
 
 
 func spawn_building(type):
+	if not can_build(type):
+		planet.current_money_label.flash()
+		return
 	var building = preload("res://building/building.gd").new()
 	building.planet = planet
 	building.position = planet.current_slot_position()
@@ -125,3 +107,10 @@ func spawn_menu():
     get_node("/root/Node2D").call_deferred("add_child", ui)
     ui.rect_position = planet.position + Vector2(-15, -40)
     ui.player = self
+
+func destroy_building(building):
+	planet.money += building_cost[current_building.type] / 4
+	current_building.is_destroyed = true
+	current_building.queue_free()
+	ui.update()
+	planet.update()
