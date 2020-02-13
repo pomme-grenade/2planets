@@ -15,7 +15,7 @@ glow_enabled = true
 position = Vector2( 600, 200 )
 script = ExtResource( 1 )
 playerNumber = 2
-color = Color( 0.141176, 0.407843, 0.270588, 1 )
+color = Color( 0.0392157, 0.243137, 0.141176, 1 )
 
 [node name="planet0" type="Node2D" parent="."]
 position = Vector2( 200, 200 )
