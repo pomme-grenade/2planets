@@ -33,31 +33,36 @@ func _process(delta):
 
 	if is_network_master():
 		if Input.is_action_pressed(rightAction):
-			flip_h = true
-			play("move")
 			movementDirection = 1
-			planet.update()
 		elif Input.is_action_pressed(leftAction):
-			flip_h = false
-			play("move")
 			movementDirection = -1
-			planet.update()
 		else:
 			movementDirection = 0
-			stop()
 
-		rpc_unreliable("set_pos_and_motion", position)
+		rpc_unreliable("set_pos_and_motion", position, movementDirection)
 
 		position = position.rotated(movementDirection * speed  * delta)
-		rotation += movementDirection * speed * delta
+	
+	rotation += movementDirection * speed * delta
+	if movementDirection == 1:
+		flip_h = true
+	else:
+		flip_h = false
+
+	if movementDirection != 0:
+		play('move')
+		planet.update()
+	else:
+		stop()
 
 	var new_building = get_building_in_range()
 	if new_building != current_building:
 		ui.update()
 		current_building = new_building
 
-puppet func set_pos_and_motion(p_pos):
+puppet func set_pos_and_motion(p_pos, movement_direction):
 		position = p_pos
+		movementDirection = movement_direction
 
 func _unhandled_input(event):
 	if event.is_action_pressed("pause"):
