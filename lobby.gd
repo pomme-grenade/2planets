@@ -1,7 +1,7 @@
 extends Control
 
 const SERVER_PORT = 10200
-var other_player_id 
+var other_player_id
 var players_done = []
 var config_file_path = 'res://server_config.cfg'
 var config_file
@@ -38,12 +38,12 @@ remotesync func pre_configure_game():
 	get_node("/root").add_child(world)
 
 	var planet_name = 'planet0' if get_tree().is_network_server() else 'planet1'
-	var my_player = get_node('/root/main/' + planet_name)
-	my_player.set_network_master(selfPeerID) # Will be explained later
+	var my_planet = get_node('/root/main/' + planet_name)
+	my_planet.set_network_master(selfPeerID) # Will be explained later
 
-	var other_planet_name = 'planet1' if get_tree().is_network_server() else 'planet0'	
-	var other_player = get_node('/root/main/' + other_planet_name)
-	other_player.set_network_master(other_player_id) # Will be explained later
+	var other_planet_name = 'planet1' if get_tree().is_network_server() else 'planet0'
+	var other_planet = get_node('/root/main/' + other_planet_name)
+	other_planet.set_network_master(other_player_id) # Will be explained later
 
 	rpc("done_preconfiguring", selfPeerID)
 	print("before pause")
