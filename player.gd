@@ -91,8 +91,11 @@ func can_build(type):
 	return (planet.money >= building_cost[type]
 		and not is_instance_valid(current_building))
 
+func spawn_building_b(type):
+	rpc('spawn_building', type)
 
-func spawn_building(type):
+
+remotesync func spawn_building(type):
 	if not can_build(type):
 		planet.current_money_label.flash()
 		return
