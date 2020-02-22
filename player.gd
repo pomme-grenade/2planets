@@ -95,7 +95,7 @@ remotesync func spawn_building(type, position):
 	building.position = position
 	building.type = type
 	building.name = get_name() + str(building_index)
-	building_index++
+	building_index += 1
 	planet.add_child(building)
 	# re-draw circle highlighting the new building
 	building.init()
