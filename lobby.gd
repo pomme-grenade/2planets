@@ -11,12 +11,14 @@ func _ready():
 
 
 func _on_connect():
+	$create.disabled = true
 	var ip = $'VBoxContainer/ip_address'.text
 	var peer = NetworkedMultiplayerENet.new()
 	peer.create_client(ip, SERVER_PORT)
 	get_tree().set_network_peer(peer)
 
 func _on_create():
+	$'VBoxContainer/connect'.disabled = true
 	var peer = NetworkedMultiplayerENet.new()
 	peer.create_server(SERVER_PORT, 2)
 	get_tree().set_network_peer(peer)
@@ -28,12 +30,12 @@ remotesync func pre_configure_game():
 	get_node("/root").add_child(world)
 
 	var planet_name = 'planet0' if get_tree().is_network_server() else 'planet1'
-	var my_player = get_node('root/Node2D' + planet_name)
+	var my_player = get_node('root/Node2D/' + planet_name)
 	my_player.set_name(str(selfPeerID))
 	my_player.set_network_master(selfPeerID) # Will be explained later
 
 	var other_planet_name = 'planet1' if get_tree().is_network_server() else 'planet0'	
-	var other_player = get_node('root/Node2D' + planet_name)
+	var other_player = get_node('root/Node2D/' + planet_name)
 	other_player.set_name(str(other_player_id))
 	other_player.set_network_master(other_player_id) # Will be explained later
 
