@@ -89,7 +89,6 @@ func action_timer_timeout():
 		  Input.is_action_pressed(player.player_key + 'build_' + building_to_build)
 		  and not is_instance_valid(player.current_building)):
 		player.spawn_building_b(building_to_build)
-		rpc(
 
 	building_to_destroy = null
 	building_to_build = null
