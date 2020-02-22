@@ -70,14 +70,10 @@ func _unhandled_input(event):
 		get_node('/root/main').add_child(scene)
 		get_tree().paused = true
 
-
-	if event.is_action_pressed(player_key + "fire_rocket"):
-		# var can_fire_rocket = is_instance_valid(current_building) and \
-		# 					  current_building.type == 'attack' and \
-		# 					  current_building.rocket_amount > 0
-		# if can_fire_rocket:
+	if event.is_action_pressed(player_key + "fire_rocket") and is_network_master():
 
 		for building in get_tree().get_nodes_in_group("building" + str(playerNumber)):
+			print(building)
 			if building.type == 'attack':
 				building.rpc('fire_rocket')
 
@@ -85,7 +81,6 @@ func get_building_in_range():
 	for building in get_tree().get_nodes_in_group('building' + str(planet.playerNumber)):
 		if abs(position.angle_to(building.position)) < (PI / planet.slot_count) / 2:
 			return building
-
 
 func can_build(type):
 	return (planet.money >= building_cost[type]
