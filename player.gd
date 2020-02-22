@@ -42,7 +42,7 @@ func _process(delta):
 		rpc_unreliable("set_pos_and_motion", position, movementDirection)
 
 		position = position.rotated(movementDirection * speed  * delta)
-	
+
 	rotation += movementDirection * speed * delta
 	if movementDirection == 1:
 		flip_h = true
@@ -73,7 +73,6 @@ func _unhandled_input(event):
 	if event.is_action_pressed(player_key + "fire_rocket") and is_network_master():
 
 		for building in get_tree().get_nodes_in_group("building" + str(playerNumber)):
-			print(building)
 			if building.type == 'attack':
 				building.rpc('fire_rocket')
 
