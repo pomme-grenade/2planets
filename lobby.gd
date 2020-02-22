@@ -45,8 +45,7 @@ remotesync func pre_configure_game():
 	var other_player = get_node('/root/main/' + other_planet_name)
 	other_player.set_network_master(other_player_id) # Will be explained later
 
-	# Tell server (remember, server is always ID=1) that this peer is done pre-configuring.
-	rpc_id(1, "done_preconfiguring", selfPeerID)
+	rpc("done_preconfiguring", selfPeerID)
 	print("before pause")
 	get_tree().set_pause(true)
 
@@ -57,10 +56,7 @@ func _player_connected(id):
 		print('sending preconfigure')
 		rpc('pre_configure_game')
 
-remotesync func done_preconfiguring(who):
-	print('done preconfiguring')
-	# Here are some checks you can do, for example
-	assert(get_tree().is_network_server())
+master func done_preconfiguring(who):
 	assert(not who in players_done) # Was not added yet
 
 	players_done.append(who)
@@ -69,7 +65,7 @@ remotesync func done_preconfiguring(who):
 		print('starting game')
 		rpc("post_configure_game")
 
-remote func post_configure_game():
+remotesync func post_configure_game():
 	queue_free()
 	get_tree().set_pause(false)
 	# Game starts now!
