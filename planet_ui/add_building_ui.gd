@@ -54,21 +54,22 @@ func _process(dt):
 		update()
 
 func _unhandled_input(event):
-	for type in building_types:
-		if (event.is_action_pressed(player.player_key + "build_" + type)
-			  and not is_instance_valid(player.current_building)):
-			start_build_timer(type)
-			return
-		if (event.is_action_released(player.player_key + 'build_' + type)):
-			action_pressed_timer.stop()
-			building_to_destroy = null
-			building_to_build = null
-			update()
+	if is_network_master():
+		for type in building_types:
+			if (event.is_action_pressed(player.player_key + "build_" + type)
+				  and not is_instance_valid(player.current_building)):
+				start_build_timer(type)
+				return
+			if (event.is_action_released(player.player_key + 'build_' + type)):
+				action_pressed_timer.stop()
+				building_to_destroy = null
+				building_to_build = null
+				update()
 
-	if (is_instance_valid(player.current_building) and
-	  event.is_action_pressed(player.player_key + 'build_income')
-	  and not player.current_building.is_destroyed):
-	    start_destroy_timer(player.current_building)
+		if (is_instance_valid(player.current_building) and
+		  event.is_action_pressed(player.player_key + 'build_income')
+		  and not player.current_building.is_destroyed):
+			start_destroy_timer(player.current_building)
 
 func start_build_timer(type):
 	building_to_build = type
@@ -88,7 +89,7 @@ func action_timer_timeout():
 	elif (building_to_build != null and
 		  Input.is_action_pressed(player.player_key + 'build_' + building_to_build)
 		  and not is_instance_valid(player.current_building)):
-		player.rpc('spawn_building', building_to_build)
+		player.rpc('spawn_building', building_to_build, get_parent().current_slot_position())
 
 	building_to_destroy = null
 	building_to_build = null

@@ -91,13 +91,13 @@ func can_build(type):
 	return (planet.money >= building_cost[type]
 		and not is_instance_valid(current_building))
 
-remotesync func spawn_building(type):
+remotesync func spawn_building(type, position):
 	if not can_build(type):
 		planet.current_money_label.flash()
 		return
 	var building = preload("res://building/building.gd").new()
 	building.planet = planet
-	building.position = planet.current_slot_position()
+	building.position = position
 	building.type = type
 	planet.add_child(building)
 	# re-draw circle highlighting the new building
