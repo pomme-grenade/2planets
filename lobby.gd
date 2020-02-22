@@ -27,6 +27,7 @@ func _on_connect():
 
 func _on_create():
 	$'VBoxContainer/connect'.disabled = true
+	$'VBoxContainer/ip_address'.editable = false
 	var peer = NetworkedMultiplayerENet.new()
 	peer.create_server(SERVER_PORT, 2)
 	get_tree().set_network_peer(peer)
