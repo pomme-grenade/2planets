@@ -54,9 +54,10 @@ func _player_connected(id):
 	get_tree().refuse_new_network_connections = true
 	other_player_id = id
 	if get_tree().is_network_server():
+		print('sending preconfigure')
 		rpc('pre_configure_game')
 
-remote func done_preconfiguring(who):
+remotesync func done_preconfiguring(who):
 	print('done preconfiguring')
 	# Here are some checks you can do, for example
 	assert(get_tree().is_network_server())
@@ -69,5 +70,6 @@ remote func done_preconfiguring(who):
 		rpc("post_configure_game")
 
 remote func post_configure_game():
+	queue_free()
 	get_tree().set_pause(false)
 	# Game starts now!
