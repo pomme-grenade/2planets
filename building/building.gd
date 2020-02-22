@@ -106,10 +106,10 @@ remotesync func fire_rocket():
 	else:
 		planet.current_money_label.flash()
 
-remotesync func destroy():
-	planet.money += building_cost[building.type] / 4
-	building.is_destroyed = true
-	building.queue_free()
+remotesync func destroy(cost):
+	planet.money += cost / 4
+	is_destroyed = true
+	queue_free()
 	planet.update()
 
 func show_income_animation(text):
