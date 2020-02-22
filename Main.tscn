@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://planet.gd" type="Script" id=1]
-[ext_resource path="res://headquarter.gd" type="Script" id=2]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -26,13 +25,3 @@ color = Color( 0.588235, 0.227451, 0.129412, 1 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
-
-[node name="headquarter1" type="Node2D" parent="."]
-position = Vector2( 700, 200 )
-script = ExtResource( 2 )
-playerNumber = 2
-
-[node name="headquarter0" type="Node2D" parent="."]
-position = Vector2( 50, 200 )
-script = ExtResource( 2 )
-playerNumber = 1

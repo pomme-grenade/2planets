@@ -18,26 +18,22 @@ var cooldown_time = 0.5
 
 const rocket_spawn_rate = 5
 
-
 const textures = {
 	attack = preload('res://building/rocketlauncher.png'),
 	defense = preload('res://building/satellite.png'),
-	income = preload('res://building/white_drill.png'),
-	headquarter = preload('res://building/headquarter.png')
+	income = preload('res://building/white_drill.png')
 }
 
 const position_offsets = {
 	income = 0.97,
 	attack = 1.04,
-	defense = 1.5,
-	headquarter = 1.04
+	defense = 1.5
 }
 
 func _ready():
 	add_to_group('building' + str(planet.playerNumber))
 	target_player_number = 2 if planet.playerNumber == 1 else 1
 	self.centered = true
-
 
 func init():
 	rotation = position.direction_to(Vector2(0, 0)).angle()
