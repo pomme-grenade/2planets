@@ -21,18 +21,18 @@ func _ready():
 	money += start_money
 	life_label = Label.new()
 	life_label.align = Label.ALIGN_RIGHT
-	get_node("/root/Node2D").call_deferred("add_child", life_label)
+	get_node("/root/main").call_deferred("add_child", life_label)
 	life_label.rect_position = Vector2(position.x - 20, position.y - 20)
 
 	current_money_label = preload('res://planet_ui/current_money_label.tscn').instance()
 	current_money_label.align = Label.ALIGN_RIGHT
 	current_money_label.rect_position = Vector2(position.x - 12, position.y - 5)
-	get_node("/root/Node2D").call_deferred("add_child", current_money_label)
+	get_node("/root/main").call_deferred("add_child", current_money_label)
 
 	income_label = Label.new()
 	income_label.align = Label.ALIGN_RIGHT
 	income_label.rect_position = Vector2(position.x - 20, position.y + 10)
-	get_node("/root/Node2D").call_deferred("add_child", income_label)
+	get_node("/root/main").call_deferred("add_child", income_label)
 
 	player = preload('res://Player.tscn').instance()
 	add_child(player)

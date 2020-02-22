@@ -101,7 +101,7 @@ func fire_rocket():
 		rocket.rotation = global_rotation + PI
 		rocket.planet = planet
 		rocket.building = self
-		$'/root/Node2D'.add_child(rocket)
+		$'/root/main'.add_child(rocket)
 		update()
 	else:
 		planet.current_money_label.flash()

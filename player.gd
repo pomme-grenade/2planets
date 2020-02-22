@@ -56,7 +56,7 @@ func _process(delta):
 func _unhandled_input(event):
 	if event.is_action_pressed("pause"):
 		var scene = preload('res://menu.tscn').instance()
-		get_node('/root/Node2D').add_child(scene)
+		get_node('/root/main').add_child(scene)
 		get_tree().paused = true
 
 
@@ -100,7 +100,7 @@ func spawn_building(type):
 
 func spawn_menu():
     ui = preload("res://planet_ui/add_building_ui.gd").new()
-    get_node("/root/Node2D").call_deferred("add_child", ui)
+    get_node("/root/main").call_deferred("add_child", ui)
     ui.rect_position = planet.position + Vector2(-15, -40)
     ui.player = self
 

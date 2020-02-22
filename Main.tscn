@@ -9,7 +9,7 @@ auto_exposure_min_luma = 0.1
 auto_exposure_max_luma = 4.0
 glow_enabled = true
 
-[node name="Node2D" type="Node2D"]
+[node name="main" type="Node2D"]
 
 [node name="planet1" type="Node2D" parent="."]
 position = Vector2( 600, 200 )
