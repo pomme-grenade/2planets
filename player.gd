@@ -113,10 +113,3 @@ func spawn_menu():
     get_node("/root/main").call_deferred("add_child", ui)
     ui.rect_position = planet.position + Vector2(-15, -40)
     ui.player = self
-
-remotesync func destroy_building(building):
-	planet.money += building_cost[building.type] / 4
-	building.is_destroyed = true
-	building.queue_free()
-	ui.update()
-	planet.update()
