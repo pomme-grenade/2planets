@@ -115,8 +115,8 @@ func spawn_menu():
     ui.player = self
 
 remotesync func destroy_building(building):
-	planet.money += building_cost[current_building.type] / 4
-	current_building.is_destroyed = true
-	current_building.queue_free()
+	planet.money += building_cost[building.type] / 4
+	building.is_destroyed = true
+	building.queue_free()
 	ui.update()
 	planet.update()

@@ -46,14 +46,12 @@ remotesync func pre_configure_game():
 	other_planet.set_network_master(other_player_id) # Will be explained later
 
 	rpc("done_preconfiguring", selfPeerID)
-	print("before pause")
 	get_tree().set_pause(true)
 
 func _player_connected(id):
 	get_tree().refuse_new_network_connections = true
 	other_player_id = id
 	if get_tree().is_network_server():
-		print('sending preconfigure')
 		rpc('pre_configure_game')
 
 master func done_preconfiguring(who):
@@ -62,7 +60,6 @@ master func done_preconfiguring(who):
 	players_done.append(who)
 
 	if players_done.size() == 2:
-		print('starting game')
 		rpc("post_configure_game")
 
 remotesync func post_configure_game():
