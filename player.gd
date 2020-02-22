@@ -46,13 +46,18 @@ func _process(delta):
 			movementDirection = 0
 			stop()
 
-	position = position.rotated(movementDirection * speed  * delta)
-	rotation += movementDirection * speed * delta
+		rpc_unreliable("set_pos_and_motion", position)
+
+		position = position.rotated(movementDirection * speed  * delta)
+		rotation += movementDirection * speed * delta
 
 	var new_building = get_building_in_range()
 	if new_building != current_building:
 		ui.update()
 		current_building = new_building
+
+puppet func set_pos_and_motion(p_pos):
+		position = p_pos
 
 func _unhandled_input(event):
 	if event.is_action_pressed("pause"):
