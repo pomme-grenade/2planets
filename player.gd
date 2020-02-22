@@ -113,3 +113,4 @@ func spawn_menu():
     get_node("/root/main").call_deferred("add_child", ui)
     ui.rect_position = planet.position + Vector2(-15, -40)
     ui.player = self
+	ui.set_network_master(get_network_master())
