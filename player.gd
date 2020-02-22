@@ -100,7 +100,7 @@ remotesync func spawn_building(type, position):
 	ui.update()
 	planet.update()
 
-	planet.money -=  building_cost[type]
+	planet.money -= building_cost[type]
 
 func spawn_menu():
 	ui = preload("res://planet_ui/add_building_ui.gd").new()
