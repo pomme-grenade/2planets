@@ -89,7 +89,7 @@ func add_income():
 	show_income_animation("0.06/s")
 	planet.income += 0.06
 
-func fire_rocket():
+remotesync func fire_rocket():
 	if planet.money >= 10:
 		planet.money -= 10
 		show_income_animation("0.05/s")

@@ -79,7 +79,7 @@ func _unhandled_input(event):
 
 		for building in get_tree().get_nodes_in_group("building" + str(playerNumber)):
 			if building.type == 'attack':
-				building.fire_rocket()
+				building.rpc('fire_rocket')
 
 func get_building_in_range():
 	for building in get_tree().get_nodes_in_group('building' + str(planet.playerNumber)):
