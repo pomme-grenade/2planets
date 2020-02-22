@@ -31,12 +31,10 @@ remotesync func pre_configure_game():
 
 	var planet_name = 'planet0' if get_tree().is_network_server() else 'planet1'
 	var my_player = get_node('/root/main/' + planet_name)
-	my_player.set_name(str(selfPeerID))
 	my_player.set_network_master(selfPeerID) # Will be explained later
 
 	var other_planet_name = 'planet1' if get_tree().is_network_server() else 'planet0'	
-	var other_player = get_node('/root/main/' + planet_name)
-	other_player.set_name(str(other_player_id))
+	var other_player = get_node('/root/main/' + other_planet_name)
 	other_player.set_network_master(other_player_id) # Will be explained later
 
 	# Tell server (remember, server is always ID=1) that this peer is done pre-configuring.
