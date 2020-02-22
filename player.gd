@@ -91,10 +91,7 @@ func can_build(type):
 	return (planet.money >= building_cost[type]
 		and not is_instance_valid(current_building))
 
-func spawn_building(type):
-	rpc('spawn_building_remote', type)
-
-remotesync func spawn_building_remote(type):
+remotesync func spawn_building(type):
 	if not can_build(type):
 		planet.current_money_label.flash()
 		return
@@ -117,10 +114,7 @@ func spawn_menu():
     ui.rect_position = planet.position + Vector2(-15, -40)
     ui.player = self
 
-func destroy_building(building):
-	rpc('destroy_building_remote', building)
-
-remotesync func destroy_building_remote(building):
+remotesync func destroy_building(building):
 	planet.money += building_cost[current_building.type] / 4
 	current_building.is_destroyed = true
 	current_building.queue_free()

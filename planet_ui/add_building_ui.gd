@@ -84,11 +84,11 @@ func action_timer_timeout():
 	if (is_instance_valid(building_to_destroy) and
 		  player.current_building == building_to_destroy and
 		  Input.is_action_pressed(player.player_key + 'build_income')):
-		player.destroy_building(building_to_destroy)
+		player.rpc('destroy_building', building_to_destroy)
 	elif (building_to_build != null and
 		  Input.is_action_pressed(player.player_key + 'build_' + building_to_build)
 		  and not is_instance_valid(player.current_building)):
-		player.spawn_building(building_to_build)
+		player.rpc('spawn_building', building_to_build)
 
 	building_to_destroy = null
 	building_to_build = null
