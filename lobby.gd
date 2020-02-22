@@ -3,12 +3,18 @@ extends Control
 const SERVER_PORT = 10200
 var other_player_id 
 var players_done = []
+var config_file_path = 'res://server_config.cfg'
+var config_file
 
 func _ready():
 	$create.connect('pressed', self, '_on_create')
 	$'VBoxContainer/connect'.connect('pressed', self, '_on_connect')
 	get_tree().connect("network_peer_connected", self, "_player_connected")
-
+	config_file = ConfigFile.new()
+	config_file.load(config_file_path)
+	var saved_ip = config_file.get_value('config', 'ip_address_to_connect')
+	if saved_ip != null:
+		$'VBoxContainer/ip_address'.text = saved_ip
 
 func _on_connect():
 	$create.disabled = true
@@ -16,6 +22,8 @@ func _on_connect():
 	var peer = NetworkedMultiplayerENet.new()
 	peer.create_client(ip, SERVER_PORT)
 	get_tree().set_network_peer(peer)
+	config_file.set_value('config', 'ip_address_to_connect', ip)
+	config_file.save(config_file_path)
 
 func _on_create():
 	$'VBoxContainer/connect'.disabled = true
@@ -43,11 +51,13 @@ remotesync func pre_configure_game():
 	get_tree().set_pause(true)
 
 func _player_connected(id):
+	get_tree().refuse_new_network_connections = true
 	other_player_id = id
 	if get_tree().is_network_server():
 		rpc('pre_configure_game')
 
 remote func done_preconfiguring(who):
+	print('done preconfiguring')
 	# Here are some checks you can do, for example
 	assert(get_tree().is_network_server())
 	assert(not who in players_done) # Was not added yet
@@ -55,6 +65,7 @@ remote func done_preconfiguring(who):
 	players_done.append(who)
 
 	if players_done.size() == 2:
+		print('starting game')
 		rpc("post_configure_game")
 
 remote func post_configure_game():
