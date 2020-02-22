@@ -89,7 +89,7 @@ func action_timer_timeout():
 	elif (building_to_build != null and
 		  Input.is_action_pressed(player.player_key + 'build_' + building_to_build)
 		  and not is_instance_valid(player.current_building)):
-		player.rpc('spawn_building', building_to_build, get_parent().current_slot_position())
+		player.rpc('spawn_building', building_to_build, player.planet.current_slot_position())
 
 	building_to_destroy = null
 	building_to_build = null
