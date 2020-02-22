@@ -45,7 +45,7 @@ remotesync func pre_configure_game():
 func _player_connected(id):
 	other_player_id = id
 	if get_tree().is_network_server():
-		rpc(pre_configure_game())
+		rpc('pre_configure_game')
 
 remote func done_preconfiguring(who):
 	# Here are some checks you can do, for example
