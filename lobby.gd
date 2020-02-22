@@ -21,7 +21,7 @@ func _on_create():
 	peer.create_server(SERVER_PORT, 2)
 	get_tree().set_network_peer(peer)
 
-remote func pre_configure_game():
+remotesync func pre_configure_game():
 	var selfPeerID = get_tree().get_network_unique_id()
 
 	var world = load('res://Main.tscn').instance()
@@ -39,10 +39,13 @@ remote func pre_configure_game():
 
 	# Tell server (remember, server is always ID=1) that this peer is done pre-configuring.
 	rpc_id(1, "done_preconfiguring", selfPeerID)
+	print("before pause")
 	get_tree().set_pause(true)
 
 func _player_connected(id):
 	other_player_id = id
+	if get_tree().is_network_server():
+		rpc(pre_configure_game())
 
 remote func done_preconfiguring(who):
 	# Here are some checks you can do, for example
