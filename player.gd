@@ -8,6 +8,7 @@ var planet
 var current_building
 var player_key
 var ui
+var building_index = 0
 
 var building_cost = {
 	attack = 40,
@@ -93,6 +94,8 @@ remotesync func spawn_building(type, position):
 	building.planet = planet
 	building.position = position
 	building.type = type
+	building.name = get_name() + str(building_index)
+	building_index++
 	planet.add_child(building)
 	# re-draw circle highlighting the new building
 	building.init()
