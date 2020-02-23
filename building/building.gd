@@ -90,7 +90,6 @@ func add_income():
 	planet.income += 0.06
 
 remotesync func fire_rocket():
-	print('fire target ' + str(target_player_number))
 	if planet.money >= 10:
 		planet.money -= 10
 		show_income_animation("0.05/s")
@@ -105,7 +104,6 @@ remotesync func fire_rocket():
 		$'/root/main'.add_child(rocket)
 		update()
 	else:
-		print('not firing')
 		planet.current_money_label.flash()
 
 remotesync func destroy(cost):

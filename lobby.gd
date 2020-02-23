@@ -7,18 +7,31 @@ var config_file_path = 'res://server_config.cfg'
 var config_file
 
 func _ready():
-	$create.connect('pressed', self, '_on_create')
-	$'VBoxContainer/connect'.connect('pressed', self, '_on_connect')
+	$'network/create'.connect('pressed', self, '_on_create')
+	$'network/connect_container/connect'.connect('pressed', self, '_on_connect')
+	$'local'.connect('pressed', self, '_on_local')
 	get_tree().connect("network_peer_connected", self, "_player_connected")
 	config_file = ConfigFile.new()
 	config_file.load(config_file_path)
 	var saved_ip = config_file.get_value('config', 'ip_address_to_connect')
 	if saved_ip != null:
-		$'VBoxContainer/ip_address'.text = saved_ip
+		$'network/connect_container/ip_address'.text = saved_ip
+
+func _on_local():
+	var peer = NetworkedMultiplayerENet.new()
+	peer.create_server(SERVER_PORT, 2)
+	get_tree().set_network_peer(peer)
+
+	var world = load('res://Main.tscn').instance()
+	get_node('/root').add_child(world)
+	var selfPeerID = get_tree().get_network_unique_id()
+	get_node('/root').set_network_master(selfPeerID)
+
+	queue_free()
 
 func _on_connect():
 	$create.disabled = true
-	var ip = $'VBoxContainer/ip_address'.text
+	var ip = $'network/connect_container/ip_address'.text
 	var peer = NetworkedMultiplayerENet.new()
 	peer.create_client(ip, SERVER_PORT)
 	get_tree().set_network_peer(peer)
@@ -26,8 +39,8 @@ func _on_connect():
 	config_file.save(config_file_path)
 
 func _on_create():
-	$'VBoxContainer/connect'.disabled = true
-	$'VBoxContainer/ip_address'.editable = false
+	$'network/connect_container/connect'.disabled = true
+	$'network/connect_container/ip_address'.editable = false
 	var peer = NetworkedMultiplayerENet.new()
 	peer.create_server(SERVER_PORT, 2)
 	get_tree().set_network_peer(peer)
@@ -66,4 +79,3 @@ master func done_preconfiguring(who):
 remotesync func post_configure_game():
 	queue_free()
 	get_tree().set_pause(false)
-	# Game starts now!
