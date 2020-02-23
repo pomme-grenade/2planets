@@ -10,7 +10,7 @@ func _ready():
 	$'network/create'.connect('pressed', self, '_on_create')
 	$'network/connect_container/connect'.connect('pressed', self, '_on_connect')
 	$'local'.connect('pressed', self, '_on_local')
-	get_tree().connect("network_peer_connected", self, "_player_connected")
+	get_tree().connect('network_peer_connected', self, '_player_connected')
 	config_file = ConfigFile.new()
 	config_file.load(config_file_path)
 	var saved_ip = config_file.get_value('config', 'ip_address_to_connect')
@@ -30,13 +30,13 @@ func _on_local():
 	queue_free()
 
 func _on_connect():
-	$create.disabled = true
+	$'network/create'.disabled = true
 	var ip = $'network/connect_container/ip_address'.text
+	config_file.set_value('config', 'ip_address_to_connect', ip)
+	config_file.save(config_file_path)
 	var peer = NetworkedMultiplayerENet.new()
 	peer.create_client(ip, SERVER_PORT)
 	get_tree().set_network_peer(peer)
-	config_file.set_value('config', 'ip_address_to_connect', ip)
-	config_file.save(config_file_path)
 
 func _on_create():
 	$'network/connect_container/connect'.disabled = true
@@ -49,7 +49,7 @@ remotesync func pre_configure_game():
 	var selfPeerID = get_tree().get_network_unique_id()
 
 	var world = load('res://Main.tscn').instance()
-	get_node("/root").add_child(world)
+	get_node('/root').add_child(world)
 
 	var planet_name = 'planet0' if get_tree().is_network_server() else 'planet1'
 	var my_planet = get_node('/root/main/' + planet_name)

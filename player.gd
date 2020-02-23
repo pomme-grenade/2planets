@@ -8,7 +8,6 @@ var planet
 var current_building
 var player_key
 var ui
-var building_index = 0
 
 var building_cost = {
 	attack = 40,
@@ -40,8 +39,6 @@ func _process(delta):
 		else:
 			movementDirection = 0
 
-		rpc_unreliable("set_pos_and_motion", position, movementDirection)
-
 		position = position.rotated(movementDirection * speed  * delta)
 
 	rotation += movementDirection * speed * delta
@@ -61,9 +58,13 @@ func _process(delta):
 		ui.update()
 		current_building = new_building
 
-puppet func set_pos_and_motion(p_pos, movement_direction):
+	if is_network_master():
+		rpc_unreliable("set_pos_and_motion", position, movementDirection, rotation)
+
+puppet func set_pos_and_motion(p_pos, p_dir, p_rot):
 		position = p_pos
-		movementDirection = movement_direction
+		movementDirection = p_dir
+		rotation = p_rot
 
 func _unhandled_input(event):
 	if event.is_action_pressed("pause"):
@@ -75,7 +76,10 @@ func _unhandled_input(event):
 
 		for building in get_tree().get_nodes_in_group("building" + str(playerNumber)):
 			if building.type == 'attack':
-				building.rpc('fire_rocket')
+				var name = '%d_rocket_%d' % [ playerNumber, building.rocket_name_index ]
+				building.rocket_name_index += 1
+				var position = building.global_position - Vector2(5, 0).rotated(building.global_rotation)
+				building.rpc('fire_rocket', name, position, building.global_rotation + PI)
 
 func get_building_in_range():
 	for building in get_tree().get_nodes_in_group('building' + str(planet.playerNumber)):
@@ -86,7 +90,7 @@ func can_build(type):
 	return (planet.money >= building_cost[type]
 		and not is_instance_valid(current_building))
 
-remotesync func spawn_building(type, position):
+remotesync func spawn_building(type, name, position):
 	if not can_build(type):
 		planet.current_money_label.flash()
 		return
@@ -94,8 +98,6 @@ remotesync func spawn_building(type, position):
 	building.planet = planet
 	building.position = position
 	building.type = type
-	building.name = get_name() + str(building_index)
-	building_index += 1
 	planet.add_child(building)
 	# re-draw circle highlighting the new building
 	building.init()

@@ -5,6 +5,7 @@ var action_pressed_timer
 var building_to_destroy
 var building_to_build
 var timer_wait_time = 0.7
+var building_index = 0
 
 const building_types = [
 	'attack',
@@ -89,7 +90,10 @@ func action_timer_timeout():
 	elif (building_to_build != null and
 		  Input.is_action_pressed(player.player_key + 'build_' + building_to_build)
 		  and not is_instance_valid(player.current_building)):
-		player.rpc('spawn_building', building_to_build, player.planet.current_slot_position())
+		var name = '%d_building_%d' % [player.playerNumber, building_index]
+		building_index += 1
+		var position = player.planet.current_slot_position()
+		player.rpc('spawn_building', building_to_build, name, position)
 
 	building_to_destroy = null
 	building_to_build = null

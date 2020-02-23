@@ -1,5 +1,5 @@
 .import
 .mono
-export/web
+export
 
 server_config.cfg

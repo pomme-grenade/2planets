@@ -42,7 +42,6 @@ func _ready():
 	add_to_group('planet')
 	slot_width = planetRadius * PI / slot_count
 
-
 func _draw():
 	draw_circle(Vector2(0, 0), planetRadius, color)
 	# draw_rect(Rect2(Vector2(10, 10), Vector2(health, 10)), Color(255, 40, 80))
@@ -51,14 +50,19 @@ func _draw():
 func _process(delta):
 	money += income * delta
 	if playerNumber == 1:
-		rotation_degrees -= 0.08
+		rotation_degrees -= 5 * delta
 	elif playerNumber == 2:
-		rotation_degrees += 0.08
+		rotation_degrees += 5 * delta
+
+	if is_network_master():
+		rpc('_sync_rotation', rotation)
 
 	life_label.text = "%s ♥" % health
 	current_money_label.text = "%0.0f$" % money
 	income_label.text = "+%0.1f$/s" % income
 
+puppet func _sync_rotation(rot):
+    rotation = rot
 
 func current_slot_position():
 	var slot_angle_width = PI / slot_count
@@ -68,4 +72,3 @@ func current_slot_position():
 		offset = player.current_building.position_offsets[player.current_building.type]
 	return Vector2(0, -planetRadius * offset) \
 		.rotated(slot_index * slot_angle_width)
-

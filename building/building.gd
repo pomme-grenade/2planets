@@ -17,6 +17,7 @@ var cooldown = 0
 var cooldown_time = 0.5
 
 const rocket_spawn_rate = 5
+var rocket_name_index = 0
 
 const textures = {
 	attack = preload('res://building/rocketlauncher.png'),
@@ -59,18 +60,23 @@ func _process(dt):
 	else:
 		self_modulate.a = 1
 
-	var enemy_group = 'rocket' + str(1 if planet.playerNumber == 2 else 2)
-	for rocket in get_tree().get_nodes_in_group(enemy_group):
-		if global_position.distance_to(rocket.global_position) < attack_range:
-			fire_position = to_local(rocket.global_position)
-			cooldown = cooldown_time
-			self_modulate.a = 0.5
-			show_income_animation("0.5")
+	if is_network_master():
+		var enemy_group = 'rocket' + str(1 if planet.playerNumber == 2 else 2)
+		for rocket in get_tree().get_nodes_in_group(enemy_group):
+			if global_position.distance_to(rocket.global_position) < attack_range:
+				rpc('destroy_rocket', rocket.get_path())
+				break
 
-			rocket.queue_free()
-			planet.money += 0.5
+remotesync func destroy_rocket(path):
+	print('destroying ',path)
+	var rocket = get_node(path)
+	fire_position = to_local(rocket.global_position)
+	cooldown = cooldown_time
+	self_modulate.a = 0.5
+	show_income_animation("0.5")
 
-			break
+	rocket.queue_free()
+	planet.money += 0.5
 
 func _draw():
 	if type != 'defense':
@@ -89,16 +95,17 @@ func add_income():
 	show_income_animation("0.06/s")
 	planet.income += 0.06
 
-remotesync func fire_rocket():
+remotesync func fire_rocket(name, position, rotation):
+	print('creating ', name)
 	if planet.money >= 10:
 		planet.money -= 10
 		show_income_animation("0.05/s")
 		planet.income += 0.05
 		rocket = preload("res://rocket.gd").new(target_player_number)
+		rocket.name = name
 		rocket.ready = true
-		# rocket_amount -= 1
-		rocket.position = global_position - Vector2(5, 0).rotated(global_rotation)
-		rocket.rotation = global_rotation + PI
+		rocket.position = position
+		rocket.rotation = rotation
 		rocket.planet = planet
 		rocket.building = self
 		$'/root/main'.add_child(rocket)

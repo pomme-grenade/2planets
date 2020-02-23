@@ -41,17 +41,22 @@ func _process(delta):
 			queue_free()
 			return
 
-	for planet in get_tree().get_nodes_in_group('planet'):
-		if position.distance_to(planet.global_position) - planet.planetRadius < 1:
-			planet.health -= planet_rocket_damage
-			if planet.health <= 0:
-				sceneSwitcher.change_scene('res://gameOver.tscn', {"loser": target_player_number})
-			queue_free()
-			return
+	if is_network_master():
+		for planet in get_tree().get_nodes_in_group('planet'):
+			if position.distance_to(planet.global_position) - planet.planetRadius < 1:
+				rpc('hit_planet', planet.get_path())
+				return
 
 	position += velocity * delta
 	rotation = velocity.angle()
 	update()
+
+remotesync func hit_planet(path):
+	var planet = get_node(path)
+	planet.health -= planet_rocket_damage
+	queue_free()
+	if planet.health <= 0:
+		sceneSwitcher.change_scene('res://gameOver.tscn', {"loser": target_player_number})
 
 func is_closer(a, b):
 	return global_position.distance_to(a.global_position) < global_position.distance_to(b.global_position)
