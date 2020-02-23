@@ -41,7 +41,7 @@ func _process(delta):
 			queue_free()
 			return
 
-	if is_network_master():
+	if not is_network_master():
 		for planet in get_tree().get_nodes_in_group('planet'):
 			if position.distance_to(planet.global_position) - planet.planetRadius < 1:
 				rpc('hit_planet', planet.get_path())

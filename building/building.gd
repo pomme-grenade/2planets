@@ -68,7 +68,6 @@ func _process(dt):
 				break
 
 remotesync func destroy_rocket(path):
-	print('destroying ',path)
 	var rocket = get_node(path)
 	fire_position = to_local(rocket.global_position)
 	cooldown = cooldown_time
@@ -96,7 +95,6 @@ func add_income():
 	planet.income += 0.06
 
 remotesync func fire_rocket(name, position, rotation):
-	print('creating ', name)
 	if planet.money >= 10:
 		planet.money -= 10
 		show_income_animation("0.05/s")
@@ -108,6 +106,7 @@ remotesync func fire_rocket(name, position, rotation):
 		rocket.rotation = rotation
 		rocket.planet = planet
 		rocket.building = self
+		rocket.set_network_master(get_network_master())
 		$'/root/main'.add_child(rocket)
 		update()
 	else:

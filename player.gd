@@ -98,6 +98,7 @@ remotesync func spawn_building(type, name, position):
 	building.planet = planet
 	building.position = position
 	building.type = type
+	building.set_network_master(get_network_master())
 	planet.add_child(building)
 	# re-draw circle highlighting the new building
 	building.init()
