@@ -9,6 +9,8 @@ var current_building
 var player_key
 var ui
 
+var rocket_name_index = 0
+
 var building_cost = {
 	attack = 40,
 	defense = 40,
@@ -76,8 +78,8 @@ func _unhandled_input(event):
 
 		for building in get_tree().get_nodes_in_group("building" + str(playerNumber)):
 			if building.type == 'attack':
-				var name = '%d_rocket_%d' % [ playerNumber, building.rocket_name_index ]
-				building.rocket_name_index += 1
+				var name = '%d_rocket_%d' % [ playerNumber, rocket_name_index ]
+				rocket_name_index += 1
 				var position = building.global_position - Vector2(5, 0).rotated(building.global_rotation)
 				building.rpc('fire_rocket', name, position, building.global_rotation + PI)
 

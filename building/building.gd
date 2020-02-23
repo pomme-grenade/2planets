@@ -17,7 +17,6 @@ var cooldown = 0
 var cooldown_time = 0.5
 
 const rocket_spawn_rate = 5
-var rocket_name_index = 0
 
 const textures = {
 	attack = preload('res://building/rocketlauncher.png'),
@@ -69,13 +68,16 @@ func _process(dt):
 
 remotesync func destroy_rocket(path):
 	var rocket = get_node(path)
+	if rocket == null:
+		print('unknown rocket ', path)
+		return
 	fire_position = to_local(rocket.global_position)
 	cooldown = cooldown_time
 	self_modulate.a = 0.5
-	show_income_animation("0.5")
+	show_income_animation('5')
 
 	rocket.queue_free()
-	planet.money += 0.5
+	planet.money += 5
 
 func _draw():
 	if type != 'defense':
