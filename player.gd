@@ -98,6 +98,7 @@ remotesync func spawn_building(type, name, position):
 	building.planet = planet
 	building.position = position
 	building.type = type
+	building.name = name
 	building.set_network_master(get_network_master())
 	planet.add_child(building)
 	# re-draw circle highlighting the new building
@@ -113,4 +114,5 @@ func spawn_menu():
 	get_node("/root/main").call_deferred("add_child", ui)
 	ui.rect_position = planet.position + Vector2(-15, -40)
 	ui.player = self
+	ui.name = '%s_ui' % planet.name
 	ui.set_network_master(get_network_master())
