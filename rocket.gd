@@ -4,8 +4,7 @@ var target
 var velocity
 var rotation_speed = 0.75
 var target_player_number
-var planet
-var ready
+var from_planet
 #warning-ignore:unused_class_variable
 var building
 var planet_rocket_damage = 5
@@ -13,10 +12,8 @@ var planet_rocket_damage = 5
 func _ready():
 	velocity = Vector2(40, 0).rotated(rotation)
 
-	ready = false
-
-func _init(target_player_number):
-	self.target_player_number = target_player_number
+func _init(target_player_number_):
+	target_player_number = target_player_number_
 	var owning_player_number = 1 if target_player_number == 2 else 2
 	add_to_group('rocket' + str(owning_player_number))
 
@@ -41,10 +38,9 @@ func _process(delta):
 			queue_free()
 			return
 
-	if not is_network_master():
-		for planet in get_tree().get_nodes_in_group('planet'):
-			if position.distance_to(planet.global_position) - planet.planetRadius < 1:
-				rpc('hit_planet', planet.get_path())
+		if target.is_network_master():
+			if position.distance_to(target.global_position) - target.planetRadius < 1:
+				rpc('hit_planet', target.get_path())
 				return
 
 	position += velocity * delta
@@ -62,7 +58,7 @@ func is_closer(a, b):
 	return global_position.distance_to(a.global_position) < global_position.distance_to(b.global_position)
 
 func find_new_target():
-	if planet.playerNumber == 1:
+	if from_planet.playerNumber == 1:
 		return get_node("/root/main/planet1")
 	else:
 		return get_node("/root/main/planet0")

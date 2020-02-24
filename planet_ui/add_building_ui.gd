@@ -41,7 +41,7 @@ func _draw():
 		var types = ['defense', 'income', 'attack']
 		# rotate all icons by 90 degrees
 		for index in range(len(types)):
-			var scale = 0.9 if building_to_build == types[index] else 1
+			var scale = 0.9 if building_to_build == types[index] else 1.0
 			draw_set_transform(Vector2(0, 0), PI/2, Vector2(scale, scale))
 			var y_pos = (- gap * index - 5) - (1 - scale) * gap
 			draw_texture(textures[types[index]], Vector2(0, y_pos))
@@ -49,7 +49,7 @@ func _draw():
 				draw_set_transform(Vector2(0, 0), 0, Vector2(scale, scale))
 				draw_rect(Rect2(Vector2(- y_pos - 9, 10), Vector2(10, - 10 * timer_progress)), Color(0, 0.6, 0.3, 0.6))
 
-func _process(dt):
+func _process(_dt):
 	if (is_instance_valid(building_to_destroy)
 		or building_to_build != null):
 		update()

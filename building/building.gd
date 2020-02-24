@@ -4,7 +4,6 @@ var planet
 # 'attack', 'defense' or 'income'
 # warning-ignore:unused_class_variable
 var type
-var rocket
 var target_player_number
 var incomeTimer
 #warning-ignore:unused_class_variable
@@ -42,8 +41,8 @@ func init():
 	if type == 'income':
 		incomeTimer = Timer.new()
 		incomeTimer.connect('timeout', self, 'add_income')
-		incomeTimer.start(4)
 		add_child(incomeTimer)
+		incomeTimer.start(4)
 
 func _process(dt):
 	if type != 'defense':
@@ -101,12 +100,11 @@ remotesync func fire_rocket(name, position, rotation):
 		planet.money -= 10
 		show_income_animation("0.05/s")
 		planet.income += 0.05
-		rocket = preload("res://rocket.gd").new(target_player_number)
+		var rocket = preload("res://rocket.gd").new(target_player_number)
 		rocket.name = name
-		rocket.ready = true
 		rocket.position = position
 		rocket.rotation = rotation
-		rocket.planet = planet
+		rocket.from_planet = planet
 		rocket.building = self
 		rocket.set_network_master(get_network_master())
 		$'/root/main'.add_child(rocket)

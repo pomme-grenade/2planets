@@ -36,18 +36,16 @@ func _process(delta):
 	if is_network_master():
 		if Input.is_action_pressed(rightAction):
 			movementDirection = 1
+			flip_h = true
 		elif Input.is_action_pressed(leftAction):
 			movementDirection = -1
+			flip_h = false
 		else:
 			movementDirection = 0
 
 		position = position.rotated(movementDirection * speed  * delta)
 
-	rotation += movementDirection * speed * delta
-	if movementDirection == 1:
-		flip_h = true
-	else:
-		flip_h = false
+	rotation = position.angle() + PI/2
 
 	if movementDirection != 0:
 		play('move')
@@ -67,6 +65,11 @@ puppet func set_pos_and_motion(p_pos, p_dir, p_rot):
 		position = p_pos
 		movementDirection = p_dir
 		rotation = p_rot
+
+		if movementDirection == 1:
+			flip_h = true
+		elif movementDirection == -1:
+			flip_h = false
 
 func _unhandled_input(event):
 	if event.is_action_pressed("pause"):

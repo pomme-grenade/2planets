@@ -7,15 +7,18 @@ var config_file_path = 'res://server_config.cfg'
 var config_file
 
 func _ready():
+	# warning-ignore:return_value_discarded
 	$'network/create'.connect('pressed', self, '_on_create')
+	# warning-ignore:return_value_discarded
 	$'network/connect_container/connect'.connect('pressed', self, '_on_connect')
+	# warning-ignore:return_value_discarded
 	$'local'.connect('pressed', self, '_on_local')
+	# warning-ignore:return_value_discarded
 	get_tree().connect('network_peer_connected', self, '_player_connected')
 	config_file = ConfigFile.new()
 	config_file.load(config_file_path)
-	var saved_ip = config_file.get_value('config', 'ip_address_to_connect')
-	if saved_ip != null:
-		$'network/connect_container/ip_address'.text = saved_ip
+	var saved_ip = config_file.get_value('config', 'ip_address_to_connect', '')
+	$'network/connect_container/ip_address'.text = saved_ip
 
 func _on_local():
 	var peer = NetworkedMultiplayerENet.new()

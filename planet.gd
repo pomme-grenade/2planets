@@ -6,8 +6,8 @@ export (Color) var color
 export var health = 100
 
 var player
-var income = 3
-var start_money = 120
+var income = 4
+var start_money = 160
 var money = 0
 var life_label
 var current_money_label
@@ -63,7 +63,7 @@ func _process(delta):
 	income_label.text = "+%0.1f$/s" % income
 
 puppet func _sync_rotation(rot):
-    rotation = rot
+	rotation = rot
 
 func current_slot_position():
 	var slot_angle_width = PI / slot_count

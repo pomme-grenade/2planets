@@ -10,9 +10,10 @@ var newTimer
 func _ready():
 	label = get_node("Label")# Replace with function body.
 	newTimer = Timer.new()
+	# warning-ignore:return_value_discarded
 	newTimer.connect('timeout', self, 'do_anim_finished')
-	newTimer.start(1)
 	add_child(newTimer)
+	newTimer.start(1)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
