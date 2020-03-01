@@ -72,7 +72,7 @@ remotesync func destroy_rocket(path):
 		return
 	fire_position = to_local(rocket.global_position)
 	cooldown = cooldown_time
-	self_modulate.a = 0.5
+	self_modulate.a = 0.8
 	show_income_animation('5')
 
 	rocket.queue_free()
@@ -85,9 +85,9 @@ func _draw():
 	draw_circle(Vector2(0, 0), attack_range, Color(0.1, 0.2, 0.7, 0.1))
 
 	if fire_position != null:
-		var alpha = cooldown + 1 - cooldown_time
+		var alpha = cooldown * (1 / cooldown_time)
 		if alpha > 0:
-			draw_line(Vector2(4, 0).rotated(fire_position.angle()), fire_position, Color(0.9, 0.9, 1, alpha))
+			draw_line(Vector2(4, 0).rotated(fire_position.angle()), fire_position, Color(0.9, 0.9, 2, alpha), 1.1, true)
 		else:
 			fire_position = null
 
