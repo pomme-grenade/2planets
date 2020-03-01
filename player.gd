@@ -27,6 +27,8 @@ func init():
 	player_key = "player" + str(playerNumber) + "_"
 	set_process_unhandled_input(true)
 
+	connect('animation_finished', self, '_animation_finished')
+
 	spawn_menu()
 
 func _process(delta):
@@ -50,7 +52,8 @@ func _process(delta):
 	if movementDirection != 0:
 		play('move')
 		planet.update()
-	else:
+	elif (frame > 20 and frame < 30):
+		frame = clamp(frame, 21, 23)
 		stop()
 
 	var new_building = get_building_in_range()
@@ -100,6 +103,10 @@ func try_spawn_building(type, name, position):
 		return
 
 	rpc('spawn_building', type, name, position)
+
+func _animation_finished():
+	if movementDirection == 0:
+		stop()
 
 remotesync func spawn_building(type, name, position):
 	var building = preload("res://building/building.gd").new()
