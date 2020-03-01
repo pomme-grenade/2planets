@@ -95,22 +95,27 @@ func add_income():
 	show_income_animation("0.06/s")
 	planet.income += 0.06
 
-remotesync func fire_rocket(name, position, rotation):
-	if planet.money >= 10 or (not is_network_master()):
-		planet.money -= 10
-		show_income_animation("0.05/s")
-		planet.income += 0.05
-		var rocket = preload("res://rocket.gd").new(target_player_number)
-		rocket.name = name
-		rocket.position = position
-		rocket.rotation = rotation
-		rocket.from_planet = planet
-		rocket.building = self
-		rocket.set_network_master(get_network_master())
-		$'/root/main'.add_child(rocket)
-		update()
-	else:
+func try_fire_rocket(name):
+	if planet.money < 10 or (not is_network_master()):
 		planet.current_money_label.flash()
+		return
+
+	var position = global_position - Vector2(5, 0).rotated(global_rotation)
+	rpc('fire_rocket', name, position, global_rotation + PI)
+
+remotesync func fire_rocket(name, position, rotation):
+	planet.money -= 10
+	show_income_animation("0.05/s")
+	planet.income += 0.05
+	var rocket = preload("res://rocket.gd").new(target_player_number)
+	rocket.name = name
+	rocket.position = position
+	rocket.rotation = rotation
+	rocket.from_planet = planet
+	rocket.building = self
+	rocket.set_network_master(get_network_master())
+	$'/root/main'.add_child(rocket)
+	update()
 
 remotesync func destroy(cost):
 	planet.money += cost / 4

@@ -83,8 +83,7 @@ func _unhandled_input(event):
 			if building.type == 'attack':
 				var name = '%d_rocket_%d' % [ playerNumber, rocket_name_index ]
 				rocket_name_index += 1
-				var position = building.global_position - Vector2(5, 0).rotated(building.global_rotation)
-				building.rpc('fire_rocket', name, position, building.global_rotation + PI)
+				building.try_fire_rocket(name)
 
 func get_building_in_range():
 	for building in get_tree().get_nodes_in_group('building' + str(planet.playerNumber)):
@@ -95,10 +94,14 @@ func can_build(type):
 	return (planet.money >= building_cost[type]
 		and not is_instance_valid(current_building))
 
-remotesync func spawn_building(type, name, position):
-	if not can_build(type):
+func try_spawn_building(type, name, position):
+	if is_network_master() and not can_build(type):
 		planet.current_money_label.flash()
 		return
+
+	rpc('spawn_building', type, name, position)
+
+remotesync func spawn_building(type, name, position):
 	var building = preload("res://building/building.gd").new()
 	building.planet = planet
 	building.position = position

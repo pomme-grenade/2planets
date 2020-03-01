@@ -93,7 +93,7 @@ func action_timer_timeout():
 		var name = '%d_building_%d' % [player.playerNumber, building_index]
 		building_index += 1
 		var position = player.planet.current_slot_position()
-		player.rpc('spawn_building', building_to_build, name, position)
+		player.try_spawn_building(building_to_build, name, position)
 
 	building_to_destroy = null
 	building_to_build = null
