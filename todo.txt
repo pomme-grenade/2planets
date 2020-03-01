@@ -16,7 +16,8 @@ THEMEN
 
 
 TODO
-	- HQ gameplay testen & balancen
-	- blinken bei schaden
     - multiplayer
     - add building ui refactoren: child nodes mit sprites statt _draw-function
+	- gebaude bauen sich langsam auf
+	- spiel vorbei wenn einer leaved
+	- restart fixen
