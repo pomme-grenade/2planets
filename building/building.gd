@@ -96,7 +96,7 @@ func add_income():
 	planet.income += 0.06
 
 remotesync func fire_rocket(name, position, rotation):
-	if planet.money >= 10:
+	if planet.money >= 10 or (not is_network_master()):
 		planet.money -= 10
 		show_income_animation("0.05/s")
 		planet.income += 0.05
