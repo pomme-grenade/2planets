@@ -24,8 +24,8 @@ func _draw():
 func _process(delta):
 	if not is_instance_valid(target):
 		target = find_new_target()
-	if is_instance_valid(target):
 
+	if is_instance_valid(target):
 		var target_angle = position.direction_to(target.global_position)
 		var angle_diff = velocity.angle_to(target_angle)
 		var rotation_direction = sign(angle_diff)
@@ -33,10 +33,6 @@ func _process(delta):
 
 		var acceleration = clamp(1 - abs(angle_diff), 0.25, 0.6) * delta
 		velocity = velocity * (1 + acceleration)
-
-		if position.distance_to(target.global_position) < 10:
-			queue_free()
-			return
 
 		if target.is_network_master():
 			if position.distance_to(target.global_position) - target.planetRadius < 1:
