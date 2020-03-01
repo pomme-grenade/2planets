@@ -27,6 +27,7 @@ func init():
 	player_key = "player" + str(playerNumber) + "_"
 	set_process_unhandled_input(true)
 
+	# warning-ignore:return_value_discarded
 	connect('animation_finished', self, '_animation_finished')
 
 	spawn_menu()
@@ -53,7 +54,7 @@ func _process(delta):
 		play('move')
 		planet.update()
 	elif (frame > 20 and frame < 30):
-		frame = clamp(frame, 21, 23)
+		frame = int(clamp(frame, 21, 23))
 		stop()
 
 	var new_building = get_building_in_range()
