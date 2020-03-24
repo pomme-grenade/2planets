@@ -51,11 +51,12 @@ func _process(delta):
 	rotation = position.angle() + PI/2
 
 	if movementDirection != 0:
+		speed_scale = 1.8
 		play('move')
 		planet.update()
 	else:
-		frame = int(clamp(frame, 0, 1))
-		stop()
+		speed_scale = 0.4
+		play('idle')
 
 	var new_building = get_building_in_range()
 	if new_building != current_building:
