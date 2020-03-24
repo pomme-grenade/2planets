@@ -1,4 +1,4 @@
-extends Sprite
+extends AnimatedSprite
 
 var planet
 # 'attack', 'defense' or 'income'
@@ -24,7 +24,7 @@ const textures = {
 }
 
 const position_offsets = {
-	income = 0.97,
+	income = 1.08,
 	attack = 1.04,
 	defense = 1.5
 }
@@ -35,8 +35,7 @@ func _ready():
 	self.centered = true
 
 func init():
-	rotation = position.direction_to(Vector2(0, 0)).angle()
-	texture = textures[type]
+	rotation = position.direction_to(Vector2(0, 0)).angle() - PI/2
 	position *= position_offsets[type]
 	if type == 'income':
 		incomeTimer = Timer.new()

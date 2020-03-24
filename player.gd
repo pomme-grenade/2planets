@@ -110,7 +110,8 @@ func _animation_finished():
 		stop()
 
 remotesync func spawn_building(type, name, position):
-	var building = preload("res://building/building.gd").new()
+	
+	var building = preload('res://building/building.tscn').instance()
 	building.planet = planet
 	building.position = position
 	building.type = type
