@@ -39,10 +39,10 @@ func _process(delta):
 	if is_network_master():
 		if Input.is_action_pressed(rightAction):
 			movementDirection = 1
-			flip_h = true
+			flip_h = false
 		elif Input.is_action_pressed(leftAction):
 			movementDirection = -1
-			flip_h = false
+			flip_h = true
 		else:
 			movementDirection = 0
 
@@ -53,8 +53,8 @@ func _process(delta):
 	if movementDirection != 0:
 		play('move')
 		planet.update()
-	elif (frame > 20 and frame < 30):
-		frame = int(clamp(frame, 21, 23))
+	else:
+		frame = int(clamp(frame, 0, 1))
 		stop()
 
 	var new_building = get_building_in_range()
@@ -71,9 +71,9 @@ puppet func set_pos_and_motion(p_pos, p_dir, p_rot):
 		rotation = p_rot
 
 		if movementDirection == 1:
-			flip_h = true
-		elif movementDirection == -1:
 			flip_h = false
+		elif movementDirection == -1:
+			flip_h = true
 
 func _unhandled_input(event):
 	if event.is_action_pressed("pause"):

@@ -40,6 +40,7 @@ func _ready():
 	player.position.y -= planetRadius
 	player.playerNumber = playerNumber
 	player.name = '%s_player' % name
+	player.modulate = color
 	add_to_group('planet')
 	slot_width = planetRadius * PI / slot_count
 
