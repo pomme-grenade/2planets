@@ -124,7 +124,6 @@ remotesync func destroy(cost):
 
 func show_income_animation(text):
 	var income_animation = preload('res://Income_animation.tscn').instance()
-	income_animation.position = Vector2(4, 9)
-	income_animation.rotation_degrees = -90
+	income_animation.position = Vector2(-10, 8)
 	add_child(income_animation)
 	income_animation.label.text = text
