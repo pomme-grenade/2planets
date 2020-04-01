@@ -21,14 +21,15 @@ func _ready():
 	add_child(action_pressed_timer)
 
 func _draw():
-	var gap = 15
+	var gap = 20
 	var textures = preload('res://building/building.gd').textures
 	var delete = preload('res://planet_ui/delete_icon.png')
+	var empty_button = preload('res://planet_ui/empty_button.png')
 
 	var timer_progress = (timer_wait_time - action_pressed_timer.time_left) / timer_wait_time
 
 	if is_instance_valid(player.current_building) and building_to_build == null:
-		draw_rect(Rect2(Vector2(-3, 0), Vector2(10, 10)), Color(1, 1, 1))
+		draw_texture(empty_button, Vector2(-5, 0))
 		if is_instance_valid(building_to_destroy):
 			# make the delete icon smaller
 			draw_set_transform(Vector2(1.8, 0.5), 0, Vector2(0.9, 0.9))
@@ -36,7 +37,7 @@ func _draw():
 		if is_instance_valid(building_to_destroy):
 			draw_rect(Rect2(Vector2(gap - 3, 10), Vector2(10, - 10 * timer_progress)), Color(0.8, 0, 0, 0.6))
 			draw_set_transform(Vector2(0, 0), 0, Vector2(1, 1))
-		draw_rect(Rect2(Vector2(2 * gap - 3, 0), Vector2(10, 10)), Color(1, 1, 1))
+		draw_texture(empty_button, Vector2(2*gap - 3, 0))
 	else:
 		var types = ['defense', 'income', 'attack']
 		# rotate all icons by 90 degrees
