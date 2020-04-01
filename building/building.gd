@@ -25,7 +25,7 @@ const textures = {
 
 const position_offsets = {
 	income = 1.08,
-	attack = 1.04,
+	attack = 1.08,
 	defense = 1.5
 }
 
@@ -37,6 +37,7 @@ func _ready():
 func init():
 	rotation = position.direction_to(Vector2(0, 0)).angle() - PI/2
 	position *= position_offsets[type]
+	animation = type
 	if type == 'income':
 		incomeTimer = Timer.new()
 		incomeTimer.connect('timeout', self, 'add_income')
@@ -109,7 +110,7 @@ remotesync func fire_rocket(name, position, rotation):
 	var rocket = preload("res://rocket.gd").new(target_player_number)
 	rocket.name = name
 	rocket.position = position
-	rocket.rotation = rotation
+	rocket.rotation = rotation + PI/2
 	rocket.from_planet = planet
 	rocket.building = self
 	rocket.set_network_master(get_network_master())

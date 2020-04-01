@@ -4,9 +4,9 @@
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
-auto_exposure_enabled = true
+auto_exposure_scale = 0.2
 auto_exposure_min_luma = 0.1
-auto_exposure_max_luma = 4.0
+auto_exposure_max_luma = 2.78
 glow_enabled = true
 
 [node name="main" type="Node2D"]
@@ -15,13 +15,13 @@ glow_enabled = true
 position = Vector2( 600, 200 )
 script = ExtResource( 1 )
 playerNumber = 2
-color = Color( 0.0392157, 0.243137, 0.141176, 1 )
+color = Color( 0.2244, 0.66, 0.53658, 1 )
 
 [node name="planet0" type="Node2D" parent="."]
 position = Vector2( 200, 200 )
 script = ExtResource( 1 )
 playerNumber = 1
-color = Color( 0.588235, 0.227451, 0.129412, 1 )
+color = Color( 0.81, 0.40365, 0.243, 1 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )

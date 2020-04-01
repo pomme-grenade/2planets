@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://building/building.gd" type="Script" id=1]
 [ext_resource path="res://aseprite/pump_sheet.png" type="Texture" id=2]
+[ext_resource path="res://building/rocketlauncher.png" type="Texture" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
@@ -51,12 +52,18 @@ region = Rect2( 160, 0, 16, 16 )
 animations = [ {
 "frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
 "loop": true,
-"name": "default",
+"name": "income",
 "speed": 12.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "attack",
+"speed": 5.0
 } ]
 
 [node name="Node2D" type="AnimatedSprite"]
 frames = SubResource( 12 )
-frame = 1
+animation = "income"
+frame = 10
 playing = true
 script = ExtResource( 1 )
