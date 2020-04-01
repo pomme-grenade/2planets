@@ -13,12 +13,13 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: export game
-      uses: firebelley/godot-export@v1.0.1
+      uses: firebelley/godot-export@v1.2.0
       with:
         godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/3.1.2/Godot_v3.1.2-stable_linux_headless.64.zip
         godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/3.1.2/Godot_v3.1.2-stable_export_templates.tpz
         godot_template_version: 3.1.2.stable
         relative_project_path: ./
+        create_release: false
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
