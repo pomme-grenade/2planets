@@ -111,9 +111,9 @@ func _animation_finished():
 		stop()
 
 remotesync func spawn_building(type, name, position):
-	
 	var building = preload('res://building/building.tscn').instance()
 	building.planet = planet
+	building.position = building.position.rotated(position.direction_to(Vector2(0, 0)).angle() - PI/2)
 	building.position += position
 	building.type = type
 	building.name = name

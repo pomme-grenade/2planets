@@ -13,7 +13,6 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: export game
-      # Use version 1.0.0 (see releases for all versions)
       uses: firebelley/godot-export@v1.0.1
       with:
         godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/3.1.2/Godot_v3.1.2-stable_linux_headless.64.zip
