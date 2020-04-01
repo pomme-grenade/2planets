@@ -62,8 +62,9 @@ animations = [ {
 } ]
 
 [node name="Node2D" type="AnimatedSprite"]
+position = Vector2( 0, -8.94 )
+scale = Vector2( 1.2, 1.2 )
 frames = SubResource( 12 )
-animation = "income"
-frame = 10
+animation = "attack"
 playing = true
 script = ExtResource( 1 )

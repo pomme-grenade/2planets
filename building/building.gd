@@ -24,8 +24,8 @@ const textures = {
 }
 
 const position_offsets = {
-	income = 1.08,
-	attack = 1.08,
+	income = 1,
+	attack = 1,
 	defense = 1.5
 }
 

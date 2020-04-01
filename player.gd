@@ -114,7 +114,7 @@ remotesync func spawn_building(type, name, position):
 	
 	var building = preload('res://building/building.tscn').instance()
 	building.planet = planet
-	building.position = position
+	building.position += position
 	building.type = type
 	building.name = name
 	building.set_network_master(get_network_master())
