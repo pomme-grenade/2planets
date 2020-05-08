@@ -1,4 +1,4 @@
-extends Node2D
+extends Sprite
 
 export var planetRadius = 80
 export (int) var playerNumber
@@ -45,7 +45,7 @@ func _ready():
 	slot_width = planetRadius * PI / slot_count
 
 func _draw():
-	draw_circle(Vector2(0, 0), planetRadius, color)
+	# draw_circle(Vector2(0, 0), planetRadius, color)
 	# draw_rect(Rect2(Vector2(10, 10), Vector2(health, 10)), Color(255, 40, 80))
 	draw_circle(current_slot_position(), slot_width / 2, Color(1, 1, 1, 0.2))
 
