@@ -5,7 +5,6 @@
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
-auto_exposure_enabled = true
 auto_exposure_min_luma = 0.1
 auto_exposure_max_luma = 4.0
 glow_enabled = true
