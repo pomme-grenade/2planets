@@ -19,8 +19,12 @@ tracks/0/keys = {
 }
 
 [node name="Node2D" type="Label"]
+modulate = Color( 0.878431, 0, 0.141176, 1 )
 text = "test"
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/flash = SubResource( 1 )
