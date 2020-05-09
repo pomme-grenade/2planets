@@ -1,13 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://planet.gd" type="Script" id=1]
-[ext_resource path="res://aseprite/planet3layers.png" type="Texture" id=2]
-[ext_resource path="res://aseprite/layer3.png" type="Texture" id=3]
-[ext_resource path="res://aseprite/layer4.png" type="Texture" id=4]
-[ext_resource path="res://aseprite/layer1.png" type="Texture" id=5]
-[ext_resource path="res://aseprite/layer2.png" type="Texture" id=6]
+[ext_resource path="res://aseprite/planetNew.png" type="Texture" id=3]
 [ext_resource path="res://clouds.gd" type="Script" id=7]
-[ext_resource path="res://surface.gd" type="Script" id=8]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -17,31 +12,20 @@ glow_enabled = true
 
 [node name="main" type="Node2D"]
 
-[node name="surface" type="Sprite" parent="."]
-position = Vector2( 600, 200 )
-texture = ExtResource( 5 )
-script = ExtResource( 8 )
-
 [node name="planet1" type="Sprite" parent="."]
 position = Vector2( 600, 200 )
-texture = ExtResource( 6 )
+texture = ExtResource( 3 )
 script = ExtResource( 1 )
 playerNumber = 2
 color = Color( 0.0392157, 0.243137, 0.141176, 1 )
 
 [node name="clouds" type="Sprite" parent="."]
 position = Vector2( 600, 200 )
-texture = ExtResource( 4 )
 script = ExtResource( 7 )
-
-[node name="light" type="Sprite" parent="."]
-modulate = Color( 1, 1, 1, 0.694118 )
-position = Vector2( 600, 200 )
-texture = ExtResource( 3 )
 
 [node name="planet0" type="Sprite" parent="."]
 position = Vector2( 200, 200 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 script = ExtResource( 1 )
 playerNumber = 1
 color = Color( 0.588235, 0.227451, 0.129412, 1 )
