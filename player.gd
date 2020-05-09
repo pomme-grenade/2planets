@@ -128,7 +128,7 @@ remotesync func spawn_building(type, name, position):
 	planet.money -= building_cost[type]
 
 func spawn_menu():
-	ui = preload("res://planet_ui/add_building_ui.gd").new()
+	ui = preload("res://planet_ui/planet_ui.tscn").instance()
 	get_node("/root/main").call_deferred("add_child", ui)
 	ui.rect_position = planet.position + Vector2(-15, -40)
 	ui.player = self

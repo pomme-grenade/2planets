@@ -1,8 +1,38 @@
-[gd_scene format=2]
+[gd_scene load_steps=5 format=2]
 
-[node name="Control" type="Control"]
+[ext_resource path="res://planet_ui/add_building_ui.gd" type="Script" id=1]
+[ext_resource path="res://building/satellite.png" type="Texture" id=2]
+[ext_resource path="res://building/rocketlauncher.png" type="Texture" id=3]
+[ext_resource path="res://building/white_drill.png" type="Texture" id=4]
+
+[node name="add_building_ui" type="Control"]
+margin_right = 40.0
+margin_bottom = 8.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="new_building" type="HBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="defense" type="TextureButton" parent="new_building"]
+margin_right = 8.0
+margin_bottom = 16.0
+texture_normal = ExtResource( 2 )
+
+[node name="income" type="TextureButton" parent="new_building"]
+margin_left = 12.0
+margin_right = 20.0
+margin_bottom = 16.0
+texture_normal = ExtResource( 4 )
+
+[node name="attack" type="TextureButton" parent="new_building"]
+margin_left = 24.0
+margin_right = 40.0
+margin_bottom = 16.0
+texture_normal = ExtResource( 3 )

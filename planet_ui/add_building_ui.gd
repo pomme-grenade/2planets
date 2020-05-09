@@ -20,35 +20,35 @@ func _ready():
 	action_pressed_timer.connect('timeout', self, 'action_timer_timeout')
 	add_child(action_pressed_timer)
 
-func _draw():
-	var gap = 20
-	var textures = preload('res://building/building.gd').textures
-	var delete = preload('res://planet_ui/delete_icon.png')
-	var empty_button = preload('res://planet_ui/empty_button.png')
+# func _draw():
+	# var gap = 20
+	# var textures = preload('res://building/building.gd').textures
+	# var delete = preload('res://planet_ui/delete_icon.png')
+	# var empty_button = preload('res://planet_ui/empty_button.png')
 
-	var timer_progress = (timer_wait_time - action_pressed_timer.time_left) / timer_wait_time
+	# var timer_progress = (timer_wait_time - action_pressed_timer.time_left) / timer_wait_time
 
-	if is_instance_valid(player.current_building) and building_to_build == null:
-		draw_texture(empty_button, Vector2(-5, 0))
-		if is_instance_valid(building_to_destroy):
-			# make the delete icon smaller
-			draw_set_transform(Vector2(1.8, 0.5), 0, Vector2(0.9, 0.9))
-		draw_texture(delete, Vector2(gap - 3, 0))
-		if is_instance_valid(building_to_destroy):
-			draw_rect(Rect2(Vector2(gap - 3, 10), Vector2(10, - 10 * timer_progress)), Color(0.8, 0, 0, 0.6))
-			draw_set_transform(Vector2(0, 0), 0, Vector2(1, 1))
-		draw_texture(empty_button, Vector2(2*gap - 3, 0))
-	else:
-		var types = ['defense', 'income', 'attack']
-		# rotate all icons by 90 degrees
-		for index in range(len(types)):
-			var scale = 0.9 if building_to_build == types[index] else 1.0
-			draw_set_transform(Vector2(0, 0), PI/2, Vector2(scale, scale))
-			var y_pos = (- gap * index - 5) - (1 - scale) * gap
-			draw_texture(textures[types[index]], Vector2(0, y_pos))
-			if building_to_build == types[index]:
-				draw_set_transform(Vector2(0, 0), 0, Vector2(scale, scale))
-				draw_rect(Rect2(Vector2(- y_pos - 9, 10), Vector2(10, - 10 * timer_progress)), Color(0, 0.6, 0.3, 0.6))
+	# if is_instance_valid(player.current_building) and building_to_build == null:
+	# 	draw_texture(empty_button, Vector2(-5, 0))
+	# 	if is_instance_valid(building_to_destroy):
+	# 		# make the delete icon smaller
+	# 		draw_set_transform(Vector2(1.8, 0.5), 0, Vector2(0.9, 0.9))
+	# 	draw_texture(delete, Vector2(gap - 3, 0))
+	# 	if is_instance_valid(building_to_destroy):
+	# 		draw_rect(Rect2(Vector2(gap - 3, 10), Vector2(10, - 10 * timer_progress)), Color(0.8, 0, 0, 0.6))
+	# 		draw_set_transform(Vector2(0, 0), 0, Vector2(1, 1))
+	# 	draw_texture(empty_button, Vector2(2*gap - 3, 0))
+	# else:
+	# 	var types = ['defense', 'income', 'attack']
+	# 	# rotate all icons by 90 degrees
+	# 	for index in range(len(types)):
+	# 		var scale = 0.9 if building_to_build == types[index] else 1.0
+	# 		draw_set_transform(Vector2(0, 0), PI/2, Vector2(scale, scale))
+	# 		var y_pos = (- gap * index - 5) - (1 - scale) * gap
+	# 		draw_texture(textures[types[index]], Vector2(0, y_pos))
+	# 		if building_to_build == types[index]:
+	# 			draw_set_transform(Vector2(0, 0), 0, Vector2(scale, scale))
+	# 			draw_rect(Rect2(Vector2(- y_pos - 9, 10), Vector2(10, - 10 * timer_progress)), Color(0, 0.6, 0.3, 0.6))
 
 func _process(_dt):
 	if (is_instance_valid(building_to_destroy)
