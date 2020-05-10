@@ -51,9 +51,12 @@ func _ready():
 	# 			draw_rect(Rect2(Vector2(- y_pos - 9, 10), Vector2(10, - 10 * timer_progress)), Color(0, 0.6, 0.3, 0.6))
 
 func _process(_dt):
-	if (is_instance_valid(building_to_destroy)
-		or building_to_build != null):
-		update()
+	if is_instance_valid(player.current_building) and building_to_build == null:
+		$new_building.hide()
+		$update_building.show()
+	else:
+		$new_building.show()
+		$update_building.hide()
 
 func _unhandled_input(event):
 	if is_network_master():
