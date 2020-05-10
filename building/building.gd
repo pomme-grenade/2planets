@@ -20,7 +20,7 @@ const rocket_spawn_rate = 5
 const textures = {
 	attack = preload('res://building/rocketlauncher.png'),
 	defense = preload('res://building/satellite.png'),
-	income = preload('res://building/white_drill.png')
+	income = preload('res://building/mine.png')
 }
 
 const position_offsets = {
