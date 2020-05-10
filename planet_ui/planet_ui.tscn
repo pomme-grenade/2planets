@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://planet_ui/add_building_ui.gd" type="Script" id=1]
 [ext_resource path="res://building/satellite.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://building/white_drill.png" type="Texture" id=4]
 [ext_resource path="res://planet_ui/empty_button.png" type="Texture" id=5]
 [ext_resource path="res://planet_ui/delete_icon.png" type="Texture" id=6]
+[ext_resource path="res://planet_ui/button_pressed.png" type="Texture" id=7]
 
 [node name="add_building_ui" type="CenterContainer"]
 margin_right = 60.0
@@ -16,6 +17,7 @@ __meta__ = {
 }
 
 [node name="new_building" type="HBoxContainer" parent="."]
+visible = false
 margin_left = 2.0
 margin_top = 2.0
 margin_right = 58.0
@@ -27,7 +29,10 @@ __meta__ = {
 [node name="defense" type="TextureButton" parent="new_building"]
 margin_right = 16.0
 margin_bottom = 16.0
+shortcut_in_tooltip = false
+button_mask = 0
 texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 7 )
 
 [node name="TextureRect" type="TextureRect" parent="new_building/defense"]
 margin_left = 4.28115
@@ -44,6 +49,7 @@ margin_left = 20.0
 margin_right = 36.0
 margin_bottom = 16.0
 texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 7 )
 
 [node name="TextureRect2" type="TextureRect" parent="new_building/income"]
 margin_left = 4.15591
@@ -60,6 +66,7 @@ margin_left = 40.0
 margin_right = 56.0
 margin_bottom = 16.0
 texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 7 )
 
 [node name="TextureRect3" type="TextureRect" parent="new_building/attack"]
 margin_left = 0.166122
@@ -80,9 +87,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="defense" type="TextureButton" parent="update_building"]
+[node name="upgrade_1" type="TextureButton" parent="update_building"]
 margin_right = 16.0
 margin_bottom = 16.0
+disabled = true
 texture_normal = ExtResource( 5 )
 
 [node name="destroy" type="TextureButton" parent="update_building"]
@@ -90,9 +98,11 @@ margin_left = 20.0
 margin_right = 36.0
 margin_bottom = 16.0
 texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 7 )
 
-[node name="attack" type="TextureButton" parent="update_building"]
+[node name="upgrade_2" type="TextureButton" parent="update_building"]
 margin_left = 40.0
 margin_right = 56.0
 margin_bottom = 16.0
+disabled = true
 texture_normal = ExtResource( 5 )
