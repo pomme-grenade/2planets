@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://lobby.gd" type="Script" id=1]
+[ext_resource path="res://ui/button_texture_normal.tres" type="StyleBox" id=2]
+[ext_resource path="res://ui/button_texture_pressed.tres" type="StyleBox" id=3]
+
+[sub_resource type="InputEventAction" id=1]
+action = "ui_accept"
+
+[sub_resource type="ShortCut" id=2]
+shortcut = SubResource( 1 )
 
 [node name="lobby" type="VBoxContainer"]
 anchor_left = 0.5
@@ -13,6 +21,9 @@ margin_right = 152.0
 margin_bottom = 68.0
 custom_constants/separation = 5
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label2" type="Label" parent="."]
 margin_right = 304.0
@@ -22,32 +33,43 @@ text = "local game"
 [node name="local" type="Button" parent="."]
 margin_top = 21.0
 margin_right = 304.0
-margin_bottom = 58.0
+margin_bottom = 53.0
 size_flags_vertical = 3
+custom_styles/hover = ExtResource( 2 )
+custom_styles/pressed = ExtResource( 3 )
+custom_styles/focus = ExtResource( 2 )
+custom_styles/disabled = ExtResource( 2 )
+custom_styles/normal = ExtResource( 2 )
+shortcut = SubResource( 2 )
 text = "start local game"
 
 [node name="Label" type="Label" parent="."]
-margin_top = 63.0
+margin_top = 58.0
 margin_right = 304.0
-margin_bottom = 79.0
+margin_bottom = 74.0
 text = "network game"
 
 [node name="network" type="HBoxContainer" parent="."]
-margin_top = 84.0
+margin_top = 79.0
 margin_right = 304.0
-margin_bottom = 136.0
+margin_bottom = 141.0
 
 [node name="create" type="Button" parent="network"]
 margin_right = 150.0
-margin_bottom = 52.0
+margin_bottom = 62.0
 grow_horizontal = 0
 rect_min_size = Vector2( 150, 0 )
+custom_styles/hover = ExtResource( 2 )
+custom_styles/pressed = ExtResource( 3 )
+custom_styles/focus = ExtResource( 2 )
+custom_styles/disabled = ExtResource( 2 )
+custom_styles/normal = ExtResource( 2 )
 text = "start server"
 
 [node name="connect_container" type="VBoxContainer" parent="network"]
 margin_left = 154.0
 margin_right = 304.0
-margin_bottom = 52.0
+margin_bottom = 62.0
 rect_min_size = Vector2( 150, 0 )
 
 [node name="ip_address" type="LineEdit" parent="network/connect_container"]
@@ -60,7 +82,13 @@ caret_blink = true
 [node name="connect" type="Button" parent="network/connect_container"]
 margin_top = 30.0
 margin_right = 150.0
-margin_bottom = 52.0
+margin_bottom = 62.0
 rect_min_size = Vector2( 100, 0 )
 size_flags_vertical = 3
+custom_styles/hover = ExtResource( 2 )
+custom_styles/pressed = ExtResource( 3 )
+custom_styles/focus = ExtResource( 2 )
+custom_styles/disabled = ExtResource( 2 )
+custom_styles/normal = ExtResource( 2 )
+keep_pressed_outside = true
 text = "connect"
