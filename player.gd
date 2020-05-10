@@ -61,6 +61,10 @@ func _process(delta):
 	var new_building = get_building_in_range()
 	if new_building != current_building:
 		ui.update()
+		if is_instance_valid(current_building):
+			current_building.self_modulate = Color(1, 1, 1, 1)
+		if is_instance_valid(new_building):
+			new_building.self_modulate = Color(2, 2, 2, 1)
 		current_building = new_building
 
 	if is_network_master():
@@ -122,6 +126,7 @@ remotesync func spawn_building(type, name, position):
 	# re-draw circle highlighting the new building
 	building.init()
 	current_building = building
+	current_building.self_modulate = Color(2, 2, 2, 1)
 	ui.update()
 	planet.update()
 
