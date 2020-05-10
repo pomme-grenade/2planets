@@ -55,6 +55,6 @@ func is_closer(a, b):
 
 func find_new_target():
 	if from_planet.playerNumber == 1:
-		return get_node("/root/main/planet1")
+		return get_node("/root/main/planet_2")
 	else:
-		return get_node("/root/main/planet0")
+		return get_node("/root/main/planet_1")

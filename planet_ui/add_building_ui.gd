@@ -13,7 +13,7 @@ const building_types = [
 	'income',
 ]
 
-func _ready():
+func init():
 	if not is_network_master():
 		return
 

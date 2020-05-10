@@ -54,11 +54,11 @@ remotesync func pre_configure_game():
 	var world = load('res://Main.tscn').instance()
 	get_node('/root').add_child(world)
 
-	var planet_name = 'planet0' if get_tree().is_network_server() else 'planet1'
+	var planet_name = 'planet_1' if get_tree().is_network_server() else 'planet_2'
 	var my_planet = get_node('/root/main/' + planet_name)
 	my_planet.set_network_master(selfPeerID) # Will be explained later
 
-	var other_planet_name = 'planet1' if get_tree().is_network_server() else 'planet0'
+	var other_planet_name = 'planet_2' if get_tree().is_network_server() else 'planet_1'
 	var other_planet = get_node('/root/main/' + other_planet_name)
 	other_planet.set_network_master(other_player_id) # Will be explained later
 

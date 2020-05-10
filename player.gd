@@ -30,7 +30,7 @@ func init():
 	# warning-ignore:return_value_discarded
 	connect('animation_finished', self, '_animation_finished')
 
-	spawn_menu()
+	init_ui()
 
 func _process(delta):
 	var rightAction = player_key + "right"
@@ -127,10 +127,8 @@ remotesync func spawn_building(type, name, position):
 
 	planet.money -= building_cost[type]
 
-func spawn_menu():
-	ui = preload("res://planet_ui/planet_ui.tscn").instance()
-	get_node("/root/main").call_deferred("add_child", ui)
-	ui.rect_position = planet.position + Vector2(-15, -40)
+func init_ui():
+	ui = get_node('/root/main/planet_ui_%s' % playerNumber)
 	ui.player = self
-	ui.name = '%s_ui' % planet.name
 	ui.set_network_master(get_network_master())
+	ui.init()

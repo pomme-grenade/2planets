@@ -8,7 +8,7 @@
 [ext_resource path="res://planet_ui/delete_icon.png" type="Texture" id=6]
 [ext_resource path="res://planet_ui/button_pressed.png" type="Texture" id=7]
 
-[node name="add_building_ui" type="CenterContainer"]
+[node name="planet_ui" type="CenterContainer"]
 margin_right = 60.0
 margin_bottom = 20.0
 script = ExtResource( 1 )
@@ -17,7 +17,6 @@ __meta__ = {
 }
 
 [node name="new_building" type="HBoxContainer" parent="."]
-visible = false
 margin_left = 2.0
 margin_top = 2.0
 margin_right = 58.0
@@ -51,11 +50,11 @@ margin_bottom = 16.0
 texture_normal = ExtResource( 5 )
 texture_pressed = ExtResource( 7 )
 
-[node name="TextureRect2" type="TextureRect" parent="new_building/income"]
+[node name="TextureRect" type="TextureRect" parent="new_building/income"]
 margin_left = 4.15591
-margin_top = 2.99297
+margin_top = 2.58113
 margin_right = 12.1559
-margin_bottom = 10.993
+margin_bottom = 11.5741
 texture = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -68,7 +67,7 @@ margin_bottom = 16.0
 texture_normal = ExtResource( 5 )
 texture_pressed = ExtResource( 7 )
 
-[node name="TextureRect3" type="TextureRect" parent="new_building/attack"]
+[node name="TextureRect" type="TextureRect" parent="new_building/attack"]
 margin_left = 0.166122
 margin_top = -2.89585
 margin_right = 16.1661
@@ -79,6 +78,7 @@ __meta__ = {
 }
 
 [node name="update_building" type="HBoxContainer" parent="."]
+visible = false
 margin_left = 2.0
 margin_top = 2.0
 margin_right = 58.0
