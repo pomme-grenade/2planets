@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/empty_button.png-a184ceda98e000205761b7122906b721.stex"
+path="res://.import/empty_button.png-0774c3dab316b0c224a1d5e2cd27fddd.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://planet_ui/empty_button.png"
-dest_files=[ "res://.import/empty_button.png-a184ceda98e000205761b7122906b721.stex" ]
+source_file="res://ui/empty_button.png"
+dest_files=[ "res://.import/empty_button.png-0774c3dab316b0c224a1d5e2cd27fddd.stex" ]
 
 [params]
 

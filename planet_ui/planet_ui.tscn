@@ -4,9 +4,12 @@
 [ext_resource path="res://building/satellite.png" type="Texture" id=2]
 [ext_resource path="res://building/rocketlauncher.png" type="Texture" id=3]
 [ext_resource path="res://building/white_drill.png" type="Texture" id=4]
-[ext_resource path="res://planet_ui/empty_button.png" type="Texture" id=5]
-[ext_resource path="res://planet_ui/delete_icon.png" type="Texture" id=6]
-[ext_resource path="res://planet_ui/button_pressed.png" type="Texture" id=7]
+[ext_resource path="res://ui/empty_button.png" type="Texture" id=5]
+[ext_resource path="res://ui/delete_icon.png" type="Texture" id=6]
+[ext_resource path="res://ui/button_pressed.png" type="Texture" id=7]
+
+
+
 
 [node name="planet_ui" type="CenterContainer"]
 margin_right = 60.0
