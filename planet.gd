@@ -23,15 +23,18 @@ func _ready():
 	life_label.align = Label.ALIGN_RIGHT
 	get_node("/root/main").call_deferred("add_child", life_label)
 	life_label.rect_position = Vector2(position.x - 20, position.y - 20)
+	life_label.self_modulate = Color("#423458")
 
 	current_money_label = preload('res://planet_ui/current_money_label.tscn').instance()
 	current_money_label.align = Label.ALIGN_RIGHT
 	current_money_label.rect_position = Vector2(position.x - 12, position.y - 5)
+	current_money_label.self_modulate = Color("#423458")
 	get_node("/root/main").call_deferred("add_child", current_money_label)
 
 	income_label = Label.new()
 	income_label.align = Label.ALIGN_RIGHT
 	income_label.rect_position = Vector2(position.x - 20, position.y + 10)
+	income_label.self_modulate = Color("#423458")
 	get_node("/root/main").call_deferred("add_child", income_label)
 
 	player = preload('res://Player.tscn').instance()

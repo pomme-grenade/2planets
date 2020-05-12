@@ -20,6 +20,7 @@ tracks/0/keys = {
 
 [node name="Node2D" type="Label"]
 modulate = Color( 0.878431, 0, 0.141176, 1 )
+self_modulate = Color( 0.258824, 0.203922, 0.345098, 1 )
 text = "test"
 script = ExtResource( 1 )
 __meta__ = {

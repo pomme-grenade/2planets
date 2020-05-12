@@ -3,13 +3,10 @@
 [ext_resource path="res://planet_ui/add_building_ui.gd" type="Script" id=1]
 [ext_resource path="res://building/satellite.png" type="Texture" id=2]
 [ext_resource path="res://building/rocketlauncher.png" type="Texture" id=3]
-[ext_resource path="res://building/white_drill.png" type="Texture" id=4]
+[ext_resource path="res://building/mineResized.png" type="Texture" id=4]
 [ext_resource path="res://ui/empty_button.png" type="Texture" id=5]
 [ext_resource path="res://ui/delete_icon.png" type="Texture" id=6]
 [ext_resource path="res://ui/button_pressed.png" type="Texture" id=7]
-
-
-
 
 [node name="planet_ui" type="CenterContainer"]
 margin_right = 60.0
@@ -37,10 +34,11 @@ texture_normal = ExtResource( 5 )
 texture_pressed = ExtResource( 7 )
 
 [node name="TextureRect" type="TextureRect" parent="new_building/defense"]
-margin_left = 4.28115
-margin_top = 2.99297
-margin_right = 12.2812
-margin_bottom = 10.993
+margin_left = 2.6284
+margin_top = 2.88279
+margin_right = 18.6284
+margin_bottom = 18.8828
+rect_scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -54,10 +52,11 @@ texture_normal = ExtResource( 5 )
 texture_pressed = ExtResource( 7 )
 
 [node name="TextureRect" type="TextureRect" parent="new_building/income"]
-margin_left = 4.15591
-margin_top = 2.58113
-margin_right = 12.1559
-margin_bottom = 11.5741
+margin_left = 3.27445
+margin_top = 1.03857
+margin_right = 19.2744
+margin_bottom = 17.0386
+rect_scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
