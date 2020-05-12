@@ -51,6 +51,16 @@ func _process(dt):
 	if fire_position != null:
 		update()
 
+	var enemy_group = 'rocket' + str(1 if planet.playerNumber == 2 else 2)
+	var rockets = get_tree().get_nodes_in_group(enemy_group)
+	if len(rockets) > 0:
+		var nearest_position = rockets[0].global_position
+		for rocket in rockets:
+			if global_position.distance_to(rocket.global_position) < global_position.distance_to(nearest_position):
+				nearest_position = rocket.global_position
+
+		global_rotation = (nearest_position - global_position).angle() + PI/2
+
 	cooldown -= dt
 
 	if cooldown > 0:
@@ -59,7 +69,6 @@ func _process(dt):
 		self_modulate.a = 1
 
 	if is_network_master():
-		var enemy_group = 'rocket' + str(1 if planet.playerNumber == 2 else 2)
 		for rocket in get_tree().get_nodes_in_group(enemy_group):
 			if global_position.distance_to(rocket.global_position) < attack_range:
 				rpc('destroy_rocket', rocket.get_path())
@@ -82,7 +91,7 @@ func _draw():
 	if type != 'defense':
 		return
 
-	draw_circle(Vector2(0, 0), attack_range, Color(0.1, 0.2, 0.7, 0.1))
+	draw_circle(Vector2(0, 0), attack_range/scale.x, Color(0.1, 0.2, 0.7, 0.1))
 
 	if fire_position != null:
 		var alpha = cooldown * (1 / cooldown_time)

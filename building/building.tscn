@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://building/building.gd" type="Script" id=1]
 [ext_resource path="res://building/mineResized.png" type="Texture" id=2]
 [ext_resource path="res://building/rocketlauncher.png" type="Texture" id=3]
 [ext_resource path="res://building/mineAnimation2.png" type="Texture" id=4]
+[ext_resource path="res://building/satellite.png" type="Texture" id=5]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -16,13 +17,17 @@ animations = [ {
 "loop": true,
 "name": "attack",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "defense",
+"speed": 5.0
 } ]
 
 [node name="Node2D" type="AnimatedSprite"]
-position = Vector2( 0, -8.94 )
-scale = Vector2( 1.2, 1.2 )
+position = Vector2( 0, -6.3884 )
+scale = Vector2( 0.9, 0.9 )
 frames = SubResource( 1 )
-animation = "income"
-frame = 1
+animation = "defense"
 playing = true
 script = ExtResource( 1 )
