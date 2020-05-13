@@ -18,14 +18,14 @@ var cooldown_time = 0.5
 const rocket_spawn_rate = 5
 
 const textures = {
-	attack = preload('res://building/rocketlauncher.png'),
+	attack = preload('res://building/rocket.png'),
 	defense = preload('res://building/satellite.png'),
 	income = preload('res://building/mine.png')
 }
 
 const position_offsets = {
 	income = 0.91,
-	attack = 0.92,
+	attack = 0.91,
 	defense = 1.5
 }
 
@@ -51,16 +51,16 @@ func _process(dt):
 	if fire_position != null:
 		update()
 
-	var enemy_group = 'rocket' + str(1 if planet.playerNumber == 2 else 2)
+	var enemy_number = 1 if planet.playerNumber == 2 else 2
+	var enemy_group = 'rocket' + str(enemy_number)
 	var rockets = get_tree().get_nodes_in_group(enemy_group)
-	if len(rockets) > 0:
-		var nearest_position = rockets[0].global_position
-		for rocket in rockets:
-			if global_position.distance_to(rocket.global_position) < global_position.distance_to(nearest_position):
-				nearest_position = rocket.global_position
+	var nearest_target = get_node('/root/main/planet_%s' % enemy_number)
+	for rocket in rockets:
+		if global_position.distance_to(rocket.global_position) < global_position.distance_to(nearest_target.global_position):
+			nearest_target = rocket
 
-		global_rotation = (nearest_position - global_position).angle() + PI/2
-
+	look_at(nearest_target.global_position)
+	rotate(PI/2)
 	cooldown -= dt
 
 	if cooldown > 0:
@@ -68,11 +68,10 @@ func _process(dt):
 	else:
 		self_modulate.a = 1
 
-	if is_network_master():
-		for rocket in get_tree().get_nodes_in_group(enemy_group):
-			if global_position.distance_to(rocket.global_position) < attack_range:
-				rpc('destroy_rocket', rocket.get_path())
-				break
+	if (is_network_master() and
+			nearest_target != null and
+			global_position.distance_to(nearest_target.global_position) < attack_range):
+		rpc('destroy_rocket', nearest_target.get_path())
 
 remotesync func destroy_rocket(path):
 	var rocket = get_node(path)

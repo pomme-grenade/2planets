@@ -2,7 +2,7 @@
 
 [ext_resource path="res://building/building.gd" type="Script" id=1]
 [ext_resource path="res://building/mineResized.png" type="Texture" id=2]
-[ext_resource path="res://building/rocketlauncher.png" type="Texture" id=3]
+[ext_resource path="res://building/rocket.png" type="Texture" id=3]
 [ext_resource path="res://building/mineAnimation2.png" type="Texture" id=4]
 [ext_resource path="res://building/satellite.png" type="Texture" id=5]
 
@@ -28,6 +28,6 @@ animations = [ {
 position = Vector2( 0, -6.3884 )
 scale = Vector2( 0.9, 0.9 )
 frames = SubResource( 1 )
-animation = "defense"
+animation = "income"
 playing = true
 script = ExtResource( 1 )

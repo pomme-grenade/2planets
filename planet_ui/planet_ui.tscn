@@ -2,7 +2,7 @@
 
 [ext_resource path="res://planet_ui/add_building_ui.gd" type="Script" id=1]
 [ext_resource path="res://building/satellite.png" type="Texture" id=2]
-[ext_resource path="res://building/rocketlauncher.png" type="Texture" id=3]
+[ext_resource path="res://building/rocket.png" type="Texture" id=3]
 [ext_resource path="res://building/mineResized.png" type="Texture" id=4]
 [ext_resource path="res://ui/empty_button.png" type="Texture" id=5]
 [ext_resource path="res://ui/delete_icon.png" type="Texture" id=6]
@@ -70,10 +70,11 @@ texture_normal = ExtResource( 5 )
 texture_pressed = ExtResource( 7 )
 
 [node name="TextureRect" type="TextureRect" parent="new_building/attack"]
-margin_left = 0.166122
-margin_top = -2.89585
-margin_right = 16.1661
-margin_bottom = 13.1041
+margin_left = 3.13229
+margin_top = 1.63545
+margin_right = 19.1323
+margin_bottom = 17.6355
+rect_scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
