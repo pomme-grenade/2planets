@@ -51,7 +51,9 @@ func _process(dt):
 		position = position.rotated(movementDirection * speed  * dt)
 
 	var target_rotation = position.angle() + PI/2 + (movementDirection * PI/6)
-	rotation = lerp(rotation, target_rotation, 12 * dt)
+	var target_quat = Quat(Vector3.BACK, target_rotation)
+	var current_quat = Quat(Vector3.BACK, rotation)
+	rotation = current_quat.slerp(target_quat, 12 * dt).get_euler().z
 
 	if movementDirection != 0:
 		speed_scale = 1.8
