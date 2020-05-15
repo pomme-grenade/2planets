@@ -59,8 +59,9 @@ func _process(dt):
 		if global_position.distance_to(rocket.global_position) < global_position.distance_to(nearest_target.global_position):
 			nearest_target = rocket
 
-	look_at(nearest_target.global_position)
-	rotate(PI/2)
+	var target_quat = Quat(Vector3.BACK, global_position.angle_to_point(nearest_target.global_position) - PI/2)
+	var current_quat = Quat(Vector3.BACK, global_rotation)
+	global_rotation = current_quat.slerp(target_quat, 5 * dt).get_euler().z
 	cooldown -= dt
 
 	if cooldown > 0:
