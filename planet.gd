@@ -50,7 +50,8 @@ func _ready():
 func _draw():
 	# draw_circle(Vector2(0, 0), planetRadius, color)
 	# draw_rect(Rect2(Vector2(10, 10), Vector2(health, 10)), Color(255, 40, 80))
-	draw_circle(current_slot_position(), slot_width / 2, Color(1, 1, 1, 0.2))
+	if (not is_instance_valid(player.current_building)):
+		draw_circle(current_slot_position(), slot_width / 2, Color(1, 1, 1, 0.2))
 
 func _process(delta):
 	money += income * delta
@@ -71,9 +72,8 @@ puppet func _sync_rotation(rot):
 
 func current_slot_position():
 	var slot_angle_width = PI / slot_count
-	var slot_index = round(player.rotation / slot_angle_width)
-	var offset = 1
-	if is_instance_valid(player.current_building) and not player.current_building.is_destroyed:
-		offset = player.current_building.position_offsets[player.current_building.type]
+	var player_position_angle = (player.position.angle() + PI/2)
+	var slot_index = round(player_position_angle / slot_angle_width)
+	var offset = 0.9
 	return Vector2(0, -planetRadius * offset) \
 		.rotated(slot_index * slot_angle_width)

@@ -30,9 +30,11 @@ func init():
 	# warning-ignore:return_value_discarded
 	connect('animation_finished', self, '_animation_finished')
 
+	$AnimationPlayer.play('idle')
+
 	init_ui()
 
-func _process(delta):
+func _process(dt):
 	var rightAction = player_key + "right"
 	var leftAction = player_key + "left"
 
@@ -46,9 +48,10 @@ func _process(delta):
 		else:
 			movementDirection = 0
 
-		position = position.rotated(movementDirection * speed  * delta)
+		position = position.rotated(movementDirection * speed  * dt)
 
-	rotation = position.angle() + PI/2
+	var target_rotation = position.angle() + PI/2 + (movementDirection * PI/6)
+	rotation = lerp(rotation, target_rotation, 10 * dt)
 
 	if movementDirection != 0:
 		speed_scale = 1.8
