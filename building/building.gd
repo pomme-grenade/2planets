@@ -12,6 +12,7 @@ var is_destroyed = false
 # defense-specific fields
 var attack_range = 80
 var fire_position
+var fire_origin
 var cooldown = 0
 var cooldown_time = 0.5
 
@@ -79,7 +80,8 @@ remotesync func destroy_rocket(path):
 	if rocket == null:
 		print('unknown rocket ', path)
 		return
-	fire_position = to_local(rocket.global_position)
+	fire_position = rocket.global_position
+	fire_origin = to_global(Vector2(0, -8))
 	cooldown = cooldown_time
 	self_modulate.a = 0.8
 	show_income_animation('5')
@@ -96,7 +98,7 @@ func _draw():
 	if fire_position != null:
 		var alpha = cooldown * (1 / cooldown_time)
 		if alpha > 0:
-			draw_line(Vector2(4, 0).rotated(fire_position.angle()), fire_position, Color(0.9, 0.9, 2, alpha), 1.1, true)
+			draw_line(to_local(fire_origin), to_local(fire_position), Color(0.9, 0.9, 2, alpha), 1.1, true)
 		else:
 			fire_position = null
 
