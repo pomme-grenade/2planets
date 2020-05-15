@@ -37,7 +37,7 @@ func _ready():
 	income_label.self_modulate = Color("#423458")
 	get_node("/root/main").call_deferred("add_child", income_label)
 
-	player = preload('res://Player.tscn').instance()
+	player = preload('res://player/Player.tscn').instance()
 	add_child(player)
 	player.planet = self
 	player.position.y -= planetRadius

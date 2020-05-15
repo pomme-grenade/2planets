@@ -2,7 +2,8 @@
 
 [ext_resource path="res://aseprite/man-Sheet.png" type="Texture" id=1]
 [ext_resource path="res://aseprite/player_idle.png" type="Texture" id=2]
-[ext_resource path="res://player.gd" type="Script" id=37]
+[ext_resource path="res://player/player.gd" type="Script" id=37]
+
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
