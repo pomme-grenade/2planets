@@ -51,7 +51,7 @@ func _process(dt):
 		position = position.rotated(movementDirection * speed  * dt)
 
 	var target_rotation = position.angle() + PI/2 + (movementDirection * PI/6)
-	rotation = lerp(rotation, target_rotation, 10 * dt)
+	rotation = lerp(rotation, target_rotation, 12 * dt)
 
 	if movementDirection != 0:
 		speed_scale = 1.8
