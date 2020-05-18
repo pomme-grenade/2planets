@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://planet_ui/planet_ui.tscn" type="PackedScene" id=1]
 [ext_resource path="res://planet.tscn" type="PackedScene" id=2]
 [ext_resource path="res://aseprite/YellowPlanet.png" type="Texture" id=3]
+[ext_resource path="res://planet_ui/background.png" type="Texture" id=4]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -16,6 +17,10 @@ margin_bottom = 400.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 400, 200 )
+texture = ExtResource( 4 )
 
 [node name="planet_1" parent="." instance=ExtResource( 2 )]
 position = Vector2( 200, 200 )
