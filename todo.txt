@@ -7,17 +7,28 @@ IDEEN
     - mehr slots upgrade
 	- planet upgrade fuer bessere einheiten (neues set einheiten) (neue waffenarten)
     - verschiedene modifier um das meta spannend zu halten
-    - tower / upgrades / units draften?
+    - tower / upgrades / units draften a la bloons TD?
+    - gegner planeten einnehmen
+      - gebäude die rüber fliegen und hp klauen
+    - planeten heilen für mehr lategame
+    - es sollte einen counter fuer alles geben, vorausgesetzt man hat genug geld
+      - burst protection!
 
 
-THEMEN
+PROBLEME
 	- lategame taktik nicht existent
 	- snowballing, comeback
 
 
 TODO
-    - multiplayer
-    - add building ui refactoren: child nodes mit sprites statt _draw-function
-	- gebaude bauen sich langsam auf
-	- spiel vorbei wenn einer leaved
+    - upgrades einbauen
+
 	- restart fixen
+    - bg neu malen
+
+	- gebaude bauen sich langsam auf
+    - player grafik polieren
+    - satellit besser proportionieren
+    - viereckiger cursor um anzuzeigen wo man gerade ist
+
+	- spiel vorbei wenn einer leaved im multiplayer
