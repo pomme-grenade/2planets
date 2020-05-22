@@ -1,6 +1,6 @@
 extends Sprite
 
-export var planetRadius = 80
+export var planetRadius = 110
 export (int) var playerNumber
 export (Color) var color
 export var health = 100

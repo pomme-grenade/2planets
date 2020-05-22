@@ -4,32 +4,32 @@
 [ext_resource path="res://player/move.png" type="Texture" id=2]
 [ext_resource path="res://player/player.gd" type="Script" id=3]
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 8, 8 )
 
-[sub_resource type="AtlasTexture" id=12]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 2 )
 region = Rect2( 8, 0, 8, 8 )
 
-[sub_resource type="AtlasTexture" id=13]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 2 )
 region = Rect2( 16, 0, 8, 8 )
 
-[sub_resource type="SpriteFrames" id=9]
+[sub_resource type="SpriteFrames" id=4]
 animations = [ {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ],
 "loop": true,
 "name": "move",
 "speed": 5.0
 } ]
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=5]
 resource_name = "idle"
 loop = true
 tracks/0/type = "value"
@@ -46,13 +46,13 @@ tracks/0/keys = {
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite"]
-position = Vector2( -0.00940712, -3.72645 )
-scale = Vector2( 0.7, 0.7 )
-frames = SubResource( 9 )
+position = Vector2( -0.00940712, -4.72645 )
+scale = Vector2( 1.35, 1.35 )
+frames = SubResource( 4 )
 animation = "move"
 frame = 1
 speed_scale = 1.5
 script = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/idle = SubResource( 10 )
+anims/idle = SubResource( 5 )
