@@ -123,10 +123,10 @@ remotesync func spawn_building(type, name, position):
 	var building = preload('res://building/building.tscn').instance()
 	var scripts = {
 		'income': preload('res://building/types/income.gd'),
-		'defense': preload('res://building/types/defense.gd')
+		'defense': preload('res://building/types/defense.gd'),
+		'attack': preload('res://building/types/attack.gd'),
 	}
-	if type in ['income', 'defense']:
-		building.set_script(scripts[type])
+	building.set_script(scripts[type])
 
 	building.type = type
 	building.planet = planet
