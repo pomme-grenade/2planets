@@ -1,24 +1,43 @@
 IDEEN
 	- upgrades
-		- verschiede Raketen
-			- antisatellit rakete
-			- laserraketen instantschuss gerader schuss
+        - antisatellit rakete
+        - laserraketen instantschuss gerader schuss
+        - raketen, die sich mid-flight in mehrere kleinere aufsplitten
+        - gebäude zerstören / stunnen / schaden machen
+           - schiff, das rüber fliegt und dronen released
+           - repair drones
+        - ressourcen klauen
+        - anti-burst schild
+        - mining dronen
+        - thruster um seinen planeten zu bewegen
+        - gravity asteroid slingshot
 	- health upgrade 
     - mehr slots upgrade
 	- planet upgrade fuer bessere einheiten (neues set einheiten) (neue waffenarten)
     - verschiedene modifier um das meta spannend zu halten
-    - tower / upgrades / units draften?
+    - tower / upgrades / units draften a la bloons TD?
+    - gegner planeten einnehmen
+      - gebäude die rüber fliegen und hp klauen
+    - planeten heilen für mehr lategame
+    - es sollte einen counter fuer alles geben, vorausgesetzt man hat genug geld
+      - burst protection!
 
 
-THEMEN
+PROBLEME
 	- lategame taktik nicht existent
 	- snowballing, comeback
 
 
 TODO
-    - multiplayer
-    - add building ui refactoren: child nodes mit sprites statt _draw-function
-	- gebaude bauen sich langsam auf
-	- spiel vorbei wenn einer leaved
+    - upgrades einbauen
+
 	- restart fixen
 	- satelliten hinter planet nicht anzeigen
+    - bg neu malen
+
+	- gebaude bauen sich langsam auf
+    - player grafik polieren
+    - satellit besser proportionieren
+    - viereckiger cursor um anzuzeigen wo man gerade ist
+
+	- spiel vorbei wenn einer leaved im multiplayer
