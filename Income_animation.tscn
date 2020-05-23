@@ -39,7 +39,10 @@ margin_top = 20.0
 margin_right = 12.0
 margin_bottom = 28.0
 custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.223529, 1, 0.411765, 1 )
+custom_colors/font_color = Color( 0.0156863, 0.0196078, 0.0196078, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "move_label"

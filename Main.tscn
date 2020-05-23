@@ -3,9 +3,11 @@
 [ext_resource path="res://planet_ui/planet_ui.tscn" type="PackedScene" id=1]
 [ext_resource path="res://planet.tscn" type="PackedScene" id=2]
 [ext_resource path="res://aseprite/YellowPlanet.png" type="Texture" id=3]
-[ext_resource path="res://planet_ui/background.png" type="Texture" id=4]
 
-[sub_resource type="Environment" id=1]
+[sub_resource type="StreamTexture" id=1]
+load_path = "res://.import/background.png-98289422cd7d93003950872a7b97021f.stex"
+
+[sub_resource type="Environment" id=2]
 background_mode = 4
 auto_exposure_min_luma = 0.1
 auto_exposure_max_luma = 4.0
@@ -18,9 +20,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 400, 200 )
-texture = ExtResource( 4 )
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 800, 400 )
+texture = SubResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 1600, 800 )
 
 [node name="planet_1" parent="." instance=ExtResource( 2 )]
 position = Vector2( 200, 200 )
@@ -53,4 +57,4 @@ margin_right = 30.0
 margin_bottom = -24.6342
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 1 )
+environment = SubResource( 2 )

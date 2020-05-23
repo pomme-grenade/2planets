@@ -21,3 +21,4 @@ TODO
 	- gebaude bauen sich langsam auf
 	- spiel vorbei wenn einer leaved
 	- restart fixen
+	- satelliten hinter planet nicht anzeigen
