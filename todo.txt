@@ -1,8 +1,16 @@
 IDEEN
 	- upgrades
-		- verschiede Raketen
-			- antisatellit rakete
-			- laserraketen instantschuss gerader schuss
+        - antisatellit rakete
+        - laserraketen instantschuss gerader schuss
+        - raketen, die sich mid-flight in mehrere kleinere aufsplitten
+        - gebäude zerstören / stunnen / schaden machen
+           - schiff, das rüber fliegt und dronen released
+           - repair drones
+        - ressourcen klauen
+        - anti-burst schild
+        - mining dronen
+        - thruster um seinen planeten zu bewegen
+        - gravity asteroid slingshot
 	- health upgrade 
     - mehr slots upgrade
 	- planet upgrade fuer bessere einheiten (neues set einheiten) (neue waffenarten)

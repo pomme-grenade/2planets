@@ -121,18 +121,36 @@ func _animation_finished():
 
 remotesync func spawn_building(type, name, position):
 	var building = preload('res://building/building.tscn').instance()
+	var scripts = {
+		'income': preload('res://building/types/income.gd'),
+		'defense': preload('res://building/types/defense.gd')
+	}
+	if type in ['income', 'defense']:
+		building.set_script(scripts[type])
+
+	building.type = type
 	building.planet = planet
 	building.position = building.position.rotated(position.direction_to(Vector2(0, 0)).angle() - PI/2)
 	building.position += position
-	building.type = type
 	building.name = name
 	building.set_network_master(get_network_master())
 	planet.add_child(building)
-	# re-draw circle highlighting the new building
+	building.animation = type
+	building.rotation = building.position \
+		.direction_to(Vector2(0, 0)).angle() - PI/2
+	building.add_to_group('building' + str(planet.playerNumber))
+	building.centered = true
+
+	if type == 'defense':
+		building.position *= 1.5
+	elif type == 'attack':
+		building.target_player_number = 2 if planet.playerNumber == 1 else 1
+
 	building.init()
 	current_building = building
 	current_building.self_modulate = Color(2, 2, 2, 1)
 	ui.update()
+	# re-draw circle highlighting the new building
 	planet.update()
 
 	planet.money -= building_cost[type]
