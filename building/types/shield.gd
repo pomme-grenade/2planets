@@ -20,14 +20,15 @@ func _process(_dt):
 	var enemy_group = 'rocket' + str(enemy_number)
 	var rockets = get_tree().get_nodes_in_group(enemy_group)
 	for rocket in rockets:
-		if (global_position.distance_to(rocket.global_position) < attack_range 
+		if (global_position.distance_to(rocket.global_position) < (attack_range * get_parent().global_scale.x)
 					and strength > rocket.planet_rocket_damage):
 			rocket.queue_free()
 			strength -= rocket.planet_rocket_damage
 	update()
 
 func _draw():
-	draw_circle_arc(Vector2(0, 0), 80, rotation_degrees - 60, rotation_degrees + 60, Color(0.4, 0.2, 0.7, 0.4 * (strength / max_strength)))
+	var color_strength = round(strength / 5) / (max_strength / 5)
+	draw_circle_arc(Vector2(0, 0), 80, rotation_degrees - 60, rotation_degrees + 60, Color(0.4, 0.2, 0.7, 0.4 * color_strength))
 	
 func draw_circle_arc(center, radius, angle_from, angle_to, color):
 	var nb_points = 16
