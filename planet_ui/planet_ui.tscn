@@ -31,6 +31,9 @@ __meta__ = {
 [node name="new_building" type="HBoxContainer" parent="."]
 margin_right = 67.0
 margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="defense" type="Button" parent="new_building"]
 margin_right = 19.0
@@ -79,8 +82,8 @@ __meta__ = {
 }
 
 [node name="attack" type="Button" parent="new_building"]
-margin_left = 45.0
-margin_right = 65.0
+margin_left = 46.0
+margin_right = 67.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 custom_styles/hover = ExtResource( 8 )
@@ -131,7 +134,7 @@ custom_fonts/font = SubResource( 5 )
 
 [node name="upgrade_2" type="Button" parent="update_building"]
 margin_left = 46.0
-margin_right = 65.0
+margin_right = 67.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 size_flags_vertical = 3

@@ -5,7 +5,7 @@ var type
 var is_destroyed = false
 
 var attack_range = 80
-var max_strength = 20
+var max_strength = 40
 var strength = max_strength
 var regen = 5.0 / 2
 

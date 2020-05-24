@@ -8,7 +8,8 @@ var from_planet
 #warning-ignore:unused_class_variable
 var building
 var planet_rocket_damage = 5
-var draw_explosion = false
+var is_destroyed = false
+var explosion_radius = 20
 
 func _ready():
 	velocity = Vector2(40, 0).rotated(rotation)
@@ -22,21 +23,17 @@ func _init(target_player_number_):
 func point_on_planet():
 	 return target.planetRadius * target.global_position.direction_to(global_position) + target.global_position
 
-
 func _draw():
 	var length = 3 + velocity.length() / 50
 	draw_rect(Rect2(Vector2(0, 0), Vector2(length, 1)), Color(0, 0.5, 2))
-	if draw_explosion == true: 
+	if is_destroyed: 
 		# draw_circle(Vector2(0, 0), 50, Color(1, 1, 1))
-		draw_circle(to_local(point_on_planet()), 50, Color(1, 1, 1))
-		draw_explosion = false
+		draw_circle(to_local(point_on_planet()), explosion_radius, Color(1, 1, 1))
 
 func _process(delta):
-	for building in get_tree().get_nodes_in_group("building" + str(target_player_number)):
-		if global_position.distance_to(building.global_position) < 50 and global_position.distance_to(point_on_planet()) <= 5:
-			draw_explosion = true
-			self.update()
-			building.queue_free()
+	if is_destroyed:
+		queue_free()
+		return
 
 	if not is_instance_valid(target):
 		target = find_new_target()
@@ -51,7 +48,7 @@ func _process(delta):
 		velocity = velocity * (1 + acceleration)
 
 		if target.is_network_master():
-			if position.distance_to(target.global_position) - target.planetRadius < 1:
+			if global_position.distance_to(target.global_position) - target.planetRadius < 1:
 				rpc('hit_planet', target.get_path())
 				return
 
@@ -60,11 +57,17 @@ func _process(delta):
 	update()
 
 remotesync func hit_planet(path):
+	is_destroyed = true
+	self.update()
 	var planet = get_node(path)
 	planet.health -= planet_rocket_damage
-	queue_free()
+	for building in get_tree().get_nodes_in_group("building" + str(target_player_number)):
+		if point_on_planet().distance_to(building.global_position) < explosion_radius:
+			building.destroy(0)
+
 	if planet.health <= 0:
 		sceneSwitcher.change_scene('res://gameOver.tscn', {"loser": target_player_number})
+
 func is_closer(a, b):
 	return global_position.distance_to(a.global_position) < global_position.distance_to(b.global_position)
 

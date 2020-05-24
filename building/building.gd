@@ -21,6 +21,8 @@ func init():
 	animation = type
 
 remotesync func destroy(cost):
+	if child.has_method("on_destroy"):
+		child.on_destroy()
 	planet.money += cost / 4
 	is_destroyed = true
 	queue_free()
