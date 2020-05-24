@@ -4,9 +4,6 @@
 [ext_resource path="res://building/satellite.png" type="Texture" id=2]
 [ext_resource path="res://building/rocket_button.png" type="Texture" id=3]
 [ext_resource path="res://building/mineResized.png" type="Texture" id=4]
-[ext_resource path="res://ui/empty_button.png" type="Texture" id=5]
-[ext_resource path="res://ui/delete_icon.png" type="Texture" id=6]
-[ext_resource path="res://ui/button_pressed.png" type="Texture" id=7]
 [ext_resource path="res://ui/button_texture_normal.tres" type="StyleBox" id=8]
 [ext_resource path="res://ui/button_texture_pressed.tres" type="StyleBox" id=9]
 
@@ -15,6 +12,12 @@
 [sub_resource type="BitmapFont" id=2]
 
 [sub_resource type="BitmapFont" id=3]
+
+[sub_resource type="BitmapFont" id=4]
+
+[sub_resource type="BitmapFont" id=5]
+
+[sub_resource type="BitmapFont" id=6]
 
 [node name="planet_ui" type="Control"]
 margin_right = 71.0
@@ -26,11 +29,11 @@ __meta__ = {
 }
 
 [node name="new_building" type="HBoxContainer" parent="."]
-margin_right = 70.0
+margin_right = 67.0
 margin_bottom = 20.0
 
 [node name="defense" type="Button" parent="new_building"]
-margin_right = 20.0
+margin_right = 19.0
 margin_bottom = 20.0
 rect_clip_content = true
 size_flags_horizontal = 3
@@ -54,8 +57,8 @@ __meta__ = {
 }
 
 [node name="income" type="Button" parent="new_building"]
-margin_left = 24.0
-margin_right = 44.0
+margin_left = 23.0
+margin_right = 42.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 custom_styles/hover = ExtResource( 8 )
@@ -76,8 +79,8 @@ __meta__ = {
 }
 
 [node name="attack" type="Button" parent="new_building"]
-margin_left = 48.0
-margin_right = 70.0
+margin_left = 45.0
+margin_right = 65.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 custom_styles/hover = ExtResource( 8 )
@@ -101,31 +104,37 @@ __meta__ = {
 }
 
 [node name="update_building" type="HBoxContainer" parent="."]
-visible = false
-margin_left = 7.0
-margin_top = 8.0
-margin_right = 63.0
-margin_bottom = 24.0
+margin_right = 67.0
+margin_bottom = 20.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="upgrade_1" type="TextureButton" parent="update_building"]
-margin_right = 16.0
-margin_bottom = 16.0
-texture_normal = ExtResource( 5 )
-texture_pressed = ExtResource( 7 )
+[node name="upgrade_1" type="Button" parent="update_building"]
+margin_right = 19.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/pressed = ExtResource( 9 )
+custom_styles/normal = ExtResource( 8 )
+custom_fonts/font = SubResource( 4 )
 
-[node name="destroy" type="TextureButton" parent="update_building"]
-margin_left = 20.0
-margin_right = 36.0
-margin_bottom = 16.0
-texture_normal = ExtResource( 6 )
-texture_pressed = ExtResource( 7 )
+[node name="destroy" type="Button" parent="update_building"]
+margin_left = 23.0
+margin_right = 42.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/pressed = ExtResource( 9 )
+custom_styles/normal = ExtResource( 8 )
+custom_fonts/font = SubResource( 5 )
 
-[node name="upgrade_2" type="TextureButton" parent="update_building"]
-margin_left = 40.0
-margin_right = 56.0
-margin_bottom = 16.0
-texture_normal = ExtResource( 5 )
-texture_pressed = ExtResource( 7 )
+[node name="upgrade_2" type="Button" parent="update_building"]
+margin_left = 46.0
+margin_right = 65.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/pressed = ExtResource( 9 )
+custom_styles/normal = ExtResource( 8 )
+custom_fonts/font = SubResource( 6 )
