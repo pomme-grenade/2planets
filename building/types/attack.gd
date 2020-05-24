@@ -1,13 +1,11 @@
-extends AnimatedSprite
+extends Node2D
 
 var planet
-var is_destroyed = false
-var type
 
 var target_player_number
 
 func init():
-	pass
+	target_player_number = 2 if planet.playerNumber == 1 else 1
 
 func try_fire_rocket(name):
 	if planet.money < 10 or (not is_network_master()):
@@ -19,8 +17,6 @@ func try_fire_rocket(name):
 
 remotesync func fire_rocket(name, position, rotation):
 	planet.money -= 10
-	show_income_animation("0.05/s")
-	planet.income += 0.05
 	var rocket = preload("res://rocket.gd").new(target_player_number)
 	rocket.name = name
 	rocket.position = position
@@ -31,14 +27,5 @@ remotesync func fire_rocket(name, position, rotation):
 	$'/root/main'.add_child(rocket)
 	update()
 
-remotesync func destroy(cost):
-	planet.money += cost / 4
-	is_destroyed = true
-	queue_free()
-	planet.update()
-
-func show_income_animation(text):
-	var income_animation = preload('res://Income_animation.tscn').instance()
-	income_animation.position = Vector2(-10, 8)
-	add_child(income_animation)
-	income_animation.label.text = text
+func upgrade():
+	pass

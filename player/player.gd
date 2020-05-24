@@ -92,7 +92,6 @@ func _unhandled_input(event):
 		get_tree().paused = true
 
 	if event.is_action_pressed(player_key + "fire_rocket") and is_network_master():
-
 		for building in get_tree().get_nodes_in_group("building" + str(playerNumber)):
 			if building.type == 'attack':
 				var name = '%d_rocket_%d' % [ playerNumber, rocket_name_index ]
@@ -126,16 +125,14 @@ remotesync func spawn_building(type, name, position):
 		'defense': preload('res://building/types/defense.gd'),
 		'attack': preload('res://building/types/attack.gd'),
 	}
-	building.set_script(scripts[type])
-
 	building.type = type
+	building.child = scripts[type].new()
 	building.planet = planet
 	building.position = building.position.rotated(position.direction_to(Vector2(0, 0)).angle() - PI/2)
 	building.position += position
 	building.name = name
 	building.set_network_master(get_network_master())
 	planet.add_child(building)
-	building.animation = type
 	building.rotation = building.position \
 		.direction_to(Vector2(0, 0)).angle() - PI/2
 	building.add_to_group('building' + str(planet.playerNumber))
@@ -143,8 +140,6 @@ remotesync func spawn_building(type, name, position):
 
 	if type == 'defense':
 		building.position *= 1.5
-	elif type == 'attack':
-		building.target_player_number = 2 if planet.playerNumber == 1 else 1
 
 	building.init()
 	current_building = building
