@@ -1,8 +1,9 @@
-extends AnimatedSprite
+extends Node2D
+
+signal income(value)
+signal change_type(script_path)
 
 var planet
-var type
-var is_destroyed
 
 var fire_position
 var attack_range = 80
@@ -25,9 +26,10 @@ func _process(dt):
 		if global_position.distance_to(rocket.global_position) < global_position.distance_to(nearest_target.global_position):
 			nearest_target = rocket
 
+	var parent = get_parent()
 	var target_quat = Quat(Vector3.BACK, global_position.angle_to_point(nearest_target.global_position) - PI/2)
-	var current_quat = Quat(Vector3.BACK, global_rotation)
-	global_rotation = current_quat.slerp(target_quat, 5 * dt).get_euler().z
+	var current_quat = Quat(Vector3.BACK, parent.global_rotation)
+	parent.global_rotation = current_quat.slerp(target_quat, 5 * dt).get_euler().z
 	cooldown -= dt
 
 	if cooldown > 0:
@@ -41,7 +43,7 @@ func _process(dt):
 		rpc('destroy_rocket', nearest_target.get_path())
 
 func _draw():
-	draw_circle(Vector2(0, 0), attack_range/scale.x, Color(0.1, 0.2, 0.7, 0.1))
+	draw_circle(Vector2(0, 0), attack_range/get_parent().global_scale.x, Color(0.1, 0.2, 0.7, 0.1))
 
 	if fire_position != null:
 		var alpha = cooldown * (1 / cooldown_time)
@@ -59,24 +61,10 @@ remotesync func destroy_rocket(path):
 	fire_origin = to_global(Vector2(0, -8))
 	cooldown = cooldown_time
 	self_modulate.a = 0.8
-	show_income_animation('5')
+	emit_signal('income', 5)
 
 	rocket.queue_free()
 	planet.money += 5
 
-func show_income_animation(text):
-	var income_animation = preload('res://Income_animation.tscn').instance()
-	income_animation.position = Vector2(-10, 8)
-	add_child(income_animation)
-	income_animation.label.text = text
-
-remotesync func destroy(cost):
-	planet.money += cost / 4
-	is_destroyed = true
-	queue_free()
-	planet.update()
-
 func upgrade():
-	set_script(preload('res://building/types/shield.gd'))
-	self.planet = planet
-	self.type = type
+	emit_signal('change_type', 'res://building/types/shield.gd')
