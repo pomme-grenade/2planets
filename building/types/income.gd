@@ -26,3 +26,7 @@ remotesync func destroy(cost):
 	is_destroyed = true
 	queue_free()
 	planet.update()
+
+
+func upgrade():
+	pass

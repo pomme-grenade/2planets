@@ -42,3 +42,6 @@ func show_income_animation(text):
 	income_animation.position = Vector2(-10, 8)
 	add_child(income_animation)
 	income_animation.label.text = text
+
+func upgrade():
+	pass

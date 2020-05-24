@@ -39,5 +39,6 @@ TODO
     - player grafik polieren
     - satellit besser proportionieren
     - viereckiger cursor um anzuzeigen wo man gerade ist
+    - satelliten range mit linie, nicht mit gefülltem kreis anzeigen
 
 	- spiel vorbei wenn einer leaved im multiplayer

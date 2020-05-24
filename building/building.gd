@@ -6,7 +6,5 @@ const textures = {
 	income = preload('res://building/mine.png')
 }
 
-var type_object = attack
-
 func init():
 	pass

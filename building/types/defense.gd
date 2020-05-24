@@ -75,3 +75,8 @@ remotesync func destroy(cost):
 	is_destroyed = true
 	queue_free()
 	planet.update()
+
+func upgrade():
+	set_script(preload('res://building/types/shield.gd'))
+	self.planet = planet
+	self.type = type
