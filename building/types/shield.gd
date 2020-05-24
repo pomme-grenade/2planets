@@ -27,7 +27,7 @@ func _process(_dt):
 	update()
 
 func _draw():
-	draw_circle_arc(Vector2(0, 0), 80, rotation_degrees - 60, rotation_degrees + 60, Color(0.4, 0.2, 0.7, 0.4))
+	draw_circle_arc(Vector2(0, 0), 80, rotation_degrees - 60, rotation_degrees + 60, Color(0.4, 0.2, 0.7, 0.4 * (strength / max_strength)))
 	
 func draw_circle_arc(center, radius, angle_from, angle_to, color):
 	var nb_points = 16
