@@ -1,8 +1,10 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://player/idle.png" type="Texture" id=1]
-[ext_resource path="res://player/move.png" type="Texture" id=2]
+[ext_resource path="res://images/player/idle.png" type="Texture" id=1]
+[ext_resource path="res://images/player/move.png" type="Texture" id=2]
 [ext_resource path="res://player/player.gd" type="Script" id=3]
+
+
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )

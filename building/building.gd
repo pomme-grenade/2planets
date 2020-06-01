@@ -6,9 +6,9 @@ var type
 var child
 
 const textures = {
-	attack = preload('res://building/rocket.png'),
-	defense = preload('res://building/satellite.png'),
-	income = preload('res://building/mine.png')
+	attack = preload('res://images/buildings/rocket.png'),
+	defense = preload('res://images/buildings/satellite.png'),
+	income = preload('res://images/buildings/mine.png')
 }
 
 func init():

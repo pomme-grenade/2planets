@@ -1,10 +1,14 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://building/building.gd" type="Script" id=1]
-[ext_resource path="res://building/mineResized.png" type="Texture" id=2]
-[ext_resource path="res://building/rocket.png" type="Texture" id=3]
-[ext_resource path="res://building/mineAnimation2.png" type="Texture" id=4]
-[ext_resource path="res://building/satellite.png" type="Texture" id=5]
+[ext_resource path="res://images/buildings/mineResized.png" type="Texture" id=2]
+[ext_resource path="res://images/buildings/rocket.png" type="Texture" id=3]
+[ext_resource path="res://images/buildings/mineAnimation2.png" type="Texture" id=4]
+[ext_resource path="res://images/buildings/satellite.png" type="Texture" id=5]
+
+
+
+
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {

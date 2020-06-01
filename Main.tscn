@@ -2,7 +2,7 @@
 
 [ext_resource path="res://planet_ui/planet_ui.tscn" type="PackedScene" id=1]
 [ext_resource path="res://planet.tscn" type="PackedScene" id=2]
-[ext_resource path="res://aseprite/YellowPlanet.png" type="Texture" id=3]
+[ext_resource path="res://images/yellow_planet_darker.png" type="Texture" id=4]
 
 [sub_resource type="StreamTexture" id=1]
 load_path = "res://.import/background.png-98289422cd7d93003950872a7b97021f.stex"
@@ -28,13 +28,13 @@ region_rect = Rect2( 0, 0, 1600, 800 )
 
 [node name="planet_1" parent="." instance=ExtResource( 2 )]
 position = Vector2( 200, 200 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 playerNumber = 1
 color = Color( 0.588235, 0.227451, 0.129412, 1 )
 
 [node name="planet_2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 599.401, 199.401 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 
 [node name="planet_ui_1" parent="." instance=ExtResource( 1 )]
 anchor_left = 0.25

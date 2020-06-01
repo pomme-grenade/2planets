@@ -1,11 +1,12 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://planet_ui/add_building_ui.gd" type="Script" id=1]
-[ext_resource path="res://building/satellite.png" type="Texture" id=2]
-[ext_resource path="res://building/rocket_button.png" type="Texture" id=3]
-[ext_resource path="res://building/mineResized.png" type="Texture" id=4]
-[ext_resource path="res://ui/button_texture_normal.tres" type="StyleBox" id=8]
-[ext_resource path="res://ui/button_texture_pressed.tres" type="StyleBox" id=9]
+[ext_resource path="res://images/ui/satellite_button.png" type="Texture" id=2]
+[ext_resource path="res://images/ui/rocket_button.png" type="Texture" id=3]
+[ext_resource path="res://images/ui/mine_button.png" type="Texture" id=4]
+[ext_resource path="res://images/ui/cross.png" type="Texture" id=5]
+[ext_resource path="res://images/ui/button_texture_normal.tres" type="StyleBox" id=8]
+[ext_resource path="res://images/ui/button_texture_pressed.tres" type="StyleBox" id=9]
 
 [sub_resource type="BitmapFont" id=1]
 
@@ -49,10 +50,10 @@ button_mask = 0
 clip_text = true
 
 [node name="TextureRect" type="TextureRect" parent="new_building/defense"]
-margin_left = 4.0
-margin_top = 5.0
-margin_right = 20.0
-margin_bottom = 21.0
+margin_left = 1.96585
+margin_top = 2.03612
+margin_right = 21.9659
+margin_bottom = 22.0361
 rect_scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 2 )
 __meta__ = {
@@ -71,10 +72,10 @@ custom_fonts/font = SubResource( 2 )
 clip_text = true
 
 [node name="TextureRect" type="TextureRect" parent="new_building/income"]
-margin_left = 5.0
-margin_top = 4.0
-margin_right = 21.0
-margin_bottom = 20.0
+margin_left = 2.92066
+margin_top = 1.22583
+margin_right = 22.9207
+margin_bottom = 21.2258
 rect_scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 4 )
 __meta__ = {
@@ -96,10 +97,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -6.94482
-margin_top = -7.75247
-margin_right = 13.0552
-margin_bottom = 10.2475
+margin_left = -6.61883
+margin_top = -7.85425
+margin_right = 13.3812
+margin_bottom = 12.1458
 rect_scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 3 )
 __meta__ = {
@@ -131,6 +132,17 @@ size_flags_vertical = 3
 custom_styles/pressed = ExtResource( 9 )
 custom_styles/normal = ExtResource( 8 )
 custom_fonts/font = SubResource( 5 )
+
+[node name="TextureRect" type="TextureRect" parent="update_building/destroy"]
+margin_left = 3.34179
+margin_top = 2.57657
+margin_right = 19.3418
+margin_bottom = 18.5766
+rect_scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="upgrade_2" type="Button" parent="update_building"]
 margin_left = 46.0

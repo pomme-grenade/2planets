@@ -16,6 +16,7 @@ var income_label
 # warning-ignore:unused_class_variable
 var slot_count = 20
 var slot_width
+var label_color = Color("#42286c")
 
 func _ready():
 	money += start_money
@@ -23,18 +24,19 @@ func _ready():
 	life_label.align = Label.ALIGN_RIGHT
 	get_node("/root/main").call_deferred("add_child", life_label)
 	life_label.rect_position = Vector2(position.x - 20, position.y - 20)
-	life_label.self_modulate = Color("#423458")
+	life_label.self_modulate = label_color
+	#423458
 
 	current_money_label = preload('res://planet_ui/current_money_label.tscn').instance()
 	current_money_label.align = Label.ALIGN_RIGHT
 	current_money_label.rect_position = Vector2(position.x - 12, position.y - 5)
-	current_money_label.self_modulate = Color("#423458")
+	# current_money_label.self_modulate = Color("322742")
 	get_node("/root/main").call_deferred("add_child", current_money_label)
 
 	income_label = Label.new()
 	income_label.align = Label.ALIGN_RIGHT
 	income_label.rect_position = Vector2(position.x - 20, position.y + 10)
-	income_label.self_modulate = Color("#423458")
+	income_label.self_modulate = label_color
 	get_node("/root/main").call_deferred("add_child", income_label)
 
 	player = preload('res://player/Player.tscn').instance()
