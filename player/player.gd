@@ -41,10 +41,10 @@ func _process(dt):
 	if is_network_master():
 		if Input.is_action_pressed(rightAction):
 			movementDirection = 1
-			flip_h = false
+			flip_h = true
 		elif Input.is_action_pressed(leftAction):
 			movementDirection = -1
-			flip_h = true
+			flip_h = false
 		else:
 			movementDirection = 0
 
@@ -56,11 +56,11 @@ func _process(dt):
 	rotation = current_quat.slerp(target_quat, 12 * dt).get_euler().z
 
 	if movementDirection != 0:
-		speed_scale = 1.8
+		speed_scale = 30.0
 		play('move')
 		planet.update()
 	else:
-		speed_scale = 0.4
+		speed_scale = 8.0
 		play('idle')
 
 	var new_building = get_building_in_range()
