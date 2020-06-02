@@ -19,6 +19,8 @@ func init():
 	child.init()
 
 	animation = type
+	if type == 'attack':
+		speed_scale = 2.0
 
 remotesync func destroy(cost):
 	if child.has_method("on_destroy"):
