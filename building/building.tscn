@@ -253,5 +253,6 @@ position = Vector2( 0, -2.72041 )
 scale = Vector2( 0.8, 0.8 )
 frames = SubResource( 57 )
 animation = "income"
+frame = 1
 playing = true
 script = ExtResource( 1 )

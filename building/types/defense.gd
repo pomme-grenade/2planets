@@ -31,6 +31,8 @@ func _process(dt):
 	var current_quat = Quat(Vector3.BACK, parent.global_rotation)
 	parent.global_rotation = current_quat.slerp(target_quat, 5 * dt).get_euler().z
 	cooldown -= dt
+	z_index = -1
+	get_node("/root/main/Background").z_index = -2
 
 	if cooldown > 0:
 		return

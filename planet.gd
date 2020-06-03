@@ -52,8 +52,21 @@ func _ready():
 func _draw():
 	# draw_circle(Vector2(0, 0), planetRadius, color)
 	# draw_rect(Rect2(Vector2(10, 10), Vector2(health, 10)), Color(255, 40, 80))
+	var arc_rotation = current_slot_position().direction_to(Vector2(0, 0)).angle() - PI/2
 	if (not is_instance_valid(player.current_building)):
-		draw_circle(current_slot_position(), slot_width / 2, Color(1, 1, 1, 0.2))
+		# draw_circle(current_slot_position(), slot_width / 2, Color(1, 1, 1, 0.2))
+		draw_circle_arc(Vector2(0, 0), 95, (arc_rotation * 180/PI) - 4, (arc_rotation * 180/PI) + 4, Color(0.3, 0.8, 1, 0.5))
+
+func draw_circle_arc(center, radius, angle_from, angle_to, color):
+	var nb_points = 17
+	var points_arc = PoolVector2Array()
+
+	for i in range(nb_points + 1):
+		var angle_point = deg2rad(angle_from + i * (angle_to-angle_from) / nb_points - 90)
+		points_arc.push_back(center + Vector2(cos(angle_point), sin(angle_point)) * radius)
+
+	for index_point in range(nb_points):
+		draw_line(points_arc[index_point], points_arc[index_point + 1], color, 1.5)
 
 func _process(delta):
 	money += income * delta
