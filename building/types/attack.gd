@@ -4,6 +4,8 @@ var planet
 
 var target_player_number
 
+var can_fire = false
+
 func init():
 	target_player_number = 2 if planet.playerNumber == 1 else 1
 
@@ -11,9 +13,9 @@ func try_fire_rocket(name):
 	if planet.money < 10 or (not is_network_master()):
 		planet.current_money_label.flash()
 		return
-
-	var position = global_position - Vector2(5, 0).rotated(global_rotation)
-	rpc('fire_rocket', name, position, global_rotation + PI)
+	elif can_fire:
+		var position = global_position - Vector2(5, 0).rotated(global_rotation)
+		rpc('fire_rocket', name, position, global_rotation + PI)
 
 remotesync func fire_rocket(name, position, rotation):
 	planet.money -= 10
@@ -29,3 +31,6 @@ remotesync func fire_rocket(name, position, rotation):
 
 func upgrade():
 	pass
+
+func buildup_finish():
+	can_fire = true

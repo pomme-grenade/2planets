@@ -4,6 +4,8 @@ var planet
 var is_destroyed = false
 var type
 var child
+var buildup_time = 0.7
+var wait_buildup_timer
 
 const textures = {
 	attack = preload('res://images/buildings/rocket.png'),
@@ -12,13 +14,18 @@ const textures = {
 }
 
 func init():
+	wait_buildup_timer = Timer.new()
+	wait_buildup_timer.one_shot = true
+	wait_buildup_timer.connect('timeout', self, 'buildup_finish')
+	add_child(wait_buildup_timer)
+	wait_buildup_timer.start(buildup_time)
+
 	child.planet = planet
 	add_child(child)
 	child.connect('income', self, 'add_money')
 	child.connect('change_type', self, 'change_child_type')
 	child.init()
 
-	animation = type
 	if type == 'attack':
 		speed_scale = 2.0
 
@@ -51,3 +58,7 @@ func change_child_type(path):
 func try_fire_rocket(name):
 	if type == 'attack':
 		child.try_fire_rocket(name)
+
+func buildup_finish():
+	child.buildup_finish()
+	animation = type

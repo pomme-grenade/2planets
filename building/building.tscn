@@ -1,10 +1,73 @@
-[gd_scene load_steps=63 format=2]
+[gd_scene load_steps=103 format=2]
 
 [ext_resource path="res://building/building.gd" type="Script" id=1]
 [ext_resource path="res://images/buildings/mineResized.png" type="Texture" id=2]
 [ext_resource path="res://images/buildings/rocket_sheet.png" type="Texture" id=3]
 [ext_resource path="res://images/buildings/mineAnimation2.png" type="Texture" id=4]
 [ext_resource path="res://images/buildings/satellite.png" type="Texture" id=5]
+[ext_resource path="res://images/buildings/mine_buildup.png" type="Texture" id=6]
+[ext_resource path="res://images/buildings/rocket_buildup.png" type="Texture" id=7]
+[ext_resource path="res://images/buildings/sattelite_buildup.png" type="Texture" id=8]
+
+[sub_resource type="AtlasTexture" id=70]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=71]
+atlas = ExtResource( 7 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=72]
+atlas = ExtResource( 7 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=73]
+atlas = ExtResource( 7 )
+region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=74]
+atlas = ExtResource( 7 )
+region = Rect2( 64, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=75]
+atlas = ExtResource( 7 )
+region = Rect2( 80, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=76]
+atlas = ExtResource( 7 )
+region = Rect2( 96, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=77]
+atlas = ExtResource( 7 )
+region = Rect2( 112, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=78]
+atlas = ExtResource( 7 )
+region = Rect2( 128, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=79]
+atlas = ExtResource( 7 )
+region = Rect2( 144, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=80]
+atlas = ExtResource( 7 )
+region = Rect2( 160, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=81]
+atlas = ExtResource( 7 )
+region = Rect2( 176, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=82]
+atlas = ExtResource( 7 )
+region = Rect2( 192, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=83]
+atlas = ExtResource( 7 )
+region = Rect2( 208, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=84]
+atlas = ExtResource( 7 )
+region = Rect2( 224, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 3 )
@@ -230,9 +293,102 @@ region = Rect2( 864, 0, 16, 16 )
 atlas = ExtResource( 3 )
 region = Rect2( 880, 0, 16, 16 )
 
-[sub_resource type="SpriteFrames" id=57]
+[sub_resource type="AtlasTexture" id=85]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=86]
+atlas = ExtResource( 8 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=87]
+atlas = ExtResource( 8 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=88]
+atlas = ExtResource( 8 )
+region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=89]
+atlas = ExtResource( 8 )
+region = Rect2( 64, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=90]
+atlas = ExtResource( 8 )
+region = Rect2( 80, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=91]
+atlas = ExtResource( 8 )
+region = Rect2( 96, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=92]
+atlas = ExtResource( 8 )
+region = Rect2( 112, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=93]
+atlas = ExtResource( 8 )
+region = Rect2( 128, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=94]
+atlas = ExtResource( 8 )
+region = Rect2( 144, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=57]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=58]
+atlas = ExtResource( 6 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=59]
+atlas = ExtResource( 6 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=60]
+atlas = ExtResource( 6 )
+region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=61]
+atlas = ExtResource( 6 )
+region = Rect2( 64, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=62]
+atlas = ExtResource( 6 )
+region = Rect2( 80, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=63]
+atlas = ExtResource( 6 )
+region = Rect2( 96, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=64]
+atlas = ExtResource( 6 )
+region = Rect2( 112, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=65]
+atlas = ExtResource( 6 )
+region = Rect2( 128, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=66]
+atlas = ExtResource( 6 )
+region = Rect2( 144, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=67]
+atlas = ExtResource( 6 )
+region = Rect2( 160, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=68]
+atlas = ExtResource( 6 )
+region = Rect2( 176, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=69]
 animations = [ {
-"frames": [ ExtResource( 4 ), ExtResource( 2 ) ],
+"frames": [ SubResource( 70 ), SubResource( 71 ), SubResource( 72 ), SubResource( 73 ), SubResource( 74 ), SubResource( 75 ), SubResource( 76 ), SubResource( 77 ), SubResource( 78 ), SubResource( 79 ), SubResource( 80 ), SubResource( 81 ), SubResource( 82 ), SubResource( 83 ), SubResource( 84 ) ],
+"loop": true,
+"name": "attack_buildup",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "income",
 "speed": 2.0
@@ -246,13 +402,21 @@ animations = [ {
 "loop": true,
 "name": "defense",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 85 ), SubResource( 86 ), SubResource( 87 ), SubResource( 88 ), SubResource( 89 ), SubResource( 90 ), SubResource( 91 ), SubResource( 92 ), SubResource( 93 ), SubResource( 94 ) ],
+"loop": true,
+"name": "defense_buildup",
+"speed": 14.0
+}, {
+"frames": [ SubResource( 57 ), SubResource( 58 ), SubResource( 59 ), SubResource( 60 ), SubResource( 61 ), SubResource( 62 ), SubResource( 63 ), SubResource( 64 ), SubResource( 65 ), SubResource( 66 ), SubResource( 67 ), SubResource( 68 ) ],
+"loop": true,
+"name": "income_buildup",
+"speed": 17.0
 } ]
 
 [node name="Node2D" type="AnimatedSprite"]
 position = Vector2( 0, -2.72041 )
 scale = Vector2( 0.8, 0.8 )
-frames = SubResource( 57 )
-animation = "income"
-frame = 1
-playing = true
+frames = SubResource( 69 )
+animation = "defense_buildup"
 script = ExtResource( 1 )

@@ -6,7 +6,7 @@ signal change_type(script_path)
 var planet
 
 var fire_position
-var attack_range = 80
+var attack_range = 0
 var fire_origin
 var cooldown = 0
 var cooldown_time = 0.5
@@ -45,7 +45,8 @@ func _process(dt):
 		rpc('destroy_rocket', nearest_target.get_path())
 
 func _draw():
-	draw_circle(Vector2(0, 0), attack_range/get_parent().global_scale.x, Color(0.1, 0.2, 0.7, 0.1))
+	# draw_circle(Vector2(0, 0), attack_range/get_parent().global_scale.x, Color(0.1, 0.2, 0.7, 0.1))
+	draw_empty_circle(Vector2(0, 0), Vector2(0, attack_range), Color(0.4, 0.2, 0.7, 0.4), 0.5)
 
 	if fire_position != null:
 		var alpha = cooldown * (1 / cooldown_time)
@@ -53,6 +54,21 @@ func _draw():
 			draw_line(to_local(fire_origin), to_local(fire_position), Color(0.9, 0.9, 2, alpha), 1.1, true)
 		else:
 			fire_position = null
+
+func draw_empty_circle(circle_center, circle_radius, color, resolution):
+	var draw_counter = 1
+	var line_origin = Vector2()
+	var line_end = Vector2()
+	line_origin = circle_radius + circle_center
+
+	while draw_counter <= 360:
+		line_end = circle_radius.rotated(deg2rad(draw_counter)) + circle_center
+		draw_line(line_origin, line_end, color)
+		draw_counter += 1 / resolution
+		line_origin = line_end
+
+	line_end = circle_radius.rotated(deg2rad(360)) + circle_center
+	draw_line(line_origin, line_end, color)
 
 remotesync func destroy_rocket(path):
 	var rocket = get_node(path)
@@ -70,3 +86,7 @@ remotesync func destroy_rocket(path):
 
 func upgrade():
 	emit_signal('change_type', 'res://building/types/shield.gd')
+
+func buildup_finish():
+	attack_range = 80	
+	update()

@@ -39,7 +39,7 @@ func draw_circle_arc(center, radius, angle_from, angle_to, color):
 		points_arc.push_back(center + Vector2(cos(angle_point), sin(angle_point)) * radius)
 
 	for index_point in range(nb_points):
-		draw_line(points_arc[index_point], points_arc[index_point + 1], color, 5)
+		draw_line(points_arc[index_point], points_arc[index_point + 1], color, 3)
 
 func upgrade():
 	pass

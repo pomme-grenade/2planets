@@ -60,11 +60,22 @@ func toggle_new_building_ui(visible: bool):
 	$update_building.visible = not visible
 
 func start_build_timer(type):
+	building_to_build = type
 	if is_instance_valid(player.current_building):
 		return
 
-	building_to_build = type
+	elif (building_to_build != null 
+			and not is_instance_valid(player.current_building)):
+
+		var name = '%d_building_%d' % [player.playerNumber, building_index]
+		building_index += 1
+		var position = player.planet.current_slot_position()
+		player.try_spawn_building(building_to_build, name, position)
 	action_pressed_timer.start(timer_wait_time)
+	building_to_destroy = null
+	building_to_build = null
+	building_to_upgrade = null
+	update()
 
 func stop_action_timer():
 	action_pressed_timer.stop()
@@ -94,13 +105,6 @@ func action_timer_timeout():
 
 		building_to_destroy.rpc('destroy', 
 			player.building_cost[building_to_destroy.type])
-	elif (building_to_build != null 
-			and not is_instance_valid(player.current_building)):
-
-		var name = '%d_building_%d' % [player.playerNumber, building_index]
-		building_index += 1
-		var position = player.planet.current_slot_position()
-		player.try_spawn_building(building_to_build, name, position)
 	elif is_instance_valid(building_to_upgrade):
 		building_to_upgrade.upgrade()
 
