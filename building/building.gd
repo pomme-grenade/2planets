@@ -17,6 +17,7 @@ func init():
 		child.connect('income', self, 'add_money')
 
 	add_child(child)
+	child.set_network_master(get_network_master())
 
 	connect('animation_finished', self, 'buildup_finish', [], CONNECT_ONESHOT)
 
@@ -45,9 +46,13 @@ func add_money(value):
 	add_child(income_animation)
 	income_animation.label.text = '+' + str(value)
 
-func upgrade():
-	if planet.money < 40:
+func try_upgrade():
+	if planet.money < 40 or not is_network_master():
 		return
+
+	rpc('upgrade')
+
+remotesync func upgrade():
 
 	var new_child_script = child.upgrade()
 	if typeof(new_child_script) != TYPE_STRING:

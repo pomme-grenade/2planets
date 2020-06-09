@@ -82,7 +82,7 @@ func start_upgrade():
 		or player.current_building.is_destroyed):
 		return
 
-	player.current_building.upgrade()
+	player.current_building.try_upgrade()
 
 func action_timer_timeout():
 	if (is_instance_valid(building_to_destroy) and
