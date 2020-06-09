@@ -141,7 +141,6 @@ remotesync func spawn_building(type, name, position):
 	if type == 'defense':
 		building.position *= 1.5
 
-	building.play(str(type) + '_buildup')
 
 	building.init()
 	current_building = building

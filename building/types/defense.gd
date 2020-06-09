@@ -12,6 +12,8 @@ var cooldown = 0
 var cooldown_time = 0.5
 
 func init():
+	add_user_signal('income', [{'name': 'value', 'type': TYPE_INT}])
+	add_user_signal('change_type', [{'name': 'script_path', 'type': TYPE_STRING}])
 	pass
 
 func _process(dt):
