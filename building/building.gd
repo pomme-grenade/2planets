@@ -14,11 +14,7 @@ const textures = {
 }
 
 func init():
-	wait_buildup_timer = Timer.new()
-	wait_buildup_timer.one_shot = true
-	wait_buildup_timer.connect('timeout', self, 'buildup_finish')
-	add_child(wait_buildup_timer)
-	wait_buildup_timer.start(buildup_time)
+	connect('animation_finished', self, 'buildup_finish', [], CONNECT_ONESHOT)
 
 	child.planet = planet
 	add_child(child)
