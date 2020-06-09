@@ -141,7 +141,6 @@ remotesync func spawn_building(type, name, position):
 	if type == 'defense':
 		building.position *= 1.5
 
-
 	building.init()
 	current_building = building
 	current_building.self_modulate = Color(2, 2, 2, 1)

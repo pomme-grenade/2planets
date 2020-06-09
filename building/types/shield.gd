@@ -31,6 +31,9 @@ func _process(_dt):
 	update()
 
 func _draw():
+	if not active:
+		return
+
 	var color_strength = round(strength / 5) / (max_strength / 5)
 	draw_circle_arc(Vector2(0, 0), 80, -60, 60, Color(0.4, 0.2, 0.7, 0.4 * color_strength))
 	

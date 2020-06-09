@@ -13,6 +13,15 @@ const textures = {
 }
 
 func init():
+	add_child(child)
+	init_or_upgrade()
+
+	if child.has_user_signal('income'):
+		child.connect('income', self, 'add_money')
+	if child.has_user_signal('change_type'):
+		child.connect('change_type', self, 'change_child_type')
+
+func init_or_upgrade():
 	connect('animation_finished', self, 'buildup_finish', [], CONNECT_ONESHOT)
 
 	var animation_name = str(type) + '_buildup'
@@ -23,13 +32,7 @@ func init():
 	play(animation_name)
 
 	child.planet = planet
-	add_child(child)
 	child.init()
-
-	if child.has_user_signal('income'):
-		child.connect('income', self, 'add_money')
-	if child.has_user_signal('change_type'):
-		child.connect('change_type', self, 'change_child_type')
 
 remotesync func destroy(cost):
 	if child.has_method("on_destroy"):
@@ -55,8 +58,7 @@ func upgrade():
 
 func change_child_type(path):
 	child.set_script(load(path))
-	child.planet = planet
-	child.init()
+	init_or_upgrade()
 
 func try_fire_rocket(name):
 	if type == 'attack':
