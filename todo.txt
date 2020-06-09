@@ -21,29 +21,24 @@ IDEEN
     - planeten heilen für mehr lategame
     - es sollte einen counter fuer alles geben, vorausgesetzt man hat genug geld
       - burst protection!
-    - early rockets a lot weaker planet damage one repair drone slowly rebuilds destroyed buildings need upgrade for more
 
 
 PROBLEME
 	- lategame taktik nicht existent
-    - satellite indicator on ground
 	- snowballing, comeback
-    - show upgrade cost (cost general)
-    - upgrade indicator on hold
 
 
 TODO
     - upgrades einbauen
 
 	- restart fixen
-	- satelliten hinter planet nicht anzeigen (done)
-    - bg neu malen (done)
-    - stop game on game over
+	- satelliten hinter planet nicht anzeigen
+    - bg neu malen
 
-	- gebaude bauen sich langsam auf (done)
-    - player grafik polieren (done)
+	- gebaude bauen sich langsam auf
+    - player grafik polieren
     - satellit besser proportionieren
-    - viereckiger cursor um anzuzeigen wo man gerade ist (done)
-    - satelliten range mit linie, nicht mit gefülltem kreis anzeigen (done)
+    - viereckiger cursor um anzuzeigen wo man gerade ist
+    - satelliten range mit linie, nicht mit gefülltem kreis anzeigen
 
 	- spiel vorbei wenn einer leaved im multiplayer

@@ -88,6 +88,3 @@ func upgrade():
 func buildup_finish():
 	attack_range = 80	
 	update()
-
-func on_destroy():
-	pass

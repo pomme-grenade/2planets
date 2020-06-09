@@ -16,9 +16,7 @@ var income_label
 # warning-ignore:unused_class_variable
 var slot_count = 20
 var slot_width
-# var label_color = Color("#42286c")
-var label_color = Color(0.5, 0.2, 0.2)
-var income_label_color = Color(0.8, 0.9, 0.8)
+var label_color = Color("#42286c")
 
 func _ready():
 	money += start_money
@@ -38,7 +36,7 @@ func _ready():
 	income_label = Label.new()
 	income_label.align = Label.ALIGN_RIGHT
 	income_label.rect_position = Vector2(position.x - 20, position.y + 10)
-	income_label.self_modulate = income_label_color
+	income_label.self_modulate = label_color
 	get_node("/root/main").call_deferred("add_child", income_label)
 
 	player = preload('res://player/Player.tscn').instance()
