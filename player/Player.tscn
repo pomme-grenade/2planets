@@ -124,6 +124,7 @@ position = Vector2( -0.00940712, -4.72645 )
 scale = Vector2( 1.35, 1.35 )
 frames = SubResource( 23 )
 speed_scale = 1.5
+offset = Vector2( 0, -0.336 )
 script = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

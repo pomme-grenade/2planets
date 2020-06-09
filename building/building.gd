@@ -4,7 +4,9 @@ var planet
 var is_destroyed = false
 var type
 var child
-var buildup_time = 1
+var buildup_time = 0.7
+var wait_buildup_timer
+var repair_time = 50
 
 const textures = {
 	attack = preload('res://images/buildings/rocket.png'),
@@ -15,6 +17,12 @@ const textures = {
 func init():
 	if child.has_user_signal('income'):
 		child.connect('income', self, 'add_money')
+	wait_buildup_timer = Timer.new()
+	wait_buildup_timer.one_shot = true
+	wait_buildup_timer.connect('timeout', self, 'buildup_finish')
+	add_child(wait_buildup_timer)
+	wait_buildup_timer.start(buildup_time)
+	z_index = 2
 
 	add_child(child)
 	child.set_network_master(get_network_master())
@@ -35,8 +43,9 @@ remotesync func destroy(cost):
 	if child.has_method("on_destroy"):
 		child.on_destroy()
 	planet.money += cost / 4
+	play(str(type) + "_destroyed")
 	is_destroyed = true
-	queue_free()
+	# queue_free()
 	planet.update()
 
 func add_money(value):
@@ -59,6 +68,9 @@ remotesync func upgrade():
 		return
 
 	planet.money -= 40
+	child.upgrade()
+	if type == 'income':
+		child.new_drone()
 
 	var new_child = load(new_child_script).new()
 	new_child.name = child.name + '_upgrade'
