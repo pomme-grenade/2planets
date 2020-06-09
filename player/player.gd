@@ -127,6 +127,7 @@ remotesync func spawn_building(type, name, position):
 	}
 	building.type = type
 	building.child = scripts[type].new()
+	building.child.name = name + '_child'
 	building.planet = planet
 	building.position = building.position.rotated(position.direction_to(Vector2(0, 0)).angle() - PI/2)
 	building.position += position

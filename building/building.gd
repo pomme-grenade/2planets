@@ -13,15 +13,11 @@ const textures = {
 }
 
 func init():
-	add_child(child)
-	init_or_upgrade()
-
 	if child.has_user_signal('income'):
 		child.connect('income', self, 'add_money')
-	if child.has_user_signal('change_type'):
-		child.connect('change_type', self, 'change_child_type')
 
-func init_or_upgrade():
+	add_child(child)
+
 	connect('animation_finished', self, 'buildup_finish', [], CONNECT_ONESHOT)
 
 	var animation_name = str(type) + '_buildup'
@@ -53,12 +49,18 @@ func upgrade():
 	if planet.money < 40:
 		return
 
-	planet.money -= 40
-	child.upgrade()
+	var new_child_script = child.upgrade()
+	if typeof(new_child_script) != TYPE_STRING:
+		return
 
-func change_child_type(path):
-	child.set_script(load(path))
-	init_or_upgrade()
+	planet.money -= 40
+
+	var new_child = load(new_child_script).new()
+	new_child.name = child.name + '_upgrade'
+	child.queue_free()
+	add_child(new_child)
+	child = new_child
+	init()
 
 func try_fire_rocket(name):
 	if type == 'attack':

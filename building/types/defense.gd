@@ -1,8 +1,5 @@
 extends Node2D
 
-signal income(value)
-signal change_type(script_path)
-
 var planet
 
 var fire_position
@@ -13,7 +10,6 @@ var cooldown_time = 0.5
 
 func init():
 	add_user_signal('income', [{'name': 'value', 'type': TYPE_INT}])
-	add_user_signal('change_type', [{'name': 'script_path', 'type': TYPE_STRING}])
 	pass
 
 func _process(dt):
@@ -87,7 +83,7 @@ remotesync func destroy_rocket(path):
 	planet.money += 5
 
 func upgrade():
-	emit_signal('change_type', 'res://building/types/shield.gd')
+	return 'res://building/types/shield.gd'
 
 func buildup_finish():
 	attack_range = 80	
