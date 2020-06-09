@@ -58,7 +58,6 @@ func upgrade():
 	var new_child = load(new_child_script).new()
 	new_child.name = child.name + '_upgrade'
 	child.queue_free()
-	add_child(new_child)
 	child = new_child
 	init()
 
