@@ -57,4 +57,5 @@ func try_fire_rocket(name):
 
 func buildup_finish():
 	child.buildup_finish()
+	$AnimationPlayer.play('flash');
 	animation = type

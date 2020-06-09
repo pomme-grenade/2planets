@@ -8,6 +8,7 @@ var attack_range = 80
 var max_strength = 40
 var strength = max_strength
 var regen = 5.0 / 2
+var active = false
 
 func init():
 	get_parent().rotation = get_parent().position.angle() + PI / 2
@@ -15,6 +16,9 @@ func init():
 	pass
 
 func _process(_dt):
+	if not active:
+		return
+
 	strength = min(max_strength, strength + regen * _dt)
 	var enemy_number = 1 if planet.playerNumber == 2 else 2
 	var enemy_group = 'rocket' + str(enemy_number)
@@ -43,3 +47,6 @@ func draw_circle_arc(center, radius, angle_from, angle_to, color):
 
 func upgrade():
 	pass
+
+func buildup_finish():
+	active = true
