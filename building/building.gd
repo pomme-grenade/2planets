@@ -17,6 +17,7 @@ const textures = {
 
 func init():
 	is_built = false
+	repair_time = initial_repair_time
 	if child.has_user_signal('income'):
 		child.connect('income', self, 'add_money')
 
@@ -38,9 +39,8 @@ func init():
 func _process(dt):
 	if is_destroyed and repair_time < initial_repair_time:
 		animation = type + '_buildup'
-		var completion = 1 - repair_time / initial_repair_time
-		frame = round(completion * frames.get_frame_count(type + '_buildup'))
-		
+		var completion = 1 - (repair_time / initial_repair_time)
+		frame = floor(completion * frames.get_frame_count(type + '_buildup'))
 
 remotesync func destroy():
 	if child.has_method("on_destroy"):
