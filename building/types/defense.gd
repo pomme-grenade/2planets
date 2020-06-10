@@ -14,8 +14,11 @@ func init():
 	pass
 
 func _process(dt):
+	if get_parent().is_destroyed or not get_parent().is_built:
+		return
 	if fire_position != null or not get_parent().is_built:
 		update()
+
 
 	var enemy_number = 1 if planet.playerNumber == 2 else 2
 	var enemy_group = 'rocket' + str(enemy_number)
