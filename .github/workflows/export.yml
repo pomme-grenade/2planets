@@ -17,7 +17,6 @@ jobs:
       with:
         godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/3.2.1/Godot_v3.2.1-stable_linux_headless.64.zip
         godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/3.2.1/Godot_v3.2.1-stable_export_templates.tpz
-        godot_template_version: 3.2.1.stable
         relative_project_path: ./
         relative_export_path: ./
         create_release: false
@@ -25,7 +24,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Deploy to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@3.1.5
+      uses: JamesIves/github-pages-deploy-action@3.5.5
       with:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BRANCH: gh-pages
