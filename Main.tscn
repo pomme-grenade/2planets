@@ -19,10 +19,11 @@ __meta__ = {
 }
 
 [node name="Background" type="Sprite" parent="."]
-position = Vector2( 800, 400 )
+position = Vector2( -800, -400 )
 texture = ExtResource( 3 )
+centered = false
 region_enabled = true
-region_rect = Rect2( 0, 0, 1600, 800 )
+region_rect = Rect2( 0, 0, 2400, 1200 )
 
 [node name="planet_1" parent="." instance=ExtResource( 2 )]
 position = Vector2( 200, 200 )
