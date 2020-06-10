@@ -383,7 +383,6 @@ atlas = ExtResource( 6 )
 region = Rect2( 176, 0, 16, 16 )
 
 [sub_resource type="SpriteFrames" id=94]
->>>>>>> Stashed changes
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 4 ) ],
 "loop": true,
