@@ -30,21 +30,26 @@ PROBLEME
 	- snowballing, comeback
     - show upgrade cost (cost general)
     - upgrade indicator on hold
+    - gedrückt halten vs instant gebäude bauen:
+        - gedrückt halten macht nicht so spaß
+        - instant bauen ist fehleranfällig für manche leute (noobs)
 
 
 TODO
     - upgrades einbauen
 
 	- restart fixen
-	- satelliten hinter planet nicht anzeigen (done)
-    - bg neu malen (done)
     - stop game on game over
 
-	- gebaude bauen sich langsam auf (done)
-    - player grafik polieren (done)
     - satellit besser proportionieren
-    - viereckiger cursor um anzuzeigen wo man gerade ist (done)
-    - satelliten range mit linie, nicht mit gefülltem kreis anzeigen (done)
     - full money if delete while buildup
 
 	- spiel vorbei wenn einer leaved im multiplayer
+
+DONE
+    - viereckiger cursor um anzuzeigen wo man gerade ist (done)
+    - satelliten range mit linie, nicht mit gefülltem kreis anzeigen (done)
+	- gebaude bauen sich langsam auf (done)
+    - player grafik polieren (done)
+	- satelliten hinter planet nicht anzeigen (done)
+    - bg neu malen (done)
