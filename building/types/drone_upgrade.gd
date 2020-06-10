@@ -5,6 +5,7 @@ var repair_drone
 
 func init():
 	get_parent().play('defense_destroyed')
+	print('asdf')
 
 func upgrade():
 	pass
