@@ -14,6 +14,7 @@ var do_repair_finished_countdown
 var attached = false
 
 func init():
+	print('asdf')
 	do_repair_countdown = rand_range(0.5, 1)
 	do_repair_finished_countdown = rand_range(0.5, 4)
 
