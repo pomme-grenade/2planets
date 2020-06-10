@@ -47,7 +47,7 @@ func _process(_dt):
 
 	if attached and destroyed_building.repair_time <= 0: 
 		destroyed_building.is_destroyed = false
-		destroyed_building.repair_time = 50
+		destroyed_building.repair_time = 300
 		destroyed_building.play(destroyed_building.type)
 		reset_drone()
 

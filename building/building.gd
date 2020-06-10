@@ -37,7 +37,7 @@ remotesync func destroy(cost):
 		child.on_destroy()
 	planet.money += cost / 4
 	is_destroyed = true
-	play(type + '_destoyed')
+	play(str(type) + '_destoyed')
 	# queue_free()
 	planet.update()
 
@@ -73,7 +73,8 @@ func try_fire_rocket(name):
 		child.try_fire_rocket(name)
 
 func buildup_finish():
-	child.buildup_finish()
-	$AnimationPlayer.play('flash');
-	animation = type
-	speed_scale = 1
+	if not is_destroyed:
+		child.buildup_finish()
+		$AnimationPlayer.play('flash');
+		animation = type
+		speed_scale = 1
