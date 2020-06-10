@@ -44,8 +44,7 @@ func _process(dt):
 		rpc('destroy_rocket', nearest_target.get_path())
 
 func _draw():
-	# draw_circle(Vector2(0, 0), attack_range/get_parent().global_scale.x, Color(0.1, 0.2, 0.7, 0.1))
-	draw_empty_circle(Vector2(0, 0), Vector2(0, attack_range), Color(0.4, 0.2, 0.7, 0.4), 0.5)
+	draw_empty_circle(Vector2(0, 0), Vector2(0, attack_range / get_parent().global_scale.x), Color(0.4, 0.2, 0.7, 0.4), 0.5)
 
 	if fire_position != null:
 		var alpha = cooldown * (1 / cooldown_time)
