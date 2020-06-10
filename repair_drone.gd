@@ -1,5 +1,4 @@
 extends Node2D
-var movement_direction
 var speed = 0.3
 var destroyed_building
 var can_repair
@@ -17,7 +16,6 @@ func init():
 	do_repair_countdown = rand_range(0.5, 1)
 	do_repair_finished_countdown = rand_range(0.5, 4)
 
-	movement_direction = 1 if round(rand_range(1, 2)) == 1 else -1
 	change_dir_timer = Timer.new()
 	change_dir_timer.connect('timeout', self, 'change_dir')
 	add_child(change_dir_timer)
@@ -28,38 +26,54 @@ func init():
 	do_repair_timer_finished.connect('timeout', self, 'do_repair_finished')
 	add_child(do_repair_timer_finished)
 
-func _process(_dt):
+func _process(dt):
 	reset_drone()
-	position = position.rotated(speed * movement_direction * _dt)
 
 	if attached:
 		destroyed_building.repair_time -= 0.1
 
+		if destroyed_building.repair_time <= 0: 
+			destroyed_building.is_destroyed = false
+			destroyed_building.repair_time = 300
+			destroyed_building.play(destroyed_building.type)
+			reset_drone()
 
-	for building in get_tree().get_nodes_in_group("building" + str(get_parent().playerNumber)):
-		if global_position.distance_to(building.global_position) < distance_to_planet + 5 and building.is_destroyed and not attached: 
-			destroyed_building = building
+		return
+
+	var buildings = get_tree().get_nodes_in_group("building" + str(get_parent().playerNumber))
+	var closest_building = find_nearest_destroyed_building(buildings)
+	if closest_building != null: 
+		if global_position.distance_to(closest_building.global_position) < distance_to_planet + 5:
+			destroyed_building = closest_building
 			speed = 0.1
 			change_dir_timer.start(change_dir_countdown)
 			do_repair_timer.start(do_repair_countdown)
 			attached = true
 			do_repair()
-
-	if attached and destroyed_building.repair_time <= 0: 
-		destroyed_building.is_destroyed = false
-		destroyed_building.repair_time = 300
-		destroyed_building.play(destroyed_building.type)
-		reset_drone()
+		else:
+			var own_quat = Quat(Vector3.BACK, 0)
+			var target_quat = Quat(Vector3.BACK, closest_building.position.angle() - position.angle())
+			var target_angle = own_quat.slerp(target_quat, 1 * dt).get_euler().z
+			print(target_angle, ' ', position.angle())
+			position = position.rotated(target_angle)
 
 	update()
+
+func find_nearest_destroyed_building(buildings):
+	var result = null
+	var distance_to_result = INF
+	for building in buildings:
+		var new_distance = global_position.distance_to(building.global_position)
+		if (building.is_destroyed and 
+				new_distance < distance_to_result):
+			result = building
+			distance_to_result = new_distance
+
+	return result
 
 func _draw():
 	if (can_repair):
 		draw_line(Vector2(0, 0), to_local(destroyed_building.global_position), Color(0.5, 0.5, 1, 0.7))
-
-func change_dir():
-	movement_direction = -1 * movement_direction
-	z_index = 1 if z_index == 3 else 3
 
 func do_repair():
 	do_repair_countdown = rand_range(0.5, 1)
