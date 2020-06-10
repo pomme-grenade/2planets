@@ -87,6 +87,3 @@ remotesync func destroy_rocket(path):
 
 func buildup_finish():
 	update()
-
-func on_destroy():
-	pass

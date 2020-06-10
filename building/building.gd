@@ -34,13 +34,20 @@ func init():
 	child.planet = planet
 	child.init()
 
-remotesync func destroy(cost):
+remotesync func destroy():
 	if child.has_method("on_destroy"):
 		child.on_destroy()
-	planet.money += cost / 4
 	is_destroyed = true
 	play(str(type) + '_destroyed')
-	# queue_free()
+	planet.update()
+
+remotesync func deconstruct(cost):
+	if child.has_method("on_destroy"):
+		child.on_destroy()
+
+	planet.money += cost / 4
+	is_destroyed = true
+	queue_free()
 	planet.update()
 
 func add_money(value):

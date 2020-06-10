@@ -63,7 +63,7 @@ remotesync func hit_planet(path):
 	planet.health -= planet_rocket_damage
 	for building in get_tree().get_nodes_in_group("building" + str(target_player_number)):
 		if point_on_planet().distance_to(building.global_position) < explosion_radius and not building.is_destroyed:
-			building.destroy(0)
+			building.destroy()
 
 	if planet.health <= 0:
 		sceneSwitcher.change_scene('res://gameOver.tscn', {"loser": target_player_number})
