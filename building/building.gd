@@ -35,11 +35,19 @@ func init():
 	child.planet = planet
 	child.init()
 
+func _process(dt):
+	if is_destroyed and repair_time < initial_repair_time:
+		animation = type + '_buildup'
+		var completion = 1 - repair_time / initial_repair_time
+		frame = round(completion * frames.get_frame_count(type + '_buildup'))
+		
+
 remotesync func destroy():
 	if child.has_method("on_destroy"):
 		child.on_destroy()
 	is_destroyed = true
 	play(str(type) + '_destroyed')
+	stop()
 	planet.update()
 
 remotesync func deconstruct(cost):
