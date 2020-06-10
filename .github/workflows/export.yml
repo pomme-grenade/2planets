@@ -3,7 +3,7 @@ name: Export game
 on:
   push:
     branches:
-      - master
+      - release
 
 jobs:
   build:
@@ -18,22 +18,6 @@ jobs:
         godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/3.2.1/Godot_v3.2.1-stable_linux_headless.64.zip
         godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/3.2.1/Godot_v3.2.1-stable_export_templates.tpz
         relative_project_path: ./
-        relative_export_path: ./
-        create_release: false
+        base_version: 0.3.0-alpha
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Deploy to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@3.5.5
-      with:
-        BRANCH: gh-pages
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        FOLDER: exports/web
-
-    - name: Request Github Pages build job
-      run: >-
-        curl -L -X POST 
-        -H "Content-Type: application/json"
-        -H "Authorization: token ${{ secrets.ACCESS_TOKEN }}"
-        "https://api.github.com/repos/${{ github.repository }}/pages/builds"
-
