@@ -30,6 +30,9 @@ PROBLEME
 	- snowballing, comeback
     - show upgrade cost (cost general)
     - upgrade indicator on hold
+    - gedrückt halten vs instant gebäude bauen:
+        - gedrückt halten macht nicht so spaß
+        - instant bauen ist fehleranfällig für manche leute (noobs)
 
 
 TODO
