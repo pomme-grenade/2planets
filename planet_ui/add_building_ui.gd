@@ -55,6 +55,11 @@ func init():
 func _process(_dt):
 	if is_instance_valid(player.current_building):
 		toggle_new_building_ui(false)
+		for index in [1, 2]:
+			if player.current_building.can_upgrade(index):
+				get_node('update_building/upgrade_%d/arrow' % index).visible = true
+			else:
+				get_node('update_building/upgrade_%d/arrow' % index).visible = false
 	else:
 		toggle_new_building_ui(true)
 
