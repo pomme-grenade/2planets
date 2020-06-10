@@ -57,6 +57,13 @@ func _process(dt):
 			print(target_angle, ' ', position.angle())
 			position = position.rotated(target_angle)
 
+	if attached and destroyed_building.repair_time <= 0: 
+		destroyed_building.is_destroyed = false
+		destroyed_building.repair_time = 300
+		destroyed_building.play(destroyed_building.type)
+		destroyed_building.planet.income += 0.5
+		reset_drone()
+
 	update()
 
 func find_nearest_destroyed_building(buildings):
