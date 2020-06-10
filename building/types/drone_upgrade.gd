@@ -7,7 +7,10 @@ func init():
 	new_drone()
 
 func upgrade():
-	new_drone()
+	if planet.money >= 40:
+		new_drone()
+
+	planet.money -= 40
 
 	# repair_drone.rotation  = repair_drone.position.direction_to(Vector2(0, 0)).angle() - PI/2
 
