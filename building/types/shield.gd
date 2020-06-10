@@ -8,7 +8,6 @@ var attack_range = 80
 var max_strength = 40
 var strength = max_strength
 var regen = 5.0 / 2
-var active = false
 
 func init():
 	get_parent().rotation = get_parent().position.angle() + PI / 2
@@ -16,7 +15,7 @@ func init():
 	pass
 
 func _process(_dt):
-	if not active:
+	if not get_parent().is_built:
 		return
 
 	strength = min(max_strength, strength + regen * _dt)
@@ -31,7 +30,7 @@ func _process(_dt):
 	update()
 
 func _draw():
-	if not active:
+	if not get_parent().is_built:
 		return
 
 	var color_strength = round(strength / 5) / (max_strength / 5)
@@ -47,9 +46,3 @@ func draw_circle_arc(center, radius, angle_from, angle_to, color):
 
 	for index_point in range(nb_points):
 		draw_line(points_arc[index_point], points_arc[index_point + 1], color, 3)
-
-func on_upgrade():
-	pass
-
-func buildup_finish():
-	active = true

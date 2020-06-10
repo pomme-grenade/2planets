@@ -11,8 +11,5 @@ func init():
 func on_destroy():
 	planet.income -= additional_income
 
-func on_upgrade():
-	pass
-
 func buildup_finish():
 	planet.income += additional_income

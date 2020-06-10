@@ -2,6 +2,7 @@ extends AnimatedSprite
 
 var planet
 var is_destroyed = false
+var is_built = false
 var type
 var child
 var buildup_time = 1
@@ -14,6 +15,7 @@ const textures = {
 }
 
 func init():
+	is_built = false
 	if child.has_user_signal('income'):
 		child.connect('income', self, 'add_money')
 
@@ -51,7 +53,9 @@ func add_money(value):
 func can_upgrade(index):
 	return planet.money >= 40 and \
 		is_network_master() and \
-		typeof(child.get('upgrade_%d_script' % index)) == TYPE_STRING
+		typeof(child.get('upgrade_%d_script' % index)) == TYPE_STRING and \
+		(not is_destroyed) and \
+		is_built
 
 func try_upgrade(index):
 	if not can_upgrade(index):
@@ -60,7 +64,8 @@ func try_upgrade(index):
 	rpc('upgrade', index)
 
 remotesync func upgrade(index):
-	child.on_upgrade()
+	if child.has_method('on_upgrade'):
+		child.on_upgrade()
 
 	var new_child_script = child.get('upgrade_%d_script' % index)
 	if typeof(new_child_script) != TYPE_STRING:
@@ -79,8 +84,12 @@ func try_fire_rocket(name):
 		child.try_fire_rocket(name)
 
 func buildup_finish():
-	if not is_destroyed:
+	if is_destroyed:
+		return
+
+	is_built = true
+	if child.has_method('buildup_finish'):
 		child.buildup_finish()
-		$AnimationPlayer.play('flash');
-		animation = type
-		speed_scale = 1
+	$AnimationPlayer.play('flash');
+	animation = type
+	speed_scale = 1

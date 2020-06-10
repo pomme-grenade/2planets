@@ -3,7 +3,7 @@ extends Node2D
 var planet
 
 var fire_position
-var attack_range = 0
+var attack_range = 80
 var fire_origin
 var cooldown = 0
 var cooldown_time = 0.5
@@ -14,7 +14,7 @@ func init():
 	pass
 
 func _process(dt):
-	if fire_position != null:
+	if fire_position != null or not get_parent().is_built:
 		update()
 
 	var enemy_number = 1 if planet.playerNumber == 2 else 2
@@ -44,6 +44,9 @@ func _process(dt):
 		rpc('destroy_rocket', nearest_target.get_path())
 
 func _draw():
+	if not get_parent().is_built:
+		return
+
 	draw_empty_circle(Vector2(0, 0), Vector2(0, attack_range / get_parent().global_scale.x), Color(0.4, 0.2, 0.7, 0.4), 0.5)
 
 	if fire_position != null:
@@ -82,11 +85,7 @@ remotesync func destroy_rocket(path):
 	rocket.queue_free()
 	planet.money += 5
 
-func on_upgrade():
-	pass
-
 func buildup_finish():
-	attack_range = 80	
 	update()
 
 func on_destroy():
