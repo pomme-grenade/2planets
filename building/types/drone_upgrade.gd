@@ -4,10 +4,10 @@ var planet
 var repair_drone
 
 func init():
-	get_parent().play('defense_destroyed')
+	new_drone()
 
 func upgrade():
-	pass
+	new_drone()
 
 	# repair_drone.rotation  = repair_drone.position.direction_to(Vector2(0, 0)).angle() - PI/2
 

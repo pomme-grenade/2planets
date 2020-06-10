@@ -5,7 +5,7 @@ var is_destroyed = false
 var type
 var child
 var buildup_time = 1
-var repair_time = 50
+var repair_time = 300
 
 const textures = {
 	attack = preload('res://images/buildings/rocket.png'),
@@ -67,8 +67,6 @@ remotesync func upgrade():
 	child.queue_free()
 	child = new_child
 	init()
-	if type == 'income':
-		child.new_drone()
 
 func try_fire_rocket(name):
 	if type == 'attack':
