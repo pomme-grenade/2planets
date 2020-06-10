@@ -45,5 +45,6 @@ TODO
     - satellit besser proportionieren
     - viereckiger cursor um anzuzeigen wo man gerade ist (done)
     - satelliten range mit linie, nicht mit gefülltem kreis anzeigen (done)
+    - full money if delete while buildup
 
 	- spiel vorbei wenn einer leaved im multiplayer
