@@ -51,9 +51,6 @@ func _process(_dt):
 		destroyed_building.play(destroyed_building.type)
 		reset_drone()
 
-	if is_instance_valid(destroyed_building): 
-		print(destroyed_building.repair_time)
-
 	update()
 
 func _draw():
