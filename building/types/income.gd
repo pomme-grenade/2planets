@@ -3,6 +3,7 @@ extends Node2D
 var planet
 
 var additional_income = 0.5
+var upgrade_1_script = 'res://building/types/drone_upgrade.gd'
 
 func init():
 	pass
@@ -10,8 +11,8 @@ func init():
 func on_destroy():
 	planet.income -= additional_income
 
-func upgrade():
-	return 'res://building/types/drone_upgrade.gd'
+func on_upgrade():
+	pass
 
 func buildup_finish():
 	planet.income += additional_income

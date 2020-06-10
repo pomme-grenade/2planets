@@ -48,7 +48,7 @@ func draw_circle_arc(center, radius, angle_from, angle_to, color):
 	for index_point in range(nb_points):
 		draw_line(points_arc[index_point], points_arc[index_point + 1], color, 3)
 
-func upgrade():
+func on_upgrade():
 	pass
 
 func buildup_finish():

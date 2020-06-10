@@ -7,6 +7,7 @@ var attack_range = 0
 var fire_origin
 var cooldown = 0
 var cooldown_time = 0.5
+var upgrade_1_script = 'res://building/types/shield.gd'
 
 func init():
 	add_user_signal('income', [{'name': 'value', 'type': TYPE_INT}])
@@ -82,8 +83,8 @@ remotesync func destroy_rocket(path):
 	rocket.queue_free()
 	planet.money += 5
 
-func upgrade():
-	return 'res://building/types/shield.gd'
+func on_upgrade():
+	pass
 
 func buildup_finish():
 	attack_range = 80	

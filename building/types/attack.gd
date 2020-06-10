@@ -29,7 +29,7 @@ remotesync func fire_rocket(name, position, rotation):
 	$'/root/main'.add_child(rocket)
 	update()
 
-func upgrade():
+func on_upgrade():
 	pass
 
 func buildup_finish():

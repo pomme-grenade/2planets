@@ -124,7 +124,7 @@ custom_styles/pressed = ExtResource( 9 )
 custom_styles/normal = ExtResource( 8 )
 custom_fonts/font = SubResource( 4 )
 
-[node name="TextureRect" type="TextureRect" parent="update_building/upgrade_1"]
+[node name="arrow" type="TextureRect" parent="update_building/upgrade_1"]
 margin_left = 2.53084
 margin_top = 2.82251
 margin_right = 19.5308
@@ -165,3 +165,14 @@ size_flags_vertical = 3
 custom_styles/pressed = ExtResource( 9 )
 custom_styles/normal = ExtResource( 8 )
 custom_fonts/font = SubResource( 6 )
+
+[node name="arrow" type="TextureRect" parent="update_building/upgrade_2"]
+margin_left = 3.86447
+margin_top = 2.65643
+margin_right = 20.8644
+margin_bottom = 22.6564
+rect_scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

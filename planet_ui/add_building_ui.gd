@@ -37,12 +37,20 @@ func init():
 	destroy_button.connect('button_down', self, 'start_destroy_timer')
 	destroy_button.connect('button_up', self, 'stop_action_timer')
 
-	var upgrade_button = $'update_building/upgrade_1'
+	var upgrade_button_1 = $'update_building/upgrade_1'
 	shortcut = ShortCut.new()
 	shortcut.shortcut = \
 			InputMap.get_action_list(player.player_key + 'build_defense')[0]
-	upgrade_button.shortcut = shortcut
-	upgrade_button.connect('pressed', self, 'start_upgrade')
+	upgrade_button_1.shortcut = shortcut
+	upgrade_button_1.connect('pressed', self, 'start_upgrade', [1])
+
+	var upgrade_button_2 = $'update_building/upgrade_2'
+	shortcut = ShortCut.new()
+	shortcut.shortcut = \
+			InputMap.get_action_list(player.player_key + 'build_attack')[0]
+	upgrade_button_2.shortcut = shortcut
+	upgrade_button_2.connect('pressed', self, 'start_upgrade', [2])
+
 
 func _process(_dt):
 	if is_instance_valid(player.current_building):
@@ -77,12 +85,12 @@ func start_destroy_timer():
 	building_to_destroy = player.current_building
 	action_pressed_timer.start(timer_wait_time)
 
-func start_upgrade():
+func start_upgrade(index):
 	if ((not is_instance_valid(player.current_building))
 		or player.current_building.is_destroyed):
 		return
 
-	player.current_building.try_upgrade()
+	player.current_building.try_upgrade(index)
 
 func action_timer_timeout():
 	if (is_instance_valid(building_to_destroy) and player.current_building == building_to_destroy):

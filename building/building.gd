@@ -48,15 +48,20 @@ func add_money(value):
 	add_child(income_animation)
 	income_animation.label.text = '+' + str(value)
 
-func try_upgrade():
-	if planet.money < 40 or not is_network_master():
+func can_upgrade(_index):
+	return planet.money >= 40 and \
+		is_network_master()
+
+func try_upgrade(index):
+	if not can_upgrade(index):
 		return
 
-	rpc('upgrade')
+	rpc('upgrade', index)
 
-remotesync func upgrade():
+remotesync func upgrade(index):
+	child.on_upgrade()
 
-	var new_child_script = child.upgrade()
+	var new_child_script = child.get('upgrade_%d_script' % index)
 	if typeof(new_child_script) != TYPE_STRING:
 		return
 

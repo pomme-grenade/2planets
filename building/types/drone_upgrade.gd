@@ -6,7 +6,7 @@ var repair_drone
 func init():
 	new_drone()
 
-func upgrade():
+func on_upgrade():
 	if planet.money >= 40:
 		new_drone()
 
