@@ -56,7 +56,7 @@ func _process(dt):
 			var target_quat = Quat(Vector3.BACK, closest_building.position.angle() - position.angle())
 			var target_angle = own_quat.slerp(target_quat, 1 * dt).get_euler().z
 			print(target_angle, ' ', position.angle())
-			position = position.rotated(target_angle)
+			position = position.normalized().rotated(target_angle) * (closest_building.position.length() + distance_to_planet)
 
 	update()
 
