@@ -36,6 +36,7 @@ remotesync func destroy(cost):
 		child.on_destroy()
 	planet.money += cost / 4
 	is_destroyed = true
+	play(type + '_destoyed')
 	queue_free()
 	planet.update()
 
