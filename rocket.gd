@@ -25,7 +25,7 @@ func point_on_planet():
 
 func _draw():
 	var length = 3 + velocity.length() / 50
-	draw_rect(Rect2(Vector2(0, 0), Vector2(length, 1)), Color(0, 0.5, 2))
+	draw_rect(Rect2(Vector2(0, 0), Vector2(length, 1)), Color(1, 0.3, 0.3))
 	if is_destroyed: 
 		# draw_circle(Vector2(0, 0), 50, Color(1, 1, 1))
 		draw_circle(to_local(point_on_planet()), explosion_radius, Color(1, 1, 1))

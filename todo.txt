@@ -43,6 +43,7 @@ TODO
 
     - satellit besser proportionieren
     - full money if delete while buildup
+    - defense destroyed move animation down
 
 	- spiel vorbei wenn einer leaved im multiplayer
 
