@@ -11,6 +11,8 @@ IDEEN
         - mining dronen
         - thruster um seinen planeten zu bewegen
         - gravity asteroid slingshot
+        - raketen, die wenn sie abgewehrt werden eine cloud machen in der andere raketen invincible sind
+        - schnellere raketen
 	- health upgrade 
     - mehr slots upgrade
 	- planet upgrade fuer bessere einheiten (neues set einheiten) (neue waffenarten)
@@ -20,8 +22,14 @@ IDEEN
       - gebäude die rüber fliegen und hp klauen
     - planeten heilen für mehr lategame
     - es sollte einen counter fuer alles geben, vorausgesetzt man hat genug geld
-      - burst protection!
     - early rockets a lot weaker planet damage one repair drone slowly rebuilds destroyed buildings need upgrade for more
+    - randomly generated gebiete die verschiedenen gebäuden boosts geben
+        - zB ein gebiet mit metall, in dem minen mehr geld geben
+        - berge, die gebäude schützen
+        - flüsse, in denen man mehr damage durch raketen kriegt
+        - ein gebiet in dem gebäude schneller aufgebaut werden
+        - terraforming
+    - random upgrade drops die man einsammeln kann und damit freischaltet
 
 
 PROBLEME
@@ -36,8 +44,6 @@ PROBLEME
 
 
 TODO
-    - upgrades einbauen
-
 	- restart fixen
     - stop game on game over
 
@@ -47,7 +53,9 @@ TODO
 
 	- spiel vorbei wenn einer leaved im multiplayer
 
+
 DONE
+    - upgrades einbauen
     - viereckiger cursor um anzuzeigen wo man gerade ist (done)
     - satelliten range mit linie, nicht mit gefülltem kreis anzeigen (done)
 	- gebaude bauen sich langsam auf (done)
