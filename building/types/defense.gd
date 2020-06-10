@@ -90,4 +90,4 @@ func buildup_finish():
 	update()
 
 func on_destroy():
-	position += Vector2(0, 50).rotated(position.direction_to(get_parent().position).angle())
+	pass
