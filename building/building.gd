@@ -48,9 +48,10 @@ func add_money(value):
 	add_child(income_animation)
 	income_animation.label.text = '+' + str(value)
 
-func can_upgrade(_index):
+func can_upgrade(index):
 	return planet.money >= 40 and \
-		is_network_master()
+		is_network_master() and \
+		typeof(child.get('upgrade_%d_script' % index)) == TYPE_STRING
 
 func try_upgrade(index):
 	if not can_upgrade(index):

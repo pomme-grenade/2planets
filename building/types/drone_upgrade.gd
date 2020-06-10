@@ -2,15 +2,13 @@ extends Node2D
 
 var planet
 var repair_drone
+var upgrade_1_script = 'res://building/types/drone_upgrade.gd'
 
 func init():
 	new_drone()
 
 func on_upgrade():
-	if planet.money >= 40:
-		new_drone()
-
-	planet.money -= 40
+	new_drone()
 
 	# repair_drone.rotation  = repair_drone.position.direction_to(Vector2(0, 0)).angle() - PI/2
 
