@@ -6,7 +6,8 @@ var is_built = false
 var type
 var child
 var buildup_time = 1
-var repair_time = 300
+var repair_time
+var initial_repair_time = 300
 
 const textures = {
 	attack = preload('res://images/buildings/rocket.png'),
@@ -95,6 +96,7 @@ func buildup_finish():
 		return
 
 	is_built = true
+	repair_time = initial_repair_time
 	if child.has_method('buildup_finish'):
 		child.buildup_finish()
 	$AnimationPlayer.play('flash');

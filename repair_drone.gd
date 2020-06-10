@@ -21,7 +21,6 @@ func _process(dt):
 
 		if destroyed_building.repair_time <= 0 or not destroyed_building.is_destroyed: 
 			destroyed_building.is_destroyed = false
-			destroyed_building.repair_time = 300
 			destroyed_building.play(destroyed_building.type)
 			destroyed_building.buildup_finish()
 			detach()

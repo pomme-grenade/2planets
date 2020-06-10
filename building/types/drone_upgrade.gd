@@ -8,11 +8,6 @@ var drone_index = 0
 func init():
 	new_drone()
 
-func on_upgrade():
-	new_drone()
-
-	# repair_drone.rotation  = repair_drone.position.direction_to(Vector2(0, 0)).angle() - PI/2
-
 func buildup_finish():
 	pass
 
