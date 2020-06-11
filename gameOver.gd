@@ -1,14 +1,15 @@
-extends Label
+extends Node2D
+
+var loser
 
 func _ready():
 	get_tree().paused = true
-	var loser = sceneSwitcher.get_param("loser")
 	if loser == 1:
-		text = "Right player wins!"
+		$Label1.text = "Right player wins!"
 	else:
-		text = "Left player wins!"
+		$Label1.text = "Left player wins!"
 
 func _unhandled_input(event):
 	if event.is_action_pressed("enter"):
-		get_tree().paused = false
-		sceneSwitcher.change_scene('res://Main.tscn')
+		queue_free()
+		GameManager.restart_game()

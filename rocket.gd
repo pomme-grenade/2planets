@@ -66,7 +66,7 @@ remotesync func hit_planet(path):
 			building.destroy()
 
 	if planet.health <= 0:
-		sceneSwitcher.change_scene('res://gameOver.tscn', {"loser": target_player_number})
+		GameManager.game_over(target_player_number)
 
 func is_closer(a, b):
 	return global_position.distance_to(a.global_position) < global_position.distance_to(b.global_position)

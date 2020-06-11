@@ -22,7 +22,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-sceneSwitcher="*res://sceneSwitcher.gd"
+GameManager="*res://game_manager.gd"
 
 [display]
 

@@ -36,7 +36,7 @@ func init():
 	child.planet = planet
 	child.init()
 
-func _process(dt):
+func _process(_dt):
 	if is_destroyed and repair_time < initial_repair_time:
 		animation = type + '_buildup'
 		var completion = 1 - (repair_time / initial_repair_time)

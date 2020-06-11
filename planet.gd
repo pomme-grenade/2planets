@@ -3,7 +3,7 @@ extends Sprite
 export var planetRadius = 110
 export (int) var playerNumber
 export (Color) var color
-export var health = 100
+export var health = 10
 
 var player
 var income = 4

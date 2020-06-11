@@ -81,8 +81,8 @@ puppet func set_pos_and_motion(p_pos, p_dir, p_rot):
 
 func _unhandled_input(event):
 	if event.is_action_pressed("pause"):
-		var scene = preload('res://menu.tscn').instance()
-		get_node('/root/main').add_child(scene)
+		var scene = preload('res://pause_menu.tscn').instance()
+		get_node('/root').add_child(scene)
 		get_tree().paused = true
 
 	if event.is_action_pressed(player_key + "fire_rocket") and is_network_master():
