@@ -16,12 +16,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.0117647, 0.0117647, 0.0117647, 0.411765 )
 
-[node name="Label" type="Label" parent="."]
+[node name="Label1" type="Label" parent="."]
 margin_left = 375.441
 margin_top = 128.155
 margin_right = 420.441
 margin_bottom = 142.155
 text = "Restart"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label2" type="Label" parent="."]
 margin_left = 380.856

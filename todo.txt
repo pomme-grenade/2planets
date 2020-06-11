@@ -36,7 +36,6 @@ PROBLEME
 	- lategame taktik nicht existent
     - satellite indicator on ground
 	- snowballing, comeback
-    - show upgrade cost (cost general)
     - upgrade indicator on hold
     - gedrückt halten vs instant gebäude bauen:
         - gedrückt halten macht nicht so spaß
@@ -44,11 +43,10 @@ PROBLEME
 
 
 TODO
+    - show upgrade cost (cost general)
 	- restart fixen
-    - stop game on game over
 
     - satellit besser proportionieren
-    - full money if delete while buildup
     - defense destroyed move animation down
 
 	- spiel vorbei wenn einer leaved im multiplayer
@@ -62,3 +60,5 @@ DONE
     - player grafik polieren (done)
 	- satelliten hinter planet nicht anzeigen (done)
     - bg neu malen (done)
+    - stop game on game over
+    - full money if delete while buildup
