@@ -5,6 +5,7 @@ var action_pressed_timer
 var building_to_destroy
 var timer_wait_time = 0.7
 var building_index = 0
+var info_container
 
 const building_types = [
 	'attack',
@@ -15,6 +16,8 @@ const building_types = [
 func init():
 	if not is_network_master():
 		return
+
+	info_container = $current_money_label
 
 	action_pressed_timer = Timer.new()
 	action_pressed_timer.one_shot = true
@@ -62,6 +65,10 @@ func _process(_dt):
 				get_node('update_building/upgrade_%d/arrow' % index).visible = false
 	else:
 		toggle_new_building_ui(true)
+
+	info_container.get_node('life').text = "%s ♥" % player.planet.health
+	info_container.get_node('money').text = "%0.0f$" % player.planet.money
+	info_container.get_node('income').text = "+%0.1f$/s" % player.planet.income
 
 func toggle_new_building_ui(visible: bool):
 	$new_building.visible = visible

@@ -9,35 +9,12 @@ var player
 var income = 4
 var start_money = 160
 var money = 0
-var life_label
-var current_money_label
-var income_label
-# warning-ignore:unused_class_variable
-# warning-ignore:unused_class_variable
 var slot_count = 20
 var slot_width
 var label_color = Color("#42286c")
 
 func _ready():
 	money += start_money
-	life_label = Label.new()
-	life_label.align = Label.ALIGN_RIGHT
-	get_node("/root/main").call_deferred("add_child", life_label)
-	life_label.rect_position = Vector2(position.x - 20, position.y - 20)
-	life_label.self_modulate = label_color
-	#423458
-
-	current_money_label = preload('res://planet_ui/current_money_label.tscn').instance()
-	current_money_label.align = Label.ALIGN_RIGHT
-	current_money_label.rect_position = Vector2(position.x - 12, position.y - 5)
-	# current_money_label.self_modulate = Color("322742")
-	get_node("/root/main").call_deferred("add_child", current_money_label)
-
-	income_label = Label.new()
-	income_label.align = Label.ALIGN_RIGHT
-	income_label.rect_position = Vector2(position.x - 20, position.y + 10)
-	income_label.self_modulate = label_color
-	get_node("/root/main").call_deferred("add_child", income_label)
 
 	player = preload('res://player/Player.tscn').instance()
 	add_child(player)
@@ -77,10 +54,6 @@ func _process(delta):
 
 	if is_network_master():
 		rpc('_sync_rotation', rotation)
-
-	life_label.text = "%s ♥" % health
-	current_money_label.text = "%0.0f$" % money
-	income_label.text = "+%0.1f$/s" % income
 
 puppet func _sync_rotation(rot):
 	rotation = rot

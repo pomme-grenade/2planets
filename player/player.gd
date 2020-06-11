@@ -103,7 +103,6 @@ func can_build(type):
 
 func try_spawn_building(type, name, position):
 	if is_network_master() and not can_build(type):
-		planet.current_money_label.flash()
 		return
 
 	rpc('spawn_building', type, name, position)
