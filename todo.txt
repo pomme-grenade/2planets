@@ -45,11 +45,10 @@ PROBLEME
 TODO
     - double click to build 
     - show upgrade cost (cost general)
-	- restart fixen
-
     - satellit besser proportionieren
     - defense destroyed move animation down
 
+	- multiplayer restart
 	- spiel vorbei wenn einer leaved im multiplayer
 
 
