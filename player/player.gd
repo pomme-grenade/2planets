@@ -11,12 +11,6 @@ var ui
 
 var rocket_name_index = 0
 
-var building_cost = {
-	attack = 40,
-	defense = 40,
-	income = 40,
-}
-
 export var speed = 1
 
 func _ready():
@@ -104,7 +98,7 @@ func get_building_in_range():
 			return building
 
 func can_build(type):
-	return (planet.money >= building_cost[type]
+	return (planet.money >= 40
 		and not is_instance_valid(current_building))
 
 func try_spawn_building(type, name, position):
@@ -149,7 +143,7 @@ remotesync func spawn_building(type, name, position):
 	# re-draw circle highlighting the new building
 	planet.update()
 
-	planet.money -= building_cost[type]
+	planet.money -= 40
 
 func init_ui():
 	ui = get_node('/root/main/planet_ui_%s' % playerNumber)

@@ -99,7 +99,7 @@ func start_upgrade(index):
 
 func action_timer_timeout():
 	if (is_instance_valid(building_to_destroy) and player.current_building == building_to_destroy):
-		building_to_destroy.rpc('deconstruct', player.building_cost[building_to_destroy.type])
+		building_to_destroy.rpc('deconstruct', 40)
 
 	building_to_destroy = null
 	update()

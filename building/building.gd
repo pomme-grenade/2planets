@@ -22,7 +22,6 @@ func init():
 		child.connect('income', self, 'add_money')
 
 	add_child(child)
-	print(type)
 	child.set_network_master(get_network_master())
 
 	connect('animation_finished', self, 'buildup_finish', [], CONNECT_ONESHOT)
@@ -72,9 +71,10 @@ func add_money(value):
 	income_animation.label.text = '+' + str(value)
 
 func can_upgrade(index):
+	# print(child.get('upgrade_%d_type' % index))
 	return planet.money >= 40 and \
 		is_network_master() and \
-		typeof(child.get('upgrade_%d_script' % index)) == TYPE_STRING and \
+		typeof(child.get('upgrade_%d_type' % index)) == TYPE_STRING and \
 		(not is_destroyed) and \
 		is_built
 
@@ -88,7 +88,8 @@ remotesync func upgrade(index):
 	if child.has_method('on_upgrade'):
 		child.on_upgrade()
 
-	var new_child_script = child.get('upgrade_%d_script' % index)
+	type = child.get('upgrade_%d_type' % index)
+	var new_child_script = 'res://building/types/%s.gd' % type
 	if typeof(new_child_script) != TYPE_STRING:
 		return
 
@@ -98,7 +99,7 @@ remotesync func upgrade(index):
 	new_child.name = child.name + '_upgrade'
 	child.queue_free()
 	child = new_child
-	type = child.upgrade_1_type
+
 	init()
 
 func try_fire_rocket(name):
