@@ -1,6 +1,7 @@
 extends Node2D
 
 var planet
+var upgrade_1_name = 'attack_upgrade'
 
 var target_player_number
 

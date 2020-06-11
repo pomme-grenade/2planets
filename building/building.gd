@@ -22,6 +22,7 @@ func init():
 		child.connect('income', self, 'add_money')
 
 	add_child(child)
+	print(type)
 	child.set_network_master(get_network_master())
 
 	connect('animation_finished', self, 'buildup_finish', [], CONNECT_ONESHOT)
@@ -97,6 +98,7 @@ remotesync func upgrade(index):
 	new_child.name = child.name + '_upgrade'
 	child.queue_free()
 	child = new_child
+	type = child.upgrade_1_type
 	init()
 
 func try_fire_rocket(name):

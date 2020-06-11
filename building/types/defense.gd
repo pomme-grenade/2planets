@@ -7,7 +7,8 @@ var attack_range = 80
 var fire_origin
 var cooldown = 0
 var cooldown_time = 0.5
-var upgrade_1_script = 'res://building/types/shield.gd'
+var upgrade_1_type = 'shield'
+var upgrade_1_script = 'res://building/types/' + upgrade_1_type + '.gd'
 
 func init():
 	add_user_signal('income', [{'name': 'value', 'type': TYPE_INT}])

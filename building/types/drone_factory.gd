@@ -2,14 +2,15 @@ extends Node2D
 
 var planet
 var repair_drone
-var upgrade_1_script = 'res://building/types/drone_upgrade.gd'
 var drone_index = 0
+var upgrade_1_type = 'drone_factory'
+var upgrade_1_script = 'res://building/types/' + upgrade_1_type + '.gd'
 
 func init():
-	new_drone()
+	pass
 
 func buildup_finish():
-	pass
+	new_drone()
 
 func new_drone():
 	repair_drone = preload('res://repair_drone.tscn').instance()
