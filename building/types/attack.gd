@@ -1,7 +1,8 @@
 extends Node2D
 
 var planet
-var upgrade_1_type = 'attack_upgrade'
+var upgrade_1_type = 'laser'
+var upgrade_1 = 'res://building/types/' + upgrade_1_type + 'gd'
 
 var target_player_number
 

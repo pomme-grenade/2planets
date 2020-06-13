@@ -1,4 +1,4 @@
-[gd_scene load_steps=160 format=2]
+[gd_scene load_steps=161 format=2]
 
 [ext_resource path="res://building/building.gd" type="Script" id=1]
 [ext_resource path="res://images/buildings/mineAnimation.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://images/buildings/sattelite_buildup.png" type="Texture" id=8]
 [ext_resource path="res://images/buildings/destroyed.png" type="Texture" id=9]
 [ext_resource path="res://images/buildings/teleporter.png" type="Texture" id=10]
+[ext_resource path="res://images/buildings/laser.png" type="Texture" id=11]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
@@ -680,6 +681,21 @@ animations = [ {
 "loop": true,
 "name": "teleporter_destroyed",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "laser_destroyed",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "laser_buildup",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "laser",
+"speed": 5.0
 } ]
 
 [sub_resource type="Animation" id=149]
@@ -703,7 +719,7 @@ modulate = Color( 2, 2, 3, 1 )
 position = Vector2( 0, -2.72041 )
 scale = Vector2( 0.8, 0.8 )
 frames = SubResource( 148 )
-animation = "teleporter_destroyed"
+animation = "laser_destroyed"
 script = ExtResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
