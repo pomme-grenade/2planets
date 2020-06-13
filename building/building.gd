@@ -71,7 +71,6 @@ func add_money(value):
 	income_animation.label.text = '+' + str(value)
 
 func can_upgrade(index):
-	# print(child.get('upgrade_%d_type' % index))
 	return planet.money >= 40 and \
 		is_network_master() and \
 		typeof(child.get('upgrade_%d_type' % index)) == TYPE_STRING and \

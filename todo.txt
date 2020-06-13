@@ -50,6 +50,7 @@ TODO
 
 	- multiplayer restart
 	- spiel vorbei wenn einer leaved im multiplayer
+	- Kamera
 
 
 DONE

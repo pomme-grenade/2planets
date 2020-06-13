@@ -4,7 +4,9 @@ var planet
 
 var additional_income = 0.5
 var upgrade_1_type = 'drone_factory'
+var upgrade_2_type = 'teleporter'
 var upgrade_1_script = 'res://building/types/' + upgrade_1_type + '.gd'
+var upgrade_2_script = 'res;//building/types/' + upgrade_2_type + '.gd'
 
 func init():
 	pass
