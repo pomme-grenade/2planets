@@ -7,6 +7,7 @@ var target_planet
 var buildings
 var toggle_shooting_timer
 var shooting = false
+var index = 0
 
 
 func init():
@@ -32,5 +33,10 @@ func _draw():
 		draw_line(Vector2(0, 0), Vector2(0, Vector2(0, 0).distance_to(to_local(target_planet.global_position))).rotated(rotation + PI), Color(1, 1, 1), 4)
 
 func toggle_shooting():
+	var laser_collider = preload('res://laser_collider.tscn').instance()
+	laser_collider.name = 'collider%s' % index
+	index += 1
+	laser_collider.position = Vector2(0, 0)
+	add_child(laser_collider)
 	shooting = !shooting
 	toggle_shooting_timer.paused = true
