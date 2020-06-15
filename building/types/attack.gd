@@ -17,6 +17,12 @@ func try_fire_rocket(name):
 		var position = global_position - Vector2(5, 0).rotated(global_rotation)
 		rpc('fire_rocket', name, position, global_rotation + PI)
 
+func _process(dt):
+	if is_instance_valid(planet.player.current_building) and planet.player.current_building.type == 'attack':
+		get_node('/root/main/planet_ui_%s/building_cost/Label2' % planet.playerNumber).text = '10'
+	else:
+		get_node('/root/main/planet_ui_%s/building_cost/Label2' % planet.playerNumber).text = '0'
+		
 remotesync func fire_rocket(name, position, rotation):
 	planet.money -= 10
 	var rocket = preload("res://rocket.gd").new(target_player_number)

@@ -36,5 +36,6 @@ func toggle_shooting():
 	toggle_shooting_timer.paused = true
 
 func on_activate():
-	toggle_shooting_timer.start(0.1)
-	shooting = true
+	if not get_parent().is_destroyed:
+		toggle_shooting_timer.start(0.1)
+		shooting = true

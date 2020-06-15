@@ -15,4 +15,5 @@ func _process(delta):
 	pass
 
 func on_activate():
-	planet.player.position = planet.player.position.rotated(PI)
+	if not get_parent().is_destroyed:
+		planet.player.position = planet.player.position.rotated(PI)
