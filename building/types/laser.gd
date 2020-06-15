@@ -14,8 +14,6 @@ func init():
 	toggle_shooting_timer = Timer.new()
 	toggle_shooting_timer.connect('timeout', self, 'toggle_shooting')
 	add_child(toggle_shooting_timer)
-	toggle_shooting_timer.start(0.1)
-	shooting = true
 	enemy_player_number = 1 if planet.playerNumber == 2 else 2
 	target_planet = get_node('/root/main/planet_%s' % enemy_player_number)
 
@@ -36,3 +34,7 @@ func _draw():
 func toggle_shooting():
 	shooting = !shooting
 	toggle_shooting_timer.paused = true
+
+func on_activate():
+	toggle_shooting_timer.start(0.1)
+	shooting = true

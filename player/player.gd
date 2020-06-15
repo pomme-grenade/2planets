@@ -8,8 +8,10 @@ var planet
 var current_building
 var player_key
 var ui
+var action_pressed_timer
+var building_to_destroy
+var timer_wait_time = 0.7
 
-var rocket_name_index = 0
 
 export var speed = 1
 
@@ -18,6 +20,11 @@ func _ready():
 	call_deferred("init")
 
 func init():
+	action_pressed_timer = Timer.new()
+	action_pressed_timer.one_shot = true
+	action_pressed_timer.connect('timeout', self, 'action_timer_timeout')
+	add_child(action_pressed_timer)
+
 	player_key = "player" + str(playerNumber) + "_"
 	set_process_unhandled_input(true)
 
@@ -85,12 +92,8 @@ func _unhandled_input(event):
 		get_node('/root').add_child(scene)
 		get_tree().paused = true
 
-	if event.is_action_pressed(player_key + "fire_rocket") and is_network_master():
-		for building in get_tree().get_nodes_in_group("building" + str(playerNumber)):
-			if building.type == 'attack':
-				var name = '%d_rocket_%d' % [ playerNumber, rocket_name_index ]
-				rocket_name_index += 1
-				building.try_fire_rocket(name)
+	if event.is_action_pressed(player_key + "deconstruct") and is_network_master():
+		start_destroy_timer()
 
 func get_building_in_range():
 	for building in get_tree().get_nodes_in_group('building' + str(planet.playerNumber)):
@@ -149,3 +152,19 @@ func init_ui():
 	ui.player = self
 	ui.set_network_master(get_network_master())
 	ui.init()
+
+
+func start_destroy_timer():
+	if ((not is_instance_valid(current_building))
+			or current_building.is_destroyed):
+		return
+
+	building_to_destroy = current_building
+	action_pressed_timer.start(timer_wait_time)
+
+func action_timer_timeout():
+	if (is_instance_valid(building_to_destroy) and current_building == building_to_destroy):
+		building_to_destroy.rpc('deconstruct', 40)
+
+	building_to_destroy = null
+	update()

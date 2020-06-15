@@ -5,18 +5,20 @@ modulate = Color( 1, 0.996078, 0.996078, 1 )
 self_modulate = Color( 0.258824, 0.156863, 0.423529, 1 )
 
 [node name="life" type="Label" parent="."]
-margin_left = -1.32038
-margin_right = 38.6796
-margin_bottom = 16.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+visible = false
+margin_left = 17.4424
+margin_top = 2.57025
+margin_right = 34.4424
+margin_bottom = 18.5702
+custom_colors/font_color = Color( 0.32549, 0.184314, 0.184314, 1 )
 text = "life"
 align = 2
 
 [node name="money" type="Label" parent="."]
-margin_left = -1.32038
-margin_top = 17.165
-margin_right = 38.6796
-margin_bottom = 33.165
+margin_left = 28.2341
+margin_top = 11.8213
+margin_right = 53.2341
+margin_bottom = 27.8213
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "money"
 align = 2
@@ -25,11 +27,11 @@ __meta__ = {
 }
 
 [node name="income" type="Label" parent="."]
-margin_left = -0.880257
-margin_top = 35.2102
-margin_right = 41.1197
-margin_bottom = 51.2102
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+margin_left = 0.305271
+margin_top = 12.4093
+margin_right = 28.3053
+margin_bottom = 28.4093
+custom_colors/font_color = Color( 0.168105, 0.21, 0.1659, 1 )
 text = "income"
 align = 2
 __meta__ = {

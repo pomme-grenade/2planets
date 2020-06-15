@@ -136,7 +136,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="destroy" type="Button" parent="update_building"]
+[node name="activate" type="Button" parent="update_building"]
 margin_left = 22.0
 margin_right = 40.0
 margin_bottom = 20.0
@@ -146,7 +146,7 @@ custom_styles/pressed = ExtResource( 9 )
 custom_styles/normal = ExtResource( 8 )
 custom_fonts/font = SubResource( 5 )
 
-[node name="TextureRect" type="TextureRect" parent="update_building/destroy"]
+[node name="TextureRect" type="TextureRect" parent="update_building/activate"]
 margin_left = 3.34179
 margin_top = 2.57657
 margin_right = 19.3418

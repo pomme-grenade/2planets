@@ -30,6 +30,7 @@ IDEEN
         - ein gebiet in dem gebäude schneller aufgebaut werden
         - terraforming
     - random upgrade drops die man einsammeln kann und damit freischaltet
+	- lebensanzeige
 
 
 PROBLEME
