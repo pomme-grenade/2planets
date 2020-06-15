@@ -19,6 +19,10 @@ func init():
 
 	info_container = $current_money_label
 
+	$'building_cost/Label1'.text = '40'
+	$'building_cost/Label2'.text = '0'
+	$'building_cost/Label3'.text = '40'
+
 	action_pressed_timer = Timer.new()
 	action_pressed_timer.one_shot = true
 	action_pressed_timer.connect('timeout', self, 'action_timer_timeout')

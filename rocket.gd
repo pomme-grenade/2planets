@@ -58,12 +58,15 @@ func _process(delta):
 
 remotesync func hit_planet(path):
 	is_destroyed = true
+	var hit_building = false
 	self.update()
 	var planet = get_node(path)
-	planet.health -= planet_rocket_damage
 	for building in get_tree().get_nodes_in_group("building" + str(target_player_number)):
 		if point_on_planet().distance_to(building.global_position) < explosion_radius and not building.is_destroyed:
 			building.destroy()
+			hit_building = true
+	if not hit_building:
+		planet.health -= planet_rocket_damage
 
 	if planet.health <= 0:
 		GameManager.game_over(target_player_number)

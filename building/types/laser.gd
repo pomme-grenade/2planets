@@ -22,7 +22,7 @@ func init():
 func _process(delta):
 	buildings = get_tree().get_nodes_in_group('building' + str(enemy_player_number))
 	if shooting:
-		laser_position += 20
+		laser_position += 30
 		for building in buildings:
 			if Vector2(0, laser_position).rotated(PI).distance_to(to_local(building.global_position)) < 8:
 				laser_position = 0

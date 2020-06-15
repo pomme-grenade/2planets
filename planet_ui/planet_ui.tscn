@@ -32,14 +32,14 @@ __meta__ = {
 }
 
 [node name="new_building" type="HBoxContainer" parent="."]
-margin_right = 67.0
+margin_right = 62.0
 margin_bottom = 20.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="defense" type="Button" parent="new_building"]
-margin_right = 19.0
+margin_right = 18.0
 margin_bottom = 20.0
 rect_clip_content = true
 size_flags_horizontal = 3
@@ -63,8 +63,8 @@ __meta__ = {
 }
 
 [node name="income" type="Button" parent="new_building"]
-margin_left = 23.0
-margin_right = 42.0
+margin_left = 22.0
+margin_right = 40.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 custom_styles/hover = ExtResource( 8 )
@@ -74,10 +74,10 @@ custom_fonts/font = SubResource( 2 )
 clip_text = true
 
 [node name="TextureRect" type="TextureRect" parent="new_building/income"]
-margin_left = 2.92066
-margin_top = 1.22583
-margin_right = 22.9207
-margin_bottom = 21.2258
+margin_left = 2.10502
+margin_top = 1.02192
+margin_right = 22.1051
+margin_bottom = 21.0219
 rect_scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 4 )
 __meta__ = {
@@ -85,8 +85,8 @@ __meta__ = {
 }
 
 [node name="attack" type="Button" parent="new_building"]
-margin_left = 46.0
-margin_right = 67.0
+margin_left = 44.0
+margin_right = 62.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 custom_styles/hover = ExtResource( 8 )
@@ -110,14 +110,14 @@ __meta__ = {
 }
 
 [node name="update_building" type="HBoxContainer" parent="."]
-margin_right = 67.0
+margin_right = 62.0
 margin_bottom = 20.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="upgrade_1" type="Button" parent="update_building"]
-margin_right = 19.0
+margin_right = 18.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -126,9 +126,9 @@ custom_styles/normal = ExtResource( 8 )
 custom_fonts/font = SubResource( 4 )
 
 [node name="arrow" type="TextureRect" parent="update_building/upgrade_1"]
-margin_left = 2.53084
+margin_left = 1.71521
 margin_top = 2.82251
-margin_right = 19.5308
+margin_right = 18.7152
 margin_bottom = 22.8225
 rect_scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 6 )
@@ -137,8 +137,8 @@ __meta__ = {
 }
 
 [node name="destroy" type="Button" parent="update_building"]
-margin_left = 23.0
-margin_right = 42.0
+margin_left = 22.0
+margin_right = 40.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -158,8 +158,8 @@ __meta__ = {
 }
 
 [node name="upgrade_2" type="Button" parent="update_building"]
-margin_left = 46.0
-margin_right = 67.0
+margin_left = 44.0
+margin_right = 62.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -168,10 +168,10 @@ custom_styles/normal = ExtResource( 8 )
 custom_fonts/font = SubResource( 6 )
 
 [node name="arrow" type="TextureRect" parent="update_building/upgrade_2"]
-margin_left = 3.86447
-margin_top = 2.65643
-margin_right = 20.8644
-margin_bottom = 22.6564
+margin_left = 2.23321
+margin_top = 3.26815
+margin_right = 19.2331
+margin_bottom = 23.2681
 rect_scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 6 )
 __meta__ = {
@@ -179,7 +179,40 @@ __meta__ = {
 }
 
 [node name="current_money_label" parent="." instance=ExtResource( 7 )]
-margin_left = 8.1281
-margin_top = 25.9674
-margin_right = 85.1281
-margin_bottom = 41.9674
+margin_left = 1.64199
+margin_top = 24.1142
+margin_right = 78.642
+margin_bottom = 40.1142
+
+[node name="building_cost" type="Control" parent="."]
+margin_left = -0.225937
+margin_top = -17.3971
+margin_right = 65.7741
+margin_bottom = 0.602882
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label1" type="Label" parent="building_cost"]
+margin_left = 1.22871
+margin_top = 10.4407
+margin_right = 15.2287
+margin_bottom = 18.4407
+custom_colors/font_color = Color( 0.337255, 0.2, 0.490196, 1 )
+text = "1"
+
+[node name="Label2" type="Label" parent="building_cost"]
+margin_left = 22.4775
+margin_top = 10.4674
+margin_right = 34.4775
+margin_bottom = 18.4674
+custom_colors/font_color = Color( 0.337255, 0.2, 0.490196, 1 )
+text = "2"
+
+[node name="Label3" type="Label" parent="building_cost"]
+margin_left = 44.5392
+margin_top = 9.77129
+margin_right = 57.5392
+margin_bottom = 17.7713
+custom_colors/font_color = Color( 0.337255, 0.2, 0.490196, 1 )
+text = "3"
