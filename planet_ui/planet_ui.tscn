@@ -4,7 +4,7 @@
 [ext_resource path="res://images/ui/satellite_button.png" type="Texture" id=2]
 [ext_resource path="res://images/ui/rocket_button.png" type="Texture" id=3]
 [ext_resource path="res://images/ui/mine_button.png" type="Texture" id=4]
-[ext_resource path="res://images/ui/arrwow.png" type="Texture" id=6]
+[ext_resource path="res://images/ui/arrow.png" type="Texture" id=6]
 [ext_resource path="res://planet_ui/current_money_label.tscn" type="PackedScene" id=7]
 [ext_resource path="res://images/ui/button_texture_normal.tres" type="StyleBox" id=8]
 [ext_resource path="res://images/ui/button_texture_pressed.tres" type="StyleBox" id=9]
@@ -125,12 +125,11 @@ custom_styles/normal = ExtResource( 8 )
 custom_fonts/font = SubResource( 4 )
 
 [node name="arrow" type="TextureRect" parent="update_building/upgrade_1"]
-margin_left = 1.89924
-margin_top = 2.0864
-margin_right = 18.8992
+margin_left = 2.42626
+margin_top = 2.08639
+margin_right = 19.4262
 margin_bottom = 22.0864
 rect_scale = Vector2( 0.8, 0.8 )
-texture = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -145,11 +144,11 @@ custom_styles/pressed = ExtResource( 9 )
 custom_styles/normal = ExtResource( 8 )
 custom_fonts/font = SubResource( 5 )
 
-[node name="TextureRect" type="TextureRect" parent="update_building/destroy"]
-margin_left = 2.60569
-margin_top = 2.20852
-margin_right = 18.6057
-margin_bottom = 18.2085
+[node name="activate_texture" type="TextureRect" parent="update_building/activate"]
+margin_left = 1.84467
+margin_top = 1.58112
+margin_right = 18.8447
+margin_bottom = 18.5811
 rect_scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 6 )
 __meta__ = {
@@ -172,7 +171,6 @@ margin_top = 1.79594
 margin_right = 19.2331
 margin_bottom = 21.7959
 rect_scale = Vector2( 0.8, 0.8 )
-texture = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

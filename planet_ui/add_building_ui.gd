@@ -55,9 +55,13 @@ func init():
 func _process(_dt):
 	if is_instance_valid(player.current_building):
 		toggle_new_building_ui(false)
+		get_node('update_building/activate/activate_texture').texture = load('res://images/ui/arrow_%s.png' % player.current_building.type)
 		for index in [1, 2]:
 			if player.current_building.can_upgrade(index):
+				# get_node('update_building/upgrade_%d/arrow' % index).set_texture(laser_button)
 				get_node('update_building/upgrade_%d/arrow' % index).visible = true
+				get_node('update_building/upgrade_%d/arrow' % index).texture = load('res://images/ui/%s_button.png' \
+				% player.current_building.child.get('upgrade_%s_type' % index))
 			else:
 				get_node('update_building/upgrade_%d/arrow' % index).visible = false
 	else:

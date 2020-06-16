@@ -7,7 +7,7 @@ func _ready():
 	current_label = $Label1
 
 func _unhandled_input(event):
-	if event.is_action_pressed("player2_fire_rocket") or event.is_action_pressed("player1_fire_rocket"):
+	if event.is_action_pressed("player2_deconstruct") or event.is_action_pressed("player1_deconstruct"):
 		$Label1.set("custom_colors/font_color", Color(1, 1, 1))
 		$Label2.set("custom_colors/font_color", Color(1, 1, 0))
 		current_label = $Label2
