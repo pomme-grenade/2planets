@@ -95,6 +95,9 @@ func _unhandled_input(event):
 	if event.is_action_pressed(player_key + "deconstruct") and is_network_master():
 		start_destroy_timer()
 
+	if event.is_action_released(player_key + 'deconstruct') and is_network_master():
+		action_pressed_timer.stop()
+
 func get_building_in_range():
 	for building in get_tree().get_nodes_in_group('building' + str(planet.playerNumber)):
 		if abs(position.angle_to(building.position)) < (PI / planet.slot_count) / 2:

@@ -20,9 +20,10 @@ func _process(dt):
 		destroyed_building.repair_time -= 0.1
 
 		if destroyed_building.repair_time <= 0 or not destroyed_building.is_destroyed: 
-			destroyed_building.is_destroyed = false
-			destroyed_building.play(destroyed_building.type)
-			destroyed_building.buildup_finish()
+			if destroyed_building.is_destroyed:
+				destroyed_building.is_destroyed = false
+				destroyed_building.buildup_finish()
+				destroyed_building.play(destroyed_building.type)
 			detach()
 
 	if attached or not is_instance_valid(destroyed_building):

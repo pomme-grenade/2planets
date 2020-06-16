@@ -35,7 +35,6 @@ func init():
 			InputMap.get_action_list(player.player_key + 'build_income')[0]
 	activate_button.shortcut = shortcut
 	activate_button.connect('button_down', self, 'start_activate')
-	# activate_button.connect('button_up', self, 'stop_action_timer')
 
 	var upgrade_button_1 = $'update_building/upgrade_1'
 	shortcut = ShortCut.new()
@@ -55,7 +54,8 @@ func init():
 func _process(_dt):
 	if is_instance_valid(player.current_building):
 		toggle_new_building_ui(false)
-		get_node('update_building/activate/activate_texture').texture = load('res://images/ui/arrow_%s.png' % player.current_building.type)
+		if not is_instance_valid(player.current_building.child):
+			get_node('update_building/activate/activate_texture').texture = load('res://images/ui/arrow_%s.png' % player.current_building.type)
 		for index in [1, 2]:
 			if player.current_building.can_upgrade(index):
 				# get_node('update_building/upgrade_%d/arrow' % index).set_texture(laser_button)
