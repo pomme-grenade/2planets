@@ -33,14 +33,14 @@ __meta__ = {
 
 [node name="new_building" type="HBoxContainer" parent="."]
 margin_right = 62.0
-margin_bottom = 20.0
+margin_bottom = 18.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="defense" type="Button" parent="new_building"]
 margin_right = 18.0
-margin_bottom = 20.0
+margin_bottom = 18.0
 rect_clip_content = true
 size_flags_horizontal = 3
 custom_styles/hover = ExtResource( 8 )
@@ -65,7 +65,7 @@ __meta__ = {
 [node name="income" type="Button" parent="new_building"]
 margin_left = 22.0
 margin_right = 40.0
-margin_bottom = 20.0
+margin_bottom = 18.0
 size_flags_horizontal = 3
 custom_styles/hover = ExtResource( 8 )
 custom_styles/pressed = ExtResource( 9 )
@@ -87,7 +87,7 @@ __meta__ = {
 [node name="attack" type="Button" parent="new_building"]
 margin_left = 44.0
 margin_right = 62.0
-margin_bottom = 20.0
+margin_bottom = 18.0
 size_flags_horizontal = 3
 custom_styles/hover = ExtResource( 8 )
 custom_styles/pressed = ExtResource( 9 )
@@ -99,10 +99,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -6.61883
-margin_top = -7.85425
-margin_right = 13.3812
-margin_bottom = 12.1458
+margin_left = -7.17091
+margin_top = -6.93411
+margin_right = 12.8291
+margin_bottom = 13.0659
 rect_scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 3 )
 __meta__ = {
@@ -111,14 +111,14 @@ __meta__ = {
 
 [node name="update_building" type="HBoxContainer" parent="."]
 margin_right = 62.0
-margin_bottom = 20.0
+margin_bottom = 18.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="upgrade_1" type="Button" parent="update_building"]
 margin_right = 18.0
-margin_bottom = 20.0
+margin_bottom = 18.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/pressed = ExtResource( 9 )
@@ -126,10 +126,10 @@ custom_styles/normal = ExtResource( 8 )
 custom_fonts/font = SubResource( 4 )
 
 [node name="arrow" type="TextureRect" parent="update_building/upgrade_1"]
-margin_left = 1.71521
-margin_top = 2.82251
-margin_right = 18.7152
-margin_bottom = 22.8225
+margin_left = 1.89924
+margin_top = 2.0864
+margin_right = 18.8992
+margin_bottom = 22.0864
 rect_scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 6 )
 __meta__ = {
@@ -139,7 +139,7 @@ __meta__ = {
 [node name="destroy" type="Button" parent="update_building"]
 margin_left = 22.0
 margin_right = 40.0
-margin_bottom = 20.0
+margin_bottom = 18.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/pressed = ExtResource( 9 )
@@ -147,10 +147,10 @@ custom_styles/normal = ExtResource( 8 )
 custom_fonts/font = SubResource( 5 )
 
 [node name="TextureRect" type="TextureRect" parent="update_building/destroy"]
-margin_left = 3.34179
-margin_top = 2.57657
-margin_right = 19.3418
-margin_bottom = 18.5766
+margin_left = 2.60569
+margin_top = 2.20852
+margin_right = 18.6057
+margin_bottom = 18.2085
 rect_scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 5 )
 __meta__ = {
@@ -160,7 +160,7 @@ __meta__ = {
 [node name="upgrade_2" type="Button" parent="update_building"]
 margin_left = 44.0
 margin_right = 62.0
-margin_bottom = 20.0
+margin_bottom = 18.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/pressed = ExtResource( 9 )
@@ -169,9 +169,9 @@ custom_fonts/font = SubResource( 6 )
 
 [node name="arrow" type="TextureRect" parent="update_building/upgrade_2"]
 margin_left = 2.23321
-margin_top = 3.26815
+margin_top = 1.79594
 margin_right = 19.2331
-margin_bottom = 23.2681
+margin_bottom = 21.7959
 rect_scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 6 )
 __meta__ = {
@@ -216,3 +216,12 @@ margin_right = 57.5392
 margin_bottom = 17.7713
 custom_colors/font_color = Color( 0.337255, 0.2, 0.490196, 1 )
 text = "3"
+
+[node name="health_bar" type="ProgressBar" parent="."]
+margin_left = -1.0
+margin_top = 24.0
+margin_right = 63.0
+margin_bottom = 32.0
+__meta__ = {
+"_edit_use_anchors_": false
+}

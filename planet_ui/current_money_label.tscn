@@ -14,9 +14,9 @@ text = "life"
 align = 2
 
 [node name="money" type="Label" parent="."]
-margin_left = 28.2341
+margin_left = 30.9329
 margin_top = 11.8213
-margin_right = 53.2341
+margin_right = 55.9329
 margin_bottom = 27.8213
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "money"

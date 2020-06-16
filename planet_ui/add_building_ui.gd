@@ -73,6 +73,7 @@ func _process(_dt):
 	info_container.get_node('life').text = "%s ♥" % player.planet.health
 	info_container.get_node('money').text = "%0.0f$" % player.planet.money
 	info_container.get_node('income').text = "+%0.1f$/s" % player.planet.income
+	$health_bar.value = player.planet.health
 
 func toggle_new_building_ui(visible: bool):
 	$new_building.visible = visible
