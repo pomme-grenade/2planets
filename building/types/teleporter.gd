@@ -5,7 +5,7 @@ var upgrade_2_script = 'res://building/types/' + upgrade_2_type + 'gd'
 
 
 func init():
-	planet.player.position = planet.player.position.rotated(PI)
+	pass
 
 func _ready():
 	pass
@@ -13,3 +13,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+func on_activate():
+	if not get_parent().is_destroyed:
+		planet.player.position = planet.player.position.rotated(PI)

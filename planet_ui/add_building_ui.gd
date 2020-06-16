@@ -1,9 +1,7 @@
 extends Control
 
 var player
-var action_pressed_timer
 var building_to_destroy
-var timer_wait_time = 0.7
 var building_index = 0
 var info_container
 
@@ -23,11 +21,6 @@ func init():
 	$'building_cost/Label2'.text = '0'
 	$'building_cost/Label3'.text = '40'
 
-	action_pressed_timer = Timer.new()
-	action_pressed_timer.one_shot = true
-	action_pressed_timer.connect('timeout', self, 'action_timer_timeout')
-	add_child(action_pressed_timer)
-
 	for type in building_types:
 		var button = get_node('new_building/' + type)
 		var shortcut = ShortCut.new()
@@ -36,13 +29,13 @@ func init():
 		button.shortcut = shortcut
 		button.connect('pressed', self, 'start_building', [type])
 
-	var destroy_button = $'update_building/destroy'
+	var activate_button = $'update_building/activate'
 	var shortcut = ShortCut.new()
 	shortcut.shortcut = \
 			InputMap.get_action_list(player.player_key + 'build_income')[0]
-	destroy_button.shortcut = shortcut
-	destroy_button.connect('button_down', self, 'start_destroy_timer')
-	destroy_button.connect('button_up', self, 'stop_action_timer')
+	activate_button.shortcut = shortcut
+	activate_button.connect('button_down', self, 'start_activate')
+	# activate_button.connect('button_up', self, 'stop_action_timer')
 
 	var upgrade_button_1 = $'update_building/upgrade_1'
 	shortcut = ShortCut.new()
@@ -87,20 +80,7 @@ func start_building(type):
 	building_index += 1
 	var position = player.planet.current_slot_position()
 	player.try_spawn_building(type, name, position)
-	stop_action_timer();
 	update()
-
-func stop_action_timer():
-	action_pressed_timer.stop()
-	building_to_destroy = null
-
-func start_destroy_timer():
-	if ((not is_instance_valid(player.current_building))
-			or player.current_building.is_destroyed):
-		return
-
-	building_to_destroy = player.current_building
-	action_pressed_timer.start(timer_wait_time)
 
 func start_upgrade(index):
 	if ((not is_instance_valid(player.current_building))
@@ -109,9 +89,5 @@ func start_upgrade(index):
 
 	player.current_building.try_upgrade(index)
 
-func action_timer_timeout():
-	if (is_instance_valid(building_to_destroy) and player.current_building == building_to_destroy):
-		building_to_destroy.rpc('deconstruct', 40)
-
-	building_to_destroy = null
-	update()
+func start_activate():
+	player.current_building.activate()

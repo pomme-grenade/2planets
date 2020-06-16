@@ -10,7 +10,7 @@ func init():
 	pass
 
 func buildup_finish():
-	new_drone()
+	pass
 
 func new_drone():
 	repair_drone = preload('res://repair_drone.tscn').instance()
@@ -22,3 +22,5 @@ func new_drone():
 	planet.add_child(repair_drone)
 	repair_drone.init()
 	
+func on_activate():
+	new_drone()

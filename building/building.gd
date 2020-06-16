@@ -116,3 +116,7 @@ func buildup_finish():
 	$AnimationPlayer.play('flash');
 	animation = type
 	speed_scale = 1
+
+func activate():
+	if child.has_method('on_activate'):
+		child.on_activate()

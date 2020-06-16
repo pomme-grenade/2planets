@@ -3,6 +3,7 @@ extends Node2D
 var planet
 var upgrade_1_type = 'laser'
 var upgrade_1 = 'res://building/types/' + upgrade_1_type + 'gd'
+var rocket_name_index = 0
 
 var target_player_number
 
@@ -16,6 +17,12 @@ func try_fire_rocket(name):
 		var position = global_position - Vector2(5, 0).rotated(global_rotation)
 		rpc('fire_rocket', name, position, global_rotation + PI)
 
+func _process(dt):
+	if is_instance_valid(planet.player.current_building) and planet.player.current_building.type == 'attack':
+		get_node('/root/main/planet_ui_%s/building_cost/Label2' % planet.playerNumber).text = '10'
+	else:
+		get_node('/root/main/planet_ui_%s/building_cost/Label2' % planet.playerNumber).text = '0'
+		
 remotesync func fire_rocket(name, position, rotation):
 	planet.money -= 10
 	var rocket = preload("res://rocket.gd").new(target_player_number)
@@ -27,3 +34,10 @@ remotesync func fire_rocket(name, position, rotation):
 	rocket.set_network_master(get_network_master())
 	$'/root/main'.add_child(rocket)
 	update()
+
+func on_activate():
+	for building in get_tree().get_nodes_in_group("building" + str(planet.playerNumber)):
+		if building.type == 'attack':
+			var name = '%d_rocket_%d' % [ planet.playerNumber, rocket_name_index ]
+			rocket_name_index += 1
+			building.try_fire_rocket(name)

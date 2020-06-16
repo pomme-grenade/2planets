@@ -1,10 +1,9 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://planet_ui/add_building_ui.gd" type="Script" id=1]
 [ext_resource path="res://images/ui/satellite_button.png" type="Texture" id=2]
 [ext_resource path="res://images/ui/rocket_button.png" type="Texture" id=3]
 [ext_resource path="res://images/ui/mine_button.png" type="Texture" id=4]
-[ext_resource path="res://images/ui/cross.png" type="Texture" id=5]
 [ext_resource path="res://images/ui/arrwow.png" type="Texture" id=6]
 [ext_resource path="res://planet_ui/current_money_label.tscn" type="PackedScene" id=7]
 [ext_resource path="res://images/ui/button_texture_normal.tres" type="StyleBox" id=8]
@@ -136,7 +135,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="destroy" type="Button" parent="update_building"]
+[node name="activate" type="Button" parent="update_building"]
 margin_left = 22.0
 margin_right = 40.0
 margin_bottom = 18.0
@@ -152,7 +151,7 @@ margin_top = 2.20852
 margin_right = 18.6057
 margin_bottom = 18.2085
 rect_scale = Vector2( 0.8, 0.8 )
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
