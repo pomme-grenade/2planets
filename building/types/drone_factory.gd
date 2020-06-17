@@ -3,8 +3,9 @@ extends Node2D
 var planet
 var repair_drone
 var drone_index = 0
-var upgrade_1_type = 'drone_factory'
+var upgrade_1_type = 'healing_drone_factory'
 var upgrade_1_script = 'res://building/types/' + upgrade_1_type + '.gd'
+var activate_cost = 40
 
 func init():
 	pass
@@ -23,4 +24,6 @@ func new_drone():
 	repair_drone.init()
 	
 func on_activate():
-	new_drone()
+	if planet.money >= activate_cost:
+		new_drone()
+		planet.money -= activate_cost

@@ -18,7 +18,7 @@ func init():
 	info_container = $current_money_label
 
 	$'building_cost/Label1'.text = '40'
-	$'building_cost/Label2'.text = '0'
+	$'building_cost/Label2'.text = '40'
 	$'building_cost/Label3'.text = '40'
 
 	for type in building_types:
@@ -64,8 +64,19 @@ func _process(_dt):
 				% player.current_building.child.get('upgrade_%s_type' % index))
 			else:
 				get_node('update_building/upgrade_%d/arrow' % index).visible = false
+
+				
+			get_node('/root/main/planet_ui_%s/building_cost/Label2' % player.playerNumber).text = '%d' % player.current_building.activate_cost
+
+			# if player.current_building.type == 'attack':
+			# 	get_node('/root/main/planet_ui_%s/building_cost/Label2' % player.playerNumber).text = '10'
+			# elif player.current_building.type == 'laser':
+			# 	get_node('/root/main/planet_ui_%s/building_cost/Label2' % player.playerNumber).text = '20'
+			# else:
+			# 	get_node('/root/main/planet_ui_%s/building_cost/Label2' % player.playerNumber).text = '0'
 	else:
 		toggle_new_building_ui(true)
+		get_node('/root/main/planet_ui_%s/building_cost/Label2' % player.playerNumber).text = '40'
 
 	info_container.get_node('life').text = "%s ♥" % player.planet.health
 	info_container.get_node('money').text = "%0.0f$" % player.planet.money

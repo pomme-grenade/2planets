@@ -8,6 +8,7 @@ var child
 var buildup_time = 1
 var repair_time
 var initial_repair_time = 300
+var activate_cost = 0
 
 const textures = {
 	attack = preload('res://images/buildings/rocket.png'),
@@ -42,11 +43,14 @@ func _process(_dt):
 		var completion = 1 - (repair_time / initial_repair_time)
 		frame = floor(completion * frames.get_frame_count(type + '_buildup'))
 
+	if child.get('activate_cost') != null:
+		activate_cost = child.activate_cost
+
 remotesync func destroy():
 	if child.has_method("on_destroy"):
 		child.on_destroy()
 	is_destroyed = true
-	play(str(type) + '_destroyed')
+	play('attack_destroyed')
 	stop()
 	planet.update()
 

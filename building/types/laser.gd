@@ -8,6 +8,7 @@ var buildings
 var stop_laser_timer
 var shooting = false
 var laser_position = 0
+var activate_cost = 20
 
 func init():
 	stop_laser_timer = Timer.new()
@@ -40,3 +41,6 @@ func on_activate():
 		stop_laser_timer.start(0.1)
 		shooting = true
 		planet.money -= 20
+
+func buildup_finish():
+	get_node('/root/main/planet_ui_%d/building_cost/Label2' % planet.playerNumber).text = '10'

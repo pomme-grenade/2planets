@@ -4,27 +4,21 @@ var planet
 var upgrade_1_type = 'laser'
 var upgrade_1 = 'res://building/types/' + upgrade_1_type + 'gd'
 var rocket_name_index = 0
-
+var activate_cost = 10
 var target_player_number
 
 func init():
 	target_player_number = 2 if planet.playerNumber == 1 else 1
 
 func try_fire_rocket(name):
-	if planet.money < 10 or (not is_network_master()):
+	if planet.money < activate_cost or (not is_network_master()):
 		return
 	elif get_parent().is_built and not get_parent().is_destroyed:
 		var position = global_position - Vector2(5, 0).rotated(global_rotation)
 		rpc('fire_rocket', name, position, global_rotation + PI)
-
-func _process(dt):
-	if is_instance_valid(planet.player.current_building) and planet.player.current_building.type == 'attack':
-		get_node('/root/main/planet_ui_%s/building_cost/Label2' % planet.playerNumber).text = '10'
-	else:
-		get_node('/root/main/planet_ui_%s/building_cost/Label2' % planet.playerNumber).text = '0'
 		
 remotesync func fire_rocket(name, position, rotation):
-	planet.money -= 10
+	planet.money -= activate_cost
 	var rocket = preload("res://rocket.gd").new(target_player_number)
 	rocket.name = name
 	rocket.position = position
