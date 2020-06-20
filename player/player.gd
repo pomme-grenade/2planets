@@ -11,6 +11,8 @@ var ui
 var action_pressed_timer
 var building_to_destroy
 var timer_wait_time = 0.7
+var do_dissolve = false
+var dissolve_amount = 1
 
 
 export var speed = 1
@@ -73,6 +75,15 @@ func _process(dt):
 			new_building.self_modulate = Color(2, 2, 2, 1)
 		current_building = new_building
 
+	if is_instance_valid(current_building) and do_dissolve:
+		dissolve_amount -= 1 / (0.7 / dt)
+		current_building.material.set_shader_param('value', dissolve_amount) 
+	else:
+		dissolve_amount = 1
+		var buildings = get_tree().get_nodes_in_group("building" + str(get_parent().playerNumber))
+		for building in buildings:
+			building.material.set_shader_param('value', dissolve_amount)
+
 	if is_network_master():
 		rpc_unreliable("set_pos_and_motion", position, movementDirection, rotation)
 
@@ -93,9 +104,11 @@ func _unhandled_input(event):
 		get_tree().paused = true
 
 	if event.is_action_pressed(player_key + "deconstruct") and is_network_master():
+		do_dissolve = true
 		start_destroy_timer()
 
-	if event.is_action_released(player_key + 'deconstruct') and is_network_master():
+	if event.is_action_released(player_key + 'deconstruct') and is_network_master() and is_instance_valid(current_building):
+		do_dissolve = false
 		action_pressed_timer.stop()
 
 func get_building_in_range():
@@ -169,5 +182,6 @@ func action_timer_timeout():
 	if (is_instance_valid(building_to_destroy) and current_building == building_to_destroy):
 		building_to_destroy.rpc('deconstruct', 40)
 
+	do_dissolve = false
 	building_to_destroy = null
 	update()

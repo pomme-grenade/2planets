@@ -42,6 +42,7 @@ func _process(dt):
 			toggle_laser_timer.paused = false
 		else:
 			var own_quat = Quat(Vector3.BACK, 0)
+			print(position.angle(), '   ' + str(closest_building.position.angle() - position.angle()), '   ' + str(closest_building.position.angle()))
 			var target_quat = Quat(Vector3.BACK, closest_building.position.angle() - position.angle())
 			var target_angle = own_quat.slerp(target_quat, 1 * dt).get_euler().z
 			position = position.rotated(target_angle)
