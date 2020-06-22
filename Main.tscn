@@ -3,7 +3,7 @@
 [ext_resource path="res://planet_ui/planet_ui.tscn" type="PackedScene" id=1]
 [ext_resource path="res://planet.tscn" type="PackedScene" id=2]
 [ext_resource path="res://images/background.png" type="Texture" id=3]
-[ext_resource path="res://images/yellow_planet_darker.png" type="Texture" id=4]
+[ext_resource path="res://images/blue_planet.png" type="Texture" id=4]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4

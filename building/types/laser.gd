@@ -17,12 +17,13 @@ func init():
 	enemy_player_number = 1 if planet.playerNumber == 2 else 2
 	target_planet = get_node('/root/main/planet_%s' % enemy_player_number)
 
-func _process(delta):
+func _process(dt):
 	buildings = get_tree().get_nodes_in_group('building' + str(enemy_player_number))
 	if shooting:
-		laser_position += 30
+		laser_position += 5500 * dt
 		for building in buildings:
-			if Vector2(0, Vector2(0, 0).distance_to(to_local(building.global_position))).rotated(PI).distance_to(to_local(building.global_position)) < 10:
+			if Vector2(0, Vector2(0, 0).distance_to(to_local(building.global_position))).rotated(PI).distance_to(to_local(building.global_position)) < 10 \
+			and Vector2(0, 0).distance_to(to_local(building.global_position)) < 400:
 				if not building.is_destroyed:
 					building.destroy()
 	update()
@@ -38,7 +39,7 @@ func stop_laser():
 
 func on_activate():
 	if not get_parent().is_destroyed and planet.money >= 20 and not shooting:
-		stop_laser_timer.start(0.1)
+		stop_laser_timer.start(0.07)
 		shooting = true
 		planet.money -= 20
 

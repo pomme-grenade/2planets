@@ -107,7 +107,7 @@ func _unhandled_input(event):
 		do_dissolve = true
 		start_destroy_timer()
 
-	if event.is_action_released(player_key + 'deconstruct') and is_network_master() and is_instance_valid(current_building):
+	if event.is_action_released(player_key + 'deconstruct') and is_network_master():
 		do_dissolve = false
 		action_pressed_timer.stop()
 
