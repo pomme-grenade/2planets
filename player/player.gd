@@ -171,8 +171,7 @@ func init_ui():
 
 
 func start_destroy_timer():
-	if ((not is_instance_valid(current_building))
-			or current_building.is_destroyed):
+	if ((not is_instance_valid(current_building))):
 		return
 
 	building_to_destroy = current_building

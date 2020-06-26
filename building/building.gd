@@ -43,6 +43,7 @@ func _process(_dt):
 		var completion = 1 - (repair_time / initial_repair_time)
 		frame = floor(completion * frames.get_frame_count(type + '_buildup'))
 
+
 	if child.get('activate_cost') != null:
 		activate_cost = child.activate_cost
 
