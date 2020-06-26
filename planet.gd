@@ -9,7 +9,7 @@ var player
 var income = 4
 var start_money = 160
 var money = 0
-var slot_count = 20
+var slot_count = 14
 var slot_width
 var label_color = Color("#42286c")
 
@@ -32,7 +32,7 @@ func _draw():
 	var arc_rotation = current_slot_position().direction_to(Vector2(0, 0)).angle() - PI/2
 	if (not is_instance_valid(player.current_building)):
 		# draw_circle(current_slot_position(), slot_width / 2, Color(1, 1, 1, 0.2))
-		draw_circle_arc(Vector2(0, 0), 95, (arc_rotation * 180/PI) - 4, (arc_rotation * 180/PI) + 4, Color(0.3, 0.8, 1, 0.5))
+		draw_circle_arc(Vector2(0, 0), 95, (arc_rotation * 180/PI) - (slot_width / 4), (arc_rotation * 180/PI) + (slot_width / 4), Color(0.3, 0.8, 1, 0.5))
 
 func draw_circle_arc(center, radius, angle_from, angle_to, color):
 	var nb_points = 17
