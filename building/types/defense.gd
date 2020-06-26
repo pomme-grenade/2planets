@@ -48,7 +48,7 @@ func _process(dt):
 		rpc('destroy_rocket', nearest_target.get_path())
 
 func _draw():
-	if not get_parent().is_built:
+	if not get_parent().is_built or get_parent().is_destroyed:
 		return
 
 	draw_empty_circle(Vector2(0, 0), Vector2(0, attack_range / get_parent().global_scale.x), Color(0.4, 0.2, 0.7, 0.4), 0.5)
@@ -90,4 +90,8 @@ remotesync func destroy_rocket(path):
 	planet.money += 5
 
 func buildup_finish():
+	update()
+
+
+func on_destroy():
 	update()

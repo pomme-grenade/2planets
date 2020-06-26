@@ -2,7 +2,6 @@ extends Node2D
 
 var planet
 var type
-var is_destroyed = false
 
 var attack_range = 80
 var max_strength = 40
@@ -17,7 +16,7 @@ func init():
 	pass
 
 func _process(_dt):
-	if not get_parent().is_built:
+	if not get_parent().is_built or get_parent().is_destroyed:
 		return
 
 	strength = min(max_strength, strength + regen * _dt)
@@ -32,7 +31,7 @@ func _process(_dt):
 	update()
 
 func _draw():
-	if not get_parent().is_built:
+	if not get_parent().is_built or get_parent().is_destroyed:
 		return
 
 	var color_strength = round(strength / 5) / (max_strength / 5)
@@ -48,3 +47,6 @@ func draw_circle_arc(center, radius, angle_from, angle_to, color):
 
 	for index_point in range(nb_points):
 		draw_line(points_arc[index_point], points_arc[index_point + 1], color, 3)
+
+func on_destroy():
+	update()
