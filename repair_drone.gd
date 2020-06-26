@@ -64,7 +64,7 @@ func find_nearest_destroyed_building(buildings):
 	return result
 
 func _draw():
-	if (laser_on and attached):
+	if (laser_on and attached and is_instance_valid(destroyed_building)):
 		draw_line(Vector2(0, 0), to_local(destroyed_building.global_position), Color(0.5, 0.5, 1, 0.7))
 
 func toggle_laser():
