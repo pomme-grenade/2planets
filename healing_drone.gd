@@ -19,7 +19,7 @@ func _process(dt):
 	update()
 
 	if attached:
-		planet.health += 0.001
+		planet.health += 0.005
 
 		if planet.health >= 100: 
 			detach()

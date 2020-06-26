@@ -41,11 +41,10 @@ func _process(dt):
 			attached = true
 			toggle_laser_timer.paused = false
 		else:
-			var own_quat = Quat(Vector3.BACK, 0)
-			print(position.angle(), '   ' + str(closest_building.position.angle() - position.angle()), '   ' + str(closest_building.position.angle()))
-			var target_quat = Quat(Vector3.BACK, closest_building.position.angle() - position.angle())
+			var own_quat = Quat(Vector3.BACK, position.angle())
+			var target_quat = Quat(Vector3.BACK, closest_building.position.angle())
 			var target_angle = own_quat.slerp(target_quat, 1 * dt).get_euler().z
-			position = position.rotated(target_angle)
+			position = position.rotated(target_angle - position.angle())
 			var target_height = closest_building.position.length() + distance_to_planet
 			var current_height = position.length()
 			position *= lerp(1, target_height / current_height, dt)

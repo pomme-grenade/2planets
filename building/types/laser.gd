@@ -9,6 +9,7 @@ var stop_laser_timer
 var shooting = false
 var laser_position = 0
 var activate_cost = 20
+var one_building_destroyed = false
 
 func init():
 	stop_laser_timer = Timer.new()
@@ -20,12 +21,12 @@ func init():
 func _process(dt):
 	buildings = get_tree().get_nodes_in_group('building' + str(enemy_player_number))
 	if shooting:
-		laser_position += 5500 * dt
+		laser_position = 400
 		for building in buildings:
 			if Vector2(0, Vector2(0, 0).distance_to(to_local(building.global_position))).rotated(PI).distance_to(to_local(building.global_position)) < 10 \
-			and Vector2(0, 0).distance_to(to_local(building.global_position)) < 400:
-				if not building.is_destroyed:
-					building.destroy()
+			and Vector2(0, 0).distance_to(to_local(building.global_position)) < 400 and not building.is_destroyed and not one_building_destroyed:
+				building.destroy()
+				one_building_destroyed = true
 	update()
 
 func _draw():
@@ -35,6 +36,7 @@ func _draw():
 func stop_laser():
 	laser_position = 0
 	shooting = false
+	one_building_destroyed = false
 	stop_laser_timer.stop()
 
 func on_activate():

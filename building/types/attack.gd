@@ -30,8 +30,6 @@ remotesync func fire_rocket(name, position, rotation):
 	update()
 
 func on_activate():
-	for building in get_tree().get_nodes_in_group("building" + str(planet.playerNumber)):
-		if building.type == 'attack':
-			var name = '%d_rocket_%d' % [ planet.playerNumber, rocket_name_index ]
-			rocket_name_index += 1
-			building.try_fire_rocket(name)
+	var name = '%d_rocket_%d' % [ planet.playerNumber, rocket_name_index ]
+	rocket_name_index += 1
+	try_fire_rocket(name)
