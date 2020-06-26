@@ -27,7 +27,7 @@ func _process(dt):
 	if attached: 
 		current_sin_param += dt
 		position = position.rotated(sin(current_sin_param) * (sin(current_sin_param / 2) / 300))
-		position *= 1 + (sin(current_sin_param) * 0.001)
+		position *= 1 + (sin(current_sin_param) * 0.002)
 
 	if planet.health < 100: 
 		attached = true
