@@ -40,7 +40,7 @@ func stop_laser():
 	stop_laser_timer.stop()
 
 func on_activate():
-	if not get_parent().is_destroyed and planet.money >= 20 and not shooting:
+	if planet.money >= 20 and not shooting:
 		stop_laser_timer.start(0.07)
 		shooting = true
 		planet.money -= 20

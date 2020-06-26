@@ -35,7 +35,8 @@ func init():
 	play(animation_name)
 
 	child.planet = planet
-	child.init()
+	if child.has_method("init"):
+		child.init()
 
 func _process(_dt):
 	if is_destroyed and repair_time < initial_repair_time:
@@ -105,10 +106,6 @@ remotesync func upgrade(index):
 
 	init()
 
-func try_fire_rocket(name):
-	if type == 'attack':
-		child.try_fire_rocket(name)
-
 func buildup_finish():
 	if is_destroyed:
 		return
@@ -122,5 +119,5 @@ func buildup_finish():
 	speed_scale = 1
 
 func activate():
-	if child.has_method('on_activate'):
+	if child.has_method('on_activate') and is_built and not is_destroyed:
 		child.on_activate()
