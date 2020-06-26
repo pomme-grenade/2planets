@@ -845,9 +845,8 @@ tracks/0/keys = {
 [node name="Node2D" type="AnimatedSprite"]
 modulate = Color( 2, 2, 3, 1 )
 material = SubResource( 4 )
-position = Vector2( 0, -2.72041 )
+position = Vector2( 0, -4 )
 rotation = -6.28319
-scale = Vector2( 0.8, 0.8 )
 frames = SubResource( 174 )
 animation = "income"
 frame = 19
