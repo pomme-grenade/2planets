@@ -44,9 +44,11 @@ PROBLEME
 
 
 TODO
+    - building info wenn man über gebauten buildings steht
+    - max drones per drone building
     - double click to build 
     - satellit besser proportionieren
-    - defense destroyed move animation down
+    - better satellite destroyed graphic
     - grey upgrades when cant afford
 	- multiplayer restart
 	- spiel vorbei wenn einer leaved im multiplayer
