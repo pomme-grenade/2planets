@@ -171,7 +171,7 @@ func init_ui():
 
 
 func start_destroy_timer():
-	if ((not is_instance_valid(current_building))):
+	if not is_instance_valid(current_building):
 		return
 
 	building_to_destroy = current_building
@@ -179,7 +179,8 @@ func start_destroy_timer():
 
 func action_timer_timeout():
 	if (is_instance_valid(building_to_destroy) and current_building == building_to_destroy):
-		building_to_destroy.rpc('deconstruct', 40)
+		var price = 0 if building_to_destroy.is_destroyed else 40
+		building_to_destroy.rpc('deconstruct', price)
 
 	do_dissolve = false
 	building_to_destroy = null

@@ -25,6 +25,8 @@ func _process(dt):
 				destroyed_building.buildup_finish()
 				destroyed_building.play(destroyed_building.type)
 			detach()
+	elif attached:
+		detach()
 
 	if attached or not is_instance_valid(destroyed_building):
 		current_sin_param += dt
@@ -65,7 +67,8 @@ func find_nearest_destroyed_building(buildings):
 
 func _draw():
 	if (laser_on and attached and is_instance_valid(destroyed_building)):
-		draw_line(Vector2(0, 0), to_local(destroyed_building.global_position), Color(0.5, 0.5, 1, 0.7))
+		draw_line(Vector2(0, 0), to_local(destroyed_building.global_position) \
+			+ Vector2(6, 0).rotated(Vector2(0, 0).direction_to(to_local(get_parent().global_position)).angle()) , Color(0.5, 0.5, 1, 0.7))
 
 func toggle_laser():
 	toggle_laser_timer.wait_time = random_laser_timer_countdown()

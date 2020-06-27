@@ -57,7 +57,7 @@ remotesync func destroy():
 	planet.update()
 
 remotesync func deconstruct(cost):
-	if child.has_method("on_destroy"):
+	if child.has_method("on_destroy") and not is_destroyed:
 		child.on_destroy()
 
 	if is_built:
@@ -111,10 +111,11 @@ func buildup_finish():
 	if is_destroyed:
 		return
 
-	is_built = true
-	repair_time = initial_repair_time
 	if child.has_method('buildup_finish'):
 		child.buildup_finish()
+
+	is_built = true
+	repair_time = initial_repair_time
 	$AnimationPlayer.play('flash');
 	animation = type
 	speed_scale = 1
