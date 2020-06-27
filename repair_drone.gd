@@ -16,44 +16,46 @@ func init():
 func _process(dt):
 	update()
 
-	if attached and is_instance_valid(destroyed_building):
-		destroyed_building.repair_time -= 0.1
+	if attached and is_instance_valid(destroyed_building) and destroyed_building.is_destroyed:
+		destroyed_building.repair_time -= dt
 
-		if destroyed_building.repair_time <= 0 or not destroyed_building.is_destroyed: 
-			if destroyed_building.is_destroyed:
-				destroyed_building.is_destroyed = false
-				destroyed_building.buildup_finish()
-				destroyed_building.play(destroyed_building.type)
+		if destroyed_building.repair_time <= 0:
+			destroyed_building.is_destroyed = false
+			destroyed_building.buildup_finish()
 			detach()
-	elif attached:
+
+	if attached and not is_instance_valid(destroyed_building):
 		detach()
 
-	if attached or not is_instance_valid(destroyed_building):
-		current_sin_param += dt
-		position = position.rotated(sin(current_sin_param) * (sin(current_sin_param / 2) / 300))
-		position *= 1 + (sin(current_sin_param) * 0.001)
+	current_sin_param += dt
+	position = position.rotated(sin(current_sin_param) * (sin(current_sin_param / 2) / 300))
+	position *= 1 + (sin(current_sin_param) * 0.001)
 
 	var closest_building = destroyed_building
 	if not is_instance_valid(closest_building):
-		var buildings = get_tree().get_nodes_in_group("building" + str(get_parent().playerNumber))
-		closest_building = find_nearest_destroyed_building(buildings)
+		closest_building = find_nearest_destroyed_building()
 
 	if closest_building != null: 
-		if global_position.distance_to(closest_building.global_position) < distance_to_planet + 5 and not attached:
+		if global_position.distance_to(closest_building.global_position) < distance_to_planet + 5 \
+				and not attached:
 			attached = true
 			toggle_laser_timer.paused = false
 		else:
-			var own_quat = Quat(Vector3.BACK, position.angle())
-			var target_quat = Quat(Vector3.BACK, closest_building.position.angle())
-			var target_angle = own_quat.slerp(target_quat, 1 * dt).get_euler().z
-			position = position.rotated(target_angle - position.angle())
-			var target_height = closest_building.position.length() + distance_to_planet
-			var current_height = position.length()
-			position *= lerp(1, target_height / current_height, dt)
-			destroyed_building = closest_building
+			move_towards_building(closest_building, dt)
+
+func move_towards_building(building, dt):
+	var own_quat = Quat(Vector3.BACK, position.angle())
+	var target_quat = Quat(Vector3.BACK, building.position.angle())
+	var target_angle = own_quat.slerp(target_quat, 1 * dt).get_euler().z
+	position = position.rotated(target_angle - position.angle())
+	var target_height = building.position.length() + distance_to_planet
+	var current_height = position.length()
+	position *= lerp(1, target_height / current_height, dt)
+	destroyed_building = building
 
 
-func find_nearest_destroyed_building(buildings):
+func find_nearest_destroyed_building():
+	var buildings = get_tree().get_nodes_in_group("building" + str(get_parent().playerNumber))
 	var result = null
 	var distance_to_result = INF
 	for building in buildings:
@@ -67,8 +69,11 @@ func find_nearest_destroyed_building(buildings):
 
 func _draw():
 	if (laser_on and attached and is_instance_valid(destroyed_building)):
-		draw_line(Vector2(0, 0), to_local(destroyed_building.global_position) \
-			+ Vector2(6, 0).rotated(Vector2(0, 0).direction_to(to_local(get_parent().global_position)).angle()) , Color(0.5, 0.5, 1, 0.7))
+		var laser_length_factor = 1 + sin(current_sin_param) * 0.4
+		var global_target = destroyed_building.get_parent().to_global(destroyed_building.position * 0.94)
+		var target_position = to_local(global_target) * laser_length_factor
+
+		draw_line(Vector2(0, 0), target_position , Color(0.5, 0.5, 1, 0.7))
 
 func toggle_laser():
 	toggle_laser_timer.wait_time = random_laser_timer_countdown()

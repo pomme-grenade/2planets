@@ -7,7 +7,7 @@ var type
 var child
 var buildup_time = 1
 var repair_time
-var initial_repair_time = 300
+var initial_repair_time = 50
 var activate_cost = 0
 
 const textures = {
