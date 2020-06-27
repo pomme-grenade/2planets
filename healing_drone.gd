@@ -35,6 +35,7 @@ func _process(dt):
 
 func _draw():
 	if (laser_on and attached):
+		# auslagern
 		draw_line(Vector2(0, 0), (to_local(planet.global_position) - Vector2(0, 80).rotated(Vector2(0, 0).direction_to(to_local(planet.global_position)).angle() - PI / 2)), Color(0.5, 0.5, 1, 0.7))
 
 func toggle_laser():
