@@ -23,27 +23,32 @@ func _process(dt):
 	if shooting:
 		laser_position = 400
 		for building in buildings:
-			if Vector2(0, Vector2(0, 0).distance_to(to_local(building.global_position))).rotated(PI).distance_to(to_local(building.global_position)) < 10 \
-					and Vector2(0, 0).distance_to(to_local(building.global_position)) < 400 and not building.is_destroyed and not one_building_destroyed:
+			var distance_to_building = Vector2(0, 0).distance_to(to_local(building.global_position))
+
+			if Vector2(0, -distance_to_building).distance_to(to_local(building.global_position)) < 10 \
+					and distance_to_building < 400 and not building.is_destroyed and not one_building_destroyed:
 				building.destroy()
+				laser_position = distance_to_building
 				one_building_destroyed = true
-	update()
+				update()
+				return
 
 func _draw():
 	if shooting:
-		draw_line(Vector2(0, 0), Vector2(0, laser_position).rotated(PI), Color(1, 1, 1), 4)
+		draw_line(Vector2(0, 0), Vector2(0, -laser_position), Color(1, 1, 1), 1)
 
 func stop_laser():
 	laser_position = 0
 	shooting = false
 	one_building_destroyed = false
 	stop_laser_timer.stop()
+	update()
 
 func on_activate():
 	if planet.money >= 20 and not shooting:
 		stop_laser_timer.start(0.07)
 		shooting = true
-		planet.money -= 20
+		planet.money -= activate_cost
 
 func buildup_finish():
 	get_node('/root/main/planet_ui_%d/building_cost/Label2' % planet.playerNumber).text = '10'

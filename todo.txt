@@ -52,6 +52,7 @@ TODO
 	- spiel vorbei wenn einer leaved im multiplayer
 	- Kamera
     - animation for activation
+    - can_activate function
 
 
 DONE

@@ -41,7 +41,7 @@ func init():
 func _process(_dt):
 	if is_destroyed and repair_time < initial_repair_time:
 		animation = type + '_buildup'
-		var completion = 1 - (repair_time / initial_repair_time)
+		var completion = 1 - ( 0.8 * repair_time / initial_repair_time)
 		frame = floor(completion * frames.get_frame_count(type + '_buildup'))
 
 

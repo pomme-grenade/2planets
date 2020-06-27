@@ -2,7 +2,7 @@ extends Node2D
 
 var planet
 var rocket_name_index = 0
-var activate_cost = 10
+var activate_cost = 30
 var target_player_number
 
 func init():
