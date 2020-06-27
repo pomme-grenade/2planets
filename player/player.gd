@@ -111,6 +111,10 @@ func _unhandled_input(event):
 		do_dissolve = false
 		action_pressed_timer.stop()
 
+	if event.is_action_pressed("god"):
+		planet.money += 100000
+
+
 func get_building_in_range():
 	for building in get_tree().get_nodes_in_group('building' + str(planet.playerNumber)):
 		if abs(position.angle_to(building.position)) < (PI / planet.slot_count) / 2:

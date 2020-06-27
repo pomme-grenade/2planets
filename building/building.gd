@@ -52,7 +52,7 @@ remotesync func destroy():
 	if child.has_method("on_destroy"):
 		child.on_destroy()
 	is_destroyed = true
-	play('attack_destroyed')
+	play('destroyed')
 	stop()
 	planet.update()
 

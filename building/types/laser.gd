@@ -21,7 +21,6 @@ func init():
 func _process(dt):
 	buildings = get_tree().get_nodes_in_group('building' + str(enemy_player_number))
 	if shooting:
-		laser_position = 400
 		for building in buildings:
 			var distance_to_building = Vector2(0, 0).distance_to(to_local(building.global_position))
 
@@ -49,6 +48,8 @@ func on_activate():
 		stop_laser_timer.start(0.07)
 		shooting = true
 		planet.money -= activate_cost
+		laser_position = 400
+		update()
 
 func buildup_finish():
 	get_node('/root/main/planet_ui_%d/building_cost/Label2' % planet.playerNumber).text = '10'
