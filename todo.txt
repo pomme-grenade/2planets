@@ -45,13 +45,13 @@ PROBLEME
 
 TODO
     - double click to build 
-    - show upgrade cost (cost general)
     - satellit besser proportionieren
     - defense destroyed move animation down
-
+    - grey upgrades when cant afford
 	- multiplayer restart
 	- spiel vorbei wenn einer leaved im multiplayer
 	- Kamera
+    - animation for activation
 
 
 DONE
@@ -64,3 +64,4 @@ DONE
     - bg neu malen (done)
     - stop game on game over
     - full money if delete while buildup
+    - show upgrade cost (cost general)
