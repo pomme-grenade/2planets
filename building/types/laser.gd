@@ -24,7 +24,7 @@ func _process(dt):
 		laser_position = 400
 		for building in buildings:
 			if Vector2(0, Vector2(0, 0).distance_to(to_local(building.global_position))).rotated(PI).distance_to(to_local(building.global_position)) < 10 \
-			and Vector2(0, 0).distance_to(to_local(building.global_position)) < 400 and not building.is_destroyed and not one_building_destroyed:
+					and Vector2(0, 0).distance_to(to_local(building.global_position)) < 400 and not building.is_destroyed and not one_building_destroyed:
 				building.destroy()
 				one_building_destroyed = true
 	update()

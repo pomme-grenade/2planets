@@ -10,6 +10,10 @@ var building
 var planet_rocket_damage = 5
 var is_destroyed = false
 var explosion_radius = 20
+var split_distance
+var child_counter = 0
+var color = Color(1, 0.3, 0.3)
+var length = 6
 
 func _ready():
 	velocity = Vector2(40, 0).rotated(rotation)
@@ -21,11 +25,10 @@ func _init(target_player_number_):
 
 # calculates point on planet surfaces from rocket angle
 func point_on_planet():
-	 return target.planetRadius * target.global_position.direction_to(global_position) + target.global_position
+	 return (target.planetRadius - 10) * target.global_position.direction_to(global_position) + target.global_position
 
 func _draw():
-	var length = 3 + velocity.length() / 50
-	draw_rect(Rect2(Vector2(0, 0), Vector2(length, 1)), Color(1, 0.3, 0.3))
+	draw_rect(Rect2(Vector2(0, 0), Vector2(length, 1)), color)
 	if is_destroyed: 
 		# draw_circle(Vector2(0, 0), 50, Color(1, 1, 1))
 		draw_circle(to_local(point_on_planet()), explosion_radius, Color(1, 1, 1))
@@ -48,13 +51,38 @@ func _process(delta):
 		velocity = velocity * (1 + acceleration)
 
 		if target.is_network_master():
-			if global_position.distance_to(target.global_position) - target.planetRadius < 1:
+			var distance_to_target = global_position.distance_to(target.global_position) - target.planetRadius
+			if distance_to_target < 1:
 				rpc('hit_planet', target.get_path())
 				return
+			elif split_distance != null and distance_to_target < split_distance:
+				rpc('split')
+			elif position.length_squared() > 4000000:
+				queue_free()
 
 	position += velocity * delta
 	rotation = velocity.angle()
 	update()
+
+remotesync func split():
+	var count = 5
+	var spread = PI/8
+	for i in range(count):
+		child_counter += 1
+		var rocket = get_script().new(target_player_number)
+		rocket.name = name + '_' + str(child_counter)
+		rocket.rotation = rotation - spread * floor(count/2) + i * spread
+		rocket.position = position + velocity.rotated(rocket.rotation - rotation) * 0.2
+		rocket.from_planet = from_planet
+		rocket.building = building
+		rocket.set_network_master(get_network_master())
+		rocket.planet_rocket_damage = 1
+		rocket.color = color
+		rocket.length = 2
+		rocket.explosion_radius = 8
+		$'/root/main'.add_child(rocket)
+		rocket.velocity = velocity.rotated(rocket.rotation - rotation) * 0.8
+		queue_free()
 
 remotesync func hit_planet(path):
 	is_destroyed = true
