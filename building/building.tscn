@@ -1001,6 +1001,11 @@ region = Rect2( 208, 0, 16, 16 )
 
 [sub_resource type="SpriteFrames" id=244]
 animations = [ {
+"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ) ],
+"loop": true,
+"name": "income",
+"speed": 16.0
+}, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "defense",
