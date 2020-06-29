@@ -44,10 +44,9 @@ func stop_laser():
 	update()
 
 func on_activate():
-	if planet.money >= 20 and not shooting:
+	if not shooting:
 		stop_laser_timer.start(0.07)
 		shooting = true
-		planet.money -= activate_cost
 		laser_position = 400
 		update()
 

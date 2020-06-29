@@ -9,7 +9,6 @@ func init():
 	target_player_number = 2 if planet.playerNumber == 1 else 1
 
 remotesync func fire_rocket(name, position, rotation):
-	planet.money -= activate_cost
 	var rocket = preload("res://rocket.gd").new(target_player_number)
 	rocket.name = name
 	rocket.split_distance = 150

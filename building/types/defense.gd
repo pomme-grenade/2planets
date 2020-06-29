@@ -35,7 +35,7 @@ func _process(dt):
 	parent.global_rotation = current_quat.slerp(target_quat, 5 * dt).get_euler().z
 	cooldown -= dt
 	z_index = -1
-	get_node("/root/main/Background").z_index = -2
+	get_node("/root/main/background").z_index = -2
 
 	if cooldown > 0:
 		return

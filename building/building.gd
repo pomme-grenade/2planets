@@ -9,6 +9,7 @@ var buildup_time = 1
 var repair_time
 var initial_repair_time = 50
 var activate_cost = 0
+var base_type
 
 const textures = {
 	attack = preload('res://images/buildings/rocket.png'),
@@ -121,5 +122,13 @@ func buildup_finish():
 	speed_scale = 1
 
 func activate():
-	if child.has_method('on_activate') and is_built and not is_destroyed:
+	if can_activate():
+		planet.money -= child.activate_cost
 		child.on_activate()
+
+func can_activate():
+	if child.get('activate_cost') != null:
+		return planet.money >= child.activate_cost and \
+			is_built and \
+			child.has_method('on_activate') and not \
+			is_destroyed 

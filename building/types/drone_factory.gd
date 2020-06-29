@@ -28,8 +28,5 @@ func on_activate():
 	get_parent().speed_scale = 10
 
 func on_animation_finished():
-	if planet.money >= activate_cost:
-		new_drone()
-		planet.money -= activate_cost
-
+	new_drone()
 	get_parent().play('drone_factory')

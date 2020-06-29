@@ -22,7 +22,7 @@ __meta__ = {
 offset = Vector2( 400, 200 )
 current = true
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="background" type="Sprite" parent="."]
 position = Vector2( 400, 200 )
 texture = ExtResource( 3 )
 

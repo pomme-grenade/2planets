@@ -54,26 +54,22 @@ func init():
 func _process(_dt):
 	if is_instance_valid(player.current_building):
 		toggle_new_building_ui(false)
-		if not is_instance_valid(player.current_building.child):
-			get_node('update_building/activate/activate_texture').texture = load('res://images/ui/arrow_%s.png' % player.current_building.type)
+		if player.current_building.can_activate():
+			get_node('update_building/activate/activate_texture').texture = load('res://images/ui/arrow_%s.png' % player.current_building.base_type)
+		else:
+			get_node('update_building/activate/activate_texture').texture = load('res://images/ui/arrow_cant_activate.png')
+
 		for index in [1, 2]:
 			if player.current_building.can_upgrade(index):
-				# get_node('update_building/upgrade_%d/arrow' % index).set_texture(laser_button)
-				get_node('update_building/upgrade_%d/arrow' % index).visible = true
-				get_node('update_building/upgrade_%d/arrow' % index).texture = load('res://images/ui/%s_button.png' \
+				# get_node('update_building/upgrade_%d/upgrade_texture' % index).set_texture(laser_button)
+				get_node('update_building/upgrade_%d/upgrade_texture' % index).visible = true
+				get_node('update_building/upgrade_%d/upgrade_texture' % index).texture = load('res://images/ui/%s_button.png' \
 					% player.current_building.child.get('upgrade_%s_type' % index))
 			else:
-				get_node('update_building/upgrade_%d/arrow' % index).visible = false
+				get_node('update_building/upgrade_%d/upgrade_texture' % index).visible = false
 
 				
 			get_node('/root/main/planet_ui_%s/building_cost/Label2' % player.playerNumber).text = '%d' % player.current_building.activate_cost
-
-			# if player.current_building.type == 'attack':
-			# 	get_node('/root/main/planet_ui_%s/building_cost/Label2' % player.playerNumber).text = '10'
-			# elif player.current_building.type == 'laser':
-			# 	get_node('/root/main/planet_ui_%s/building_cost/Label2' % player.playerNumber).text = '20'
-			# else:
-			# 	get_node('/root/main/planet_ui_%s/building_cost/Label2' % player.playerNumber).text = '0'
 	else:
 		toggle_new_building_ui(true)
 		get_node('/root/main/planet_ui_%s/building_cost/Label2' % player.playerNumber).text = '40'

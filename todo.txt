@@ -44,17 +44,15 @@ PROBLEME
 
 
 TODO
-    - building info wenn man über gebauten buildings steht
-    - max drones per drone building
-    - double click to build 
     - satellit besser proportionieren
     - better satellite destroyed graphic
-    - grey upgrades when cant afford
 	- multiplayer restart
 	- spiel vorbei wenn einer leaved im multiplayer
-	- Kamera
-    - animation for activation
-    - can_activate function
+    - double click to build
+    - grey upgrades when cant afford
+    - max drones per drone building
+    - building info wenn man über gebauten buildings steht
+    - tutorial
 
 
 DONE
@@ -68,3 +66,6 @@ DONE
     - stop game on game over
     - full money if delete while buildup
     - show upgrade cost (cost general)
+    - can_activate function
+    - animation for activation
+	- Kamera

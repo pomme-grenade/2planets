@@ -142,6 +142,7 @@ remotesync func spawn_building(type, name, position):
 		'attack': preload('res://building/types/attack.gd'),
 	}
 	building.type = type
+	building.base_type = type
 	building.child = scripts[type].new()
 	building.child.name = name + '_child'
 	building.planet = planet
