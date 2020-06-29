@@ -22,12 +22,9 @@ __meta__ = {
 offset = Vector2( 400, 200 )
 current = true
 
-[node name="Background" type="Sprite" parent="."]
-position = Vector2( -800, -400 )
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 400, 200 )
 texture = ExtResource( 3 )
-centered = false
-region_enabled = true
-region_rect = Rect2( 353.342, 28.4759, 30.6934, 54.0205 )
 
 [node name="planet_1" parent="." instance=ExtResource( 2 )]
 position = Vector2( 200, 200 )

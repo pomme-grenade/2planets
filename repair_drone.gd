@@ -24,7 +24,7 @@ func _process(dt):
 			destroyed_building.buildup_finish()
 			detach()
 
-	if attached and not is_instance_valid(destroyed_building):
+	if attached and is_instance_valid(destroyed_building) and not destroyed_building.is_destroyed:
 		detach()
 
 	current_sin_param += dt
@@ -69,8 +69,8 @@ func find_nearest_destroyed_building():
 
 func _draw():
 	if (laser_on and attached and is_instance_valid(destroyed_building)):
-		var laser_length_factor = 1 + sin(current_sin_param) * 0.4
-		var global_target = destroyed_building.get_parent().to_global(destroyed_building.position * 0.94)
+		var laser_length_factor = 1 + sin(current_sin_param) * 0.2
+		var global_target = destroyed_building.get_parent().to_global(destroyed_building.position * 0.98)
 		var target_position = to_local(global_target) * laser_length_factor
 
 		draw_line(Vector2(0, 0), target_position , Color(0.5, 0.5, 1, 0.7))

@@ -20,6 +20,13 @@ func new_drone():
 	healing_drone.init()
 	
 func on_activate():
+	get_parent().connect('animation_finished', self, 'on_animation_finished', [], CONNECT_ONESHOT)
+	get_parent().play('drone_factory_activate')
+	get_parent().speed_scale = 10
+
+func on_animation_finished():
 	if planet.money >= activate_cost:
 		new_drone()
 		planet.money -= activate_cost
+
+	get_parent().play('drone_factory')

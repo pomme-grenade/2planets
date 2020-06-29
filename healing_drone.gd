@@ -35,7 +35,11 @@ func _process(dt):
 
 func _draw():
 	if (laser_on and attached):
-		draw_line(Vector2(1, 0), (to_local(planet.global_position) - Vector2(0, 90).rotated(Vector2(sin(current_sin_param) * 30, 0).direction_to(to_local(planet.global_position)).angle() - PI / 2)), Color(0.5, 0.5, 1, 0.7))
+		var swinging_movement = sin(current_sin_param) * 30
+		var planet_to_drone_angle = Vector2(0, 0).direction_to(position).angle() - PI / 2
+		var global_target = get_parent().to_global(Vector2(swinging_movement, 70).rotated(planet_to_drone_angle))
+
+		draw_line(Vector2(1, 0), (to_local(global_target)), Color(0.5, 0.5, 1, 0.7))
 
 func toggle_laser():
 	toggle_laser_timer.wait_time = random_laser_timer_countdown()
