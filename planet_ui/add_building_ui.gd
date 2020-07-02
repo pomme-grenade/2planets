@@ -17,6 +17,7 @@ func init():
 
 	info_container = $current_money_label
 
+
 	$'building_cost/Label1'.text = '40'
 	$'building_cost/Label2'.text = '40'
 	$'building_cost/Label3'.text = '40'
@@ -70,9 +71,17 @@ func _process(_dt):
 
 				
 			get_node('/root/main/planet_ui_%s/building_cost/Label2' % player.playerNumber).text = '%d' % player.current_building.activate_cost
+
+		if player.playerNumber == 1:
+			$building_info.rect_global_position = Vector2(0, 0)
+		else:
+			$building_info.rect_global_position = Vector2(800 - $building_info.rect_size.x, 0)
+
+		$building_info.text = player.current_building.building_info
 	else:
 		toggle_new_building_ui(true)
 		get_node('/root/main/planet_ui_%s/building_cost/Label2' % player.playerNumber).text = '40'
+		$building_info.text = ''
 
 	info_container.get_node('life').text = "%s ♥" % player.planet.health
 	info_container.get_node('money').text = "%0.0f$" % player.planet.money

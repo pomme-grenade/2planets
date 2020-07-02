@@ -4,8 +4,10 @@ var planet
 var rocket_name_index = 0
 var activate_cost = 30
 var target_player_number
+var building_info
 
 func init():
+	building_info = ''
 	target_player_number = 2 if planet.playerNumber == 1 else 1
 
 remotesync func fire_rocket(name, position, rotation):

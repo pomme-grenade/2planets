@@ -4,11 +4,12 @@ var planet
 var repair_drone
 var drone_index = 0
 var upgrade_1_type = 'healing_drone_factory'
-var upgrade_1_script = 'res://building/types/' + upgrade_1_type + '.gd'
 var activate_cost = 40
+var building_info
 
 func init():
-	pass
+	building_info = ''
+
 func buildup_finish():
 	pass
 

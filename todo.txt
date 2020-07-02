@@ -1,7 +1,6 @@
 IDEEN
 	- upgrades
         - antisatellit rakete
-        - laserraketen instantschuss gerader schuss
         - raketen, die sich mid-flight in mehrere kleinere aufsplitten
         - gebäude zerstören / stunnen / schaden machen
            - schiff, das rüber fliegt und dronen released
@@ -20,7 +19,6 @@ IDEEN
     - tower / upgrades / units draften a la bloons TD?
     - gegner planeten einnehmen
       - gebäude die rüber fliegen und hp klauen
-    - planeten heilen für mehr lategame
     - es sollte einen counter fuer alles geben, vorausgesetzt man hat genug geld
     - early rockets a lot weaker planet damage one repair drone slowly rebuilds destroyed buildings need upgrade for more
     - randomly generated gebiete die verschiedenen gebäuden boosts geben
@@ -30,7 +28,8 @@ IDEEN
         - ein gebiet in dem gebäude schneller aufgebaut werden
         - terraforming
     - random upgrade drops die man einsammeln kann und damit freischaltet
-	- lebensanzeige
+	- buildings combine for extra effect
+    - particles
 
 
 PROBLEME
@@ -50,6 +49,7 @@ TODO
 	- spiel vorbei wenn einer leaved im multiplayer
     - double click to build
     - grey upgrades when cant afford
+    - building shadows
     - max drones per drone building
     - building info wenn man über gebauten buildings steht
     - tutorial
@@ -69,3 +69,6 @@ DONE
     - can_activate function
     - animation for activation
 	- Kamera
+	- laserraketen instantschuss gerader schuss
+	- lebensanzeige
+    - planeten heilen für mehr lategame

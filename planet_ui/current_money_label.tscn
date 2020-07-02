@@ -3,6 +3,9 @@
 [node name="life" type="Control"]
 modulate = Color( 1, 0.996078, 0.996078, 1 )
 self_modulate = Color( 0.258824, 0.156863, 0.423529, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="life" type="Label" parent="."]
 visible = false

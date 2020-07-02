@@ -8,12 +8,14 @@ var max_strength = 40
 var strength = max_strength
 var regen = 5.0 / 2
 var upgrade_1_type = 'shield'
-var upgrade_1_script = 'res://building/types' + upgrade_1_type + '.gd'
+var building_info
 
 func init():
+	building_info = ''
+	position *= 1.5
 	get_parent().rotation = get_parent().position.angle() + PI / 2
+	get_parent().scale = Vector2(0.8, 0.8)
 	update()
-	pass
 
 func _process(_dt):
 	if not get_parent().is_built or get_parent().is_destroyed:

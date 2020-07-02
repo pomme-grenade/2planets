@@ -4,9 +4,10 @@ var healing_drone
 var drone_index = 0
 var planet
 var activate_cost  = 40
+var building_info
 
 func init():
-    pass
+	building_info = ''
 
 func new_drone():
 	healing_drone = preload('res://healing_drone.tscn').instance()
@@ -21,10 +22,10 @@ func new_drone():
 	
 func on_activate():
 	get_parent().connect('animation_finished', self, 'on_animation_finished', [], CONNECT_ONESHOT)
-	get_parent().play('drone_factory_activate')
+	get_parent().play('healing_drone_factory_activate')
 	get_parent().speed_scale = 10
 
 func on_animation_finished():
 	new_drone()
 
-	get_parent().play('drone_factory')
+	get_parent().play('healing_drone_factory')

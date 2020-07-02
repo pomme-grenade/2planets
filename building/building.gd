@@ -10,6 +10,7 @@ var repair_time
 var initial_repair_time = 50
 var activate_cost = 0
 var base_type
+var building_info = ''
 
 const textures = {
 	attack = preload('res://images/buildings/rocket.png'),
@@ -38,6 +39,8 @@ func init():
 	child.planet = planet
 	if child.has_method("init"):
 		child.init()
+
+	building_info = child.building_info
 
 func _process(_dt):
 	if is_destroyed and repair_time < initial_repair_time:

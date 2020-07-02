@@ -8,11 +8,13 @@ var fire_origin
 var cooldown = 0
 var cooldown_time = 0.5
 var upgrade_1_type = 'shield'
-var upgrade_1_script = 'res://building/types/' + upgrade_1_type + '.gd'
+var upgrade_2_type = 'instant_defense'
+var building_info
 
 func init():
+	building_info = ''
+	get_parent().position *= 1.5
 	add_user_signal('income', [{'name': 'value', 'type': TYPE_INT}])
-	pass
 
 func _process(dt):
 	if get_parent().is_destroyed or not get_parent().is_built:

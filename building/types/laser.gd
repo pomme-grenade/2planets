@@ -1,7 +1,6 @@
 extends Node2D
 var planet
 var upgrade_1_type = 'laser'
-var upgrade_1_script = 'res://building/types/' + upgrade_1_type + '.gd'
 var enemy_player_number
 var target_planet
 var buildings
@@ -10,8 +9,10 @@ var shooting = false
 var laser_position = 0
 var activate_cost = 20
 var one_building_destroyed = false
+var building_info
 
 func init():
+	building_info = ''
 	stop_laser_timer = Timer.new()
 	stop_laser_timer.connect('timeout', self, 'stop_laser')
 	add_child(stop_laser_timer)
