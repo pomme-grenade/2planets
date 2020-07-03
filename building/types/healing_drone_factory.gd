@@ -21,7 +21,8 @@ func new_drone():
 	healing_drone.init()
 	
 func on_activate():
-	get_parent().connect('animation_finished', self, 'on_animation_finished', [], CONNECT_ONESHOT)
+	if drone_index < 1:
+		get_parent().connect('animation_finished', self, 'on_animation_finished', [], CONNECT_ONESHOT)
 	get_parent().play('healing_drone_factory_activate')
 	get_parent().speed_scale = 10
 

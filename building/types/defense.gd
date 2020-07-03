@@ -53,7 +53,7 @@ func _draw():
 	if not get_parent().is_built or get_parent().is_destroyed:
 		return
 
-	draw_empty_circle(Vector2(0, 0), Vector2(0, attack_range / get_parent().global_scale.x), Color(0.4, 0.2, 0.7, 0.4), 0.5)
+	draw_empty_circle(Vector2(0, 0), Vector2(0, attack_range / get_parent().global_scale.x), Color(0.4, 0.2, 0.7, 0.2), 0.5)
 
 	if fire_position != null:
 		var alpha = cooldown * (1 / cooldown_time)

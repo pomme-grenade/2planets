@@ -131,7 +131,7 @@ func activate():
 
 func can_activate():
 	if child.get('activate_cost') != null:
-		return planet.money >= child.activate_cost and \
-			is_built and \
-			child.has_method('on_activate') and not \
-			is_destroyed 
+		return planet.money >= child.activate_cost \
+			and is_built \
+			and child.has_method('on_activate') \
+			and not is_destroyed 
