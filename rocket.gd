@@ -18,8 +18,7 @@ var length = 6
 func _ready():
 	velocity = Vector2(40, 0).rotated(rotation)
 
-func _init(target_player_number_):
-	target_player_number = target_player_number_
+func _init():
 	var owning_player_number = 1 if target_player_number == 2 else 2
 	add_to_group('rocket' + str(owning_player_number))
 
@@ -28,7 +27,6 @@ func point_on_planet():
 	 return (target.planetRadius - 10) * target.global_position.direction_to(global_position) + target.global_position
 
 func _draw():
-	draw_rect(Rect2(Vector2(0, 0), Vector2(length, 1)), color)
 	if is_destroyed: 
 		# draw_circle(Vector2(0, 0), 50, Color(1, 1, 1))
 		draw_circle(to_local(point_on_planet()), explosion_radius, Color(1, 1, 1))
@@ -69,11 +67,12 @@ remotesync func split():
 	var spread = PI/8
 	for i in range(count):
 		child_counter += 1
-		var rocket = get_script().new(target_player_number)
+		var rocket = get_script().new()
 		rocket.name = name + '_' + str(child_counter)
 		rocket.rotation = rotation - spread * floor(count/2) + i * spread
 		rocket.position = position + velocity.rotated(rocket.rotation - rotation) * 0.2
 		rocket.from_planet = from_planet
+		rocket.target_player_number = target_player_number
 		rocket.building = building
 		rocket.set_network_master(get_network_master())
 		rocket.planet_rocket_damage = 1
