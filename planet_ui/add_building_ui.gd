@@ -66,8 +66,11 @@ func _process(_dt):
 				get_node('update_building/upgrade_%d/upgrade_texture' % index).visible = true
 				get_node('update_building/upgrade_%d/upgrade_texture' % index).texture = load('res://images/ui/%s_button.png' \
 					% player.current_building.child.get('upgrade_%s_type' % index))
-			else:
-				get_node('update_building/upgrade_%d/upgrade_texture' % index).visible = false
+				get_node('update_building/upgrade_%d/upgrade_texture' % index).self_modulate = Color(1, 1, 1, 1)
+			elif player.current_building.child.get('upgrade_%s_type' % index) != null:
+				get_node('update_building/upgrade_%d/upgrade_texture' % index).texture = load('res://images/ui/%s_button.png' \
+					% player.current_building.child.get('upgrade_%s_type' % index))
+				get_node('update_building/upgrade_%d/upgrade_texture' % index).self_modulate = Color(1, 1, 1, 0.3)
 
 				
 			get_node('/root/main/planet_ui_%s/building_cost/Label2' % player.playerNumber).text = '%d' % player.current_building.activate_cost

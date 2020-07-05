@@ -120,7 +120,7 @@ tracks/0/keys = {
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite"]
-position = Vector2( 0, -15 )
+position = Vector2( 0, -20 )
 frames = SubResource( 23 )
 speed_scale = 1.5
 script = ExtResource( 3 )

@@ -1,12 +1,10 @@
 IDEEN
 	- upgrades
         - antisatellit rakete
-        - raketen, die sich mid-flight in mehrere kleinere aufsplitten
         - gebäude zerstören / stunnen / schaden machen
            - schiff, das rüber fliegt und dronen released
            - repair drones
         - ressourcen klauen
-        - anti-burst schild
         - mining dronen
         - thruster um seinen planeten zu bewegen
         - gravity asteroid slingshot
@@ -48,10 +46,8 @@ TODO
 	- multiplayer restart
 	- spiel vorbei wenn einer leaved im multiplayer
     - double click to build
-    - grey upgrades when cant afford
     - building shadows
     - max drones per drone building
-    - building info wenn man über gebauten buildings steht
     - tutorial
 
 
@@ -72,3 +68,7 @@ DONE
 	- laserraketen instantschuss gerader schuss
 	- lebensanzeige
     - planeten heilen für mehr lategame
+    - grey upgrades when cant afford
+    - building info wenn man über gebauten buildings steht
+    - anti-burst schild
+    - raketen, die sich mid-flight in mehrere kleinere aufsplitten

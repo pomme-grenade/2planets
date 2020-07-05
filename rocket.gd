@@ -28,11 +28,14 @@ func point_on_planet():
 	 return (target.planetRadius - 10) * target.global_position.direction_to(global_position) + target.global_position
 
 func _draw():
-	if is_destroyed: 
 		# draw_circle(Vector2(0, 0), 50, Color(1, 1, 1))
-		draw_circle(to_local(point_on_planet()), explosion_radius, Color(1, 1, 1))
+		# draw_circle(to_local(point_on_planet()), explosion_radius, Color(1, 1, 1))
+		pass
 
 func _process(delta):
+	if is_destroyed: 
+		play_explosion(point_on_planet(), 'rocket_on_planet')
+
 	if is_destroyed:
 		queue_free()
 		return
@@ -68,7 +71,7 @@ remotesync func split():
 	var spread = PI/8
 	for i in range(count):
 		child_counter += 1
-		var rocket = get_script().new()
+		var rocket = load('res://rocket.tscn').instance()
 		rocket.name = name + '_' + str(child_counter)
 		rocket.rotation = rotation - spread * floor(count/2) + i * spread
 		rocket.position = position + velocity.rotated(rocket.rotation - rotation) * 0.2
@@ -109,3 +112,9 @@ func find_new_target():
 		return get_node("/root/main/planet_2")
 	else:
 		return get_node("/root/main/planet_1")
+
+func play_explosion(explosion_position, explosion_animation):
+		var explosion = load('res://explosion.tscn').instance()
+		explosion.position = explosion_position
+		explosion.play(explosion_animation)
+		$'/root/main'.add_child(explosion)
