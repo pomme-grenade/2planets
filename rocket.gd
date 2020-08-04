@@ -23,6 +23,9 @@ func init(_target_player_number):
 	var owning_player_number = 1 if target_player_number == 2 else 2
 	add_to_group('rocket' + str(owning_player_number))
 
+	if split_distance != null:
+		self.texture = preload('res://images/buildings/split_missile.png')
+
 # calculates point on planet surfaces from rocket angle
 func point_on_planet():
 	 return (target.planetRadius - 10) * target.global_position.direction_to(global_position) + target.global_position
@@ -83,6 +86,7 @@ remotesync func split():
 		rocket.color = color
 		rocket.length = 2
 		rocket.explosion_radius = 8
+		rocket.texture = preload('res://images/buildings/split_missile.png')
 		rocket.init(target_player_number)
 		$'/root/main'.add_child(rocket)
 		rocket.velocity = velocity.rotated(rocket.rotation - rotation) * 0.8
