@@ -41,16 +41,14 @@ func init():
 		child.init()
 
 	building_info = child.building_info
+	if child.get('activate_cost') != null:
+		activate_cost = child.activate_cost
 
 func _process(_dt):
 	if is_destroyed and repair_time < initial_repair_time:
 		animation = type + '_buildup'
 		var completion = 1 - ( 0.8 * repair_time / initial_repair_time)
 		frame = floor(completion * frames.get_frame_count(type + '_buildup'))
-
-
-	if child.get('activate_cost') != null:
-		activate_cost = child.activate_cost
 
 remotesync func destroy():
 	if child.has_method("on_destroy"):
@@ -130,14 +128,11 @@ func activate():
 		child.on_activate()
 
 func can_activate():
-	if child.get('activate_cost') != null and child.get('animation_finished') == null:
+	var animation_finished = child.get('animation_finished') == null || child.animation_finished
+	if child.get('activate_cost') != null:
 		return planet.money >= child.activate_cost \
 			and is_built \
 			and child.has_method('on_activate') \
 			and not is_destroyed 
-	elif child.get('activate_cost') != null and child.get('animation_finished'):
-		return planet.money >= child.activate_cost \
-			and is_built \
-			and child.has_method('on_activate') \
-			and not is_destroyed \
-			and child.animation_finished
+			and animation_finished
+			and is_network_master()

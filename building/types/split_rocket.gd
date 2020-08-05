@@ -27,9 +27,6 @@ remotesync func fire_rocket(name, position, rotation):
 	update()
 
 func on_activate():
-	if planet.money < activate_cost or (not is_network_master()):
-		return
-
 	var name = '%d_split_rocket_%d' % [ planet.playerNumber, rocket_name_index ]
 	rocket_name_index += 1
 	var position = global_position - Vector2(5, 0).rotated(global_rotation)
