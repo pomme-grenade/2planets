@@ -1,7 +1,7 @@
 extends Node2D
 
 var planet
-var activate_cost = 40
+var activate_cost = 10
 var building_info
 var target_player_number
 var instant_defense_pulse

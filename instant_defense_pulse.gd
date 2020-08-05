@@ -45,7 +45,7 @@ func _draw():
 func explode():
 	if not is_exploding:
 		is_exploding = true
-		explosion_timer.start(0.3)
+		explosion_timer.start(1)
 	else:
 		queue_free()
 
