@@ -50,12 +50,12 @@ TODO
     - tutorial
     - bg fixen
 
-    - drones deaktivieren wenn building kaputt
     - max drones per drone building
     - hover building info unter die UI bewegen
-    - variable building cost 
+    - variable building cost
     - split rocket explosion größe
     - damage indicator animation
+    - meteoriten + meteoritenwaffe
 
 DONE
     - upgrades einbauen
