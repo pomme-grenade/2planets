@@ -195,15 +195,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label1" type="Label" parent="building_cost"]
+[node name="defense" type="Label" parent="building_cost"]
 margin_left = 1.22871
 margin_top = 10.4407
 margin_right = 15.2287
 margin_bottom = 18.4407
 custom_colors/font_color = Color( 0.337255, 0.2, 0.490196, 1 )
 text = "1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Label2" type="Label" parent="building_cost"]
+[node name="income" type="Label" parent="building_cost"]
 margin_left = 22.4775
 margin_top = 10.4674
 margin_right = 34.4775
@@ -214,7 +217,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label3" type="Label" parent="building_cost"]
+[node name="attack" type="Label" parent="building_cost"]
 margin_left = 44.5392
 margin_top = 9.77129
 margin_right = 57.5392

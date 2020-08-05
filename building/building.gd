@@ -11,6 +11,7 @@ var initial_repair_time = 50
 var activate_cost = 0
 var base_type
 var building_info = ''
+var building_costs = preload('res://building/building_costs.gd')
 
 const textures = {
 	attack = preload('res://images/buildings/rocket.png'),
@@ -50,6 +51,10 @@ func _process(_dt):
 		var completion = 1 - ( 0.8 * repair_time / initial_repair_time)
 		frame = floor(completion * frames.get_frame_count(type + '_buildup'))
 
+
+	if child.get('activate_cost') != null:
+		activate_cost = child.activate_cost
+
 remotesync func destroy():
 	if child.has_method("on_destroy"):
 		child.on_destroy()
@@ -79,7 +84,7 @@ func add_money(value):
 	income_animation.label.text = '+' + str(value)
 
 func can_upgrade(index):
-	return planet.money >= 40 and \
+	return planet.money >= building_costs.costs[type] and \
 		is_network_master() and \
 		typeof(child.get('upgrade_%d_type' % index)) == TYPE_STRING and \
 		(not is_destroyed) and \
@@ -100,7 +105,7 @@ remotesync func upgrade(index):
 	if typeof(new_child_script) != TYPE_STRING:
 		return
 
-	planet.money -= 40
+	planet.money -= building_costs.costs[type]
 
 	var new_child = load(new_child_script).new()
 	new_child.name = child.name + '_upgrade'
