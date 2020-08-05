@@ -130,9 +130,9 @@ func activate():
 func can_activate():
 	var animation_finished = child.get('animation_finished') == null || child.animation_finished
 	if child.get('activate_cost') != null:
-		return planet.money >= child.activate_cost \
-			and is_built \
-			and child.has_method('on_activate') \
+		return (planet.money >= child.activate_cost
+			and is_built
+			and child.has_method('on_activate')
 			and not is_destroyed 
 			and animation_finished
-			and is_network_master()
+			and is_network_master())

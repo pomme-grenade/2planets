@@ -7,7 +7,6 @@ var attack_range = 80
 var max_strength = 40
 var strength = max_strength
 var regen = 5.0 / 2
-var upgrade_1_type = 'shield'
 var building_info
 
 func init():
