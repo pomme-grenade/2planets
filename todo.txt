@@ -50,10 +50,8 @@ TODO
     - tutorial
     - bg fixen
 
-    - drones deaktivieren wenn building kaputt
     - max drones per drone building
     - hover building info unter die UI bewegen
-    - variable building cost 
     - split rocket explosion größe
     - damage indicator animation
 
@@ -78,3 +76,5 @@ DONE
     - building info wenn man über gebauten buildings steht
     - anti-burst schild
     - raketen, die sich mid-flight in mehrere kleinere aufsplitten
+    - drones deaktivieren wenn building kaputt
+    - variable building cost 
