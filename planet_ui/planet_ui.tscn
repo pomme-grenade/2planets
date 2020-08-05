@@ -1,10 +1,10 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://planet_ui/add_building_ui.gd" type="Script" id=1]
 [ext_resource path="res://images/ui/satellite_button.png" type="Texture" id=2]
 [ext_resource path="res://images/ui/rocket_button.png" type="Texture" id=3]
 [ext_resource path="res://images/ui/mine_button.png" type="Texture" id=4]
-[ext_resource path="res://font/riskofrainfont.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://font/font.tres" type="DynamicFont" id=5]
 [ext_resource path="res://images/ui/arrow.png" type="Texture" id=6]
 [ext_resource path="res://planet_ui/current_money_label.tscn" type="PackedScene" id=7]
 [ext_resource path="res://images/ui/button_texture_normal.tres" type="StyleBox" id=8]
@@ -21,10 +21,6 @@
 [sub_resource type="BitmapFont" id=5]
 
 [sub_resource type="BitmapFont" id=6]
-
-[sub_resource type="DynamicFont" id=7]
-size = 5
-font_data = ExtResource( 5 )
 
 [node name="planet_ui" type="Control"]
 margin_right = 71.0
@@ -181,9 +177,10 @@ __meta__ = {
 }
 
 [node name="current_money_label" parent="." instance=ExtResource( 7 )]
-margin_top = 34.0
-margin_right = 62.0
-margin_bottom = 42.0
+margin_left = 0.166855
+margin_top = 34.1669
+margin_right = 62.1669
+margin_bottom = 42.1669
 
 [node name="building_cost" type="Control" parent="."]
 margin_left = -0.225937
@@ -234,11 +231,11 @@ __meta__ = {
 }
 
 [node name="building_info" type="Label" parent="."]
-margin_left = 0.743256
+margin_left = 0.409546
 margin_top = 44.1493
-margin_right = 40.7433
+margin_right = 53.4095
 margin_bottom = 52.1493
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = ExtResource( 5 )
 text = "building info"
 __meta__ = {
 "_edit_use_anchors_": false
