@@ -10,7 +10,7 @@ var repair_time
 var initial_repair_time = 50
 var activate_cost = 0
 var base_type
-var building_info = ''
+var building_info: String setget ,get_building_info
 var building_costs = preload('res://building/building_costs.gd').costs
 
 const textures = {
@@ -41,7 +41,6 @@ func init():
 	if child.has_method("init"):
 		child.init()
 
-	building_info = child.building_info
 	if child.get('activate_cost') != null:
 		activate_cost = child.activate_cost
 
@@ -141,6 +140,10 @@ func can_activate():
 		return (planet.money >= child.activate_cost
 			and is_built
 			and child.has_method('on_activate')
+			and (not child.has_method('can_activate') or child.can_activate())
 			and not is_destroyed 
 			and animation_finished
 			and is_network_master())
+
+func get_building_info() -> String:
+	return child.building_info
