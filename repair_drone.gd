@@ -6,6 +6,7 @@ var distance_to_planet = 10
 var toggle_laser_timer
 var attached = false
 var current_sin_param = rand_range(0, 10)
+var active = true setget set_active
 
 func init():
 	toggle_laser_timer = Timer.new()
@@ -15,6 +16,9 @@ func init():
 
 func _process(dt):
 	update()
+
+	if not active:
+		return
 
 	if attached and is_instance_valid(destroyed_building) and destroyed_building.is_destroyed:
 		destroyed_building.repair_time -= dt
@@ -78,6 +82,14 @@ func _draw():
 func toggle_laser():
 	toggle_laser_timer.wait_time = random_laser_timer_countdown()
 	laser_on = !laser_on
+
+func set_active(new_active):
+	active = new_active
+	if not active:
+		modulate = Color(1, 0.6, 0.6)
+		detach()
+	else:
+		self.modulate = Color(1, 1, 1)
 
 func detach():
 	laser_on = false

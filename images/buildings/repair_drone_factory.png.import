@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/drone_factory.png-9e1003c3caeada5f6acfd3d095f02244.stex"
+path="res://.import/repair_drone_factory.png-df53c8db57cf3f31773fd0ed8f45d15e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/buildings/drone_factory.png"
-dest_files=[ "res://.import/drone_factory.png-9e1003c3caeada5f6acfd3d095f02244.stex" ]
+source_file="res://images/buildings/repair_drone_factory.png"
+dest_files=[ "res://.import/repair_drone_factory.png-df53c8db57cf3f31773fd0ed8f45d15e.stex" ]
 
 [params]
 

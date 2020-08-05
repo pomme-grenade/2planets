@@ -8,15 +8,20 @@ var toggle_laser_timer
 var attached = false
 var current_sin_param = rand_range(0, 10)
 var planet
+var active = true setget set_active
 
 func init():
 	toggle_laser_timer = Timer.new()
 	toggle_laser_timer.connect('timeout', self, 'toggle_laser')
 	add_child(toggle_laser_timer)
 	toggle_laser_timer.start(random_laser_timer_countdown())
+	modulate = Color(0.2, 0.6, 1)
 
 func _process(dt):
 	update()
+
+	if not active:
+		return
 
 	if attached:
 		planet.health += 0.005
@@ -44,6 +49,14 @@ func _draw():
 func toggle_laser():
 	toggle_laser_timer.wait_time = random_laser_timer_countdown()
 	laser_on = !laser_on
+
+func set_active(new_active):
+	active = new_active
+	if not active:
+		detach()
+		modulate = Color(1, 0.6, 0.6)
+	else:
+		modulate = Color(0.2, 0.6, 1)
 
 func detach():
 	laser_on = false

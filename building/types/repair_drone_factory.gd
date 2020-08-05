@@ -7,12 +7,14 @@ var upgrade_1_type = 'healing_drone_factory'
 var activate_cost = 40
 var building_info
 var animation_finished = true
+var drones = []
 
 func init():
 	building_info = ''
 
 func buildup_finish():
-	pass
+	for drone in drones:
+		drone.active = true
 
 func new_drone():
 	repair_drone = preload('res://repair_drone.tscn').instance()
@@ -22,6 +24,11 @@ func new_drone():
 	repair_drone.z_index = 3 if round(rand_range(1, 3)) == 1 else 1
 	planet.add_child(repair_drone)
 	repair_drone.init()
+	drones.append(repair_drone)
+
+func on_destroy():
+	for drone in drones:
+		drone.active = false
 	
 func on_activate():
 	get_parent().connect('animation_finished', self, 'on_animation_finished', [], CONNECT_ONESHOT)

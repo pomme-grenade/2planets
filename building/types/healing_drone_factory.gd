@@ -6,6 +6,7 @@ var planet
 var activate_cost  = 40
 var building_info
 var animation_finished = true
+var drones = []
 
 func init():
 	building_info = ''
@@ -19,12 +20,21 @@ func new_drone():
 	healing_drone.z_index = 3 if round(rand_range(1, 3)) == 1 else 1
 	planet.add_child(healing_drone)
 	healing_drone.init()
+	drones.append(healing_drone)
 	
 func on_activate():
 	get_parent().connect('animation_finished', self, 'on_animation_finished', [], CONNECT_ONESHOT)
 	get_parent().play('healing_drone_factory_activate')
 	get_parent().speed_scale = 10
 	animation_finished = false
+
+func buildup_finish():
+	for drone in drones:
+		drone.active = true
+
+func on_destroy():
+	for drone in drones:
+		drone.active = false
 
 func on_animation_finished():
 	animation_finished = true

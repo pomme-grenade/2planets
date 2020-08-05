@@ -210,6 +210,9 @@ margin_right = 34.4775
 margin_bottom = 18.4674
 custom_colors/font_color = Color( 0.337255, 0.2, 0.490196, 1 )
 text = "2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label3" type="Label" parent="building_cost"]
 margin_left = 44.5392
