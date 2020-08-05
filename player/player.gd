@@ -13,6 +13,7 @@ var building_to_destroy
 var timer_wait_time = 0.7
 var do_dissolve = false
 var dissolve_amount = 1
+var building_costs = preload('res://building/building_costs.gd').costs
 
 
 export var speed = 1
@@ -121,7 +122,7 @@ func get_building_in_range():
 			return building
 
 func can_build(type):
-	return (planet.money >= 40
+	return (planet.money >= building_costs[type]
 		and not is_instance_valid(current_building))
 
 func try_spawn_building(type, name, position):
@@ -163,7 +164,7 @@ remotesync func spawn_building(type, name, position):
 	# re-draw circle highlighting the new building
 	planet.update()
 
-	planet.money -= 40
+	planet.money -= building_costs[type]
 
 func init_ui():
 	ui = get_node('/root/main/planet_ui_%s' % playerNumber)
