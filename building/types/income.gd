@@ -3,7 +3,7 @@ extends Node2D
 var planet
 
 var additional_income = 0.5
-var upgrade_1_type = 'drone_factory'
+var upgrade_1_type = 'repair_drone_factory'
 var upgrade_2_type = 'teleporter'
 var building_info 
 

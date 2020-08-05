@@ -4,6 +4,7 @@ var player
 var building_to_destroy
 var building_index = 0
 var info_container
+var building_costs = preload('res://building/building_costs.gd').costs
 
 const building_types = [
 	'attack',
@@ -16,11 +17,6 @@ func init():
 		return
 
 	info_container = $current_money_label
-
-
-	$'building_cost/Label1'.text = '40'
-	$'building_cost/Label2'.text = '40'
-	$'building_cost/Label3'.text = '40'
 
 	for type in building_types:
 		var button = get_node('new_building/' + type)
@@ -53,18 +49,28 @@ func init():
 
 
 func _process(_dt):
+
 	if is_instance_valid(player.current_building):
 		toggle_new_building_ui(false)
 		var activate_button = $'update_building/activate/activate_texture'
 		if player.current_building.can_activate():
-			activate_button.texture = load('res://images/ui/arrow_%s.png' % player.current_building.base_type)
+			activate_button.texture = load('res://images/ui/arrow_%s.png' \
+				% player.current_building.base_type)
 		else:
 			activate_button.texture = load('res://images/ui/arrow_cant_activate.png')
 
 		for index in [1, 2]:
+			if index == 1:
+				$'building_cost/defense'.text =  \
+					str(building_costs[player.current_building.child.get('upgrade_%s_type' % index)])
+			elif index == 2:
+				$'building_cost/attack'.text =  \
+					str(building_costs[player.current_building.child.get('upgrade_%s_type' % index)])
+			$'building_cost/income'.text =  \
+				str(building_costs[player.current_building.child.get('upgrade_%s_type' % index)])
+
 			var upgrade_button = get_node('update_building/upgrade_%d/upgrade_texture' % index)
 			if player.current_building.can_upgrade(index):
-				# get_node('update_building/upgrade_%d/upgrade_texture' % index).set_texture(laser_button)
 				upgrade_button.visible = true
 				upgrade_button.texture = load('res://images/ui/%s_button.png' \
 					% player.current_building.child.get('upgrade_%s_type' % index))
@@ -77,7 +83,8 @@ func _process(_dt):
 				upgrade_button.visible = false
 
 				
-			get_node('/root/main/planet_ui_%s/building_cost/Label2' % player.playerNumber).text = '%d' % player.current_building.activate_cost
+			get_node('/root/main/planet_ui_%s/building_cost/income' \
+				% player.playerNumber).text = '%d' % player.current_building.activate_cost
 
 		if player.playerNumber == 1:
 			$building_info.rect_global_position = Vector2(0, 0)
@@ -86,8 +93,11 @@ func _process(_dt):
 
 		$building_info.text = player.current_building.building_info
 	else:
+		$'building_cost/defense'.text = str(building_costs['defense'])
+		$'building_cost/income'.text = str(building_costs['income'])
+		$'building_cost/attack'.text = str(building_costs['attack'])
+
 		toggle_new_building_ui(true)
-		get_node('/root/main/planet_ui_%s/building_cost/Label2' % player.playerNumber).text = '40'
 		$building_info.text = ''
 
 	info_container.get_node('money').text = "%0.0f$" % player.planet.money
