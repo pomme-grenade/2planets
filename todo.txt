@@ -47,9 +47,15 @@ TODO
 	- spiel vorbei wenn einer leaved im multiplayer
     - double click to build
     - building shadows
-    - max drones per drone building
     - tutorial
 
+    - drones deaktivieren wenn building kaputt
+    - max drones per drone building
+    - hover building info unter die UI bewegen
+    - bg fixen
+    - variable building cost 
+    - split rocket explosion größe
+    - damage indicator animation
 
 DONE
     - upgrades einbauen
