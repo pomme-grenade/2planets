@@ -48,11 +48,11 @@ TODO
     - double click to build
     - building shadows
     - tutorial
+    - bg fixen
 
     - drones deaktivieren wenn building kaputt
     - max drones per drone building
     - hover building info unter die UI bewegen
-    - bg fixen
     - variable building cost 
     - split rocket explosion größe
     - damage indicator animation
