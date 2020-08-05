@@ -60,14 +60,13 @@ func _process(_dt):
 			activate_button.texture = load('res://images/ui/arrow_cant_activate.png')
 
 		for index in [1, 2]:
-			if index == 1:
+			var upgrade_type = player.current_building.child.get('upgrade_%s_type' % index)
+			if index == 1 and upgrade_type != null:
 				$'building_cost/defense'.text =  \
-					str(building_costs[player.current_building.child.get('upgrade_%s_type' % index)])
-			elif index == 2:
+					str(building_costs[upgrade_type])
+			elif index == 2 and upgrade_type != null:
 				$'building_cost/attack'.text =  \
-					str(building_costs[player.current_building.child.get('upgrade_%s_type' % index)])
-			$'building_cost/income'.text =  \
-				str(building_costs[player.current_building.child.get('upgrade_%s_type' % index)])
+					str(building_costs[upgrade_type])
 
 			var upgrade_button = get_node('update_building/upgrade_%d/upgrade_texture' % index)
 			if player.current_building.can_upgrade(index):

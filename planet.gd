@@ -7,7 +7,7 @@ export var health = 100
 
 var player
 var income = 4
-var start_money = 160
+var start_money = 200
 var money = 0
 var slot_count = 14
 var slot_width

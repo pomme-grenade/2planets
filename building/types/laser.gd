@@ -50,6 +50,3 @@ func on_activate():
 		shooting = true
 		laser_position = 400
 		update()
-
-func buildup_finish():
-	get_node('/root/main/planet_ui_%d/building_cost/Label2' % planet.playerNumber).text = '10'
