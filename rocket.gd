@@ -14,6 +14,7 @@ var split_distance
 var child_counter = 0
 var color = Color(1, 0.3, 0.3)
 var length = 6
+var is_split_rocket = false
 
 func _ready():
 	velocity = Vector2(40, 0).rotated(rotation)
@@ -88,6 +89,7 @@ remotesync func split():
 		rocket.explosion_radius = 8
 		rocket.texture = preload('res://images/buildings/split_missile.png')
 		rocket.init(target_player_number)
+		rocket.is_split_rocket = true
 		$'/root/main'.add_child(rocket)
 		rocket.velocity = velocity.rotated(rocket.rotation - rotation) * 0.8
 		queue_free()
@@ -122,3 +124,6 @@ func play_explosion(explosion_position, explosion_animation):
 		explosion.position = explosion_position
 		explosion.play(explosion_animation)
 		$'/root/main'.add_child(explosion)
+
+		if is_split_rocket:
+			explosion.scale = Vector2(0.5, 0.5)
