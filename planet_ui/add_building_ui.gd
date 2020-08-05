@@ -55,22 +55,26 @@ func init():
 func _process(_dt):
 	if is_instance_valid(player.current_building):
 		toggle_new_building_ui(false)
+		var activate_button = $'update_building/activate/activate_texture'
 		if player.current_building.can_activate():
-			get_node('update_building/activate/activate_texture').texture = load('res://images/ui/arrow_%s.png' % player.current_building.base_type)
+			activate_button.texture = load('res://images/ui/arrow_%s.png' % player.current_building.base_type)
 		else:
-			get_node('update_building/activate/activate_texture').texture = load('res://images/ui/arrow_cant_activate.png')
+			activate_button.texture = load('res://images/ui/arrow_cant_activate.png')
 
 		for index in [1, 2]:
+			var upgrade_button = get_node('update_building/upgrade_%d/upgrade_texture' % index)
 			if player.current_building.can_upgrade(index):
 				# get_node('update_building/upgrade_%d/upgrade_texture' % index).set_texture(laser_button)
-				get_node('update_building/upgrade_%d/upgrade_texture' % index).visible = true
-				get_node('update_building/upgrade_%d/upgrade_texture' % index).texture = load('res://images/ui/%s_button.png' \
+				upgrade_button.visible = true
+				upgrade_button.texture = load('res://images/ui/%s_button.png' \
 					% player.current_building.child.get('upgrade_%s_type' % index))
-				get_node('update_building/upgrade_%d/upgrade_texture' % index).self_modulate = Color(1, 1, 1, 1)
+				upgrade_button.self_modulate = Color(1, 1, 1, 1)
 			elif player.current_building.child.get('upgrade_%s_type' % index) != null:
-				get_node('update_building/upgrade_%d/upgrade_texture' % index).texture = load('res://images/ui/%s_button.png' \
+				upgrade_button.texture = load('res://images/ui/%s_button.png' \
 					% player.current_building.child.get('upgrade_%s_type' % index))
-				get_node('update_building/upgrade_%d/upgrade_texture' % index).self_modulate = Color(1, 1, 1, 0.3)
+				upgrade_button.self_modulate = Color(1, 1, 1, 0.3)
+			else:
+				upgrade_button.visible = false
 
 				
 			get_node('/root/main/planet_ui_%s/building_cost/Label2' % player.playerNumber).text = '%d' % player.current_building.activate_cost
@@ -86,7 +90,6 @@ func _process(_dt):
 		get_node('/root/main/planet_ui_%s/building_cost/Label2' % player.playerNumber).text = '40'
 		$building_info.text = ''
 
-	info_container.get_node('life').text = "%s ♥" % player.planet.health
 	info_container.get_node('money').text = "%0.0f$" % player.planet.money
 	info_container.get_node('income').text = "+%0.1f$/s" % player.planet.income
 	$health_bar.value = player.planet.health

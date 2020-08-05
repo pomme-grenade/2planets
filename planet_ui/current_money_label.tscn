@@ -7,15 +7,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="life" type="Label" parent="."]
-visible = false
-margin_left = -1.32038
-margin_right = 38.6796
-margin_bottom = 16.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "life"
-align = 2
-
 [node name="money" type="Label" parent="."]
 margin_left = 30.9329
 margin_top = 11.8213
