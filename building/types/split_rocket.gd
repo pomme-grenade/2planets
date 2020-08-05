@@ -12,6 +12,7 @@ func init():
 
 remotesync func fire_rocket(name, position, rotation):
 	var rocket = preload('res://rocket.tscn').instance()
+
 	rocket.name = name
 	rocket.split_distance = 150
 	rocket.position = position
@@ -19,6 +20,7 @@ remotesync func fire_rocket(name, position, rotation):
 	rocket.from_planet = planet
 	rocket.building = self
 	rocket.color = Color(1, 0.8, 0.2)
+
 	rocket.init(target_player_number)
 	rocket.set_network_master(get_network_master())
 	$'/root/main'.add_child(rocket)
