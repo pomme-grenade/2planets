@@ -181,10 +181,9 @@ __meta__ = {
 }
 
 [node name="current_money_label" parent="." instance=ExtResource( 7 )]
-margin_left = 1.64199
-margin_top = 24.1142
-margin_right = 78.642
-margin_bottom = 40.1142
+margin_top = 34.0
+margin_right = 62.0
+margin_bottom = 42.0
 
 [node name="building_cost" type="Control" parent="."]
 margin_left = -0.225937
@@ -235,15 +234,12 @@ __meta__ = {
 }
 
 [node name="building_info" type="Label" parent="."]
-margin_right = 7.0
-margin_bottom = 8.0
+margin_left = 0.743256
+margin_top = 44.1493
+margin_right = 40.7433
+margin_bottom = 52.1493
 custom_fonts/font = SubResource( 7 )
-
-[node name="TextureProgress" type="TextureProgress" parent="."]
-margin_top = 47.0
-margin_right = 62.0
-margin_bottom = 55.0
-value = 50.0
+text = "building info"
 __meta__ = {
 "_edit_use_anchors_": false
 }

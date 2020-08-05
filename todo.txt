@@ -50,9 +50,6 @@ TODO
     - tutorial
     - bg fixen
 
-    - max drones per drone building
-    - hover building info unter die UI bewegen
-    - split rocket explosion größe
     - damage indicator animation
     - meteoriten + meteoritenwaffe
 

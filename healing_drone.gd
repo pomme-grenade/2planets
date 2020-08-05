@@ -5,7 +5,6 @@ var laser_on
 var proximity = 0
 var distance_to_planet = 10
 var toggle_laser_timer
-var attached = false
 var current_sin_param = rand_range(0, 10)
 var planet
 var active = true setget set_active
@@ -23,23 +22,19 @@ func _process(dt):
 	if not active:
 		return
 
-	if attached:
-		planet.health += 0.005
-
-		if planet.health >= 100: 
-			detach()
-
-	if attached: 
-		current_sin_param += dt
-		position = position.rotated(sin(current_sin_param) * (sin(current_sin_param / 2) / 300))
-		position *= 1 + (sin(current_sin_param) * 0.002)
-
-	if planet.health < 100: 
-		attached = true
+	if planet.health < 100:
 		toggle_laser_timer.paused = false
+		laser_on = true
+		planet.health = min(planet.health + 0.005, 100)
+	else:
+		detach()
+
+	current_sin_param += dt
+	position = position.rotated(sin(current_sin_param) * (sin(current_sin_param / 2) / 300))
+	position *= 1 + (sin(current_sin_param) * 0.002)
 
 func _draw():
-	if (laser_on and attached):
+	if laser_on:
 		var swinging_movement = sin(current_sin_param) * 30
 		var planet_to_drone_angle = Vector2(0, 0).direction_to(position).angle() - PI / 2
 		var global_target = get_parent().to_global(Vector2(swinging_movement, 70).rotated(planet_to_drone_angle))
@@ -60,7 +55,6 @@ func set_active(new_active):
 
 func detach():
 	laser_on = false
-	attached = false
 	toggle_laser_timer.paused = true
 
 func random_laser_timer_countdown():

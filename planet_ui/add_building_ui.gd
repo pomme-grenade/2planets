@@ -87,11 +87,6 @@ func _process(_dt):
 			get_node('/root/main/planet_ui_%s/building_cost/income' \
 				% player.playerNumber).text = '%d' % player.current_building.activate_cost
 
-		if player.playerNumber == 1:
-			$building_info.rect_global_position = Vector2(0, 0)
-		else:
-			$building_info.rect_global_position = Vector2(800 - $building_info.rect_size.x, 0)
-
 		$building_info.text = player.current_building.building_info
 	else:
 		$'building_cost/defense'.text = str(building_costs['defense'])
