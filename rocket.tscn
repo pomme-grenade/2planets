@@ -4,15 +4,17 @@
 [ext_resource path="res://images/missile.png" type="Texture" id=2]
 
 [sub_resource type="Gradient" id=1]
-offsets = PoolRealArray( 0.00740741, 1 )
-colors = PoolColorArray( 0, 1, 0.917969, 1, 0.0380707, 0.937962, 0.974609, 0 )
+colors = PoolColorArray( 0, 1, 0.917647, 0.796078, 0.0380707, 0.937962, 0.974609, 0 )
 
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 1 )
 
 [sub_resource type="ParticlesMaterial" id=3]
+lifetime_randomness = 1.0
 flag_disable_z = true
-gravity = Vector3( 0, 98, 0 )
+direction = Vector3( 0, 1, 0 )
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 color_ramp = SubResource( 2 )
@@ -22,7 +24,10 @@ texture = ExtResource( 2 )
 script = ExtResource( 1 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
-position = Vector2( -4.20766, 0.510863 )
+position = Vector2( -1.49588, 0.518087 )
 rotation = 1.5708
-lifetime = 0.7
+amount = 10
+lifetime = 0.12
+visibility_rect = Rect2( -10, -10, 20, 40 )
+local_coords = false
 process_material = SubResource( 3 )
