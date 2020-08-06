@@ -9,6 +9,7 @@
 [ext_resource path="res://planet_ui/current_money_label.tscn" type="PackedScene" id=7]
 [ext_resource path="res://images/ui/button_texture_normal.tres" type="StyleBox" id=8]
 [ext_resource path="res://images/ui/button_texture_pressed.tres" type="StyleBox" id=9]
+[ext_resource path="res://planet_ui/health_bar.gd" type="Script" id=10]
 
 [sub_resource type="BitmapFont" id=1]
 
@@ -220,23 +221,20 @@ margin_right = 57.5392
 margin_bottom = 17.7713
 custom_colors/font_color = Color( 0.337255, 0.2, 0.490196, 1 )
 text = "3"
-
-[node name="health_bar" type="ProgressBar" parent="."]
-margin_left = -1.0
-margin_top = 24.0
-margin_right = 63.0
-margin_bottom = 32.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="health_bar" type="Node2D" parent="."]
+position = Vector2( 0.273571, 26.8102 )
+script = ExtResource( 10 )
+
+[node name="Tween" type="Tween" parent="health_bar"]
+
 [node name="building_info" type="Label" parent="."]
-margin_left = 0.409546
-margin_top = 44.1493
-margin_right = 53.4095
-margin_bottom = 52.1493
-custom_fonts/font = ExtResource( 5 )
-text = "building info"
+margin_right = 7.0
+margin_bottom = 8.0
+custom_fonts/font = SubResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

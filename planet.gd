@@ -12,6 +12,7 @@ var money = 0
 var slot_count = 14
 var slot_width
 var label_color = Color("#42286c")
+var health_bar
 
 func _ready():
 	money += start_money
@@ -23,15 +24,13 @@ func _ready():
 	player.playerNumber = playerNumber
 	player.name = '%s_player' % name
 	# player.modulate = color.lightened(0.5)
-	add_to_group('planet')
 	slot_width = planetRadius * PI / slot_count
 
+	health_bar = get_node('/root/main/planet_ui_%s/health_bar' % playerNumber)
+
 func _draw():
-	# draw_circle(Vector2(0, 0), planetRadius, color)
-	# draw_rect(Rect2(Vector2(10, 10), Vector2(health, 10)), Color(255, 40, 80))
 	var arc_rotation = current_slot_position().direction_to(Vector2(0, 0)).angle() - PI/2
 	if (not is_instance_valid(player.current_building)):
-		# draw_circle(current_slot_position(), slot_width / 2, Color(1, 1, 1, 0.2))
 		draw_circle_arc(Vector2(0, 0), 95, (arc_rotation * 180/PI) - (slot_width / 4), (arc_rotation * 180/PI) + (slot_width / 4), Color(0.3, 0.8, 1, 0.5))
 
 func draw_circle_arc(center, radius, angle_from, angle_to, color):
@@ -46,6 +45,7 @@ func draw_circle_arc(center, radius, angle_from, angle_to, color):
 		draw_line(points_arc[index_point], points_arc[index_point + 1], color, 1.5)
 
 func _process(delta):
+	health_bar.health = health
 	money += income * delta
 	if playerNumber == 1:
 		rotation_degrees -= 5 * delta
