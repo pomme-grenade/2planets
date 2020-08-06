@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://planet_ui/add_building_ui.gd" type="Script" id=1]
 [ext_resource path="res://images/ui/satellite_button.png" type="Texture" id=2]
@@ -232,9 +232,12 @@ script = ExtResource( 10 )
 [node name="Tween" type="Tween" parent="health_bar"]
 
 [node name="building_info" type="Label" parent="."]
-margin_right = 7.0
-margin_bottom = 8.0
-custom_fonts/font = SubResource( 7 )
+margin_left = 0.409546
+margin_top = 44.1493
+margin_right = 53.4095
+margin_bottom = 52.1493
+custom_fonts/font = ExtResource( 5 )
+text = "building info"
 __meta__ = {
 "_edit_use_anchors_": false
 }

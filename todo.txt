@@ -50,11 +50,6 @@ TODO
     - tutorial
     - bg fixen
 
-<<<<<<< Updated upstream
-=======
-    - max drones per drone building
-    - hover building info unter die UI bewegen
->>>>>>> Stashed changes
     - damage indicator animation
     - meteoriten + meteoritenwaffe
 
