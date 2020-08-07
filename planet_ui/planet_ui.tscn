@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://planet_ui/add_building_ui.gd" type="Script" id=1]
 [ext_resource path="res://images/ui/satellite_button.png" type="Texture" id=2]
@@ -225,11 +225,27 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="health_bar" type="Node2D" parent="."]
-position = Vector2( 0.273571, 26.8102 )
+[node name="health_bar" type="Control" parent="."]
+margin_left = -0.264862
+margin_top = 24.6325
+margin_right = 61.7351
+margin_bottom = 31.6325
 script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Tween" type="Tween" parent="health_bar"]
+
+[node name="Label" type="Label" parent="health_bar"]
+anchor_right = 1.0
+margin_top = -4.26485
+margin_bottom = 3.73515
+text = "health"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="building_info" type="Label" parent="."]
 margin_left = 0.409546

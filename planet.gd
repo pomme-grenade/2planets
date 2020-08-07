@@ -28,6 +28,19 @@ func _ready():
 
 	health_bar = get_node('/root/main/planet_ui_%s/health_bar' % playerNumber)
 
+	for i in range(3):
+		if playerNumber == 1:
+			var asteroid_indicator = preload('res://asteroid_indicator.tscn').instance()
+			$'/root/main'.call_deferred('add_child', asteroid_indicator)
+			asteroid_indicator.position = Vector2(0, 0)
+
+			var asteroid = preload('res://asteroid.tscn').instance()
+			$'/root/main'.call_deferred('add_child', asteroid)
+			asteroid.position = Vector2(rand_range(-30, 0) + i * 50, rand_range(-50, -80))
+			asteroid.name = 'asteroid_%s_%d' % [playerNumber, i]
+			var random_scale = rand_range(0.5, 1)
+			asteroid.scale = Vector2(random_scale, random_scale)
+
 func _draw():
 	var arc_rotation = current_slot_position().direction_to(Vector2(0, 0)).angle() - PI/2
 	if (not is_instance_valid(player.current_building)):
@@ -46,6 +59,7 @@ func draw_circle_arc(center, radius, angle_from, angle_to, color):
 
 func _process(delta):
 	health_bar.health = health
+	health_bar.get_node('Label').text = ' %d' % health + '%' 
 	money += income * delta
 	if playerNumber == 1:
 		rotation_degrees -= 5 * delta

@@ -1,7 +1,7 @@
 #warning-ignore-all:return_value_discarded
 
 tool
-extends Node2D
+extends Control
 
 var planet
 var health = 100
@@ -35,7 +35,6 @@ func _process(_delta: float):
 	update()
 
 func start_tween():
-	print('start tween')
 	tween.remove_all()
 	tween_start_value = animated_health
 	tween_target = health
