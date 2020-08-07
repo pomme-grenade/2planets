@@ -1,21 +1,39 @@
 [gd_scene load_steps=263 format=2]
 
 [ext_resource path="res://building/building.gd" type="Script" id=1]
-[ext_resource path="res://images/buildings/mineAnimation.png" type="Texture" id=2]
-[ext_resource path="res://images/buildings/rocket_sheet.png" type="Texture" id=3]
-[ext_resource path="res://images/buildings/repair_drone_factory.png" type="Texture" id=4]
-[ext_resource path="res://images/buildings/satellite.png" type="Texture" id=5]
-[ext_resource path="res://images/buildings/mine_buildup.png" type="Texture" id=6]
-[ext_resource path="res://images/buildings/rocket_buildup.png" type="Texture" id=7]
-[ext_resource path="res://images/buildings/sattelite_buildup.png" type="Texture" id=8]
-[ext_resource path="res://images/buildings/destroyed.png" type="Texture" id=9]
-[ext_resource path="res://images/buildings/teleporter.png" type="Texture" id=10]
-[ext_resource path="res://images/buildings/laser.png" type="Texture" id=11]
-[ext_resource path="res://images/buildings/healing_drone_factory.png" type="Texture" id=12]
-[ext_resource path="res://images/buildings/split_rocket.png" type="Texture" id=13]
-[ext_resource path="res://images/buildings/defense.png" type="Texture" id=14]
-[ext_resource path="res://images/buildings/instant_defense.png" type="Texture" id=15]
-[ext_resource path="res://images/buildings/new_defense_buildup.png" type="Texture" id=16]
+[ext_resource path="res://income/mineAnimation.png" type="Texture" id=2]
+[ext_resource path="res://attack/rocket_sheet.png" type="Texture" id=3]
+[ext_resource path="res://repair_drone_factory/repair_drone_factory.png" type="Texture" id=4]
+[ext_resource path="res://defense/satellite.png" type="Texture" id=5]
+[ext_resource path="res://income/mine_buildup.png" type="Texture" id=6]
+[ext_resource path="res://attack/rocket_buildup.png" type="Texture" id=7]
+[ext_resource path="res://defense/sattelite_buildup.png" type="Texture" id=8]
+[ext_resource path="res://destroyed.png" type="Texture" id=9]
+[ext_resource path="res://teleporter/teleporter.png" type="Texture" id=10]
+[ext_resource path="res://laser/laser.png" type="Texture" id=11]
+[ext_resource path="res://healing_drone_factory/healing_drone_factory.png" type="Texture" id=12]
+[ext_resource path="res://split_rocket/split_rocket.png" type="Texture" id=13]
+[ext_resource path="res://defense/defense.png" type="Texture" id=14]
+[ext_resource path="res://instant_defense/instant_defense.png" type="Texture" id=15]
+[ext_resource path="res://defense/new_defense_buildup.png" type="Texture" id=16]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;

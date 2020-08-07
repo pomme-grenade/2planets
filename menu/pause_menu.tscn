@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://menu/pause_menu.gd" type="Script" id=1]
+
+[node name="pause_menu" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0117647, 0.0117647, 0.0117647, 0.411765 )
+
+[node name="Label1" type="Label" parent="."]
+margin_left = 375.441
+margin_top = 128.155
+margin_right = 420.441
+margin_bottom = 142.155
+text = "Restart"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 380.856
+margin_top = 208.478
+margin_right = 420.856
+margin_bottom = 222.478
+text = "Quit"

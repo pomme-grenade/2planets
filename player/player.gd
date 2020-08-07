@@ -100,7 +100,7 @@ puppet func set_pos_and_motion(p_pos, p_dir, p_rot):
 
 func _unhandled_input(event):
 	if event.is_action_pressed("pause"):
-		var scene = preload('res://pause_menu.tscn').instance()
+		var scene = preload('res://menu/pause_menu.tscn').instance()
 		get_node('/root').add_child(scene)
 		get_tree().paused = true
 
@@ -138,9 +138,9 @@ func _animation_finished():
 remotesync func spawn_building(type, name, position):
 	var building = preload('res://building/building.tscn').instance()
 	var scripts = {
-		'income': preload('res://building/types/income.gd'),
-		'defense': preload('res://building/types/defense.gd'),
-		'attack': preload('res://building/types/attack.gd'),
+		'income': preload('res://income/income.gd'),
+		'defense': preload('res://defense/defense.gd'),
+		'attack': preload('res://attack/attack.gd'),
 	}
 	building.type = type
 	building.base_type = type

@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="planets"
-run/main_scene="res://Lobby.tscn"
+run/main_scene="res://menu/Lobby.tscn"
 boot_splash/bg_color=Color( 0.141176, 0.141176, 0.141176, 1 )
 config/icon="res://icon.png"
 
@@ -163,4 +163,3 @@ file_logging/log_path="user://gdlogs/log.txt"
 
 quality/filters/anisotropic_filter_level=2
 environment/default_clear_color=Color( 0.0666667, 0.0431373, 0.109804, 1 )
-environment/default_environment="res://default_env.tres"

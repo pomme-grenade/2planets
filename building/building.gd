@@ -13,12 +13,6 @@ var base_type
 var building_info: String setget ,get_building_info
 var building_costs = preload('res://building/building_costs.gd').costs
 
-const textures = {
-	attack = preload('res://images/buildings/rocket.png'),
-	defense = preload('res://images/buildings/satellite.png'),
-	income = preload('res://images/buildings/mine.png')
-}
-
 func init():
 	is_built = false
 	repair_time = initial_repair_time
@@ -77,7 +71,7 @@ remotesync func deconstruct(cost):
 
 func add_money(value):
 	print('add_money')
-	var income_animation = preload('res://Income_animation.tscn').instance()
+	var income_animation = preload('res://income/Income_animation.tscn').instance()
 	income_animation.position = Vector2(-10, 8)
 	add_child(income_animation)
 	income_animation.label.text = '+' + str(value)
@@ -103,7 +97,7 @@ remotesync func upgrade(index):
 		child.on_upgrade()
 
 	type = child.get('upgrade_%d_type' % index)
-	var new_child_script = 'res://building/types/%s.gd' % type
+	var new_child_script = 'res://%s/%s.gd' % [type, type]
 	if typeof(new_child_script) != TYPE_STRING:
 		return
 

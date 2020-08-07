@@ -54,10 +54,10 @@ func _process(_dt):
 		toggle_new_building_ui(false)
 		var activate_button = $'update_building/activate/activate_texture'
 		if player.current_building.can_activate():
-			activate_button.texture = load('res://images/ui/arrow_%s.png' \
+			activate_button.texture = load('res://buttons/arrow_%s.png' \
 				% player.current_building.base_type)
 		else:
-			activate_button.texture = load('res://images/ui/arrow_cant_activate.png')
+			activate_button.texture = load('res://buttons/arrow_cant_activate.png')
 
 		for index in [1, 2]:
 			var upgrade_type = player.current_building.child.get('upgrade_%s_type' % index)
@@ -71,12 +71,12 @@ func _process(_dt):
 			var upgrade_button = get_node('update_building/upgrade_%d/upgrade_texture' % index)
 			if player.current_building.can_upgrade(index):
 				upgrade_button.visible = true
-				upgrade_button.texture = load('res://images/ui/%s_button.png' \
+				upgrade_button.texture = load('res://buttons/%s_button.png' \
 					% player.current_building.child.get('upgrade_%s_type' % index))
 				upgrade_button.rect_scale = Vector2(0.8, 0.8)
 				upgrade_button.self_modulate = Color(1, 1, 1, 1)
 			elif player.current_building.child.get('upgrade_%s_type' % index) != null:
-				upgrade_button.texture = load('res://images/ui/%s_button.png' \
+				upgrade_button.texture = load('res://buttons/%s_button.png' \
 					% player.current_building.child.get('upgrade_%s_type' % index))
 				upgrade_button.rect_scale = Vector2(0.8, 0.8)
 				upgrade_button.self_modulate = Color(1, 1, 1, 0.3)
