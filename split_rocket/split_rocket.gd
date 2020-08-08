@@ -18,7 +18,6 @@ remotesync func fire_rocket(name, position, rotation):
 	rocket.position = position
 	rocket.rotation = rotation + PI/2
 	rocket.from_planet = planet
-	rocket.building = self
 	rocket.color = Color(1, 0.8, 0.2)
 
 	rocket.init(target_player_number)

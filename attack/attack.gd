@@ -19,7 +19,6 @@ remotesync func fire_rocket(name, position, rotation):
 	rocket.position = position
 	rocket.rotation = rotation + PI/2
 	rocket.from_planet = planet
-	rocket.building = self
 	rocket.init(target_player_number)
 	rocket.set_network_master(get_network_master())
 	$'/root/main'.add_child(rocket)
