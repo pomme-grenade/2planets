@@ -28,13 +28,18 @@ func _process(dt):
 	var rockets = get_tree().get_nodes_in_group(enemy_group)
 	var nearest_target = get_node('/root/main/planet_%s' % enemy_number)
 	for rocket in rockets:
-		if global_position.distance_to(rocket.global_position) < global_position.distance_to(nearest_target.global_position):
+		if global_position.distance_to(rocket.global_position) \
+				< global_position.distance_to(nearest_target.global_position):
 			nearest_target = rocket
 
 	var parent = get_parent()
-	var target_quat = Quat(Vector3.BACK, global_position.angle_to_point(nearest_target.global_position) - PI/2)
+	var target_quat = Quat(
+		Vector3.BACK, 
+		global_position.angle_to_point(nearest_target.global_position) - PI/2
+	)
 	var current_quat = Quat(Vector3.BACK, parent.global_rotation)
-	parent.global_rotation = current_quat.slerp(target_quat, 5 * dt).get_euler().z
+	parent.global_rotation = \
+		current_quat.slerp(target_quat, 5 * dt).get_euler().z
 	cooldown -= dt
 	z_index = -1
 	get_node("/root/main/background").z_index = -2
@@ -46,19 +51,29 @@ func _process(dt):
 
 	if (is_network_master() and
 			nearest_target != null and
-			global_position.distance_to(nearest_target.global_position) < attack_range):
+			global_position.distance_to(nearest_target.global_position) \
+				< attack_range):
 		rpc('destroy_rocket', nearest_target.get_path())
 
 func _draw():
 	if not get_parent().is_built or get_parent().is_destroyed:
 		return
 
-	draw_empty_circle(Vector2(0, 0), Vector2(0, attack_range / get_parent().global_scale.x), Color(0.4, 0.2, 0.7, 0.2), 0.5)
+	draw_empty_circle(
+		Vector2(0, 0), 
+		Vector2(0, attack_range / get_parent().global_scale.x), 
+		Color(0.4, 0.2, 0.7, 0.2), 
+		0.5)
 
 	if fire_position != null:
 		var alpha = cooldown * (1 / cooldown_time)
 		if alpha > 0:
-			draw_line(to_local(fire_origin), to_local(fire_position), Color(0.9, 0.9, 2, alpha), 1.1, true)
+			draw_line(
+				to_local(fire_origin), 
+				to_local(fire_position), 
+				Color(0.9, 0.9, 2, alpha), 
+				1.1, 
+				true)
 		else:
 			fire_position = null
 

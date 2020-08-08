@@ -71,7 +71,8 @@ remotesync func deconstruct(cost):
 
 func add_money(value):
 	print('add_money')
-	var income_animation = preload('res://income/Income_animation.tscn').instance()
+	var income_animation = \
+		preload('res://income/Income_animation.tscn').instance()
 	income_animation.position = Vector2(-10, 8)
 	add_child(income_animation)
 	income_animation.label.text = '+' + str(value)
@@ -129,7 +130,8 @@ func activate():
 		child.on_activate()
 
 func can_activate():
-	var animation_finished = child.get('animation_finished') == null || child.animation_finished
+	var animation_finished = \
+		child.get('animation_finished') == null || child.animation_finished
 	if child.get('activate_cost') != null:
 		return (planet.money >= child.activate_cost
 			and is_built

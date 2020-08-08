@@ -7,11 +7,13 @@ func _ready():
 	current_label = $Label1
 
 func _unhandled_input(event):
-	if event.is_action_pressed("player2_deconstruct") or event.is_action_pressed("player1_deconstruct"):
+	if event.is_action_pressed("player2_deconstruct") \
+			or event.is_action_pressed("player1_deconstruct"):
 		$Label1.set("custom_colors/font_color", Color(1, 1, 1))
 		$Label2.set("custom_colors/font_color", Color(1, 1, 0))
 		current_label = $Label2
-	if event.is_action_pressed("player2_build_income") or event.is_action_pressed("player1_build_income"):
+	if event.is_action_pressed("player2_build_income") \
+			or event.is_action_pressed("player1_build_income"):
 		$Label2.set("custom_colors/font_color", Color(1, 1, 1))
 		$Label1.set("custom_colors/font_color", Color(1, 1, 0))
 		current_label = $Label1 

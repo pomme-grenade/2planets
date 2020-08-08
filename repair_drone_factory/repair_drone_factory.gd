@@ -17,10 +17,16 @@ func buildup_finish():
 		drone.active = true
 
 func new_drone():
-	var repair_drone = preload('res://repair_drone_factory/repair_drone.tscn').instance()
+	var repair_drone_rotation = \
+		position.direction_to(Vector2(0, 0)).angle() - PI/2
+	var direction_to_planet = \
+		Vector2(0, 0).direction_to(get_parent().position).angle() - PI/2
+	var repair_drone = \
+		preload('res://repair_drone_factory/repair_drone.tscn').instance()
 	repair_drone.name = '%s_drone_%d' % [name, drone_index]
-	repair_drone.position = repair_drone.position.rotated(position.direction_to(Vector2(0, 0)).angle() - PI/2)
-	repair_drone.position += get_parent().position + Vector2(0, 20).rotated(Vector2(0, 0).direction_to(get_parent().position).angle() - PI/2)
+	repair_drone.position = repair_drone.position.rotated(repair_drone_rotation)
+	repair_drone.position += \
+		get_parent().position + Vector2(0, 20).rotated(direction_to_planet)
 	repair_drone.z_index = 3 if round(rand_range(1, 3)) == 1 else 1
 	planet.add_child(repair_drone)
 	repair_drone.init()
@@ -37,8 +43,12 @@ func get_building_info() -> String:
 	return '%d/%d drones' % [len(drones), max_drones]
 	
 func on_activate():
-	var _err = get_parent() \
-		.connect('animation_finished', self, 'on_animation_finished', [], CONNECT_ONESHOT)
+	var _err = get_parent().connect(
+		'animation_finished', 
+		self, 'on_animation_finished', 
+		[], 
+		CONNECT_ONESHOT
+	)
 	get_parent().play('repair_drone_factory_activate')
 	get_parent().speed_scale = 10
 	animation_finished = false
