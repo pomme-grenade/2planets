@@ -29,6 +29,8 @@ func _ready():
 
 	health_bar = get_node('/root/main/planet_ui_%s/health_bar' % playerNumber)
 
+	add_to_group('planets')
+
 
 func _draw():
 	var arc_rotation = \

@@ -45,7 +45,6 @@ func _process(delta):
 
 		if can_hit_planet.did_hit_planet(target):
 			is_destroyed = true
-			self.update()
 			can_hit_planet.rpc('hit_planet', target.get_path())
 
 		if target.is_network_master():
@@ -61,7 +60,6 @@ func _process(delta):
 
 	position += velocity * delta
 	rotation = velocity.angle()
-	update()
 
 remotesync func split():
 	var count = 5

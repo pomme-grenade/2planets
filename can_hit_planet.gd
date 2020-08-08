@@ -2,6 +2,7 @@ extends Node2D
 
 var explosion_radius = 20
 var damage = 5
+var explosion_scene = preload('res://explosion/explosion.tscn')
 
 func did_hit_planet(planet) -> bool:
 	if planet.is_network_master():
@@ -36,9 +37,8 @@ remotesync func hit_planet(planet_path):
 
 	play_explosion('rocket_on_planet', point_on_planet(planet))
 
-
 func play_explosion(explosion_animation, explosion_position = global_position):
-	var explosion = load('res://explosion/explosion.tscn').instance()
+	var explosion = explosion_scene.instance()
 	explosion.position = explosion_position
 	explosion.play(explosion_animation)
 	$'/root/main'.add_child(explosion)

@@ -3,6 +3,7 @@ extends Node
 var index := 0
 var asteroid_spawn_timer
 var initial_spawn_time = 5
+var asteroid_scene = preload('res://asteroid/asteroid.tscn')
 
 func _ready():
 	asteroid_spawn_timer = Timer.new()
@@ -15,7 +16,7 @@ func spawn_asteroid():
 	var random_y = [-150, 550][randi() % 2]
 	var random_x = rand_range(0, 800)
 
-	var asteroid = preload('res://asteroid/asteroid.tscn').instance()
+	var asteroid = asteroid_scene.instance()
 	$'/root/main'.add_child(asteroid)
 	asteroid.global_position = Vector2(
 		random_x,
