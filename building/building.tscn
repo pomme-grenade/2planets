@@ -17,24 +17,6 @@
 [ext_resource path="res://instant_defense/instant_defense.png" type="Texture" id=15]
 [ext_resource path="res://defense/new_defense_buildup.png" type="Texture" id=16]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
 

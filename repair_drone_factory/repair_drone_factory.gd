@@ -39,11 +39,11 @@ func get_building_info() -> String:
 func on_activate():
 	var _err = get_parent() \
 		.connect('animation_finished', self, 'on_animation_finished', [], CONNECT_ONESHOT)
-	get_parent().play('drone_factory_activate')
+	get_parent().play('repair_drone_factory_activate')
 	get_parent().speed_scale = 10
 	animation_finished = false
 
 func on_animation_finished():
 	animation_finished = true
 	new_drone()
-	get_parent().play('drone_factory')
+	get_parent().play('repair_drone_factory')
