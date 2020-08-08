@@ -27,9 +27,9 @@ func _process(_dt):
 	for rocket in rockets:
 		if (global_position.distance_to(rocket.global_position) \
 				< (attack_range * get_parent().global_scale.x)
-				and strength > rocket.planet_rocket_damage):
+				and strength > rocket.can_hit_planet.damage):
 			rocket.queue_free()
-			strength -= rocket.planet_rocket_damage
+			strength -= rocket.can_hit_planet.damage
 	update()
 
 func _draw():

@@ -6,14 +6,11 @@ var rotation_speed = 0.75
 var target_player_number
 var from_planet
 #warning-ignore:unused_class_variable
-var planet_rocket_damage = 5
 var is_destroyed = false
-var explosion_radius = 20
 var split_distance
 var child_counter = 0
 var color = Color(1, 0.3, 0.3)
-var length = 6
-var is_split_rocket = false
+var can_hit_planet
 
 func _ready():
 	velocity = Vector2(40, 0).rotated(rotation)
@@ -25,23 +22,12 @@ func init(_target_player_number):
 
 	if split_distance != null:
 		self.texture = preload('res://split_rocket/split_missile.png')
-
-# calculates point on planet surfaces from rocket angle
-func point_on_planet():
-	 return (
-		(target.planetRadius - 10)
-		* target.global_position.direction_to(global_position) 
-		+ target.global_position
-	)
-
-func _draw():
-		pass
+	
+	can_hit_planet = preload('res://can_hit_planet.gd').new()
+	add_child(can_hit_planet)
 
 func _process(delta):
 	if is_destroyed: 
-		play_explosion(point_on_planet(), 'rocket_on_planet')
-
-	if is_destroyed:
 		queue_free()
 		return
 
@@ -57,15 +43,17 @@ func _process(delta):
 		var acceleration = clamp(1 - abs(angle_diff), 0.25, 0.6) * delta
 		velocity = velocity * (1 + acceleration)
 
+		if can_hit_planet.did_hit_planet(target):
+			is_destroyed = true
+			self.update()
+			can_hit_planet.rpc('hit_planet', target.get_path())
+
 		if target.is_network_master():
 			var distance_to_target = (
 				global_position.distance_to(target.global_position) 
 				- target.planetRadius
 			)
-			if distance_to_target < 1:
-				rpc('hit_planet', target.get_path())
-				return
-			elif (split_distance != null 
+			if (split_distance != null 
 				and distance_to_target < split_distance):
 				rpc('split')
 			elif position.length_squared() > 4000000:
@@ -88,42 +76,14 @@ remotesync func split():
 		rocket.from_planet = from_planet
 		rocket.target_player_number = target_player_number
 		rocket.set_network_master(get_network_master())
-		rocket.planet_rocket_damage = 1
 		rocket.color = color
-		rocket.length = 2
-		rocket.explosion_radius = 8
 		rocket.texture = preload('res://split_rocket/split_missile.png')
 		rocket.init(target_player_number)
-		rocket.is_split_rocket = true
+		rocket.can_hit_planet.explosion_radius = 8
+		rocket.can_hit_planet.damage = 1
 		$'/root/main'.add_child(rocket)
 		rocket.velocity = velocity.rotated(rocket.rotation - rotation) * 0.8
 		queue_free()
-
-remotesync func hit_planet(path):
-	is_destroyed = true
-	var hit_building = false
-	self.update()
-
-	var planet = get_node(path)
-	var  buildings = get_tree()\
-		.get_nodes_in_group("building" + str(target_player_number))
-	for building in buildings:
-		var distance_to_building = point_on_planet()\
-			.distance_to(building.global_position)
-		if (
-			distance_to_building < explosion_radius 
-			and not building.is_destroyed
-		):
-			if not building.is_destroyed:
-				building.destroy()
-				hit_building = true
-
-	if not hit_building:
-		planet.health -= planet_rocket_damage
-
-func is_closer(a, b):
-	return global_position.distance_to(a.global_position) \
-		< global_position.distance_to(b.global_position)
 
 func find_new_target():
 	if from_planet.playerNumber == 1:
@@ -131,11 +91,3 @@ func find_new_target():
 	else:
 		return get_node("/root/main/planet_1")
 
-func play_explosion(explosion_position, explosion_animation):
-		var explosion = load('res://explosion/explosion.tscn').instance()
-		explosion.position = explosion_position
-		explosion.play(explosion_animation)
-		$'/root/main'.add_child(explosion)
-
-		if is_split_rocket:
-			explosion.scale = Vector2(0.5, 0.5)
