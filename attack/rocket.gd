@@ -6,7 +6,6 @@ var rotation_speed = 0.75
 var target_player_number
 var from_planet
 #warning-ignore:unused_class_variable
-var building
 var planet_rocket_damage = 5
 var is_destroyed = false
 var explosion_radius = 20
@@ -29,11 +28,13 @@ func init(_target_player_number):
 
 # calculates point on planet surfaces from rocket angle
 func point_on_planet():
-	 return (target.planetRadius - 10) * target.global_position.direction_to(global_position) + target.global_position
+	 return (
+		(target.planetRadius - 10)
+		* target.global_position.direction_to(global_position) 
+		+ target.global_position
+	)
 
 func _draw():
-		# draw_circle(Vector2(0, 0), 50, Color(1, 1, 1))
-		# draw_circle(to_local(point_on_planet()), explosion_radius, Color(1, 1, 1))
 		pass
 
 func _process(delta):
@@ -57,11 +58,15 @@ func _process(delta):
 		velocity = velocity * (1 + acceleration)
 
 		if target.is_network_master():
-			var distance_to_target = global_position.distance_to(target.global_position) - target.planetRadius
+			var distance_to_target = (
+				global_position.distance_to(target.global_position) 
+				- target.planetRadius
+			)
 			if distance_to_target < 1:
 				rpc('hit_planet', target.get_path())
 				return
-			elif split_distance != null and distance_to_target < split_distance:
+			elif (split_distance != null 
+				and distance_to_target < split_distance):
 				rpc('split')
 			elif position.length_squared() > 4000000:
 				queue_free()
@@ -78,10 +83,10 @@ remotesync func split():
 		var rocket = load('res://attack/rocket.tscn').instance()
 		rocket.name = name + '_' + str(child_counter)
 		rocket.rotation = rotation - spread * floor(count/2) + i * spread
-		rocket.position = position + velocity.rotated(rocket.rotation - rotation) * 0.2
+		rocket.position = position \
+			+ velocity.rotated(rocket.rotation - rotation) * 0.2
 		rocket.from_planet = from_planet
 		rocket.target_player_number = target_player_number
-		rocket.building = building
 		rocket.set_network_master(get_network_master())
 		rocket.planet_rocket_damage = 1
 		rocket.color = color
@@ -98,20 +103,27 @@ remotesync func hit_planet(path):
 	is_destroyed = true
 	var hit_building = false
 	self.update()
+
 	var planet = get_node(path)
-	for building in get_tree().get_nodes_in_group("building" + str(target_player_number)):
-		if point_on_planet().distance_to(building.global_position) < explosion_radius and not building.is_destroyed:
+	var  buildings = get_tree()\
+		.get_nodes_in_group("building" + str(target_player_number))
+	for building in buildings:
+		var distance_to_building = point_on_planet()\
+			.distance_to(building.global_position)
+		if (
+			distance_to_building < explosion_radius 
+			and not building.is_destroyed
+		):
 			if not building.is_destroyed:
 				building.destroy()
 				hit_building = true
+
 	if not hit_building:
 		planet.health -= planet_rocket_damage
 
-	if planet.health <= 0:
-		GameManager.game_over(target_player_number)
-
 func is_closer(a, b):
-	return global_position.distance_to(a.global_position) < global_position.distance_to(b.global_position)
+	return global_position.distance_to(a.global_position) \
+		< global_position.distance_to(b.global_position)
 
 func find_new_target():
 	if from_planet.playerNumber == 1:
