@@ -51,7 +51,9 @@ TODO
     - bg fixen
 
     - damage indicator animation
-    - meteoriten + meteoritenwaffe
+    - meteoritenwaffe
+    - meteoriten indicator am rande des bildschirms, 
+        nicht am rande des viewports
 
 DONE
     - upgrades einbauen
