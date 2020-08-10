@@ -11,11 +11,6 @@
 [ext_resource path="res://buttons/button_texture_pressed.tres" type="StyleBox" id=9]
 [ext_resource path="res://planet_ui/health_bar.gd" type="Script" id=10]
 
-
-
-
-
-
 [sub_resource type="BitmapFont" id=1]
 
 [sub_resource type="BitmapFont" id=2]

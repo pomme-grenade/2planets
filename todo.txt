@@ -49,8 +49,8 @@ TODO
     - building shadows
     - tutorial
     - bg fixen
+    - farm asteroids
 
-    - damage indicator animation
     - meteoriten + meteoritenwaffe
 
 DONE
@@ -77,3 +77,4 @@ DONE
     - drones deaktivieren wenn building kaputt
     - variable building cost 
     - split rocket explosion größe
+    - damage indicator animation

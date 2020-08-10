@@ -20,8 +20,8 @@ func _process(dt):
 	rotation += rand_rotation * dt
 
 	if is_instance_valid(indicator):
-		var inside_from_top = velocity.y > 0 and position.y > 0
-		var inside_from_bottom = velocity.y < 0 and position.y < 400
+		var inside_from_top = velocity.y > 0 and position.y > -15
+		var inside_from_bottom = velocity.y < 0 and position.y < 415
 		if (inside_from_bottom or inside_from_top):
 			indicator.queue_free()
 		else:
