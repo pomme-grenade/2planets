@@ -19,9 +19,9 @@ func _ready():
 	tween = $'Tween'
 
 func _draw():
-	draw_line(Vector2(0, 0), Vector2(background * 0.62, 0), Color(0, 0, 0), 7)
-	draw_line(Vector2(0, 0), Vector2((animated_health) * 0.62, 0), Color(1, 1, 1), 7)
-	draw_line(Vector2(0, 0), Vector2(health * 0.62, 0), Color(0.6, 0.6, 0.9), 7)
+	draw_line(Vector2(0, 0), Vector2(background * 0.62, 0), Color('#3a3756'), 8)
+	draw_line(Vector2(1, 0), Vector2((animated_health) * 0.62 -1, 0), Color(1, 1, 1), 6)
+	draw_line(Vector2(1, 0), Vector2(health * 0.62 - 1, 0), Color('#51647d'), 6)
 
 func _process(_delta: float):
 	var delay_in_effect = tween.is_active() and round(animated_health) == round(tween_start_value)
