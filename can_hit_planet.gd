@@ -15,7 +15,7 @@ func did_hit_planet(planet) -> bool:
 
 	return false
 
-remotesync func hit_planet(planet_path):
+remotesync func hit_planet(type, planet_path):
 	var hit_building = false
 
 	var planet = get_node(planet_path)
@@ -35,7 +35,8 @@ remotesync func hit_planet(planet_path):
 	if not hit_building:
 		planet.health -= damage
 
-	play_explosion('rocket_on_planet', point_on_planet(planet))
+	print(type)
+	play_explosion(type, point_on_planet(planet))
 
 func play_explosion(explosion_animation, explosion_position = global_position):
 	var explosion = explosion_scene.instance()

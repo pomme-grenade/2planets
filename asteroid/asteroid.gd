@@ -4,6 +4,7 @@ var rand_rotation
 var velocity
 var indicator
 var can_hit_planet
+var type = 'asteroid'
 
 func _ready():
 	can_hit_planet = preload('res://can_hit_planet.gd').new()
@@ -35,7 +36,7 @@ func _process(dt):
 	for planet in planets:
 		if can_hit_planet.did_hit_planet(planet):
 			queue_free()
-			can_hit_planet.rpc('hit_planet', planet.get_path())
+			can_hit_planet.rpc('hit_planet', type, planet.get_path())
 
 func calculate_indicator_x():
 	var angle_to_vertical

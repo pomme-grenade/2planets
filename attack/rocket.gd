@@ -11,6 +11,7 @@ var split_distance
 var child_counter = 0
 var color = Color(1, 0.3, 0.3)
 var can_hit_planet
+var type = 'normal_rocket'
 
 func _ready():
 	velocity = Vector2(40, 0).rotated(rotation)
@@ -22,6 +23,7 @@ func init(_target_player_number):
 
 	if split_distance != null:
 		self.texture = preload('res://split_rocket/split_missile.png')
+		type = 'split_rocket'
 	
 	can_hit_planet = preload('res://can_hit_planet.gd').new()
 	add_child(can_hit_planet)
@@ -45,7 +47,7 @@ func _process(delta):
 
 		if can_hit_planet.did_hit_planet(target):
 			is_destroyed = true
-			can_hit_planet.rpc('hit_planet', target.get_path())
+			can_hit_planet.rpc('hit_planet', type, target.get_path())
 
 		if target.is_network_master():
 			var distance_to_target = (
@@ -79,9 +81,11 @@ remotesync func split():
 		rocket.init(target_player_number)
 		rocket.can_hit_planet.explosion_radius = 8
 		rocket.can_hit_planet.damage = 1
+		rocket.type = 'split_rocket'
 		$'/root/main'.add_child(rocket)
 		rocket.velocity = velocity.rotated(rocket.rotation - rotation) * 0.8
 		queue_free()
+
 
 func find_new_target():
 	if from_planet.playerNumber == 1:
