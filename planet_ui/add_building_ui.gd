@@ -85,7 +85,7 @@ func _process(_dt):
 
 				
 			get_node('/root/main/planet_ui_%s/building_cost/income' \
-				% player.playerNumber).text = '%d' % player.current_building.activate_cost
+				% player.player_number).text = '%d' % player.current_building.activate_cost
 
 		$building_info.text = player.current_building.building_info
 	else:
@@ -107,7 +107,7 @@ func start_building(type):
 	if is_instance_valid(player.current_building):
 		return
 
-	var name = '%d_building_%d' % [player.playerNumber, building_index]
+	var name = '%d_building_%d' % [player.player_number, building_index]
 	building_index += 1
 	var position = player.planet.current_slot_position()
 	player.try_spawn_building(type, name, position)

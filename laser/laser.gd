@@ -16,7 +16,7 @@ func init():
 	stop_laser_timer = Timer.new()
 	stop_laser_timer.connect('timeout', self, 'stop_laser')
 	add_child(stop_laser_timer)
-	enemy_player_number = 1 if planet.playerNumber == 2 else 2
+	enemy_player_number = 1 if planet.player_number == 2 else 2
 	target_planet = get_node('/root/main/planet_%s' % enemy_player_number)
 
 func _process(dt):

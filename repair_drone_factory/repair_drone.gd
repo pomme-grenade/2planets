@@ -59,7 +59,7 @@ func move_towards_building(building, dt):
 
 
 func find_nearest_destroyed_building():
-	var buildings = get_tree().get_nodes_in_group("building" + str(get_parent().playerNumber))
+	var buildings = get_tree().get_nodes_in_group("building" + str(get_parent().player_number))
 	var result = null
 	var distance_to_result = INF
 	for building in buildings:

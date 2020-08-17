@@ -20,7 +20,7 @@ remotesync func hit_planet(type, planet_path):
 
 	var planet = get_node(planet_path)
 	var buildings = get_tree()\
-		.get_nodes_in_group("building" + str(planet.playerNumber))
+		.get_nodes_in_group("building" + str(planet.player_number))
 	for building in buildings:
 		var distance_to_building = point_on_planet(planet)\
 			.distance_to(building.global_position)

@@ -2,7 +2,7 @@ extends AnimatedSprite
 
 export var player_color = Color(1, 1, 1)
 
-var playerNumber
+var player_number
 var movementDirection = 0
 var planet
 var current_building
@@ -28,7 +28,7 @@ func init():
 	action_pressed_timer.connect('timeout', self, 'action_timer_timeout')
 	add_child(action_pressed_timer)
 
-	player_key = "player" + str(playerNumber) + "_"
+	player_key = "player" + str(player_number) + "_"
 	set_process_unhandled_input(true)
 
 	# warning-ignore:return_value_discarded
@@ -81,7 +81,7 @@ func _process(dt):
 		current_building.material.set_shader_param('value', dissolve_amount) 
 	else:
 		dissolve_amount = 1
-		var buildings = get_tree().get_nodes_in_group("building" + str(get_parent().playerNumber))
+		var buildings = get_tree().get_nodes_in_group("building" + str(get_parent().player_number))
 		for building in buildings:
 			building.material.set_shader_param('value', dissolve_amount)
 
@@ -117,7 +117,7 @@ func _unhandled_input(event):
 
 
 func get_building_in_range():
-	for building in get_tree().get_nodes_in_group('building' + str(planet.playerNumber)):
+	for building in get_tree().get_nodes_in_group('building' + str(planet.player_number)):
 		if abs(position.angle_to(building.position)) < (PI / planet.slot_count) / 2:
 			return building
 
@@ -154,7 +154,7 @@ remotesync func spawn_building(type, name, position):
 	planet.add_child(building)
 	building.rotation = building.position \
 		.direction_to(Vector2(0, 0)).angle() - PI/2
-	building.add_to_group('building' + str(planet.playerNumber))
+	building.add_to_group('building' + str(planet.player_number))
 	building.centered = true
 
 	building.init()
@@ -167,7 +167,7 @@ remotesync func spawn_building(type, name, position):
 	planet.money -= building_costs[type]
 
 func init_ui():
-	ui = get_node('/root/main/planet_ui_%s' % playerNumber)
+	ui = get_node('/root/main/planet_ui_%s' % player_number)
 	ui.player = self
 	ui.set_network_master(get_network_master())
 	ui.init()

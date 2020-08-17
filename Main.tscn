@@ -24,7 +24,7 @@ texture = ExtResource( 3 )
 [node name="planet_1" parent="." instance=ExtResource( 2 )]
 position = Vector2( 200, 200 )
 texture = ExtResource( 4 )
-playerNumber = 1
+player_number = 1
 color = Color( 0.588235, 0.227451, 0.129412, 1 )
 
 [node name="planet_2" parent="." instance=ExtResource( 2 )]

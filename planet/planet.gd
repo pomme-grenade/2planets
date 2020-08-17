@@ -1,7 +1,7 @@
 extends Sprite
 
 export var planetRadius = 110
-export (int) var playerNumber
+export (int) var player_number
 export (Color) var color
 export var health := 100.0 setget set_health
 
@@ -22,12 +22,12 @@ func _ready():
 	add_child(player)
 	player.planet = self
 	player.position.y -= planetRadius
-	player.playerNumber = playerNumber
+	player.player_number = player_number
 	player.name = '%s_player' % name
 	# player.modulate = color.lightened(0.5)
 	slot_width = planetRadius * PI / slot_count
 
-	health_bar = get_node('/root/main/planet_ui_%s/health_bar' % playerNumber)
+	health_bar = get_node('/root/main/planet_ui_%s/health_bar' % player_number)
 
 	add_to_group('planets')
 
@@ -73,9 +73,9 @@ func _process(delta):
 	health_bar.health = health
 	health_bar.get_node('Label').text = ' %d' % health + '%'
 	money += income * delta
-	if playerNumber == 1:
+	if player_number == 1:
 		rotation_degrees -= 5 * delta
-	elif playerNumber == 2:
+	elif player_number == 2:
 		rotation_degrees += 5 * delta
 
 	if is_network_master():
@@ -99,4 +99,4 @@ func set_health(new_health: float):
 	health = new_health
 
 	if health <= 0:
-		GameManager.game_over(playerNumber)
+		GameManager.game_over(player_number)

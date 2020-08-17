@@ -88,7 +88,7 @@ remotesync func split():
 
 
 func find_new_target():
-	if from_planet.playerNumber == 1:
+	if from_planet.player_number == 1:
 		return get_node("/root/main/planet_2")
 	else:
 		return get_node("/root/main/planet_1")

@@ -23,7 +23,7 @@ func _process(dt):
 		update()
 
 
-	var enemy_number = 1 if planet.playerNumber == 2 else 2
+	var enemy_number = 1 if planet.player_number == 2 else 2
 	var enemy_group = 'rocket' + str(enemy_number)
 	var rockets = get_tree().get_nodes_in_group(enemy_group)
 	var nearest_target = get_node('/root/main/planet_%s' % enemy_number)

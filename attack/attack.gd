@@ -10,7 +10,7 @@ var building_info
 
 func init():
 	building_info = ''
-	target_player_number = 2 if planet.playerNumber == 1 else 1
+	target_player_number = 2 if planet.player_number == 1 else 1
 
 remotesync func fire_rocket(name, position, rotation):
 	var rocket = preload("res://attack/rocket.tscn").instance()
@@ -25,7 +25,7 @@ remotesync func fire_rocket(name, position, rotation):
 	update()
 
 func on_activate():
-	var name = '%d_rocket_%d' % [ planet.playerNumber, rocket_name_index ]
+	var name = '%d_rocket_%d' % [ planet.player_number, rocket_name_index ]
 	rocket_name_index += 1
 	var position = global_position - Vector2(5, 0).rotated(global_rotation)
 	rpc('fire_rocket', name, position, global_rotation + PI)
