@@ -35,7 +35,6 @@ remotesync func hit_planet(type, planet_path):
 	if not hit_building:
 		planet.health -= damage
 
-	print(type)
 	play_explosion(type, point_on_planet(planet))
 
 func play_explosion(explosion_animation, explosion_position = global_position):

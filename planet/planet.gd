@@ -3,7 +3,7 @@ extends Sprite
 export var planetRadius = 110
 export (int) var playerNumber
 export (Color) var color
-export var health := 100 setget set_health
+export var health := 100.0 setget set_health
 
 var player
 var income = 4
@@ -95,7 +95,7 @@ func current_slot_position():
 		.rotated(slot_index * slot_angle_width)
 
 
-func set_health(new_health: int):
+func set_health(new_health: float):
 	health = new_health
 
 	if health <= 0:
