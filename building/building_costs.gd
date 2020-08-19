@@ -5,7 +5,7 @@ const costs = {
     'repair_drone_factory': 40,
     'healing_drone_factory': 40,
     'instant_defense': 20,
-    'laser': 30,
+    'laser': 60,
     'shield': 40,
     'split_rocket': 40,
     'teleporter': 10,
