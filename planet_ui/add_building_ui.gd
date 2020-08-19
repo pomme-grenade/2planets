@@ -19,34 +19,33 @@ func init():
 	info_container = $current_money_label
 
 	for type in building_types:
-		var button = get_node('new_building/' + type)
-		var shortcut = ShortCut.new()
-		shortcut.shortcut = \
-				InputMap.get_action_list(player.player_key + 'build_' + type)[0]
-		button.shortcut = shortcut
-		button.connect('pressed', self, 'start_building', [type])
+		add_button_shortcut(
+			'new_building/' + type, 'build_' + type, 'start_building', [type])
 
-	var activate_button = $'update_building/activate'
+	add_button_shortcut(
+		'update_building/activate', 'build_income', 'start_activate')
+	add_button_shortcut(
+		'update_building/upgrade_1', 'build_defense', 'start_upgrade', [1])
+	add_button_shortcut(
+		'update_building/upgrade_2', 'build_attack', 'start_upgrade', [2])
+
+func add_button_shortcut(
+		path: String, 
+		action_key: String, 
+		callback_method: String, 
+		callback_binds: Array = []
+	):
+
+	var button = get_node(path)
+
+	var action = InputEventAction.new()
+	action.action = player.player_key + action_key
+
 	var shortcut = ShortCut.new()
-	shortcut.shortcut = \
-			InputMap.get_action_list(player.player_key + 'build_income')[0]
-	activate_button.shortcut = shortcut
-	activate_button.connect('button_down', self, 'start_activate')
+	shortcut.shortcut = action
+	button.shortcut = shortcut
 
-	var upgrade_button_1 = $'update_building/upgrade_1'
-	shortcut = ShortCut.new()
-	shortcut.shortcut = \
-			InputMap.get_action_list(player.player_key + 'build_defense')[0]
-	upgrade_button_1.shortcut = shortcut
-	upgrade_button_1.connect('pressed', self, 'start_upgrade', [1])
-
-	var upgrade_button_2 = $'update_building/upgrade_2'
-	shortcut = ShortCut.new()
-	shortcut.shortcut = \
-			InputMap.get_action_list(player.player_key + 'build_attack')[0]
-	upgrade_button_2.shortcut = shortcut
-	upgrade_button_2.connect('pressed', self, 'start_upgrade', [2])
-
+	button.connect('pressed', self, callback_method, callback_binds)
 
 func _process(_dt):
 
