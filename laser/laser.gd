@@ -1,6 +1,5 @@
 extends Node2D
 var planet
-var upgrade_1_type = 'laser'
 var enemy_player_number
 var target_planet
 var buildings
@@ -16,10 +15,10 @@ func init():
 	stop_laser_timer = Timer.new()
 	stop_laser_timer.connect('timeout', self, 'stop_laser')
 	add_child(stop_laser_timer)
-	enemy_player_number = 1 if planet.playerNumber == 2 else 2
+	enemy_player_number = 1 if planet.player_number == 2 else 2
 	target_planet = get_node('/root/main/planet_%s' % enemy_player_number)
 
-func _process(dt):
+func _process(_dt):
 	buildings = get_tree().get_nodes_in_group('building' + str(enemy_player_number))
 	if shooting:
 		for building in buildings:

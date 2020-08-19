@@ -21,7 +21,7 @@ func _process(dt):
 	if not is_exploding:
 		position.y -= 100 * dt
 	elif is_exploding:
-		var enemy_number = 1 if planet.playerNumber == 2 else 2
+		var enemy_number = 1 if planet.player_number == 2 else 2
 		var rockets = get_tree().get_nodes_in_group('rocket' + str(enemy_number))
 		for rocket in rockets:
 			if global_position.distance_to(rocket.global_position) < attack_range:

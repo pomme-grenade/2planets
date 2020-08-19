@@ -1,5 +1,6 @@
 extends Node2D
 
+var additional_income = 1
 var planet
 var drone_index := 0
 var activate_cost := 40

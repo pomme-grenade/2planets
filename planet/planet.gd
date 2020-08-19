@@ -1,9 +1,9 @@
 extends Sprite
 
 export var planetRadius = 110
-export (int) var playerNumber
+export (int) var player_number
 export (Color) var color
-export var health := 100 setget set_health
+export var health := 100.0 setget set_health
 
 var player
 var income = 4
@@ -22,29 +22,14 @@ func _ready():
 	add_child(player)
 	player.planet = self
 	player.position.y -= planetRadius
-	player.playerNumber = playerNumber
+	player.player_number = player_number
 	player.name = '%s_player' % name
 	# player.modulate = color.lightened(0.5)
 	slot_width = planetRadius * PI / slot_count
 
-	health_bar = get_node('/root/main/planet_ui_%s/health_bar' % playerNumber)
+	health_bar = get_node('/root/main/planet_ui_%s/health_bar' % player_number)
 
-	for i in range(3):
-		if playerNumber == 1:
-			var asteroid_indicator = \
-				preload('res://asteroid/asteroid_indicator.tscn').instance()
-			$'/root/main'.call_deferred('add_child', asteroid_indicator)
-			asteroid_indicator.position = Vector2(0, 0)
-
-			var asteroid = preload('res://asteroid/asteroid.tscn').instance()
-			$'/root/main'.call_deferred('add_child', asteroid)
-			asteroid.position = Vector2(
-				rand_range(-30, 0) + i * 50, 
-				rand_range(-50, -80)
-			)
-			asteroid.name = 'asteroid_%s_%d' % [playerNumber, i]
-			var random_scale = rand_range(0.5, 1)
-			asteroid.scale = Vector2(random_scale, random_scale)
+	add_to_group('planets')
 
 
 func _draw():
@@ -88,9 +73,9 @@ func _process(delta):
 	health_bar.health = health
 	health_bar.get_node('Label').text = ' %d' % health + '%'
 	money += income * delta
-	if playerNumber == 1:
+	if player_number == 1:
 		rotation_degrees -= 5 * delta
-	elif playerNumber == 2:
+	elif player_number == 2:
 		rotation_degrees += 5 * delta
 
 	if is_network_master():
@@ -110,8 +95,8 @@ func current_slot_position():
 		.rotated(slot_index * slot_angle_width)
 
 
-func set_health(new_health: int):
+func set_health(new_health: float):
 	health = new_health
 
 	if health <= 0:
-		GameManager.game_over(playerNumber)
+		GameManager.game_over(player_number)
