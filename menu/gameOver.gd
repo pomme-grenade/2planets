@@ -10,6 +10,6 @@ func _ready():
 		$Label1.text = "Left player wins!"
 
 func _unhandled_input(event):
-	if event.is_action_pressed("enter"):
+	if event.is_action_pressed("ui_accept"):
 		queue_free()
 		GameManager.restart_game()

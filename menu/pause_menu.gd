@@ -21,7 +21,7 @@ func _unhandled_input(event):
 		get_tree().set_input_as_handled()
 		get_tree().paused = false
 		queue_free()
-	if event.is_action_pressed("enter"):
+	if event.is_action_pressed("ui_accept"):
 		if current_label ==  $Label1:
 			queue_free()
 			GameManager.restart_game()

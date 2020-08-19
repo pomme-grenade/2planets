@@ -7,6 +7,7 @@ var stop_laser_timer
 var shooting = false
 var laser_position = 0
 var activate_cost = 20
+var laser_range = 300
 var one_building_destroyed = false
 var building_info
 
@@ -25,7 +26,7 @@ func _process(_dt):
 			var distance_to_building = Vector2(0, 0).distance_to(to_local(building.global_position))
 
 			if Vector2(0, -distance_to_building).distance_to(to_local(building.global_position)) < 10 \
-					and distance_to_building < 400 and not building.is_destroyed and not one_building_destroyed:
+					and distance_to_building < laser_range and not building.is_destroyed and not one_building_destroyed:
 				building.destroy()
 				laser_position = distance_to_building
 				one_building_destroyed = true
@@ -47,5 +48,5 @@ func on_activate():
 	if not shooting:
 		stop_laser_timer.start(0.07)
 		shooting = true
-		laser_position = 400
+		laser_position = laser_range
 		update()

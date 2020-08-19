@@ -5,7 +5,6 @@ var rocket_name_index = 0
 var activate_cost = 30
 var target_player_number
 var building_info
-var upgrade_1_type = 'slingshot'
 
 func init():
 	building_info = ''

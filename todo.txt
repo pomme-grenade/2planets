@@ -50,6 +50,7 @@ TODO
     - tutorial
     - bg fixen
     - farm asteroids
+    - shields überall anzeigen wo sie abwehren
 
     - damage indicator animation
     - meteoritenwaffe
