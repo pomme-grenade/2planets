@@ -2,7 +2,7 @@ extends Node
 
 var index := 0
 var asteroid_spawn_timer
-var initial_spawn_time = 5
+var initial_spawn_time = 30
 var asteroid_scene = preload('res://asteroid/asteroid.tscn')
 
 func _ready():
@@ -29,4 +29,4 @@ func spawn_asteroid():
 	var random_scale = rand_range(0.5, 1)
 	asteroid.scale = Vector2(random_scale, random_scale)
 	index += 1
-	asteroid_spawn_timer.wait_time = rand_range(0.1, 5)
+	asteroid_spawn_timer.wait_time = rand_range(3, 20)

@@ -12,6 +12,7 @@ var activate_cost = 0
 var base_type
 var building_info: String setget ,get_building_info
 var building_costs = preload('res://building/building_costs.gd').costs
+var upgrading = false
 
 func init():
 	is_built = false
@@ -51,6 +52,8 @@ func _process(_dt):
 remotesync func destroy():
 	if child.has_method("on_destroy"):
 		child.on_destroy()
+	if child.get('additional_income') != null:
+		planet.income -= child.additional_income
 	is_destroyed = true
 	play('%s_destroyed' % type)
 	stop()
@@ -108,8 +111,12 @@ remotesync func upgrade(index):
 	new_child.name = child.name + '_upgrade'
 	child.queue_free()
 	child = new_child
+	upgrading = true
 
 	init()
+
+func upgrade_finish():
+	pass
 
 func buildup_finish():
 	if is_destroyed:
@@ -117,7 +124,11 @@ func buildup_finish():
 
 	if child.has_method('buildup_finish'):
 		child.buildup_finish()
+	
+	if child.get('additional_income') != null and not upgrading:
+		planet.income += child.additional_income
 
+	upgrading = false
 	is_built = true
 	repair_time = initial_repair_time
 	$AnimationPlayer.play('flash');

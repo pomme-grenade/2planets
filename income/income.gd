@@ -9,9 +9,3 @@ var building_info
 
 func init():
 	building_info = '+ %d $/s' % additional_income
-
-func on_destroy():
-	planet.income -= additional_income
-
-func buildup_finish():
-	planet.income += additional_income

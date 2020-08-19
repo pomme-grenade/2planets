@@ -1,5 +1,6 @@
 extends Node2D
 
+var additional_income = 1
 var drone_index := 0
 var planet
 var building_info: String setget ,get_building_info

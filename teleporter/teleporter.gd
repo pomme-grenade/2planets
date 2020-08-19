@@ -1,7 +1,9 @@
 extends Node2D
+
 var planet
 var activate_cost = 0
 var building_info 
+var additional_income = 1
 
 func init():
 	building_info = ''
