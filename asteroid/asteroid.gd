@@ -5,10 +5,12 @@ var velocity
 var indicator
 var can_hit_planet
 var type = 'asteroid'
+var was_rotated = false
 
 func _ready():
 	can_hit_planet = preload('res://can_hit_planet.gd').new()
 	add_child(can_hit_planet)
+	add_to_group('asteroids')
 
 	rand_rotation = rand_range(-1, 1)
 	indicator = \

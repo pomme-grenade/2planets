@@ -29,4 +29,4 @@ func spawn_asteroid():
 	var random_scale = rand_range(0.5, 1)
 	asteroid.scale = Vector2(random_scale, random_scale)
 	index += 1
-	asteroid_spawn_timer.wait_time = rand_range(3, 20)
+	asteroid_spawn_timer.wait_time = rand_range(3, 30)
