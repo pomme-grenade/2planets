@@ -6,6 +6,8 @@ var indicator
 var can_hit_planet
 var type = 'asteroid'
 var was_rotated = false
+var health = 100
+var is_attached = false
 
 func _ready():
 	can_hit_planet = preload('res://can_hit_planet.gd').new()

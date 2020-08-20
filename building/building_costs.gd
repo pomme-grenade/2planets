@@ -10,4 +10,5 @@ const costs = {
     'split_rocket': 40,
     'teleporter': 10,
     'slingshot': 40,
+    'asteroid_farmer': 40
 }
