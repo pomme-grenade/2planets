@@ -39,6 +39,9 @@ PROBLEME
         - gedrückt halten macht nicht so spaß
         - instant bauen ist fehleranfällig für manche leute (noobs)
 
+URGENT
+    - upgrades behalten alte faehigkeit bei
+    - asteroid farm und dronen automatisch
 
 TODO
     - satellit besser proportionieren

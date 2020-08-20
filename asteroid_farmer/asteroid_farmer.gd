@@ -33,7 +33,7 @@ func _process(dt):
 				and attached_asteroid \
 					and laser_distance_to_asteroid < 50 \
 						and building_distance_to_asteroid < laser_range:
-				asteroid.health -= 10 * dt
+				asteroid.health -= 50 * dt
 				asteroid.global_position = to_global(
 					Vector2(0, 
 					-building_distance_to_asteroid)
@@ -49,7 +49,7 @@ func _process(dt):
 					planet.money += 50
 					return
 
-			if not attached_asteroid and laser_distance_to_asteroid < 50 \
+			if not attached_asteroid and laser_distance_to_asteroid < 30 \
 				and building_distance_to_asteroid < laser_range:
 				stop_laser_timer.stop()
 				attached_asteroid = asteroid
