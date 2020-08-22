@@ -7,7 +7,7 @@ var building_info: String setget ,get_building_info
 var drones := []
 var drone_spawner
 const upgrade_1_type = 'healing_drone_factory'
-const max_drones = 3
+const max_drones = 2
 
 func init():
 	building_info = ''

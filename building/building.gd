@@ -75,7 +75,6 @@ remotesync func deconstruct(cost):
 	planet.update()
 
 func add_money(value):
-	print('add_money')
 	var income_animation = \
 		preload('res://income/Income_animation.tscn').instance()
 	income_animation.position = Vector2(-10, 8)

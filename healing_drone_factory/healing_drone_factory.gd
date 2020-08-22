@@ -5,7 +5,7 @@ var planet
 var building_info: String setget ,get_building_info
 var drones := []
 var drone_spawner
-const max_drones = 3
+const max_drones = 2
 const activate_cost := 40
 
 func init():

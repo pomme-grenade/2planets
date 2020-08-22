@@ -1,7 +1,7 @@
 extends Node2D
 
 var new_drone_timer
-var time_until_new_drone = 10
+var time_until_new_drone = 20
 var max_drones
 var drones := []
 var base_building

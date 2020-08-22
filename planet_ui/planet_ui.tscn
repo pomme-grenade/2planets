@@ -110,14 +110,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="update_building" type="HBoxContainer" parent="."]
+[node name="upgrade_building" type="HBoxContainer" parent="."]
 margin_right = 62.0
 margin_bottom = 18.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="upgrade_1" type="Button" parent="update_building"]
+[node name="upgrade_1" type="Button" parent="upgrade_building"]
 margin_right = 18.0
 margin_bottom = 18.0
 size_flags_horizontal = 3
@@ -126,7 +126,7 @@ custom_styles/pressed = ExtResource( 9 )
 custom_styles/normal = ExtResource( 8 )
 custom_fonts/font = SubResource( 4 )
 
-[node name="upgrade_texture" type="TextureRect" parent="update_building/upgrade_1"]
+[node name="upgrade_texture" type="TextureRect" parent="upgrade_building/upgrade_1"]
 margin_left = 2.42626
 margin_top = 2.08639
 margin_right = 19.4262
@@ -136,7 +136,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="activate" type="Button" parent="update_building"]
+[node name="activate" type="Button" parent="upgrade_building"]
 margin_left = 22.0
 margin_right = 40.0
 margin_bottom = 18.0
@@ -146,7 +146,7 @@ custom_styles/pressed = ExtResource( 9 )
 custom_styles/normal = ExtResource( 8 )
 custom_fonts/font = SubResource( 5 )
 
-[node name="activate_texture" type="TextureRect" parent="update_building/activate"]
+[node name="activate_texture" type="TextureRect" parent="upgrade_building/activate"]
 margin_left = 1.84467
 margin_top = 1.58112
 margin_right = 18.8447
@@ -157,7 +157,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="upgrade_2" type="Button" parent="update_building"]
+[node name="upgrade_2" type="Button" parent="upgrade_building"]
 margin_left = 44.0
 margin_right = 62.0
 margin_bottom = 18.0
@@ -167,7 +167,7 @@ custom_styles/pressed = ExtResource( 9 )
 custom_styles/normal = ExtResource( 8 )
 custom_fonts/font = SubResource( 6 )
 
-[node name="upgrade_texture" type="TextureRect" parent="update_building/upgrade_2"]
+[node name="upgrade_texture" type="TextureRect" parent="upgrade_building/upgrade_2"]
 margin_left = 2.23321
 margin_top = 1.79594
 margin_right = 19.2331

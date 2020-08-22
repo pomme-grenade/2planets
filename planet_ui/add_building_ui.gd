@@ -31,11 +31,11 @@ func init():
 			'new_building/' + type, 'build_' + type, 'start_building', [type])
 
 	add_button_shortcut(
-		'update_building/activate', 'build_income', 'start_activate')
+		'upgrade_building/activate', 'build_income', 'start_activate')
 	add_button_shortcut(
-		'update_building/upgrade_1', 'build_defense', 'start_upgrade', [1])
+		'upgrade_building/upgrade_1', 'build_defense', 'start_upgrade', [1])
 	add_button_shortcut(
-		'update_building/upgrade_2', 'build_attack', 'start_upgrade', [2])
+		'upgrade_building/upgrade_2', 'build_attack', 'start_upgrade', [2])
 
 func add_button_shortcut(
 		path: String, 
@@ -58,7 +58,7 @@ func add_button_shortcut(
 func _process(_dt):
 	if is_instance_valid(player.current_building):
 		toggle_new_building_ui(false)
-		var activate_button = $'update_building/activate/activate_texture'
+		var activate_button = $'upgrade_building/activate/activate_texture'
 		if player.current_building.can_activate():
 			activate_button.texture = load('res://buttons/arrow_%s.png' \
 				% player.current_building.base_type)
@@ -77,7 +77,7 @@ func _process(_dt):
 				$'building_cost/attack'.text =  \
 					str(building_costs[upgrade_type])
 
-			var upgrade_button = get_node('update_building/upgrade_%d/upgrade_texture' % index)
+			var upgrade_button = get_node('upgrade_building/upgrade_%d/upgrade_texture' % index)
 			if player.current_building.can_upgrade(index):
 				upgrade_button.visible = true
 				upgrade_button.texture = load('res://buttons/%s_button.png' \
@@ -121,15 +121,12 @@ func toggle_new_building_ui(visible: bool):
 		defense_button.self_modulate = Color(1, 1, 1, 1)
 		attack_button.self_modulate = Color(1, 1, 1, 1)
 
-	$update_building.visible = not visible
+	$upgrade_building.visible = not visible
 	$new_building.visible = visible
-
-
-
 
 func start_building(type: String):
 	if (is_instance_valid(player.current_building) or
-			not was_double_press('build_%s' % type)):
+			not was_double_press('new_building/%s' % type)):
 		return
 
 	var name = '%d_building_%d' % [player.player_number, building_index]
@@ -139,7 +136,7 @@ func start_building(type: String):
 	update()
 
 func start_upgrade(index):
-	if (not was_double_press('upgrade_%d' % index)):
+	if (not was_double_press('upgrade_building/upgrade_%d' % index)):
 		return
 
 	if ((not is_instance_valid(player.current_building))
@@ -152,10 +149,18 @@ func start_activate():
 	player.current_building.activate()
 
 func was_double_press(button_name: String) -> bool:
-	var result = previously_pressed_button == button_name
-	if result:
+	var was_pressed_twice = previously_pressed_button == button_name
+	if was_pressed_twice:
 		previously_pressed_button = null
+		get_node(button_name).modulate = Color(1, 1, 1)
 	else:
-		previously_pressed_button = button_name
+		if previously_pressed_button != null:
+			var previous_button_node = get_node(previously_pressed_button)
+			if previous_button_node != null:
+				previous_button_node.modulate = Color(1, 1, 1)
 
-	return result
+		previously_pressed_button = button_name
+		get_node(button_name).modulate = Color(2, 2, 2)
+
+
+	return was_pressed_twice

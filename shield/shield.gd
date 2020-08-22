@@ -4,9 +4,9 @@ var planet
 var type
 
 var attack_range = 80
-var max_strength = 40
+var max_strength = 30
 var strength = max_strength
-var regen = 5.0 / 2
+var regen = 1.0
 var building_info
 
 func init():
