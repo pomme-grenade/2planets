@@ -29,11 +29,7 @@ PROBLEME
     - gedrückt halten vs instant gebäude bauen:
         - gedrückt halten macht nicht so spaß
         - instant bauen ist fehleranfällig für manche leute (noobs)
-
-URGENT
-    - upgrades behalten alte faehigkeit bei
-    - asteroid bigger and bit more damage
-
+        
 TODO
     - satellit besser proportionieren
     - better satellite destroyed graphic
