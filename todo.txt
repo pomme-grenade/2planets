@@ -1,24 +1,16 @@
 IDEEN
 	- upgrades
         - antisatellit rakete
-        - gebäude zerstören / stunnen / schaden machen
-           - schiff, das rüber fliegt und dronen released
-           - repair drones
-        - ressourcen klauen
-        - mining dronen
+        - schiff, das rüber fliegt und dronen released
         - thruster um seinen planeten zu bewegen
-        - gravity asteroid slingshot
-        - raketen, die wenn sie abgewehrt werden eine cloud machen in der andere raketen invincible sind
         - schnellere raketen
-	- health upgrade 
-    - mehr slots upgrade
 	- planet upgrade fuer bessere einheiten (neues set einheiten) (neue waffenarten)
     - verschiedene modifier um das meta spannend zu halten
     - tower / upgrades / units draften a la bloons TD?
     - gegner planeten einnehmen
       - gebäude die rüber fliegen und hp klauen
     - es sollte einen counter fuer alles geben, vorausgesetzt man hat genug geld
-    - early rockets a lot weaker planet damage one repair drone slowly rebuilds destroyed buildings need upgrade for more
+    - early rockets a lot weaker
     - randomly generated gebiete die verschiedenen gebäuden boosts geben
         - zB ein gebiet mit metall, in dem minen mehr geld geben
         - berge, die gebäude schützen
@@ -27,7 +19,6 @@ IDEEN
         - terraforming
     - random upgrade drops die man einsammeln kann und damit freischaltet
 	- buildings combine for extra effect
-    - particles
 
 
 PROBLEME
@@ -41,7 +32,6 @@ PROBLEME
 
 URGENT
     - upgrades behalten alte faehigkeit bei
-    - asteroid farm und dronen automatisch
 
 TODO
     - satellit besser proportionieren
@@ -52,13 +42,58 @@ TODO
     - building shadows
     - tutorial
     - bg fixen
-    - farm asteroids
+    - farm asteroids automatisch machen
     - shields überall anzeigen wo sie abwehren
+    - geld für abgewehrte raketen rausnehmen
+    - satelliten und shields können asteroiden abwehren
+    - asteroiden haben leben
 
     - damage indicator animation
     - meteoritenwaffe
     - meteoriten indicator am rande des bildschirms, 
         nicht am rande des viewports
+
+UPGRADE TREE
+    - defense
+        - shield
+            -
+            -
+        - instant
+            -
+            -
+    - income
+        - repair drones
+            - healing drones
+            - 
+        - teleporter
+            - asteroid farm
+            - 
+    - attack
+        - laser
+            - 
+            -
+        - split rocket
+            - slingshot
+            -
+    
+UPGRADE IDEEN
+    - speed buff
+    - fette nuke mit hp
+    - instant defense reflect
+    - verteidigungs chaff das incoming und outgoing raketen verwirrt
+    - verteidigungsraketen die alles abballern
+    - raketen stealth
+    - raketengebäude im orbit
+    - HP upgrade / shield um die planetenkruste
+    - slot upgrade
+    - satelliten auf dem boden
+    - lifesteal / leben durch aktivieren / leben durch raketen langsam abbauen
+    - ressourcen vom gegner klauen mit einheiten die auf den gegner planeten fliegen
+    - emp rakete
+    - raketen, die wenn sie abgewehrt werden eine cloud machen in der andere raketen invincible sind
+    - schnellere raketen
+    - günstigere raketen
+    - booster der alles in der umgebung schneller / stärker macht
 
 DONE
     - upgrades einbauen
