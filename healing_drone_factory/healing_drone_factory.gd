@@ -6,11 +6,18 @@ var planet
 var building_info: String setget ,get_building_info
 var animation_finished := true
 var drones := []
+var drone_spawner
 const max_drones = 5
 const activate_cost := 40
 
 func init():
 	building_info = ''
+	drone_spawner = load('res://drone_spawner.gd').new()
+	drone_spawner.max_drones = max_drones
+	drone_spawner.base_building = get_parent()
+	drone_spawner.factory = self
+	drone_spawner.start_factory()
+
 
 func new_drone():
 	var direction_to_planet = \
@@ -29,23 +36,10 @@ func new_drone():
 	planet.add_child(healing_drone)
 	healing_drone.init()
 	drones.append(healing_drone)
+	drone_spawner.drones = drones
 
 func get_building_info() -> String:
 	return '%d/%d drones' % [len(drones), max_drones]
-
-func can_activate() -> bool:
-	return len(drones) < max_drones
-	
-func on_activate():
-	var _err = get_parent().connect(
-		'animation_finished', 
-		self, 
-		'on_animation_finished', 
-		[], CONNECT_ONESHOT
-	)
-	get_parent().play('healing_drone_factory_activate')
-	get_parent().speed_scale = 10
-	animation_finished = false
 
 func buildup_finish():
 	for drone in drones:
