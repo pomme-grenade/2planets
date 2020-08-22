@@ -5,6 +5,7 @@ var building_to_destroy
 var building_index = 0
 var info_container
 var building_costs = preload('res://building/building_costs.gd').costs
+var previously_pressed_button
 
 const building_types = [
 	'attack',
@@ -48,7 +49,6 @@ func add_button_shortcut(
 	button.connect('pressed', self, callback_method, callback_binds)
 
 func _process(_dt):
-
 	if is_instance_valid(player.current_building):
 		toggle_new_building_ui(false)
 		var activate_button = $'update_building/activate/activate_texture'
@@ -102,8 +102,9 @@ func toggle_new_building_ui(visible: bool):
 	$new_building.visible = visible
 	$update_building.visible = not visible
 
-func start_building(type):
-	if is_instance_valid(player.current_building):
+func start_building(type: String):
+	if (is_instance_valid(player.current_building) or
+			not was_double_press('build_%s' % type)):
 		return
 
 	var name = '%d_building_%d' % [player.player_number, building_index]
@@ -113,6 +114,9 @@ func start_building(type):
 	update()
 
 func start_upgrade(index):
+	if (not was_double_press('upgrade_%d' % index)):
+		return
+
 	if ((not is_instance_valid(player.current_building))
 		or player.current_building.is_destroyed):
 		return
@@ -121,3 +125,12 @@ func start_upgrade(index):
 
 func start_activate():
 	player.current_building.activate()
+
+func was_double_press(button_name: String) -> bool:
+	var result = previously_pressed_button == button_name
+	if result:
+		previously_pressed_button = null
+	else:
+		previously_pressed_button = button_name
+
+	return result
