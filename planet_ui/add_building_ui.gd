@@ -21,10 +21,10 @@ func init():
 	defense_button = $'new_building/defense/TextureRect'
 	attack_button = $'new_building/attack/TextureRect'
 
+	info_container = $current_money_label
+
 	if not is_network_master():
 		return
-
-	info_container = $current_money_label
 
 	for type in building_types:
 		add_button_shortcut(
