@@ -5,6 +5,9 @@ var building_to_destroy
 var building_index = 0
 var info_container
 var building_costs = preload('res://building/building_costs.gd').costs
+var income_button
+var defense_button
+var attack_button
 
 const building_types = [
 	'attack',
@@ -13,6 +16,10 @@ const building_types = [
 ]
 
 func init():
+	income_button = $'new_building/income/TextureRect'
+	defense_button = $'new_building/defense/TextureRect'
+	attack_button = $'new_building/attack/TextureRect'
+
 	if not is_network_master():
 		return
 
@@ -87,7 +94,8 @@ func _process(_dt):
 
 				
 			get_node('/root/main/planet_ui_%s/building_cost/income' \
-				% player.player_number).text = '%d' % player.current_building.activate_cost
+				% player.player_number).text = \
+					'%d' % player.current_building.activate_cost
 
 		$building_info.text = player.current_building.building_info
 	else:
@@ -102,8 +110,22 @@ func _process(_dt):
 	info_container.get_node('income').text = "+%0.1f$/s" % player.planet.income
 
 func toggle_new_building_ui(visible: bool):
-	$new_building.visible = visible
+	if player.planet.money <= 80:
+		income_button.self_modulate = Color(1, 1, 1, 0.3)
+	else:
+		income_button.self_modulate = Color(1, 1, 1, 1)
+	if player.planet.money <= 40:
+		defense_button.self_modulate = Color(1, 1, 1, 0.3)
+		attack_button.self_modulate = Color(1, 1, 1, 0.3)
+	else:
+		defense_button.self_modulate = Color(1, 1, 1, 1)
+		attack_button.self_modulate = Color(1, 1, 1, 1)
+
 	$update_building.visible = not visible
+	$new_building.visible = visible
+
+
+
 
 func start_building(type):
 	if is_instance_valid(player.current_building):

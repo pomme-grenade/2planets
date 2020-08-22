@@ -13,7 +13,6 @@ func init():
 	building_info = ''
 	position *= 1.5
 	get_parent().rotation = get_parent().position.angle() + PI / 2
-	get_parent().scale = Vector2(0.8, 0.8)
 	update()
 
 func _process(_dt):
@@ -39,7 +38,7 @@ func _draw():
 	var color_strength = round(strength / 5) / (max_strength / 5)
 	draw_circle_arc(
 		Vector2(0, 0), 
-		80, 
+		attack_range, 
 		-60, 
 		60, 
 		Color(0.4, 0.2, 0.7, 0.4 * color_strength)

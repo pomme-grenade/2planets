@@ -84,15 +84,15 @@ func add_money(value):
 	income_animation.label.text = '+' + str(value)
 
 func can_upgrade(index):
-	for child in children:
-		var upgrade_type = child.get('upgrade_%d_type' % index)
-		return (
-			is_network_master() and
-			typeof(upgrade_type) == TYPE_STRING and
-			planet.money >= building_costs[upgrade_type] and
-			(not is_destroyed) and
-			is_built
-		)
+	var last_child = children[len(children) - 1]
+	var upgrade_type = last_child.get('upgrade_%d_type' % index)
+	return (
+		is_network_master() and
+		typeof(upgrade_type) == TYPE_STRING and
+		planet.money >= building_costs[upgrade_type] and
+		(not is_destroyed) and
+		is_built
+	)
 
 func try_upgrade(index):
 	if not can_upgrade(index):

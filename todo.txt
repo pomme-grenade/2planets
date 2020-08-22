@@ -32,6 +32,7 @@ PROBLEME
 
 URGENT
     - upgrades behalten alte faehigkeit bei
+    - asteroid bigger and bit more damage
 
 TODO
     - satellit besser proportionieren
