@@ -7,7 +7,7 @@ var building_info: String setget ,get_building_info
 var animation_finished := true
 var drones := []
 var drone_spawner
-const max_drones = 5
+const max_drones = 3
 const activate_cost := 40
 
 func init():
@@ -16,7 +16,7 @@ func init():
 	drone_spawner.max_drones = max_drones
 	drone_spawner.base_building = get_parent()
 	drone_spawner.factory = self
-	drone_spawner.start_factory()
+	add_child(drone_spawner)
 
 
 func new_drone():

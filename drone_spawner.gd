@@ -7,14 +7,14 @@ var drones := []
 var base_building
 var factory
 
-func start_factory():
+func _ready():
 	new_drone_timer = Timer.new()
 	new_drone_timer.connect('timeout', self, 'spawn_drone')
-	factory.add_child(new_drone_timer)
-	new_drone_timer.start()
+	add_child(new_drone_timer)
+	new_drone_timer.start(time_until_new_drone)
 
 func spawn_drone():
-	if len(drones) > max_drones:
+	if len(drones) >= max_drones:
 		new_drone_timer.stop()
 		return
 
@@ -26,4 +26,3 @@ func spawn_drone():
 	)
 	base_building.play('repair_drone_factory_activate')
 	base_building.speed_scale = 10
-	factory.animation_finished = false

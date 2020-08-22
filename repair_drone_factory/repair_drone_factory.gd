@@ -5,11 +5,10 @@ var planet
 var drone_index := 0
 var activate_cost := 40
 var building_info: String setget ,get_building_info
-var animation_finished := true
 var drones := []
 var drone_spawner
 const upgrade_1_type = 'healing_drone_factory'
-const max_drones = 10
+const max_drones = 3
 
 func init():
 	building_info = ''
@@ -17,7 +16,7 @@ func init():
 	drone_spawner.max_drones = max_drones
 	drone_spawner.base_building = get_parent()
 	drone_spawner.factory = self
-	drone_spawner.start_factory()
+	add_child(drone_spawner)
 
 func buildup_finish():
 	for drone in drones:
@@ -48,6 +47,5 @@ func get_building_info() -> String:
 	return '%d/%d drones' % [len(drones), max_drones]
 
 func on_animation_finished():
-	animation_finished = true
 	new_drone()
 	get_parent().play('repair_drone_factory')
