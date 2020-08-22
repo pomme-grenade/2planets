@@ -1,6 +1,5 @@
 extends Node2D
 
-var additional_income = 1
 var planet
 var drone_index := 0
 var activate_cost := 40
@@ -18,7 +17,8 @@ func init():
 	drone_spawner.factory = self
 	add_child(drone_spawner)
 
-func buildup_finish():
+func repair_finished():
+	drone_spawner.start()
 	for drone in drones:
 		drone.active = true
 
@@ -40,8 +40,13 @@ func new_drone():
 	drone_spawner.drones = drones
 
 func on_destroy():
+	drone_spawner.stop()	
 	for drone in drones:
 		drone.active = false
+
+func on_deconstruct():
+	for drone in drones:
+		drone.queue_free()
 
 func get_building_info() -> String:
 	return '%d/%d drones' % [len(drones), max_drones]

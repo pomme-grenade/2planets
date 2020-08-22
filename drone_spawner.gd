@@ -11,7 +11,7 @@ func _ready():
 	new_drone_timer = Timer.new()
 	new_drone_timer.connect('timeout', self, 'spawn_drone')
 	add_child(new_drone_timer)
-	new_drone_timer.start(time_until_new_drone)
+	start()
 
 func spawn_drone():
 	if len(drones) >= max_drones:
@@ -26,3 +26,9 @@ func spawn_drone():
 	)
 	base_building.play('%s_activate' % base_building.type)
 	base_building.speed_scale = 10
+
+func stop():
+	new_drone_timer.stop()
+
+func start():
+	new_drone_timer.start(time_until_new_drone)

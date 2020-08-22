@@ -18,18 +18,19 @@ func add_building_child(child):
 	children.append(child)
 	is_built = false
 	repair_time = initial_repair_time
-	if child.has_user_signal('income'):
-		child.connect('income', self, 'add_money')
 	add_child(child)
 	child.set_network_master(get_network_master())
 	child.planet = planet
 	if child.has_method("init"):
 		child.init()
 
+	if child.has_user_signal('income'):
+		child.connect('income', self, 'add_money')
+
 	if child.get('activate_cost') != null:
 		activate_cost = child.activate_cost
 
-	connect('animation_finished', self, 'buildup_finish', [], CONNECT_ONESHOT)
+	connect('animation_finished', self, 'buildup_animation_finished', [], CONNECT_ONESHOT)
 
 	var animation_name = str(type) + '_buildup'
 	var default_fps = frames.get_animation_speed(animation_name)
@@ -54,8 +55,6 @@ remotesync func destroy():
 	for child in children:
 		if child.has_method("on_destroy"):
 			child.on_destroy()
-		if child.get('additional_income') != null:
-			planet.income -= child.additional_income
 	is_destroyed = true
 	play('%s_destroyed' % type)
 	stop()
@@ -63,8 +62,8 @@ remotesync func destroy():
 
 remotesync func deconstruct(cost):
 	for child in children:
-		if child.has_method("on_destroy") and not is_destroyed:
-			child.on_destroy()
+		if child.has_method("on_deconstruct") and not is_destroyed:
+			child.on_deconstruct()
 
 	if is_built:
 		planet.money += cost / 4
@@ -102,11 +101,8 @@ func try_upgrade(index):
 
 remotesync func upgrade(index):
 	var last_child = children[len(children) - 1]
-	for child in children:
-		if child.has_method('on_upgrade'):
-			child.on_upgrade()
 
-		type = last_child.get('upgrade_%d_type' % index)
+	type = last_child.get('upgrade_%d_type' % index)
 
 	var new_child_script = 'res://%s/%s.gd' % [type, type]
 	if typeof(new_child_script) != TYPE_STRING:
@@ -120,20 +116,27 @@ remotesync func upgrade(index):
 	upgrading = true
 
 
-func upgrade_finish():
-	pass
+func repair_finished():
+	for child in children:
+		if child.has_method('repair_finished'):
+			child.repair_finished()
 
-func buildup_finish():
-	var last_child = children[len(children) - 1]
+	buildup_animation_finished()
 
+func initial_build_finished():
+	for child in children:
+		if child.has_method('initial_build_finished'):
+			child.initial_build_finished()
+
+func buildup_animation_finished():
 	if is_destroyed:
 		return
 
-	if last_child.has_method('buildup_finish'):
-		last_child.buildup_finish()
+	var last_child = children[len(children) - 1]
 
-	if last_child.get('additional_income') != null and not upgrading:
-		planet.income += last_child.additional_income
+	for child in children:
+		if child.has_method('buildup_animation_finished'):
+			child.buildup_animation_finished()
 
 	upgrading = false
 	is_built = true

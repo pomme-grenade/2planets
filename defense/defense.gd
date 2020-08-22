@@ -94,7 +94,7 @@ remotesync func destroy_rocket(path):
 	rocket.queue_free()
 	planet.money += 5
 
-func buildup_finish():
+func buildup_animation_finished():
 	update()
 
 func on_destroy():

@@ -25,7 +25,7 @@ func _process(dt):
 
 		if destroyed_building.repair_time <= 0:
 			destroyed_building.is_destroyed = false
-			destroyed_building.buildup_finish()
+			destroyed_building.repair_finished()
 			detach()
 
 	if attached and is_instance_valid(destroyed_building) and not destroyed_building.is_destroyed:

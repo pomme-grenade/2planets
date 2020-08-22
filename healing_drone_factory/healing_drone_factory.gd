@@ -1,6 +1,5 @@
 extends Node2D
 
-var additional_income = 1
 var drone_index := 0
 var planet
 var building_info: String setget ,get_building_info
@@ -40,13 +39,17 @@ func new_drone():
 func get_building_info() -> String:
 	return '%d/%d drones' % [len(drones), max_drones]
 
-func buildup_finish():
+func buildup_animation_finished():
 	for drone in drones:
 		drone.active = true
 
 func on_destroy():
 	for drone in drones:
 		drone.active = false
+
+func on_deconstruct():
+	for drone in drones:
+		drone.queue_free()
 
 func on_animation_finished():
 	new_drone()
