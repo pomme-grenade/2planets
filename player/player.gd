@@ -144,8 +144,6 @@ remotesync func spawn_building(type, name, position):
 	}
 	building.type = type
 	building.base_type = type
-	building.child = scripts[type].new()
-	building.child.name = name + '_child'
 	building.planet = planet
 	building.position = building.position.rotated(position.direction_to(Vector2(0, 0)).angle() - PI/2)
 	building.position += position
@@ -157,7 +155,10 @@ remotesync func spawn_building(type, name, position):
 	building.add_to_group('building' + str(planet.player_number))
 	building.centered = true
 
-	building.init()
+	var new_child = scripts[type].new()
+	new_child.name = name + '_child'
+	building.add_building_child(new_child)
+
 	current_building = building
 	current_building.self_modulate = Color(2, 2, 2, 1)
 	ui.update()

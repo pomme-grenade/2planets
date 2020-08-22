@@ -4,7 +4,6 @@ var additional_income = 1
 var drone_index := 0
 var planet
 var building_info: String setget ,get_building_info
-var animation_finished := true
 var drones := []
 var drone_spawner
 const max_drones = 3
@@ -50,6 +49,5 @@ func on_destroy():
 		drone.active = false
 
 func on_animation_finished():
-	animation_finished = true
 	new_drone()
-	get_parent().play('healing_drone_factory')
+	get_parent().play(get_parent().type)

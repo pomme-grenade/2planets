@@ -48,4 +48,4 @@ func get_building_info() -> String:
 
 func on_animation_finished():
 	new_drone()
-	get_parent().play('repair_drone_factory')
+	get_parent().play(get_parent().type)

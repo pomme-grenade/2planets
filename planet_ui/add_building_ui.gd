@@ -59,7 +59,10 @@ func _process(_dt):
 			activate_button.texture = load('res://buttons/arrow_cant_activate.png')
 
 		for index in [1, 2]:
-			var upgrade_type = player.current_building.child.get('upgrade_%s_type' % index)
+			var last_child = player.current_building.children\
+				[len(player.current_building.children) - 1]
+			var upgrade_type = \
+				last_child.get('upgrade_%s_type' % index)
 			if index == 1 and upgrade_type != null:
 				$'building_cost/defense'.text =  \
 					str(building_costs[upgrade_type])
@@ -71,12 +74,12 @@ func _process(_dt):
 			if player.current_building.can_upgrade(index):
 				upgrade_button.visible = true
 				upgrade_button.texture = load('res://buttons/%s_button.png' \
-					% player.current_building.child.get('upgrade_%s_type' % index))
+					% last_child.get('upgrade_%s_type' % index))
 				upgrade_button.rect_scale = Vector2(0.8, 0.8)
 				upgrade_button.self_modulate = Color(1, 1, 1, 1)
-			elif player.current_building.child.get('upgrade_%s_type' % index) != null:
+			elif last_child.get('upgrade_%s_type' % index) != null:
 				upgrade_button.texture = load('res://buttons/%s_button.png' \
-					% player.current_building.child.get('upgrade_%s_type' % index))
+					% last_child.get('upgrade_%s_type' % index))
 				upgrade_button.rect_scale = Vector2(0.8, 0.8)
 				upgrade_button.self_modulate = Color(1, 1, 1, 0.3)
 			else:

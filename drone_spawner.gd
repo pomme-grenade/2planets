@@ -24,5 +24,5 @@ func spawn_drone():
 		[], 
 		CONNECT_ONESHOT
 	)
-	base_building.play('repair_drone_factory_activate')
+	base_building.play('%s_activate' % base_building.type)
 	base_building.speed_scale = 10

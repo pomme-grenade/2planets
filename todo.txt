@@ -48,6 +48,7 @@ TODO
     - satelliten und shields können asteroiden abwehren
     - asteroiden haben leben
 
+    - better indicator
     - damage indicator animation
     - meteoritenwaffe
     - meteoriten indicator am rande des bildschirms, 
