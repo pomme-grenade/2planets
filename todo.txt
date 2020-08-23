@@ -52,6 +52,12 @@ TODO
     - meteoriten indicator am rande des bildschirms, 
         nicht am rande des viewports
 
+    - networking:
+        - asteroiden position syncen
+        - building activation syncen
+        - beide seiten des keyboards auf den gleichen player binden
+        - raketen werden nicht richtig zerstört
+
 UPGRADE TREE
     - defense
         - shield
