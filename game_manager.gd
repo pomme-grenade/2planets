@@ -1,5 +1,7 @@
 extends Node
 
+const SERVER_PORT = 10200
+var upnp
 # Private variable
 var _params = null
 
@@ -14,6 +16,17 @@ func game_over(loser):
 	game_over_screen.loser = loser
 	get_tree().paused = true
 	get_tree().get_root().add_child(game_over_screen)
+
+func create_upnp():
+	upnp = UPNP.new()
+	upnp.discover(2000, 2, "InternetGatewayDevice")
+	var connection = upnp.add_port_mapping(SERVER_PORT)
+	print(connection, 'error')
+
+func _notification(what):
+	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
+		get_tree().quit() # default behavior
+		var deleted = upnp.delete_port_mapping(SERVER_PORT)
 
 # Call this instead to be able to provide arguments to the next scene
 # func change_scene(next_scene, params=null):

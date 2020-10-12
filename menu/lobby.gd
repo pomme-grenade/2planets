@@ -22,7 +22,7 @@ func _ready():
 
 func _on_local():
 	var peer = NetworkedMultiplayerENet.new()
-	peer.create_server(SERVER_PORT, 2)
+	peer.create_server(GameManager.SERVER_PORT, 2)
 	get_tree().set_network_peer(peer)
 
 	var world = load('res://Main.tscn').instance()
@@ -42,6 +42,7 @@ func _on_connect():
 	get_tree().set_network_peer(peer)
 
 func _on_create():
+	GameManager.create_upnp()
 	$'network/connect_container/connect'.disabled = true
 	$'network/connect_container/ip_address'.editable = false
 	var peer = NetworkedMultiplayerENet.new()
