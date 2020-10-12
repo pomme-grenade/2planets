@@ -18,6 +18,8 @@ var health_bar
 func _ready():
 	money += start_money
 
+	rset_config('rotation', MultiplayerAPI.RPC_MODE_PUPPET)
+
 	player = preload('res://player/Player.tscn').instance()
 	add_child(player)
 	player.planet = self
@@ -79,11 +81,7 @@ func _process(delta):
 		rotation_degrees += 5 * delta
 
 	if is_network_master():
-		rpc('_sync_rotation', rotation)
-
-
-puppet func _sync_rotation(rot):
-	rotation = rot
+		rset('rotation', rotation)
 
 
 func current_slot_position():

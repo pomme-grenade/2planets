@@ -82,12 +82,10 @@ func _process(_dt):
 				upgrade_button.visible = true
 				upgrade_button.texture = load('res://buttons/%s_button.png' \
 					% last_child.get('upgrade_%s_type' % index))
-				upgrade_button.rect_scale = Vector2(0.8, 0.8)
 				upgrade_button.self_modulate = Color(1, 1, 1, 1)
 			elif last_child.get('upgrade_%s_type' % index) != null:
 				upgrade_button.texture = load('res://buttons/%s_button.png' \
 					% last_child.get('upgrade_%s_type' % index))
-				upgrade_button.rect_scale = Vector2(0.8, 0.8)
 				upgrade_button.self_modulate = Color(1, 1, 1, 0.3)
 			else:
 				upgrade_button.visible = false
