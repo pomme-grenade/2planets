@@ -24,8 +24,9 @@ func traverse_nat(hole_puncher, is_host, player_name):
 	# if result != UPNP.UPNP_RESULT_SUCCESS:
 		# print('error while trying upnp port forwarding: ', result)
 		hole_puncher.start_traversal("test", is_host, player_name)
-		yield(hole_puncher, 'hole_punched')
-		print('hole punched!')
+		var result = yield(hole_puncher, 'hole_punched')
+		yield(get_tree().create_timer(0.1), 'timeout')
+		return result
 
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:

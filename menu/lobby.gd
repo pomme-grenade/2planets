@@ -1,6 +1,5 @@
 extends Control
 
-const SERVER_PORT = 10200
 var other_player_id
 var players_done = []
 var config_file_path = 'res://server_config.cfg'
@@ -36,26 +35,38 @@ func _on_connect():
 	var ip = $'network/connect_container/ip_address'.text
 	config_file.set_value('config', 'ip_address_to_connect', ip)
 	config_file.save(config_file_path)
+	$'network/create'.disabled = true
+	$'network/connect_container/connect'.disabled = true
 
 	print('traversing nat...')
-	yield(GameManager.traverse_nat($HolePunch, false, 'planet_2'), 'completed')
-	$'network/create'.disabled = true
+	var result = yield(GameManager.traverse_nat($HolePunch, false, 'planet_2'), 'completed')
 	print('nat traversed!')
+	var host_address = result[2]
+	var host_port = result[1]
+	var own_port = result[0]
+	print('own port ', own_port)
+	print('host: ', host_address, ':', host_port)
 
 	var peer = NetworkedMultiplayerENet.new()
-	peer.create_client(ip, SERVER_PORT)
+	peer.create_client(host_address, host_port, 0, 0, own_port)
 	get_tree().set_network_peer(peer)
 
 func _on_create():
+	$'network/create'.disabled = true
 	$'network/connect_container/connect'.disabled = true
 	$'network/connect_container/ip_address'.editable = false
 
 	print('traversing nat...')
-	yield(GameManager.traverse_nat($HolePunch, true, 'planet_1'), 'completed')
+	var result =  \
+		yield(GameManager.traverse_nat($HolePunch, true, 'planet_1'), 'completed')
 	print('nat traversed!')
+	var my_port = result[0]
+	print('my port ', my_port)
 
 	var peer = NetworkedMultiplayerENet.new()
-	peer.create_server(SERVER_PORT, 2)
+	var err = peer.create_server(my_port, 1)
+	if (err != OK):
+		print(err)
 	get_tree().set_network_peer(peer)
 
 remotesync func pre_configure_game():
