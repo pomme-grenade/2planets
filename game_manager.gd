@@ -17,16 +17,19 @@ func game_over(loser):
 	get_tree().paused = true
 	get_tree().get_root().add_child(game_over_screen)
 
-func create_upnp():
-	upnp = UPNP.new()
-	upnp.discover(2000, 2, "InternetGatewayDevice")
-	var result = upnp.add_port_mapping(SERVER_PORT)
-	if result != UPNP.UPNP_RESULT_SUCCESS:
-		print('error while trying upnp port forwarding: ', result)
+func traverse_nat(hole_puncher, is_host, player_name):
+	# upnp = UPNP.new()
+	# upnp.discover(2000, 2, "InternetGatewayDevice")
+	# var result = upnp.add_port_mapping(SERVER_PORT)
+	# if result != UPNP.UPNP_RESULT_SUCCESS:
+		# print('error while trying upnp port forwarding: ', result)
+		hole_puncher.start_traversal("test", is_host, player_name)
+		yield(hole_puncher, 'hole_punched')
+		print('hole punched!')
 
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
-		var deleted = upnp.delete_port_mapping(SERVER_PORT)
+		# var deleted = upnp.delete_port_mapping(SERVER_PORT)
 		get_tree().quit() # default behavior
 
 # Call this instead to be able to provide arguments to the next scene

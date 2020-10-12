@@ -33,18 +33,27 @@ func _on_local():
 	queue_free()
 
 func _on_connect():
-	$'network/create'.disabled = true
 	var ip = $'network/connect_container/ip_address'.text
 	config_file.set_value('config', 'ip_address_to_connect', ip)
 	config_file.save(config_file_path)
+
+	print('traversing nat...')
+	yield(GameManager.traverse_nat($HolePunch, false, 'planet_2'), 'completed')
+	$'network/create'.disabled = true
+	print('nat traversed!')
+
 	var peer = NetworkedMultiplayerENet.new()
 	peer.create_client(ip, SERVER_PORT)
 	get_tree().set_network_peer(peer)
 
 func _on_create():
-	GameManager.create_upnp()
 	$'network/connect_container/connect'.disabled = true
 	$'network/connect_container/ip_address'.editable = false
+
+	print('traversing nat...')
+	yield(GameManager.traverse_nat($HolePunch, true, 'planet_1'), 'completed')
+	print('nat traversed!')
+
 	var peer = NetworkedMultiplayerENet.new()
 	peer.create_server(SERVER_PORT, 2)
 	get_tree().set_network_peer(peer)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://menu/lobby.gd" type="Script" id=1]
 [ext_resource path="res://buttons/button_texture_purple.tres" type="StyleBox" id=2]
+[ext_resource path="res://addons/Holepunch/holepunch_node.gd" type="Script" id=3]
 
 [sub_resource type="InputEventAction" id=1]
 action = "ui_accept"
@@ -94,3 +95,8 @@ custom_styles/normal = ExtResource( 2 )
 shortcut_in_tooltip = false
 keep_pressed_outside = true
 text = "connect"
+
+[node name="HolePunch" type="Node" parent="."]
+script = ExtResource( 3 )
+rendevouz_address = "88.198.36.14"
+rendevouz_port = 13000
