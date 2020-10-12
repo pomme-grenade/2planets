@@ -31,6 +31,10 @@ window/size/height=400
 window/stretch/mode="2d"
 window/stretch/aspect="expand"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "Holepunch" )
+
 [gui]
 
 theme/custom_font="res://font/font.tres"
