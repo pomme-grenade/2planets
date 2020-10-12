@@ -5,6 +5,9 @@ modulate = Color( 1, 0.996078, 0.996078, 1 )
 self_modulate = Color( 0.258824, 0.156863, 0.423529, 1 )
 margin_right = 96.0
 margin_bottom = 8.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="money" type="Label" parent="."]
 anchor_left = 0.5
