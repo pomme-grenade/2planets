@@ -1,6 +1,6 @@
 extends Sprite
 
-var rand_rotation
+remotesync var rand_rotation
 var velocity
 var indicator
 var can_hit_planet
@@ -14,7 +14,7 @@ func _ready():
 	add_child(can_hit_planet)
 	add_to_group('asteroids')
 
-	rand_rotation = rand_range(-1, 1)
+	rset('rand_rotation', rand_range(-1, 1))
 	indicator = \
 		preload('res://asteroid/asteroid_indicator.tscn').instance()
 	$'/root/main'.add_child(indicator)
