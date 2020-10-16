@@ -6,7 +6,7 @@ var rotation_speed = 0.75
 var target_player_number
 var from_planet
 #warning-ignore:unused_class_variable
-var is_destroyed = false
+remotesync var is_destroyed = false
 var split_distance
 var child_counter = 0
 var color = Color(1, 0.3, 0.3)
@@ -46,7 +46,7 @@ func _process(delta):
 		velocity = velocity * (1 + acceleration)
 
 		if can_hit_planet.did_hit_planet(target):
-			is_destroyed = true
+			rset('is_destroyed', true)
 			can_hit_planet.rpc('hit_planet', type, target.get_path())
 
 		if target.is_network_master():

@@ -19,6 +19,7 @@ IDEEN
         - terraforming
     - random upgrade drops die man einsammeln kann und damit freischaltet
 	- buildings combine for extra effect
+    - drone animation when build intent
 
 
 PROBLEME
