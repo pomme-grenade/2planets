@@ -1,3 +1,10 @@
+BETA
+    - bugs fixen
+    - kurze anleitung einbauen (kein tutorial)
+    - discord server
+    - mailing liste
+    - marketing texte
+
 IDEEN
 	- upgrades
         - antisatellit rakete
