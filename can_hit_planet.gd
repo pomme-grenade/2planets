@@ -4,6 +4,9 @@ var explosion_radius = 20
 var damage = 5
 var explosion_scene = preload('res://explosion/explosion.tscn')
 
+func _ready():
+	name = 'can_hit_planet'
+
 func did_hit_planet(planet) -> bool:
 	if planet.is_network_master():
 		var distance_to_target = (
