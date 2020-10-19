@@ -8,6 +8,7 @@ var type = 'asteroid'
 var was_rotated = false
 var health = 100
 var is_attached = false
+remotesync var is_destroyed = false
 
 func _ready():
 	can_hit_planet = preload('res://can_hit_planet.gd').new()
@@ -20,6 +21,9 @@ func _ready():
 	$'/root/main'.add_child(indicator)
 
 func _process(dt):
+	if is_destroyed: 
+		queue_free()
+		return
 
 	position += velocity * dt
 	rotation += rand_rotation * dt
@@ -39,7 +43,7 @@ func _process(dt):
 	var planets = get_tree().get_nodes_in_group('planets')
 	for planet in planets:
 		if can_hit_planet.did_hit_planet(planet):
-			queue_free()
+			rset('is_destroyed', true)
 			can_hit_planet.rpc('hit_planet', type, planet.get_path())
 
 func calculate_indicator_x():
