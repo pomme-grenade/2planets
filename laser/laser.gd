@@ -44,7 +44,7 @@ func stop_laser():
 	stop_laser_timer.stop()
 	update()
 
-func on_activate():
+remotesync func on_activate():
 	if not shooting:
 		stop_laser_timer.start(0.07)
 		shooting = true

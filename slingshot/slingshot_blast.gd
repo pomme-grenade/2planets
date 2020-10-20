@@ -45,7 +45,6 @@ func explode():
 		explosion_timer.start(1)
 	else:
 		queue_free()
-
 	update()
 
 func find_new_target():

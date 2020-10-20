@@ -148,7 +148,7 @@ func activate():
 	var last_child = children[len(children) - 1]
 	if can_activate():
 		planet.money -= last_child.activate_cost
-		last_child.on_activate()
+		last_child.rpc('on_activate')
 
 func can_activate():
 	var last_child = children[len(children) - 1]

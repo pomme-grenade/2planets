@@ -11,7 +11,7 @@ func init():
 	building_info = ''
 	target_player_number = 2 if planet.player_number == 1 else 1
 
-remotesync func fire_rocket(name, position, rotation):
+func fire_rocket(name, position, rotation):
 	var rocket = preload('res://attack/rocket.tscn').instance()
 
 	rocket.name = name
@@ -26,8 +26,8 @@ remotesync func fire_rocket(name, position, rotation):
 	$'/root/main'.add_child(rocket)
 	update()
 
-func on_activate():
+remotesync func on_activate():
 	var name = '%d_split_rocket_%d' % [ planet.player_number, rocket_name_index ]
 	rocket_name_index += 1
 	var position = global_position - Vector2(5, 0).rotated(global_rotation)
-	rpc('fire_rocket', name, position, global_rotation + PI)
+	fire_rocket(name, position, global_rotation + PI)
