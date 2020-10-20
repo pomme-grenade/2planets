@@ -24,6 +24,7 @@ func spawn_asteroid_rpc():
 
 remotesync func spawn_asteroid(position: Vector2, random_scale, random_rotation):
 	var asteroid = asteroid_scene.instance()
+	asteroid.name = 'asteroid_%d' % index
 	$'/root/main'.add_child(asteroid)
 	asteroid.global_position = Vector2(
 		position.x,
@@ -32,6 +33,5 @@ remotesync func spawn_asteroid(position: Vector2, random_scale, random_rotation)
 	asteroid.velocity = Vector2(0, 20).rotated(random_rotation)
 	if position.y > 0:
 		asteroid.velocity = asteroid.velocity.rotated(PI)
-	asteroid.name = 'asteroid_%d' % index
 	asteroid.scale = Vector2(random_scale, random_scale)
 	index += 1
