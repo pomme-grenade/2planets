@@ -112,6 +112,7 @@ func toggle_new_building_ui(visible: bool):
 		income_button.self_modulate = Color(1, 1, 1, 0.3)
 	else:
 		income_button.self_modulate = Color(1, 1, 1, 1)
+
 	if player.planet.money <= 40:
 		defense_button.self_modulate = Color(1, 1, 1, 0.3)
 		attack_button.self_modulate = Color(1, 1, 1, 0.3)

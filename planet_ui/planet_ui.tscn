@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://planet_ui/add_building_ui.gd" type="Script" id=1]
+[ext_resource path="res://planet_ui/planet_ui.gd" type="Script" id=1]
 [ext_resource path="res://buttons/satellite_button.png" type="Texture" id=2]
 [ext_resource path="res://buttons/rocket_button.png" type="Texture" id=3]
 [ext_resource path="res://buttons/mine_button.png" type="Texture" id=4]
