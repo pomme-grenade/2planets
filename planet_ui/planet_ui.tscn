@@ -76,7 +76,8 @@ custom_fonts/font = SubResource( 2 )
 clip_text = true
 
 [node name="TextureRect" type="TextureRect" parent="new_building/income"]
-margin_right = 20.0001
+anchor_right = 0.5
+margin_right = 10.0
 margin_bottom = 20.0
 texture = ExtResource( 4 )
 stretch_mode = 4
@@ -111,6 +112,7 @@ __meta__ = {
 }
 
 [node name="upgrade_building" type="HBoxContainer" parent="."]
+visible = false
 margin_right = 64.0
 margin_bottom = 20.0
 __meta__ = {
@@ -186,20 +188,19 @@ margin_top = 34.1669
 margin_right = 62.1669
 margin_bottom = 42.1669
 
-[node name="building_cost" type="Control" parent="."]
-margin_left = -0.225937
-margin_top = -17.3971
-margin_right = 65.7741
-margin_bottom = 0.602882
+[node name="building_cost" type="HBoxContainer" parent="."]
+margin_left = -2.0
+margin_top = -7.0
+margin_right = 66.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="defense" type="Label" parent="building_cost"]
-margin_left = 1.22871
-margin_top = 10.4407
-margin_right = 15.2287
-margin_bottom = 18.4407
+margin_right = 20.0
+margin_bottom = 8.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
 custom_colors/font_color = Color( 0.337255, 0.2, 0.490196, 1 )
 text = "1"
 __meta__ = {
@@ -207,10 +208,11 @@ __meta__ = {
 }
 
 [node name="income" type="Label" parent="building_cost"]
-margin_left = 22.4775
-margin_top = 10.4674
-margin_right = 34.4775
-margin_bottom = 18.4674
+margin_left = 24.0
+margin_right = 44.0
+margin_bottom = 8.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
 custom_colors/font_color = Color( 0.337255, 0.2, 0.490196, 1 )
 text = "2"
 __meta__ = {
@@ -218,10 +220,11 @@ __meta__ = {
 }
 
 [node name="attack" type="Label" parent="building_cost"]
-margin_left = 44.5392
-margin_top = 9.77129
-margin_right = 57.5392
-margin_bottom = 17.7713
+margin_left = 48.0
+margin_right = 68.0
+margin_bottom = 8.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
 custom_colors/font_color = Color( 0.337255, 0.2, 0.490196, 1 )
 text = "3"
 __meta__ = {

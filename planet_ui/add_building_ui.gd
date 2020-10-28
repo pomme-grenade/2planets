@@ -63,7 +63,7 @@ func _process(_dt):
 			activate_button.texture = load('res://buttons/arrow_%s.png' \
 				% player.current_building.base_type)
 		else:
-			activate_button.texture = preload('res://buttons/arrow_cant_activate.png')
+			activate_button.texture = load('res://buttons/arrow_cant_activate.png')
 
 		for index in [1, 2]:
 			var last_child = player.current_building.children\
@@ -77,8 +77,7 @@ func _process(_dt):
 				$'building_cost/attack'.text =  \
 					str(building_costs[upgrade_type])
 
-			var upgrade_button = \
-				get_node('upgrade_building/upgrade_%d/upgrade_texture' % index)
+			var upgrade_button = get_node('upgrade_building/upgrade_%d/upgrade_texture' % index)
 			if player.current_building.can_upgrade(index):
 				upgrade_button.visible = true
 				upgrade_button.texture = load('res://buttons/%s_button.png' \
