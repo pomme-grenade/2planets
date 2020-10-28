@@ -254,12 +254,13 @@ __meta__ = {
 }
 
 [node name="building_info" type="Label" parent="."]
+anchor_right = 1.0
 margin_left = 0.409546
 margin_top = 44.1493
-margin_right = 53.4095
 margin_bottom = 52.1493
 custom_fonts/font = ExtResource( 5 )
 text = "building info"
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -23,6 +23,7 @@ config/icon="res://icon.png"
 [autoload]
 
 GameManager="*res://game_manager.gd"
+Helper="*res://helper.gd"
 
 [display]
 

@@ -11,7 +11,7 @@ var initial_repair_time = 50
 var activate_cost = 0
 var base_type
 var building_info: String setget ,get_building_info
-var building_costs = preload('res://building/building_costs.gd').costs
+var building_costs = preload('res://building/building_info.gd').costs
 var upgrading = false
 
 func add_building_child(child):

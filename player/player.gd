@@ -13,7 +13,7 @@ var building_to_destroy
 var timer_wait_time = 0.7
 var do_dissolve = false
 var dissolve_amount = 1
-var building_costs = preload('res://building/building_costs.gd').costs
+var building_costs = preload('res://building/building_info.gd').costs
 
 
 export var speed = 1

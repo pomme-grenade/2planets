@@ -4,7 +4,7 @@ var player
 var building_to_destroy
 var building_index = 0
 var info_container
-var building_costs = preload('res://building/building_costs.gd').costs
+var buildings = preload('res://building/building_info.gd')
 var income_button
 var defense_button
 var attack_button
@@ -37,6 +37,8 @@ func init():
 	add_button_shortcut(
 		'upgrade_building/upgrade_2', 'build_attack', 'start_upgrade', [2])
 
+	$building_info.text = ''
+
 func add_button_shortcut(
 		path: String, 
 		action_key: String, 
@@ -66,16 +68,16 @@ func _process(_dt):
 			activate_button.texture = preload('res://buttons/arrow_cant_activate.png')
 
 		for index in [1, 2]:
-			var last_child = player.current_building.children\
-				[len(player.current_building.children) - 1]
-			var upgrade_type = \
-				last_child.get('upgrade_%s_type' % index)
+			var upgrade_type = get_upgrade_type(index)
+			var children = player.current_building.children
+			var last_child = children[len(children) - 1]
+
 			if index == 1 and upgrade_type != null:
 				$'building_cost/defense'.text =  \
-					str(building_costs[upgrade_type])
+					str(buildings.costs[upgrade_type])
 			elif index == 2 and upgrade_type != null:
 				$'building_cost/attack'.text =  \
-					str(building_costs[upgrade_type])
+					str(buildings.costs[upgrade_type])
 
 			var upgrade_button = \
 				get_node('upgrade_building/upgrade_%d/upgrade_texture' % index)
@@ -96,14 +98,16 @@ func _process(_dt):
 				% player.player_number).text = \
 					'%d' % player.current_building.activate_cost
 
-		$building_info.text = player.current_building.building_info
+		if previously_pressed_button == null:
+			$building_info.text = player.current_building.building_info
 	else:
-		$'building_cost/defense'.text = str(building_costs['defense'])
-		$'building_cost/income'.text = str(building_costs['income'])
-		$'building_cost/attack'.text = str(building_costs['attack'])
+		$'building_cost/defense'.text = str(buildings.costs['defense'])
+		$'building_cost/income'.text = str(buildings.costs['income'])
+		$'building_cost/attack'.text = str(buildings.costs['attack'])
 
 		toggle_new_building_ui(true)
-		$building_info.text = ''
+		if previously_pressed_button == null:
+			$building_info.text = ''
 
 	info_container.get_node('money').text = "%0.0f$" % player.planet.money
 	info_container.get_node('income').text = "+%0.1f$/s" % player.planet.income
@@ -126,7 +130,7 @@ func toggle_new_building_ui(visible: bool):
 
 func start_building(type: String):
 	if (is_instance_valid(player.current_building) or
-			not was_double_press('new_building/%s' % type)):
+			not was_double_press('new_building/%s' % type, type)):
 		return
 
 	var name = '%d_building_%d' % [player.player_number, building_index]
@@ -136,7 +140,8 @@ func start_building(type: String):
 	update()
 
 func start_upgrade(index):
-	if (not was_double_press('upgrade_building/upgrade_%d' % index)):
+	if (not was_double_press('upgrade_building/upgrade_%d' % index,
+			get_upgrade_type(index))):
 		return
 
 	if ((not is_instance_valid(player.current_building))
@@ -148,7 +153,7 @@ func start_upgrade(index):
 func start_activate():
 	player.current_building.activate()
 
-func was_double_press(button_name: String) -> bool:
+func was_double_press(button_name: String, type: String) -> bool:
 	var was_pressed_twice = \
 		previously_pressed_button == button_name
 	if was_pressed_twice:
@@ -162,5 +167,14 @@ func was_double_press(button_name: String) -> bool:
 
 		previously_pressed_button = button_name
 		get_node(button_name).modulate = Color(2, 2, 2)
+		$building_info.text = Helper.with_default(
+			buildings.descriptions.get(type),
+			''
+		)
 
 	return was_pressed_twice
+
+func get_upgrade_type(index):
+	var children = player.current_building.children
+	var last_child = children[len(children) - 1]
+	return last_child.get('upgrade_%s_type' % index)
