@@ -112,19 +112,19 @@ func _process(_dt):
 
 func update_new_building_ui():
 	for type in ['defense', 'attack', 'income']:
-		if player.planet.current_slot_index == previously_pressed_slot:
-			# button was already highlighted in button press event listener
+		if previously_pressed_slot == player.planet.current_slot_index:
+			# button was highlighted in button press listener, dont change it
 			pass
 		elif player.planet.money <= buildings.costs[type]:
 			get_node('new_building/%s' % type).modulate = Color(1, 1, 1, 0.3)
 		else:
 			get_node('new_building/%s' % type).modulate = Color(1, 1, 1, 1)
 
-	for type in ['defense', 'income', 'attack']:
 		get_node('building_cost/%s' % type).text = \
 			'%s$' % buildings.costs[type]
 
-	if previously_pressed_button == null:
+	if (previously_pressed_button == null 
+			or previously_pressed_slot != player.planet.current_slot_index):
 		$building_info.text = ''
 
 
