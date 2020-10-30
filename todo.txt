@@ -40,7 +40,9 @@ PROBLEME
         
 TODO
     - rot / gruen aufleuchtender text wenn sich income aendert
+    - rot aufleuchtendes geld wenn man bauen will, aber kein geld hat
     - satellit besser proportionieren
+    - satellitengebäude am boden
     - better satellite destroyed graphic
 	- multiplayer restart
 	- spiel vorbei wenn einer leaved im multiplayer

@@ -43,14 +43,13 @@ func _draw():
 		.direction_to(Vector2(0, 0)) \
 		.angle() - PI / 2
 
-	if not is_instance_valid(player.current_building):
-		draw_circle_arc(
-			Vector2(0, 0),
-			95,
-			(arc_rotation * 180 / PI) - (slot_width / 4),
-			(arc_rotation * 180 / PI) + (slot_width / 4),
-			Color(0.3, 0.8, 1, 0.5)
-		)
+	draw_circle_arc(
+		Vector2(0, 0),
+		95,
+		(arc_rotation * 180 / PI) - (slot_width / 4),
+		(arc_rotation * 180 / PI) + (slot_width / 4),
+		Color(0.3, 0.8, 1, 0.5)
+	)
 
 
 func draw_circle_arc(center, radius, angle_from, angle_to, arc_color):

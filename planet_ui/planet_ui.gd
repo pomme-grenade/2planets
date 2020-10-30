@@ -52,8 +52,12 @@ func add_button_shortcut(
 	button.connect('pressed', self, callback_method, callback_binds)
 
 func _process(_dt):
-	if is_instance_valid(player.current_building):
-		toggle_new_building_ui(false)
+
+	var is_upgrade_visible = is_instance_valid(player.current_building)
+	$upgrade_building.visible = is_upgrade_visible
+	$new_building.visible = not is_upgrade_visible
+
+	if is_upgrade_visible:
 		var activate_button = $'upgrade_building/activate/activate_texture'
 		if player.current_building.can_activate():
 			activate_button.texture = load('res://buttons/arrow_%s.png' \
@@ -100,26 +104,26 @@ func _process(_dt):
 		if previously_pressed_button == null:
 			$building_info.text = player.current_building.building_info
 	else:
-		for type in ['defense', 'income', 'attack']:
-			get_node('building_cost/%s' % type).text = \
-				'%s$' % buildings.costs[type]
-
-		toggle_new_building_ui(true)
-		if previously_pressed_button == null:
-			$building_info.text = ''
+		update_new_building_ui()
 
 	info_container.get_node('money').text = "%0.0f$" % player.planet.money
 	info_container.get_node('income').text = "+%0.1f$/s" % player.planet.income
 
-func toggle_new_building_ui(visible: bool):
+
+func update_new_building_ui():
 	for type in ['defense', 'attack', 'income']:
 		if player.planet.money <= buildings.costs[type]:
 			get_node('new_building/%s' % type).modulate = Color(1, 1, 1, 0.3)
 		else:
 			get_node('new_building/%s' % type).modulate = Color(1, 1, 1, 1)
 
-	$upgrade_building.visible = not visible
-	$new_building.visible = visible
+	for type in ['defense', 'income', 'attack']:
+		get_node('building_cost/%s' % type).text = \
+			'%s$' % buildings.costs[type]
+
+	if previously_pressed_button == null:
+		$building_info.text = ''
+
 
 func start_building(type: String):
 	if (is_instance_valid(player.current_building) or
@@ -131,6 +135,7 @@ func start_building(type: String):
 	var position = player.planet.current_slot_position()
 	player.try_spawn_building(type, name, position)
 	update()
+
 
 func start_upgrade(index):
 	if (not was_double_press('upgrade_building/upgrade_%d' % index,
