@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://planet_ui/planet_ui.gd" type="Script" id=1]
 [ext_resource path="res://buttons/satellite_button.png" type="Texture" id=2]
@@ -8,10 +8,7 @@
 [ext_resource path="res://buttons/arrow.png" type="Texture" id=6]
 [ext_resource path="res://planet_ui/current_money_label.tscn" type="PackedScene" id=7]
 [ext_resource path="res://buttons/button_texture_normal.tres" type="StyleBox" id=8]
-[ext_resource path="res://buttons/button_texture_pressed.tres" type="StyleBox" id=9]
 [ext_resource path="res://planet_ui/health_bar.gd" type="Script" id=10]
-
-[sub_resource type="BitmapFont" id=1]
 
 [sub_resource type="BitmapFont" id=2]
 
@@ -22,6 +19,8 @@
 [sub_resource type="BitmapFont" id=5]
 
 [sub_resource type="BitmapFont" id=6]
+
+[sub_resource type="BitmapFont" id=7]
 
 [node name="planet_ui" type="Control"]
 margin_right = 71.0
@@ -46,9 +45,9 @@ rect_min_size = Vector2( 20, 20 )
 rect_clip_content = true
 size_flags_horizontal = 3
 custom_styles/hover = ExtResource( 8 )
-custom_styles/pressed = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 8 )
 custom_styles/normal = ExtResource( 8 )
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 shortcut_in_tooltip = false
 button_mask = 0
 clip_text = true
@@ -70,9 +69,9 @@ margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 size_flags_horizontal = 3
 custom_styles/hover = ExtResource( 8 )
-custom_styles/pressed = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 8 )
 custom_styles/normal = ExtResource( 8 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 clip_text = true
 
 [node name="TextureRect" type="TextureRect" parent="new_building/income"]
@@ -92,9 +91,9 @@ margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 size_flags_horizontal = 3
 custom_styles/hover = ExtResource( 8 )
-custom_styles/pressed = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 8 )
 custom_styles/normal = ExtResource( 8 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 
 [node name="TextureRect" type="TextureRect" parent="new_building/attack"]
 anchor_left = 0.5
@@ -125,9 +124,8 @@ margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/pressed = ExtResource( 9 )
 custom_styles/normal = ExtResource( 8 )
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 
 [node name="upgrade_texture" type="TextureRect" parent="upgrade_building/upgrade_1"]
 margin_left = 0.0410366
@@ -146,9 +144,8 @@ margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/pressed = ExtResource( 9 )
 custom_styles/normal = ExtResource( 8 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 
 [node name="activate_texture" type="TextureRect" parent="upgrade_building/activate"]
 margin_left = 0.0963974
@@ -168,9 +165,8 @@ margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/pressed = ExtResource( 9 )
 custom_styles/normal = ExtResource( 8 )
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 
 [node name="upgrade_texture" type="TextureRect" parent="upgrade_building/upgrade_2"]
 margin_left = -0.011724
