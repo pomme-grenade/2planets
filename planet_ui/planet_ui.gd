@@ -65,19 +65,20 @@ func _process(_dt):
 			activate_button.texture = load('res://buttons/arrow_%s.png' \
 				% player.current_building.base_type)
 		else:
-			activate_button.texture = preload('res://buttons/arrow_cant_activate.png')
+			activate_button.texture = null
 
 		for index in [1, 2]:
 			var upgrade_type = get_upgrade_type(index)
 			var children = player.current_building.children
 			var last_child = children[len(children) - 1]
 
-			if index == 1 and upgrade_type != null:
-				$'building_cost/defense'.text =  \
-					'%s$' % buildings.costs[upgrade_type]
-			elif index == 2 and upgrade_type != null:
-				$'building_cost/attack'.text =  \
-					'%s$' % buildings.costs[upgrade_type]
+			var upgrade_cost = ''
+			if buildings.costs.get(upgrade_type) != null:
+				upgrade_cost = '%d$' % buildings.costs[upgrade_type]
+			if index == 1:
+				$'building_cost/defense'.text = upgrade_cost
+			elif index == 2:
+				$'building_cost/attack'.text = upgrade_cost
 
 			var upgrade_button = \
 				get_node('upgrade_building/upgrade_%d/upgrade_texture' % index)
@@ -94,9 +95,11 @@ func _process(_dt):
 				upgrade_button.visible = false
 
 				
-			get_node('/root/main/planet_ui_%s/building_cost/income' \
-				% player.player_number).text = \
-					'%d$' % player.current_building.activate_cost
+			if player.current_building.can_activate():
+				$'building_cost/income'.text = \
+						'%d$' % player.current_building.activate_cost
+			else:
+				$'building_cost/income'.text = ''
 
 		if previously_pressed_button == null:
 			$building_info.text = player.current_building.building_info
