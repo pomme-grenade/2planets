@@ -153,7 +153,7 @@ func start_upgrade(index):
 func start_activate():
 	player.current_building.activate()
 
-func was_double_press(button_name: String, type: String) -> bool:
+func was_double_press(button_name: String, type) -> bool:
 	var was_pressed_twice = \
 		previously_pressed_button == button_name
 	if was_pressed_twice:
@@ -167,10 +167,11 @@ func was_double_press(button_name: String, type: String) -> bool:
 
 		previously_pressed_button = button_name
 		get_node(button_name).modulate = Color(2, 2, 2)
-		$building_info.text = Helper.with_default(
-			buildings.descriptions.get(type),
-			''
-		)
+		if type != null:
+			$building_info.text = Helper.with_default(
+				buildings.descriptions.get(type),
+				''
+			)
 
 	return was_pressed_twice
 
