@@ -52,62 +52,65 @@ func add_button_shortcut(
 	button.connect('pressed', self, callback_method, callback_binds)
 
 func _process(_dt):
-
 	var is_upgrade_visible = is_instance_valid(player.current_building)
 	$upgrade_building.visible = is_upgrade_visible
 	$new_building.visible = not is_upgrade_visible
 
 	if is_upgrade_visible:
-		var activate_button = $'upgrade_building/activate/activate_texture'
-		if player.current_building.can_activate():
-			activate_button.texture = load('res://buttons/arrow_%s.png' \
-				% player.current_building.base_type)
-		elif player.current_building.is_activatable():
-			activate_button.texture = preload('res://buttons/arrow_cant_activate.png')
-		else:
-			activate_button.texture = null
-
-		for index in [1, 2]:
-			var upgrade_type = get_upgrade_type(index)
-			var children = player.current_building.children
-			var last_child = children[len(children) - 1]
-
-			var upgrade_cost = ''
-			if buildings.costs.get(upgrade_type) != null:
-				upgrade_cost = '%d$' % buildings.costs[upgrade_type]
-			if index == 1:
-				$'building_cost/defense'.text = upgrade_cost
-			elif index == 2:
-				$'building_cost/attack'.text = upgrade_cost
-
-			var upgrade_button = \
-				get_node('upgrade_building/upgrade_%d/upgrade_texture' % index)
-			if player.current_building.can_upgrade(index):
-				upgrade_button.visible = true
-				upgrade_button.texture = load('res://buttons/%s_button.png' \
-					% last_child.get('upgrade_%s_type' % index))
-				upgrade_button.self_modulate = Color(1, 1, 1, 1)
-			elif last_child.get('upgrade_%s_type' % index) != null:
-				upgrade_button.texture = load('res://buttons/%s_button.png' \
-					% last_child.get('upgrade_%s_type' % index))
-				upgrade_button.self_modulate = Color(1, 1, 1, 0.3)
-			else:
-				upgrade_button.visible = false
-
-				
-			if player.current_building.is_activatable():
-				$'building_cost/income'.text = \
-						'%d$' % player.current_building.activate_cost
-			else:
-				$'building_cost/income'.text = ''
-
-		if previously_pressed_button == null:
-			$building_info.text = player.current_building.building_info
+		update_upgrade_ui()
 	else:
 		update_new_building_ui()
 
 	info_container.get_node('money').text = "%0.0f$" % player.planet.money
 	info_container.get_node('income').text = "+%0.1f$/s" % player.planet.income
+
+
+func update_upgrade_ui():
+	var activate_button = $'upgrade_building/activate/activate_texture'
+	if player.current_building.can_activate():
+		activate_button.texture = load('res://buttons/arrow_%s.png' \
+			% player.current_building.base_type)
+	elif player.current_building.is_activatable():
+		activate_button.texture = preload('res://buttons/arrow_cant_activate.png')
+	else:
+		activate_button.texture = null
+
+	if previously_pressed_button == null:
+		$building_info.text = player.current_building.building_info
+
+	for index in [1, 2]:
+		var upgrade_type = get_upgrade_type(index)
+		var children = player.current_building.children
+		var last_child = children[len(children) - 1]
+
+		var upgrade_cost = ''
+		if buildings.costs.get(upgrade_type) != null:
+			upgrade_cost = '%d$' % buildings.costs[upgrade_type]
+		if index == 1:
+			$'building_cost/defense'.text = upgrade_cost
+		elif index == 2:
+			$'building_cost/attack'.text = upgrade_cost
+
+		var upgrade_button = \
+			get_node('upgrade_building/upgrade_%d/upgrade_texture' % index)
+		if player.current_building.can_upgrade(index):
+			upgrade_button.visible = true
+			upgrade_button.texture = load('res://buttons/%s_button.png' \
+				% last_child.get('upgrade_%s_type' % index))
+			upgrade_button.self_modulate = Color(1, 1, 1, 1)
+		elif last_child.get('upgrade_%s_type' % index) != null:
+			upgrade_button.texture = load('res://buttons/%s_button.png' \
+				% last_child.get('upgrade_%s_type' % index))
+			upgrade_button.self_modulate = Color(1, 1, 1, 0.3)
+		else:
+			upgrade_button.visible = false
+
+			
+		if player.current_building.is_activatable():
+			$'building_cost/income'.text = \
+					'%d$' % player.current_building.activate_cost
+		else:
+			$'building_cost/income'.text = ''
 
 
 func update_new_building_ui():
