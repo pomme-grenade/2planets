@@ -74,10 +74,10 @@ func _process(_dt):
 
 			if index == 1 and upgrade_type != null:
 				$'building_cost/defense'.text =  \
-					str(buildings.costs[upgrade_type])
+					'%s$' % buildings.costs[upgrade_type]
 			elif index == 2 and upgrade_type != null:
 				$'building_cost/attack'.text =  \
-					str(buildings.costs[upgrade_type])
+					'%s$' % buildings.costs[upgrade_type]
 
 			var upgrade_button = \
 				get_node('upgrade_building/upgrade_%d/upgrade_texture' % index)
@@ -96,14 +96,14 @@ func _process(_dt):
 				
 			get_node('/root/main/planet_ui_%s/building_cost/income' \
 				% player.player_number).text = \
-					'%d' % player.current_building.activate_cost
+					'%d$' % player.current_building.activate_cost
 
 		if previously_pressed_button == null:
 			$building_info.text = player.current_building.building_info
 	else:
-		$'building_cost/defense'.text = str(buildings.costs['defense'])
-		$'building_cost/income'.text = str(buildings.costs['income'])
-		$'building_cost/attack'.text = str(buildings.costs['attack'])
+		for type in ['defense', 'income', 'attack']:
+			get_node('building_cost/%s' % type).text = \
+				'%s$' % buildings.costs[type]
 
 		toggle_new_building_ui(true)
 		if previously_pressed_button == null:
