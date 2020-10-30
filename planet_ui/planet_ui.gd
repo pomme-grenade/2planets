@@ -5,10 +5,8 @@ var building_to_destroy
 var building_index = 0
 var info_container
 var buildings = preload('res://building/building_info.gd')
-var income_button
-var defense_button
-var attack_button
 var previously_pressed_button
+var previously_pressed_slot
 
 const building_types = [
 	'attack',
@@ -17,10 +15,6 @@ const building_types = [
 ]
 
 func init():
-	income_button = $'new_building/income/TextureRect'
-	defense_button = $'new_building/defense/TextureRect'
-	attack_button = $'new_building/attack/TextureRect'
-
 	info_container = $current_money_label
 
 	if not is_network_master():
@@ -64,6 +58,8 @@ func _process(_dt):
 		if player.current_building.can_activate():
 			activate_button.texture = load('res://buttons/arrow_%s.png' \
 				% player.current_building.base_type)
+		elif player.current_building.is_activatable():
+			activate_button.texture = preload('res://buttons/arrow_cant_activate.png')
 		else:
 			activate_button.texture = null
 
@@ -95,7 +91,7 @@ func _process(_dt):
 				upgrade_button.visible = false
 
 				
-			if player.current_building.can_activate():
+			if player.current_building.is_activatable():
 				$'building_cost/income'.text = \
 						'%d$' % player.current_building.activate_cost
 			else:
@@ -116,17 +112,11 @@ func _process(_dt):
 	info_container.get_node('income').text = "+%0.1f$/s" % player.planet.income
 
 func toggle_new_building_ui(visible: bool):
-	if player.planet.money <= 80:
-		income_button.self_modulate = Color(1, 1, 1, 0.3)
-	else:
-		income_button.self_modulate = Color(1, 1, 1, 1)
-
-	if player.planet.money <= 40:
-		defense_button.self_modulate = Color(1, 1, 1, 0.3)
-		attack_button.self_modulate = Color(1, 1, 1, 0.3)
-	else:
-		defense_button.self_modulate = Color(1, 1, 1, 1)
-		attack_button.self_modulate = Color(1, 1, 1, 1)
+	for type in ['defense', 'attack', 'income']:
+		if player.planet.money <= buildings.costs[type]:
+			get_node('new_building/%s' % type).modulate = Color(1, 1, 1, 0.3)
+		else:
+			get_node('new_building/%s' % type).modulate = Color(1, 1, 1, 1)
 
 	$upgrade_building.visible = not visible
 	$new_building.visible = visible
@@ -157,8 +147,11 @@ func start_activate():
 	player.current_building.activate()
 
 func was_double_press(button_name: String, type) -> bool:
-	var was_pressed_twice = \
-		previously_pressed_button == button_name
+	var was_pressed_twice = (
+		previously_pressed_button == button_name and
+		previously_pressed_slot == player.planet.current_slot_index
+	)
+
 	if was_pressed_twice:
 		previously_pressed_button = null
 		get_node(button_name).modulate = Color(1, 1, 1)
@@ -169,6 +162,7 @@ func was_double_press(button_name: String, type) -> bool:
 				previous_button_node.modulate = Color(1, 1, 1)
 
 		previously_pressed_button = button_name
+		previously_pressed_slot = player.planet.current_slot_index
 		get_node(button_name).modulate = Color(2, 2, 2)
 		if type != null:
 			$building_info.text = Helper.with_default(

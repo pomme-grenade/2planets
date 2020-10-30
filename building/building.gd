@@ -150,18 +150,26 @@ func activate():
 		planet.money -= last_child.activate_cost
 		last_child.rpc('on_activate')
 
+func is_activatable():
+	var last_child = children[len(children) - 1]
+	return (
+		last_child.get('activate_cost') != null
+		and last_child.has_method('on_activate')
+	)
+
 func can_activate():
 	var last_child = children[len(children) - 1]
 	var animation_finished = \
 		last_child.get('animation_finished') == null || last_child.animation_finished
-	if last_child.get('activate_cost') != null:
-		return (planet.money >= last_child.activate_cost
-			and is_built
-			and last_child.has_method('on_activate')
-			and (not last_child.has_method('can_activate') or last_child.can_activate())
-			and not is_destroyed 
-			and animation_finished
-			and is_network_master())
+	return (
+		is_activatable() 
+		and planet.money >= last_child.activate_cost
+		and is_built
+		and (not last_child.has_method('can_activate') or last_child.can_activate())
+		and not is_destroyed 
+		and animation_finished
+		and is_network_master()
+	)
 
 func get_building_info() -> String:
 	var last_child = children[len(children) - 1]

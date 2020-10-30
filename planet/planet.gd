@@ -5,14 +5,17 @@ export (int) var player_number
 export (Color) var color
 export var health := 100.0 setget set_health
 
+const slot_count = 14
+const slot_angle_width = PI / slot_count
+
 var player
 var income = 4
 var start_money = 200
 var money = 0
-var slot_count = 14
 var slot_width
 var label_color = Color("#42286c")
 var health_bar
+var current_slot_index setget ,get_current_slot_index
 
 
 func _ready():
@@ -84,13 +87,15 @@ func _process(delta):
 		rset('rotation', rotation)
 
 
-func current_slot_position():
-	var slot_angle_width = PI / slot_count
+func get_current_slot_index():
 	var player_position_angle = player.position.angle() + PI / 2
-	var slot_index = round(player_position_angle / slot_angle_width)
+	return round(player_position_angle / slot_angle_width)
+
+
+func current_slot_position():
 	var offset = 0.9
-	return Vector2(0, -planetRadius * offset) \
-		.rotated(slot_index * slot_angle_width)
+	return Vector2(0, - planetRadius * offset) \
+		.rotated(self.current_slot_index * slot_angle_width)
 
 
 func set_health(new_health: float):
