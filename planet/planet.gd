@@ -8,7 +8,7 @@ export var health := 100.0 setget set_health
 var player
 var income = 4
 var start_money = 200
-var money = 0
+remotesync var money = 0
 var slot_count = 14
 var slot_width
 var label_color = Color("#42286c")
@@ -82,6 +82,7 @@ func _process(delta):
 
 	if is_network_master():
 		rset('rotation', rotation)
+		rset('money', money)
 
 
 func current_slot_position():
