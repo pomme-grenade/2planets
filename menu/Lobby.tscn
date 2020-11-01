@@ -4,7 +4,7 @@
 [ext_resource path="res://buttons/empty_button.png" type="Texture" id=2]
 [ext_resource path="res://addons/Holepunch/holepunch_node.gd" type="Script" id=3]
 
-[sub_resource type="StyleBoxTexture" id=3]
+[sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 2 )
 region_rect = Rect2( 0, 0, 16, 16 )
 margin_left = 7.0
@@ -12,11 +12,11 @@ margin_right = 8.0
 margin_top = 8.0
 margin_bottom = 8.0
 
-[sub_resource type="InputEventAction" id=1]
+[sub_resource type="InputEventAction" id=2]
 action = "ui_accept"
 
-[sub_resource type="ShortCut" id=2]
-shortcut = SubResource( 1 )
+[sub_resource type="ShortCut" id=3]
+shortcut = SubResource( 2 )
 
 [node name="lobby" type="VBoxContainer"]
 anchor_left = 0.5
@@ -43,13 +43,13 @@ margin_top = 13.0
 margin_right = 304.0
 margin_bottom = 70.0
 size_flags_vertical = 3
-custom_styles/hover = SubResource( 3 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/focus = SubResource( 3 )
-custom_styles/disabled = SubResource( 3 )
-custom_styles/normal = SubResource( 3 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = SubResource( 1 )
+custom_styles/normal = SubResource( 1 )
 shortcut_in_tooltip = false
-shortcut = SubResource( 2 )
+shortcut = SubResource( 3 )
 text = "start local game"
 
 [node name="Label" type="Label" parent="."]
@@ -68,11 +68,11 @@ margin_right = 150.0
 margin_bottom = 48.0
 grow_horizontal = 0
 rect_min_size = Vector2( 150, 0 )
-custom_styles/hover = SubResource( 3 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/focus = SubResource( 3 )
-custom_styles/disabled = SubResource( 3 )
-custom_styles/normal = SubResource( 3 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = SubResource( 1 )
+custom_styles/normal = SubResource( 1 )
 shortcut_in_tooltip = false
 text = "start server"
 
@@ -95,11 +95,11 @@ margin_right = 150.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 100, 0 )
 size_flags_vertical = 3
-custom_styles/hover = SubResource( 3 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/focus = SubResource( 3 )
-custom_styles/disabled = SubResource( 3 )
-custom_styles/normal = SubResource( 3 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = SubResource( 1 )
+custom_styles/normal = SubResource( 1 )
 shortcut_in_tooltip = false
 keep_pressed_outside = true
 text = "connect"

@@ -2,7 +2,7 @@ extends Node
 
 var index := 0
 var asteroid_spawn_timer
-var initial_spawn_time = 1
+var initial_spawn_time = 30
 var asteroid_scene = preload('res://asteroid/asteroid.tscn')
 
 func _ready():

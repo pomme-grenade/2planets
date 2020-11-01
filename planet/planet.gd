@@ -12,7 +12,6 @@ var player
 var income = 4
 var start_money = 200
 remotesync var money = 0
-var slot_count = 14
 var slot_width
 var label_color = Color("#42286c")
 var health_bar
