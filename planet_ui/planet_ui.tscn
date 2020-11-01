@@ -1,6 +1,6 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://planet_ui/add_building_ui.gd" type="Script" id=1]
+[ext_resource path="res://planet_ui/planet_ui.gd" type="Script" id=1]
 [ext_resource path="res://buttons/satellite_button.png" type="Texture" id=2]
 [ext_resource path="res://buttons/rocket_button.png" type="Texture" id=3]
 [ext_resource path="res://buttons/mine_button.png" type="Texture" id=4]
@@ -8,10 +8,7 @@
 [ext_resource path="res://buttons/arrow.png" type="Texture" id=6]
 [ext_resource path="res://planet_ui/current_money_label.tscn" type="PackedScene" id=7]
 [ext_resource path="res://buttons/button_texture_normal.tres" type="StyleBox" id=8]
-[ext_resource path="res://buttons/button_texture_pressed.tres" type="StyleBox" id=9]
 [ext_resource path="res://planet_ui/health_bar.gd" type="Script" id=10]
-
-[sub_resource type="BitmapFont" id=1]
 
 [sub_resource type="BitmapFont" id=2]
 
@@ -22,6 +19,8 @@
 [sub_resource type="BitmapFont" id=5]
 
 [sub_resource type="BitmapFont" id=6]
+
+[sub_resource type="BitmapFont" id=7]
 
 [node name="planet_ui" type="Control"]
 margin_right = 71.0
@@ -46,9 +45,9 @@ rect_min_size = Vector2( 20, 20 )
 rect_clip_content = true
 size_flags_horizontal = 3
 custom_styles/hover = ExtResource( 8 )
-custom_styles/pressed = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 8 )
 custom_styles/normal = ExtResource( 8 )
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 shortcut_in_tooltip = false
 button_mask = 0
 clip_text = true
@@ -70,13 +69,14 @@ margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 size_flags_horizontal = 3
 custom_styles/hover = ExtResource( 8 )
-custom_styles/pressed = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 8 )
 custom_styles/normal = ExtResource( 8 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 clip_text = true
 
 [node name="TextureRect" type="TextureRect" parent="new_building/income"]
-margin_right = 20.0001
+anchor_right = 0.5
+margin_right = 10.0
 margin_bottom = 20.0
 texture = ExtResource( 4 )
 stretch_mode = 4
@@ -91,9 +91,9 @@ margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 size_flags_horizontal = 3
 custom_styles/hover = ExtResource( 8 )
-custom_styles/pressed = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 8 )
 custom_styles/normal = ExtResource( 8 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 
 [node name="TextureRect" type="TextureRect" parent="new_building/attack"]
 anchor_left = 0.5
@@ -111,6 +111,7 @@ __meta__ = {
 }
 
 [node name="upgrade_building" type="HBoxContainer" parent="."]
+visible = false
 margin_right = 64.0
 margin_bottom = 20.0
 __meta__ = {
@@ -123,9 +124,8 @@ margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/pressed = ExtResource( 9 )
 custom_styles/normal = ExtResource( 8 )
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 
 [node name="upgrade_texture" type="TextureRect" parent="upgrade_building/upgrade_1"]
 margin_left = 0.0410366
@@ -144,9 +144,8 @@ margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/pressed = ExtResource( 9 )
 custom_styles/normal = ExtResource( 8 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 
 [node name="activate_texture" type="TextureRect" parent="upgrade_building/activate"]
 margin_left = 0.0963974
@@ -166,9 +165,8 @@ margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/pressed = ExtResource( 9 )
 custom_styles/normal = ExtResource( 8 )
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 
 [node name="upgrade_texture" type="TextureRect" parent="upgrade_building/upgrade_2"]
 margin_left = -0.011724
@@ -186,20 +184,19 @@ margin_top = 34.1669
 margin_right = 62.1669
 margin_bottom = 42.1669
 
-[node name="building_cost" type="Control" parent="."]
-margin_left = -0.225937
-margin_top = -17.3971
-margin_right = 65.7741
-margin_bottom = 0.602882
+[node name="building_cost" type="HBoxContainer" parent="."]
+margin_left = -2.0
+margin_top = -7.0
+margin_right = 66.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="defense" type="Label" parent="building_cost"]
-margin_left = 1.22871
-margin_top = 10.4407
-margin_right = 15.2287
-margin_bottom = 18.4407
+margin_right = 20.0
+margin_bottom = 8.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
 custom_colors/font_color = Color( 0.337255, 0.2, 0.490196, 1 )
 text = "1"
 __meta__ = {
@@ -207,10 +204,11 @@ __meta__ = {
 }
 
 [node name="income" type="Label" parent="building_cost"]
-margin_left = 22.4775
-margin_top = 10.4674
-margin_right = 34.4775
-margin_bottom = 18.4674
+margin_left = 24.0
+margin_right = 44.0
+margin_bottom = 8.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
 custom_colors/font_color = Color( 0.337255, 0.2, 0.490196, 1 )
 text = "2"
 __meta__ = {
@@ -218,10 +216,11 @@ __meta__ = {
 }
 
 [node name="attack" type="Label" parent="building_cost"]
-margin_left = 44.5392
-margin_top = 9.77129
-margin_right = 57.5392
-margin_bottom = 17.7713
+margin_left = 48.0
+margin_right = 68.0
+margin_bottom = 8.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
 custom_colors/font_color = Color( 0.337255, 0.2, 0.490196, 1 )
 text = "3"
 __meta__ = {
@@ -251,12 +250,13 @@ __meta__ = {
 }
 
 [node name="building_info" type="Label" parent="."]
+anchor_right = 1.0
 margin_left = 0.409546
 margin_top = 44.1493
-margin_right = 53.4095
 margin_bottom = 52.1493
 custom_fonts/font = ExtResource( 5 )
 text = "building info"
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

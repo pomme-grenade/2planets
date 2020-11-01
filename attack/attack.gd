@@ -1,15 +1,16 @@
 extends Node2D
 
+class_name Attack
+
 var planet
 var upgrade_1_type = 'laser'
 var upgrade_2_type = 'split_rocket'
 var rocket_name_index = 0
 var activate_cost = 10
 var target_player_number
-var building_info
+var building_info = ''
 
 func init():
-	building_info = ''
 	target_player_number = 2 if planet.player_number == 1 else 1
 
 func fire_rocket(name, position, rotation):
