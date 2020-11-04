@@ -75,11 +75,12 @@ remotesync func deconstruct(cost):
 	planet.update()
 
 func add_money(value):
+	var last_child = children[len(children) - 1]
 	var income_animation = \
 		preload('res://income/Income_animation.tscn').instance()
-	income_animation.position = Vector2(-10, 8)
-	add_child(income_animation)
-	income_animation.label.text = '+' + str(value)
+	$'/root/main'.add_child(income_animation)
+	income_animation.label.text = '+' + str(value) + '$'
+	income_animation.global_position = last_child.global_position
 
 func can_upgrade(index):
 	var last_child = children[len(children) - 1]

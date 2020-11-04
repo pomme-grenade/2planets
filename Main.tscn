@@ -28,7 +28,7 @@ player_number = 1
 color = Color( 0.588235, 0.227451, 0.129412, 1 )
 
 [node name="planet_2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 599.401, 199.401 )
+position = Vector2( 600, 200 )
 texture = ExtResource( 4 )
 
 [node name="planet_ui_1" parent="." instance=ExtResource( 1 )]
@@ -36,20 +36,20 @@ anchor_left = 0.25
 anchor_top = 0.5
 anchor_right = 0.25
 anchor_bottom = 0.5
-margin_left = -30.0
-margin_top = -42.5358
-margin_right = 30.0
-margin_bottom = -22.5358
+margin_left = -34.0
+margin_top = -43.0
+margin_right = 34.0
+margin_bottom = -23.0
 
 [node name="planet_ui_2" parent="." instance=ExtResource( 1 )]
 anchor_left = 0.75
 anchor_top = 0.5
 anchor_right = 0.75
 anchor_bottom = 0.5
-margin_left = -30.0
-margin_top = -44.6342
-margin_right = 30.0
-margin_bottom = -24.6342
+margin_left = -34.0
+margin_top = -43.0
+margin_right = 34.0
+margin_bottom = -23.0
 
 [node name="asteroid_spawner" type="Node" parent="."]
 script = ExtResource( 5 )
