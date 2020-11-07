@@ -145,11 +145,11 @@ func buildup_animation_finished():
 	animation = type
 	speed_scale = 1
 
-func activate():
+remotesync func activate():
 	var last_child = children[len(children) - 1]
 	if can_activate():
 		planet.money -= last_child.activate_cost
-		last_child.rpc('on_activate')
+		last_child.on_activate()
 
 func is_activatable():
 	var last_child = children[len(children) - 1]
@@ -169,7 +169,6 @@ func can_activate():
 		and (not last_child.has_method('can_activate') or last_child.can_activate())
 		and not is_destroyed 
 		and animation_finished
-		and is_network_master()
 	)
 
 func get_building_info() -> String:

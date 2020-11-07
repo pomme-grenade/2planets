@@ -25,7 +25,7 @@ func fire_rocket(name, position, rotation):
 	$'/root/main'.add_child(rocket)
 	update()
 
-remotesync func on_activate():
+func on_activate():
 	var name = '%d_rocket_%d' % [ planet.player_number, rocket_name_index ]
 	rocket_name_index += 1
 	var position = global_position - Vector2(5, 0).rotated(global_rotation)

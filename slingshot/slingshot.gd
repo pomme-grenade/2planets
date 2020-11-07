@@ -12,7 +12,7 @@ func init():
 
 	get_parent().rotation = get_parent().position.direction_to(Vector2(0, 0)).angle() - PI / 2
 
-remotesync func on_activate():
+func on_activate():
 	add_slingshot_blast()
 
 func add_slingshot_blast():

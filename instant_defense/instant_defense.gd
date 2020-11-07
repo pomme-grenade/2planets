@@ -10,7 +10,7 @@ var pulse_index = 0
 func init():
 	building_info = ''
 
-remotesync func on_activate():
+func on_activate():
 	instant_defense_pulse = preload('res://instant_defense/pulse.tscn').instance()
 	instant_defense_pulse.name = '%s_pulse_%d' % [name, pulse_index]
 	pulse_index += 1
