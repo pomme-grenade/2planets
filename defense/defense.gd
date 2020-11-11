@@ -88,7 +88,6 @@ remotesync func destroy_rocket(path):
 	fire_origin = to_global(Vector2(0, -8))
 	cooldown = cooldown_time
 	self_modulate.a = 0.8
-	emit_signal('income', 5)
 
 	rocket.can_hit_planet.play_explosion('satellite_shot')
 	rocket.queue_free()
