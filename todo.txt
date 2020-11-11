@@ -1,5 +1,9 @@
 BETA
     - bugs fixen
+        - upgrade highlight löschen wenn man sich bewegt
+        - raketen node not found
+    - multiplayer codes á la among us
+    - vom holepunching server abmelden wenn das spiel geschlossen wird
     - kurze anleitung einbauen (kein tutorial)
     - discord server
     - mailing liste
