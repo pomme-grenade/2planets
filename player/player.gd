@@ -6,7 +6,7 @@ var player_number
 var movementDirection = 0
 var planet
 var current_building
-var player_key
+var player_action_key
 var ui
 var action_pressed_timer
 var building_to_destroy
@@ -23,12 +23,19 @@ func _ready():
 	call_deferred("init")
 
 func init():
+	var is_online_multiplayer = \
+		len(get_tree().get_network_connected_peers()) > 0
+
+	if is_online_multiplayer:
+		player_action_key = "player1_"
+	else:
+		player_action_key = "player%d_" % player_number
+
 	action_pressed_timer = Timer.new()
 	action_pressed_timer.one_shot = true
 	action_pressed_timer.connect('timeout', self, 'action_timer_timeout')
 	add_child(action_pressed_timer)
 
-	player_key = "player" + str(player_number) + "_"
 	set_process_unhandled_input(true)
 
 	# warning-ignore:return_value_discarded
@@ -39,8 +46,8 @@ func init():
 	init_ui()
 
 func _process(dt):
-	var rightAction = player_key + "right"
-	var leftAction = player_key + "left"
+	var rightAction = self.player_action_key + "right"
+	var leftAction = self.player_action_key + "left"
 
 	if is_network_master():
 		if Input.is_action_pressed(rightAction):
@@ -104,11 +111,11 @@ func _unhandled_input(event):
 		get_node('/root').add_child(scene)
 		get_tree().paused = true
 
-	if event.is_action_pressed(player_key + "deconstruct") and is_network_master():
+	if event.is_action_pressed(self.player_action_key + "deconstruct") and is_network_master():
 		do_dissolve = true
 		start_destroy_timer()
 
-	if event.is_action_released(player_key + 'deconstruct') and is_network_master():
+	if event.is_action_released(self.player_action_key + 'deconstruct') and is_network_master():
 		do_dissolve = false
 		action_pressed_timer.stop()
 

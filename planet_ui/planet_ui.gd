@@ -43,7 +43,7 @@ func add_button_shortcut(
 	var button = get_node(path)
 
 	var action = InputEventAction.new()
-	action.action = player.player_key + action_key
+	action.action = player.player_action_key + action_key
 
 	var shortcut = ShortCut.new()
 	shortcut.shortcut = action
