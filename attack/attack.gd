@@ -1,7 +1,5 @@
 extends Node2D
 
-class_name Attack
-
 var planet
 var upgrade_1_type = 'laser'
 var upgrade_2_type = 'split_rocket'
