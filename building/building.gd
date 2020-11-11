@@ -147,9 +147,12 @@ func buildup_animation_finished():
 
 remotesync func activate():
 	var last_child = children[len(children) - 1]
+	planet.money -= last_child.activate_cost
+	last_child.on_activate()
+
+func try_activate():
 	if can_activate():
-		planet.money -= last_child.activate_cost
-		last_child.on_activate()
+		rpc('activate')
 
 func is_activatable():
 	var last_child = children[len(children) - 1]

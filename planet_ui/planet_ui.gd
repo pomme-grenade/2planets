@@ -155,7 +155,7 @@ func start_upgrade(index):
 	player.current_building.try_upgrade(index)
 
 func start_activate():
-	player.current_building.rpc('activate')
+	player.current_building.try_activate()
 
 func was_double_press(button_name: String, type) -> bool:
 	var was_pressed_twice = (
