@@ -1,10 +1,21 @@
 BETA
+code:
     - bugs fixen
         - upgrade highlight löschen wenn man sich bewegt
         - raketen node not found
+        - bau highlight disablen wenn man kein geld hat
     - multiplayer codes á la among us
     - vom holepunching server abmelden wenn das spiel geschlossen wird
+    - tutorial
+    - beide seiten des keyboards auf den gleichen player binden
+    - asteroiden komplett auskommentieren erstmal
+    - hintergrund sättigung senken, dunkler machen
+    - leben syncen
+    - geld rot flashen wenn man bauen will und nicht genug geld hat
+    - rot / gruen aufleuchtender text wenn sich income aendert
     - kurze anleitung einbauen (kein tutorial)
+
+anderes:
     - discord server
     - mailing liste
     - marketing texte
@@ -43,16 +54,14 @@ PROBLEME
         - instant bauen ist fehleranfällig für manche leute (noobs)
         
 TODO
-    - rot / gruen aufleuchtender text wenn sich income aendert
+    - asteroiden blinken lassen
     - rot aufleuchtendes geld wenn man bauen will, aber kein geld hat
     - satellit besser proportionieren
     - satellitengebäude am boden
     - better satellite destroyed graphic
 	- multiplayer restart
 	- spiel vorbei wenn einer leaved im multiplayer
-    - double click to build
     - building shadows
-    - tutorial
     - bg fixen
     - farm asteroids automatisch machen
     - shields überall anzeigen wo sie abwehren
@@ -67,9 +76,6 @@ TODO
         nicht am rande des viewports
 
     - networking:
-        - asteroiden position syncen
-        - building activation syncen
-        - beide seiten des keyboards auf den gleichen player binden
         - raketen werden nicht richtig zerstört
 
 UPGRADE TREE
