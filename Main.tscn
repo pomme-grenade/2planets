@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://planet_ui/planet_ui.tscn" type="PackedScene" id=1]
 [ext_resource path="res://planet/planet.tscn" type="PackedScene" id=2]
 [ext_resource path="res://background.png" type="Texture" id=3]
 [ext_resource path="res://planet/blue_planet.png" type="Texture" id=4]
-[ext_resource path="res://asteroid/spawner.gd" type="Script" id=5]
 
 [node name="main" type="Control"]
 margin_right = 800.0
@@ -28,7 +27,6 @@ player_number = 1
 color = Color( 0.588235, 0.227451, 0.129412, 1 )
 
 [node name="planet_2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 600, 200 )
 texture = ExtResource( 4 )
 
 [node name="planet_ui_1" parent="." instance=ExtResource( 1 )]
@@ -50,6 +48,3 @@ margin_left = -34.0
 margin_top = -43.0
 margin_right = 34.0
 margin_bottom = -23.0
-
-[node name="asteroid_spawner" type="Node" parent="."]
-script = ExtResource( 5 )

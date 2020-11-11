@@ -14,6 +14,7 @@ code:
     - geld rot flashen wenn man bauen will und nicht genug geld hat
     - rot / gruen aufleuchtender text wenn sich income aendert
     - kurze anleitung einbauen (kein tutorial)
+    - satellit geld von rakete raus
 
 anderes:
     - discord server

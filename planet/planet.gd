@@ -83,8 +83,12 @@ func _process(delta):
 		rotation_degrees += 5 * delta
 
 	if is_network_master():
-		rset('rotation', rotation)
-		rset('money', money)
+		sync_rot_and_money()
+		
+func sync_rot_and_money():
+	yield(get_tree().create_timer(5.0), "timeout")
+	rset('rotation', rotation)
+	rset('money', money)
 
 
 func get_current_slot_index():
