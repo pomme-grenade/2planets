@@ -4,7 +4,9 @@ code:
         - upgrade highlight löschen wenn man sich bewegt
         - raketen node not found
         - bau highlight disablen wenn man kein geld hat
+        - wenn man kein geld hat und den knopf zum bauen doppelt drückt sieht es danach wieder normal aus, nicht ausgegraut
         - manchmal ist ein upgrade icon komplett weg, obwohl es da sein sollte
+        - escape in multiplayer
     - multiplayer codes á la among us
     - vom holepunching server abmelden wenn das spiel geschlossen wird
     - hintergrund sättigung senken, dunkler machen
