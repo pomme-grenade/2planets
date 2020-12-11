@@ -75,11 +75,11 @@ remotesync func pre_configure_game():
 	var world = load('res://Main.tscn').instance()
 	get_node('/root').add_child(world)
 
-	var asteroid_spawner = get_node('/root/main/asteroid_spawner')
-	if get_tree().is_network_server(): 
-		asteroid_spawner.set_network_master(selfPeerID)
-	else:
-		asteroid_spawner.set_network_master(other_player_id)
+	# var asteroid_spawner = get_node('/root/main/asteroid_spawner')
+	# if get_tree().is_network_server(): 
+		# asteroid_spawner.set_network_master(selfPeerID)
+	# else:
+		# asteroid_spawner.set_network_master(other_player_id)
 
 	var planet_name = \
 		'planet_1' if get_tree().is_network_server() else 'planet_2'
