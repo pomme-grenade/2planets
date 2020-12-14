@@ -90,9 +90,11 @@ func _process(delta):
 	elif player_number == 2:
 		rotation_degrees += 5 * delta
 
+	update()
+
 func sync_rot_and_money():
-	rset('rotation', rotation)
-	rset('money', money)
+	rset_unreliable('rotation', rotation)
+	rset_unreliable('money', money)
 
 
 func get_current_slot_index():

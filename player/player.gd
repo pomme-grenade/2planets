@@ -69,7 +69,6 @@ func _process(dt):
 	if movementDirection != 0:
 		speed_scale = 30.0
 		play('move')
-		planet.update()
 	else:
 		speed_scale = 8.0
 		play('idle')
@@ -101,9 +100,9 @@ puppet func set_pos_and_motion(p_pos, p_dir, p_rot):
 		rotation = p_rot
 
 		if movementDirection == 1:
-			flip_h = false
-		elif movementDirection == -1:
 			flip_h = true
+		elif movementDirection == -1:
+			flip_h = false
 
 func _unhandled_input(event):
 	if event.is_action_pressed("pause"):
