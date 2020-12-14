@@ -36,6 +36,14 @@ func _ready():
 
 	add_to_group('planets')
 
+	if is_network_master():
+		var timer = Timer.new()
+		timer.one_shot = false;
+		timer.connect("timeout", self, "sync_rot_and_money")
+		timer.wait_time = 5
+		timer.autostart = true
+		add_child(timer)
+
 
 func _draw():
 	var arc_rotation = \
@@ -82,11 +90,7 @@ func _process(delta):
 	elif player_number == 2:
 		rotation_degrees += 5 * delta
 
-	if is_network_master():
-		sync_rot_and_money()
-		
 func sync_rot_and_money():
-	yield(get_tree().create_timer(5.0), "timeout")
 	rset('rotation', rotation)
 	rset('money', money)
 
