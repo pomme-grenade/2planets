@@ -129,6 +129,9 @@ func update_new_building_ui():
 	if (previously_pressed_button == null 
 			or previously_pressed_slot != player.planet.current_slot_index):
 		$building_info.text = ''
+	
+	if (previously_pressed_button != null && previously_pressed_slot != player.planet.current_slot_index):
+		get_node(previously_pressed_button).modulate = Color(1, 1, 1)
 
 
 func start_building(type: String):

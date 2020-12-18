@@ -1,7 +1,6 @@
 BETA
 code:
     - bugs fixen
-        - upgrade highlight löschen wenn man sich bewegt
         - raketen node not found
         - bau highlight disablen wenn man kein geld hat
         - wenn man kein geld hat und den knopf zum bauen doppelt drückt sieht es danach wieder normal aus, nicht ausgegraut
