@@ -135,6 +135,9 @@ func update_new_building_ui():
 
 
 func start_building(type: String):
+	if (player.planet.money <= buildings.costs[type]):
+		return
+
 	if (is_instance_valid(player.current_building) or
 			not was_double_press('new_building/%s' % type, type)):
 		return
@@ -147,12 +150,13 @@ func start_building(type: String):
 
 
 func start_upgrade(index):
-	if (not was_double_press('upgrade_building/upgrade_%d' % index,
-			get_upgrade_type(index))):
+	if ((not is_instance_valid(player.current_building)
+		or player.current_building.is_destroyed)
+			or player.planet.money <= buildings.costs[get_upgrade_type(index)]):
 		return
 
-	if ((not is_instance_valid(player.current_building))
-		or player.current_building.is_destroyed):
+	if (not was_double_press('upgrade_building/upgrade_%d' % index,
+			get_upgrade_type(index))):
 		return
 
 	player.current_building.try_upgrade(index)
