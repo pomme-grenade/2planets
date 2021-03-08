@@ -1,7 +1,6 @@
 extends Node2D
 
 var planet
-var rocket_name_index = 0
 var activate_cost = 30
 var target_player_number
 var building_info
@@ -27,7 +26,7 @@ func fire_rocket(name, position, rotation):
 	update()
 
 func on_activate():
-	var name = '%d_split_rocket_%d' % [ planet.player_number, rocket_name_index ]
-	rocket_name_index += 1
+	var name = '%d_split_rocket_%d' % [ planet.player_number, planet.rocket_name_index ]
+	planet.rocket_name_index += 1
 	var position = global_position - Vector2(5, 0).rotated(global_rotation)
 	fire_rocket(name, position, global_rotation + PI)

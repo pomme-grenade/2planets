@@ -16,6 +16,7 @@ var slot_width
 var label_color = Color("#42286c")
 var health_bar
 var current_slot_index setget ,get_current_slot_index
+var rocket_name_index = 0
 
 
 func _ready():
