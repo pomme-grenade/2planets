@@ -29,6 +29,7 @@ func _ready():
 	player.position.y -= planetRadius
 	player.player_number = player_number
 	player.name = '%s_player' % name
+	player.set_network_master(get_network_master())
 	# player.modulate = color.lightened(0.5)
 	slot_width = planetRadius * PI / slot_count
 
