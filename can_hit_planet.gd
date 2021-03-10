@@ -40,6 +40,8 @@ remotesync func hit_planet(type, planet_path):
 
 	play_explosion(type, point_on_planet(planet))
 
+	get_parent().queue_free()
+
 func play_explosion(explosion_animation, explosion_position = global_position):
 	var explosion = explosion_scene.instance()
 	explosion.position = explosion_position

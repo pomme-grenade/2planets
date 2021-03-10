@@ -30,7 +30,6 @@ func init(_target_player_number):
 
 func _process(delta):
 	if is_destroyed: 
-		queue_free()
 		return
 
 	if not is_instance_valid(target):
