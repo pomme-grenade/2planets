@@ -24,7 +24,7 @@ func fire_rocket(name, position, rotation):
 	update()
 
 func on_activate():
-	var name = '%d_rocket_%d' % [ planet.player_number, rocket_name_index ]
+	var name = '%s_rocket_%d' % [ self.name, rocket_name_index ]
 	rocket_name_index += 1
 	var position = global_position - Vector2(5, 0).rotated(global_rotation)
 	fire_rocket(name, position, global_rotation + PI)
