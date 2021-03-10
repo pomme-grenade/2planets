@@ -8,6 +8,7 @@ var from_planet
 #warning-ignore:unused_class_variable
 remotesync var is_destroyed = false
 var split_distance
+var child_counter = 0
 var color = Color(1, 0.3, 0.3)
 var can_hit_planet
 var type = 'normal_rocket'
@@ -66,9 +67,9 @@ remotesync func split():
 	var count = 5
 	var spread = PI/8
 	for i in range(count):
-		from_planet.rocket_name_index += 1
+		child_counter += 1
 		var rocket = load('res://attack/rocket.tscn').instance()
-		rocket.name = name + '_' + str(from_planet.rocket_name_index)
+		rocket.name = name + '_' + str(child_counter)
 		rocket.rotation = rotation - spread * floor(count/2) + i * spread
 		rocket.position = position \
 			+ velocity.rotated(rocket.rotation - rotation) * 0.2
