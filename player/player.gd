@@ -162,7 +162,7 @@ remotesync func spawn_building(type, name, position):
 	building.centered = true
 
 	var new_child = scripts[type].new()
-	new_child.name = name + '_child'
+	new_child.name = '%s_%s' % [name, type]
 	building.add_building_child(new_child)
 
 	current_building = building

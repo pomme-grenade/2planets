@@ -111,7 +111,7 @@ remotesync func upgrade(index):
 	planet.money -= building_costs[type]
 
 	var new_child = load(new_child_script).new()
-	new_child.name = last_child.name + '_upgrade'
+	new_child.name = '%s_%s' % [self.name, type]
 	add_building_child(new_child)
 	upgrading = true
 
