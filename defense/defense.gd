@@ -54,7 +54,8 @@ func _process(dt):
 	if (is_network_master() and
 			nearest_target != null and
 			global_position.distance_to(nearest_target.global_position) \
-				< attack_range):
+				< attack_range and
+			(not nearest_target.is_destroyed)):
 		rpc('destroy_rocket', nearest_target.get_path())
 
 func _draw():

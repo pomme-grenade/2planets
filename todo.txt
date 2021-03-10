@@ -1,4 +1,7 @@
 BETA
+- Was ist die Identität des Spiels?
+    - Rein strategischer aufbau?
+    - Reaktion?
 code:
     - bugs fixen
         - raketen node not found
@@ -13,12 +16,18 @@ code:
     - rot / gruen aufleuchtender text wenn sich income aendert
     - kurze anleitung einbauen (kein tutorial)
 
+gameplay:
+    - raketen spammen unattraktiv machen    
+    - krasses raketen powerup enablen, laser und cluster machen zu wenig damage, viele raketengebäude bringen keinen vorteil gegenüber wenigen (im gegensatz zu income und defense)
+
 anderes:
     - discord server
     - mailing liste
     - marketing texte
 
 IDEEN
+    - raketen-gebäude nebeneinander kosten jeweils nur für eine rakete, schießen aber alle
+    - raketen schießen automatisch
 	- upgrades
         - antisatellit rakete
         - schiff, das rüber fliegt und dronen released
@@ -47,9 +56,6 @@ PROBLEME
     - satellite indicator on ground
 	- snowballing, comeback
     - upgrade indicator on hold
-    - gedrückt halten vs instant gebäude bauen:
-        - gedrückt halten macht nicht so spaß
-        - instant bauen ist fehleranfällig für manche leute (noobs)
         
 TODO
     - asteroiden blinken lassen
