@@ -52,9 +52,8 @@ func _process(_dt):
 			activate_cost = child.activate_cost
 
 remotesync func destroy():
-	for child in children:
-		if child.has_method("on_destroy"):
-			child.on_destroy()
+	call_children_method('on_destroy')
+
 	is_destroyed = true
 	play('%s_destroyed' % type)
 	stop()
@@ -177,3 +176,17 @@ func can_activate():
 func get_building_info() -> String:
 	var last_child = children[len(children) - 1]
 	return last_child.building_info
+
+func set_highlighted(is_highlighted: bool):
+	print('set hightlighted')
+	if is_highlighted:
+		self.self_modulate = Color(2, 2, 2, 1)
+	else:
+		self.self_modulate = Color(1, 1, 1, 1)
+
+	call_children_method('on_highlight', [is_highlighted])
+
+func call_children_method(method: String, args: Array = []):
+	for child in children:
+		if child.has_method(method):
+			child.callv(method, args)

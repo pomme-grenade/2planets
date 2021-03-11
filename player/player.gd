@@ -77,9 +77,9 @@ func _process(dt):
 	if new_building != current_building:
 		ui.update()
 		if is_instance_valid(current_building):
-			current_building.self_modulate = Color(1, 1, 1, 1)
+			current_building.set_highlighted(false)
 		if is_instance_valid(new_building):
-			new_building.self_modulate = Color(2, 2, 2, 1)
+			new_building.set_highlighted(true)
 		current_building = new_building
 
 	if is_instance_valid(current_building) and do_dissolve:
@@ -166,7 +166,7 @@ remotesync func spawn_building(type, name, position):
 	building.add_building_child(new_child)
 
 	current_building = building
-	current_building.self_modulate = Color(2, 2, 2, 1)
+	current_building.set_highlighted(true)
 	ui.update()
 	# re-draw circle highlighting the new building
 	planet.update()

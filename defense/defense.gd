@@ -6,11 +6,12 @@ var fire_position
 var attack_range = 80
 var fire_origin
 var cooldown = 0
-var cooldown_time = 0.5
-var upgrade_1_type = 'shield'
-var upgrade_2_type = 'instant_defense'
+var cooldown_time := 0.5
+var upgrade_1_type := 'shield'
+var upgrade_2_type := 'instant_defense'
 var building_info
 var circle_only_outline
+var outline_visible := false
 
 func init():
 	building_info = ''
@@ -62,11 +63,12 @@ func _draw():
 	if not get_parent().is_built or get_parent().is_destroyed:
 		return
 
-	circle_only_outline.draw_circle_only_outline(
-		Vector2(0, 0), 
-		Vector2(0, attack_range / get_parent().global_scale.x), 
-		Color(0.4, 0.2, 0.7, 0.2), 
-		0.5, self)
+	if self.outline_visible:
+		circle_only_outline.draw_circle_only_outline(
+			Vector2(0, 0), 
+			Vector2(0, attack_range / get_parent().global_scale.x), 
+			Color(0.4, 0.2, 0.7, 0.4), 
+			0.5, self)
 
 	if fire_position != null:
 		var alpha = cooldown * (1 / cooldown_time)
@@ -99,4 +101,8 @@ func buildup_animation_finished():
 	update()
 
 func on_destroy():
+	update()
+
+func on_highlight(is_highlighted):
+	self.outline_visible = is_highlighted
 	update()
