@@ -36,6 +36,7 @@ func _process(dt):
 				electric_wave.name = '%s_electric_wave%d' % [name, wave_index]
 				wave_index += 1
 				add_child(electric_wave)
+				print("instant defense destroying rocket: ", rocket.name)
 				rocket.queue_free()
 
 func _draw():

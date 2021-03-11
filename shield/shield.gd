@@ -5,7 +5,7 @@ var type
 
 var attack_range = 80
 var max_strength = 30
-var strength = max_strength
+remotesync var strength = max_strength
 var regen = 1.0
 var building_info
 
@@ -23,12 +23,13 @@ func _process(_dt):
 	var enemy_number = 1 if planet.player_number == 2 else 2
 	var enemy_group = 'rocket' + str(enemy_number)
 	var rockets = get_tree().get_nodes_in_group(enemy_group)
-	for rocket in rockets:
-		if (global_position.distance_to(rocket.global_position) \
-				< (attack_range * get_parent().global_scale.x)
-				and strength > rocket.can_hit_planet.damage):
-			rocket.queue_free()
-			strength -= rocket.can_hit_planet.damage
+	if (is_network_master()):
+		for rocket in rockets:
+			if (global_position.distance_to(rocket.global_position) \
+					< (attack_range * get_parent().global_scale.x)
+					and strength > rocket.can_hit_planet.damage):
+				print("shield destroying rocket: ", rocket.name)
+				destroy_rocket(rocket)
 	update()
 
 func _draw():
@@ -63,6 +64,11 @@ func draw_circle_arc(center, radius, angle_from, angle_to, color):
 			color, 
 			3
 		)
+		
+remotesync func destroy_rocket(rocket):
+	rocket.queue_free()
+	strength -= rocket.can_hit_planet.damage
+
 
 func on_destroy():
 	update()

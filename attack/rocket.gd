@@ -45,6 +45,7 @@ func _process(delta):
 		velocity = velocity * (1 + acceleration)
 
 		if can_hit_planet.did_hit_planet(target):
+			print("rocket hit planet is_destroyed set: ", self.name)
 			rset('is_destroyed', true)
 			can_hit_planet.rpc('hit_planet', type, target.get_path())
 
@@ -83,7 +84,8 @@ remotesync func split():
 		rocket.type = 'split_rocket'
 		$'/root/main'.add_child(rocket)
 		rocket.velocity = velocity.rotated(rocket.rotation - rotation) * 0.8
-		queue_free()
+	print("destroying original split rocket: ", self.name)
+	queue_free()
 
 
 func find_new_target():

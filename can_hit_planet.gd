@@ -39,7 +39,8 @@ remotesync func hit_planet(type, planet_path):
 		planet.health -= damage
 
 	play_explosion(type, point_on_planet(planet))
-
+	
+	print("rocket hit planet, destroying rocket: ", get_parent().name)
 	get_parent().queue_free()
 
 func play_explosion(explosion_animation, explosion_position = global_position):

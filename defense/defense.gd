@@ -91,6 +91,7 @@ remotesync func destroy_rocket(path):
 	self_modulate.a = 0.8
 
 	rocket.can_hit_planet.play_explosion('satellite_shot')
+	print("satellite destroying rocket: ", rocket.name)
 	rocket.queue_free()
 	planet.money += 5
 
