@@ -83,7 +83,7 @@ func _draw():
 remotesync func destroy_rocket(path):
 	var rocket = get_node(path)
 	if rocket == null:
-		print('unknown rocket ', path)
+		Helper.log('unknown rocket ', path)
 		return
 	fire_position = rocket.global_position
 	fire_origin = to_global(Vector2(0, -8))
