@@ -178,7 +178,6 @@ func get_building_info() -> String:
 	return last_child.building_info
 
 func set_highlighted(is_highlighted: bool):
-	print('set hightlighted')
 	if is_highlighted:
 		self.self_modulate = Color(2, 2, 2, 1)
 	else:
