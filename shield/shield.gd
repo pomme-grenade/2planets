@@ -5,7 +5,7 @@ var type
 
 var attack_range = 80
 var max_strength = 30
-remotesync var strength = max_strength
+var strength = max_strength
 var regen = 1.0
 var building_info
 
@@ -29,7 +29,7 @@ func _process(_dt):
 					< (attack_range * get_parent().global_scale.x)
 					and strength > rocket.can_hit_planet.damage):
 				print("shield destroying rocket: ", rocket.name)
-				destroy_rocket(rocket)
+				rpc('destroy_rocket', rocket)
 	update()
 
 func _draw():
