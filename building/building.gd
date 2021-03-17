@@ -44,6 +44,9 @@ func add_building_child(child):
 
 func _process(_dt):
 	connected_buildings = get_connected_buildings()
+		
+	$Particles2D.emitting = true if connected_buildings.size() > 0 else false
+
 	if is_destroyed and repair_time < initial_repair_time:
 		animation = type + '_buildup'
 		var completion = 1 - ( 0.8 * repair_time / initial_repair_time)
@@ -186,8 +189,8 @@ func get_connected_buildings():
 	for building in get_tree().get_nodes_in_group('building' + str(planet.player_number)):
 		if building != self \
 				and abs(position.angle_to(building.position)) < (PI / planet.slot_count) * 1.1 \
-				and not building in buildings:
-			set_highlighted(true)
+				and not building in buildings \
+				and building.type == type:
 			is_connected = true
 			buildings.push_front(building)
 			for inner_building in building.connected_buildings:
