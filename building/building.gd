@@ -41,6 +41,7 @@ func add_building_child(child):
 
 
 func _process(_dt):
+	get_connected_buildings()
 	if is_destroyed and repair_time < initial_repair_time:
 		animation = type + '_buildup'
 		var completion = 1 - ( 0.8 * repair_time / initial_repair_time)
@@ -176,6 +177,17 @@ func can_activate():
 func get_building_info() -> String:
 	var last_child = children[len(children) - 1]
 	return last_child.building_info
+
+func get_connected_buildings():
+	var buildings = []
+
+	for building1 in get_tree().get_nodes_in_group('building' + str(planet.player_number)):
+		for building in get_tree().get_nodes_in_group('building' + str(planet.player_number)):
+			if  building1 != building && \
+				abs(building1.position.angle_to(building.position)) < (PI / planet.slot_count) * 1.1:
+					building.set_highlighted(true)
+					buildings.push_front(building)
+	return buildings
 
 func set_highlighted(is_highlighted: bool):
 	if is_highlighted:
