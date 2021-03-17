@@ -9,7 +9,7 @@ var building_info
 
 func init():
 	building_info = '+ %d $/s' % additional_income
-	get_parent().planet.income += additional_income
+	get_parent().planet.income += additional_income * (get_parent().get_connected_buildings().size() + 1)
 
 func repair_finished():
 	get_parent().planet.income += additional_income

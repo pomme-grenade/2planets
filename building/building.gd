@@ -13,6 +13,8 @@ var base_type
 var building_info: String setget ,get_building_info
 var building_costs = preload('res://building/building_info.gd').costs
 var upgrading = false
+var connected_buildings = []
+var is_connected
 
 func add_building_child(child):
 	children.append(child)
@@ -41,7 +43,7 @@ func add_building_child(child):
 
 
 func _process(_dt):
-	get_connected_buildings()
+	connected_buildings = get_connected_buildings()
 	if is_destroyed and repair_time < initial_repair_time:
 		animation = type + '_buildup'
 		var completion = 1 - ( 0.8 * repair_time / initial_repair_time)
@@ -181,12 +183,16 @@ func get_building_info() -> String:
 func get_connected_buildings():
 	var buildings = []
 
-	for building1 in get_tree().get_nodes_in_group('building' + str(planet.player_number)):
-		for building in get_tree().get_nodes_in_group('building' + str(planet.player_number)):
-			if  building1 != building && \
-				abs(building1.position.angle_to(building.position)) < (PI / planet.slot_count) * 1.1:
-					building.set_highlighted(true)
-					buildings.push_front(building)
+	for building in get_tree().get_nodes_in_group('building' + str(planet.player_number)):
+		if building != self \
+				and abs(position.angle_to(building.position)) < (PI / planet.slot_count) * 1.1 \
+				and not building in buildings:
+			set_highlighted(true)
+			is_connected = true
+			buildings.push_front(building)
+			for inner_building in building.connected_buildings:
+				if not inner_building == self and not inner_building in buildings:
+					buildings.push_front(inner_building)
 	return buildings
 
 func set_highlighted(is_highlighted: bool):
