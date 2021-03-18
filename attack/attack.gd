@@ -7,6 +7,7 @@ var rocket_name_index = 0
 var activate_cost = 10
 var target_player_number
 var building_info = ''
+var activated = false
 
 func init():
 	target_player_number = 2 if planet.player_number == 1 else 1
@@ -24,6 +25,11 @@ func fire_rocket(name, position, rotation):
 	update()
 
 func on_activate():
+	if not activated:
+		activated = true
+		for building in get_parent().connected_buildings:
+			building.try_activate()
+
 	var name = '%s_rocket_%d' % [ self.name, rocket_name_index ]
 	rocket_name_index += 1
 	var position = global_position - Vector2(5, 0).rotated(global_rotation)

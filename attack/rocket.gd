@@ -42,7 +42,7 @@ func _process(delta):
 		velocity = velocity.rotated(rotation_direction * rotation_speed * delta)
 
 		var acceleration = clamp(1 - abs(angle_diff), 0.25, 0.6) * delta
-		velocity = velocity * (1 + acceleration)
+		velocity = velocity + (Vector2(acceleration, acceleration))
 
 		if can_hit_planet.did_hit_planet(target):
 			print("rocket hit planet is_destroyed set: ", self.name)

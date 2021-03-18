@@ -14,7 +14,6 @@ var building_info: String setget ,get_building_info
 var building_costs = preload('res://building/building_info.gd').costs
 var upgrading = false
 var connected_buildings = []
-var is_connected
 
 func add_building_child(child):
 	children.append(child)
@@ -132,16 +131,19 @@ func initial_build_finished():
 	for child in children:
 		if child.has_method('initial_build_finished'):
 			child.initial_build_finished()
-
+		
 func buildup_animation_finished():
 	if is_destroyed:
 		return
 
-	var last_child = children[len(children) - 1]
-
 	for child in children:
 		if child.has_method('buildup_animation_finished'):
 			child.buildup_animation_finished()
+
+	for building in connected_buildings:
+		var last_child = building.children[len(building.children) - 1]
+		if last_child.has_method('update_connection_bonus'):
+			last_child.update_connection_bonus()
 
 	upgrading = false
 	is_built = true
@@ -184,19 +186,22 @@ func get_building_info() -> String:
 	return last_child.building_info
 
 func get_connected_buildings():
-	var buildings = []
+	var neighbours = get_neighbours(self)
 
+	return neighbours
+
+func get_neighbours(previous):
+	var neighbours = []
 	for building in get_tree().get_nodes_in_group('building' + str(planet.player_number)):
 		if building != self \
+				and building != previous \
 				and abs(position.angle_to(building.position)) < (PI / planet.slot_count) * 1.1 \
-				and not building in buildings \
 				and building.type == type:
-			is_connected = true
-			buildings.push_front(building)
-			for inner_building in building.connected_buildings:
-				if not inner_building == self and not inner_building in buildings:
-					buildings.push_front(inner_building)
-	return buildings
+			neighbours.append(building)
+			for neighbour in building.get_neighbours(self):
+				neighbours.append(neighbour)
+
+	return neighbours
 
 func set_highlighted(is_highlighted: bool):
 	if is_highlighted:
