@@ -10,13 +10,14 @@ var bonus_per_building := 0.1
 var connection_bonus := 0.0
 
 func init():
+	get_parent().planet.income += additional_income
 	update_connection_bonus()
 	
 func update_connection_bonus():
 	get_parent().planet.income -= connection_bonus
-	connection_bonus = get_parent().connected_buildings.size() * bonus_per_building
+	connection_bonus = (get_parent().connected_buildings.size() + 1) * bonus_per_building
 	get_parent().planet.income += connection_bonus
-	building_info = '+ %d $/s' % [additional_income + connection_bonus]
+	building_info = '+ %.1f $/s' % [additional_income + connection_bonus]
 
 func repair_finished():
 	get_parent().planet.income += additional_income + connection_bonus

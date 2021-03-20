@@ -142,6 +142,7 @@ func buildup_animation_finished():
 
 	for building in connected_buildings:
 		building.call_last_child_method('update_connection_bonus')
+	call_last_child_method('update_connection_bonus')
 
 	upgrading = false
 	is_built = true
