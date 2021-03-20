@@ -5,7 +5,7 @@ var velocity
 var rotation_speed = 0.3
 var start_velocity := 20
 var min_acceleration := 0.05
-var max_acceleration := 0.4
+var max_acceleration := 0.2
 var target_player_number
 var from_planet
 #warning-ignore:unused_class_variable

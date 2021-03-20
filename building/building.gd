@@ -141,9 +141,7 @@ func buildup_animation_finished():
 			child.buildup_animation_finished()
 
 	for building in connected_buildings:
-		var last_child = building.children[len(building.children) - 1]
-		if last_child.has_method('update_connection_bonus'):
-			last_child.update_connection_bonus()
+		building.call_last_child_method('update_connection_bonus')
 
 	upgrading = false
 	is_built = true
@@ -210,6 +208,12 @@ func set_highlighted(is_highlighted: bool):
 		self.self_modulate = Color(1, 1, 1, 1)
 
 	call_children_method('on_highlight', [is_highlighted])
+
+func call_last_child_method(method: String, args: Array = []):
+	var last_child = self.children[len(self.children) - 1]
+	if last_child.has_method(method):
+		last_child.callv(method, args)
+
 
 func call_children_method(method: String, args: Array = []):
 	for child in children:

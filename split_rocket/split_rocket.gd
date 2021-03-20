@@ -28,7 +28,7 @@ func fire_rocket(name, position, rotation):
 
 func on_activate():
 	for building in get_parent().connected_buildings:
-		building.call_children_method('shoot')
+		building.call_last_child_method('shoot')
 	shoot()
 
 func shoot():
