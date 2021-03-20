@@ -2,7 +2,10 @@ extends Node2D
 
 var target
 var velocity
-var rotation_speed = 0.75
+var rotation_speed = 0.3
+var start_velocity := 20
+var min_acceleration := 0.05
+var max_acceleration := 0.4
 var target_player_number
 var from_planet
 #warning-ignore:unused_class_variable
@@ -15,7 +18,7 @@ var type = 'normal_rocket'
 remotesync var health = 30
 
 func _ready():
-	velocity = Vector2(40, 0).rotated(rotation)
+	velocity = Vector2(start_velocity, 0).rotated(rotation)
 
 func init(_target_player_number):
 	target_player_number = _target_player_number
@@ -42,8 +45,8 @@ func _process(delta):
 		var rotation_direction = sign(angle_diff)
 		velocity = velocity.rotated(rotation_direction * rotation_speed * delta)
 
-		var acceleration = clamp(1 - abs(angle_diff), 0.25, 0.6) * delta
-		velocity = velocity + (Vector2(acceleration, acceleration))
+		var acceleration = clamp(1 - abs(angle_diff), self.min_acceleration, self.max_acceleration) * delta
+		velocity = velocity * (1 + acceleration)
 
 		if can_hit_planet.did_hit_planet(target):
 			print("rocket hit planet is_destroyed set: ", self.name)
