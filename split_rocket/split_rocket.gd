@@ -27,7 +27,14 @@ func fire_rocket(name, position, rotation):
 	update()
 
 func on_activate():
+	for building in get_parent().connected_buildings:
+		building.call_children_method('shoot')
+	shoot()
+
+func shoot():
 	var name = '%s_split_rocket_%d' % [ self.name, rocket_name_index ]
 	rocket_name_index += 1
 	var position = global_position - Vector2(5, 0).rotated(global_rotation)
 	fire_rocket(name, position, global_rotation + PI)
+
+
