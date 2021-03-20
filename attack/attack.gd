@@ -25,11 +25,13 @@ func fire_rocket(name, position, rotation):
 	update()
 
 func on_activate():
-	if not activated:
-		activated = true
-		for building in get_parent().connected_buildings:
-			building.try_activate()
+	for building in get_parent().connected_buildings:
+		var last_child = building.children[len(building.children) - 1]
+		if last_child.has_method('shoot'):
+			last_child.shoot()
+	shoot()
 
+func shoot():
 	var name = '%s_rocket_%d' % [ self.name, rocket_name_index ]
 	rocket_name_index += 1
 	var position = global_position - Vector2(5, 0).rotated(global_rotation)

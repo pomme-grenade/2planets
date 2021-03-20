@@ -12,12 +12,14 @@ var upgrade_2_type := 'instant_defense'
 var building_info
 var circle_only_outline
 var outline_visible := false
+var damage = 10
 
 func init():
 	building_info = ''
 	get_parent().position *= 1.5
 	add_user_signal('income', [{'name': 'value', 'type': TYPE_INT}])
 	circle_only_outline = preload('res://circle_only_outline.gd').new()
+	cooldown_time -= (get_parent().get_connected_buildings().size() + 1) * 0.02
 
 func _process(dt):
 	if get_parent().is_destroyed or not get_parent().is_built:
@@ -57,7 +59,7 @@ func _process(dt):
 			global_position.distance_to(nearest_target.global_position) \
 				< attack_range and
 			(not nearest_target.is_destroyed)):
-		rpc('destroy_rocket', nearest_target.get_path())
+		rpc('shoot_rocket', nearest_target.get_path())
 
 func _draw():
 	if not get_parent().is_built or get_parent().is_destroyed:
@@ -82,20 +84,30 @@ func _draw():
 		else:
 			fire_position = null
 
-remotesync func destroy_rocket(path):
+remotesync func shoot_rocket(path):
 	var rocket = get_node(path)
 	if rocket == null:
-		Helper.log('unknown rocket ', path)
+		Helper.log(['unknown rocket ', path])
 		return
 	fire_position = rocket.global_position
 	fire_origin = to_global(Vector2(0, -8))
 	cooldown = cooldown_time
 	self_modulate.a = 0.8
-
+	var new_health = rocket.health - damage
+	rocket.rset('health', new_health)
 	rocket.can_hit_planet.play_explosion('satellite_shot')
-	print("satellite destroying rocket: ", rocket.name)
-	rocket.queue_free()
-	planet.money += 5
+
+	if rocket.health < 0:
+		print("satellite destroying rocket: ", rocket.name)
+		rocket.queue_free()
+		planet.money += 5
+
+func update_connection_bonus():
+	cooldown_time = 0.5;
+	cooldown_time -= (get_parent().get_connected_buildings().size() + 1) * 0.02
+	if cooldown_time < 0:
+		cooldown_time = 0
+	print(cooldown_time)
 
 func buildup_animation_finished():
 	update()

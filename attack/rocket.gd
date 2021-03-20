@@ -12,6 +12,7 @@ var child_counter = 0
 var color = Color(1, 0.3, 0.3)
 var can_hit_planet
 var type = 'normal_rocket'
+remotesync var health = 30
 
 func _ready():
 	velocity = Vector2(40, 0).rotated(rotation)
@@ -29,7 +30,7 @@ func init(_target_player_number):
 	add_child(can_hit_planet)
 
 func _process(delta):
-	if is_destroyed: 
+	if is_destroyed or health < 0: 
 		return
 
 	if not is_instance_valid(target):
