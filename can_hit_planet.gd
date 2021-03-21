@@ -40,8 +40,8 @@ remotesync func hit_planet(type, planet_path):
 
 	play_explosion(type, point_on_planet(planet))
 	
-	print("rocket hit planet, destroying rocket: ", get_parent().name)
-	get_parent().queue_free()
+	Helper.log(["rocket hit planet, set is_destroyed: ", get_parent().name])
+	get_parent().is_destroyed = true
 
 func play_explosion(explosion_animation, explosion_position = global_position):
 	var explosion = explosion_scene.instance()

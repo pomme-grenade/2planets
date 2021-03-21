@@ -15,7 +15,7 @@ var child_counter = 0
 var color = Color(1, 0.3, 0.3)
 var can_hit_planet
 var type = 'normal_rocket'
-remotesync var health = 30
+remotesync var health = 10
 
 func _ready():
 	velocity = Vector2(start_velocity, 0).rotated(rotation)
@@ -33,7 +33,8 @@ func init(_target_player_number):
 	add_child(can_hit_planet)
 
 func _process(delta):
-	if is_destroyed or health < 0: 
+	if is_destroyed: 
+		queue_free()
 		return
 
 	if not is_instance_valid(target):
@@ -49,8 +50,6 @@ func _process(delta):
 		velocity = velocity * (1 + acceleration)
 
 		if can_hit_planet.did_hit_planet(target):
-			print("rocket hit planet is_destroyed set: ", self.name)
-			rset('is_destroyed', true)
 			can_hit_planet.rpc('hit_planet', type, target.get_path())
 
 		if target.is_network_master():

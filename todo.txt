@@ -15,6 +15,9 @@ code:
     - geld rot flashen wenn man bauen will und nicht genug geld hat
     - rot / gruen aufleuchtender text wenn sich income aendert
     - kurze anleitung einbauen (kein tutorial)
+netcode stability:
+    - rocket spawn location & rotation übers netzwerk mitschicken
+    - anzeigen, wenn disconnected
 
 gameplay:
     - raketen spammen unattraktiv machen    

@@ -27,14 +27,17 @@ func _process(dt):
 	if fire_position != null or not get_parent().is_built:
 		update()
 
-
 	var enemy_number = 1 if planet.player_number == 2 else 2
 	var enemy_group = 'rocket' + str(enemy_number)
 	var rockets = get_tree().get_nodes_in_group(enemy_group)
 	var nearest_target = get_node('/root/main/planet_%s' % enemy_number)
 	for rocket in rockets:
-		if global_position.distance_to(rocket.global_position) \
-				< global_position.distance_to(nearest_target.global_position):
+		if rocket.is_destroyed:
+			continue
+
+		var distance_rocket = global_position.distance_to(rocket.global_position)
+		var distance_current_target = global_position.distance_to(nearest_target.global_position)
+		if distance_rocket < distance_current_target:
 			nearest_target = rocket
 
 	var parent = get_parent()
@@ -57,8 +60,7 @@ func _process(dt):
 	if (is_network_master() and
 			nearest_target != null and
 			global_position.distance_to(nearest_target.global_position) \
-				< attack_range and
-			(not nearest_target.is_destroyed)):
+				< attack_range):
 		rpc('shoot_rocket', nearest_target.get_path())
 
 func _draw():
@@ -94,12 +96,12 @@ remotesync func shoot_rocket(path):
 	cooldown = cooldown_time
 	self_modulate.a = 0.8
 	var new_health = rocket.health - damage
-	rocket.rset('health', new_health)
+	rocket.health = new_health
 	rocket.can_hit_planet.play_explosion('satellite_shot')
 
-	if rocket.health < 0:
-		print("satellite destroying rocket: ", rocket.name)
-		rocket.queue_free()
+	if rocket.health <= 0:
+		Helper.log(["satellite destroying rocket: ", rocket.name])
+		rocket.is_destroyed = true
 		planet.money += 5
 
 func update_connection_bonus():
@@ -107,7 +109,6 @@ func update_connection_bonus():
 	cooldown_time -= (get_parent().get_connected_buildings().size() + 1) * 0.02
 	if cooldown_time < 0:
 		cooldown_time = 0
-	print(cooldown_time)
 
 func buildup_animation_finished():
 	update()
