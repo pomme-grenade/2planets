@@ -26,6 +26,7 @@ anderes:
     - marketing texte
 
 IDEEN
+    - player als kleinen dude im space anzug
     - raketen-gebäude nebeneinander kosten jeweils nur für eine rakete, schießen aber alle
     - raketen schießen automatisch
 	- upgrades
