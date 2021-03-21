@@ -29,7 +29,7 @@ func _process(_dt):
 					< (attack_range * get_parent().global_scale.x)
 					and strength > rocket.can_hit_planet.damage):
 				print("shield destroying rocket: ", rocket.name)
-				rpc('destroy_rocket', rocket)
+				rpc('destroy_rocket', rocket.get_path())
 	update()
 
 func _draw():
@@ -38,8 +38,8 @@ func _draw():
 
 	var color_strength = round(strength / 5) / (max_strength / 5)
 	draw_circle_arc(
-		Vector2(0, 0), 
-		attack_range, 
+		Vector2(0, 0),
+		attack_range,
 		-60, 
 		60, 
 		Color(0.4, 0.2, 0.7, 0.4 * color_strength)
@@ -65,8 +65,9 @@ func draw_circle_arc(center, radius, angle_from, angle_to, color):
 			3
 		)
 		
-remotesync func destroy_rocket(rocket):
-	rocket.queue_free()
+remotesync func destroy_rocket(path):
+	var rocket = get_node(path)
+	rocket.is_destroyed = true
 	strength -= rocket.can_hit_planet.damage
 
 
