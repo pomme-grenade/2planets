@@ -4,7 +4,7 @@ var planet
 var upgrade_1_type = 'laser'
 var upgrade_2_type = 'split_rocket'
 var rocket_name_index = 0
-var activate_cost = 10
+var activate_cost = 20
 var target_player_number
 var building_info = ''
 var activated = false
