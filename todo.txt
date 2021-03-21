@@ -9,17 +9,18 @@ bugs:
     - manchmal ist ein upgrade icon komplett weg, obwohl es da sein sollte
 
 multiplayer:
-    - multiplayer codes á la among us
-    - rocket spawn location & rotation übers netzwerk mitschicken
-    - anzeigen, wenn disconnected
-    - nachricht schicken wenn man das spiel verlässt
-    - vom holepunching server abmelden wenn das spiel geschlossen wird
-    - cancel knopf beim verbinden + retry
-    - leben über network syncen
-    - escape in multiplayer, spiel läuft im bg weiter
+    - multiplayer codes á la among us (rafael)
+    - rocket spawn location & rotation übers netzwerk mitschicken (rafael)
+    - anzeigen, wenn disconnected (rafael)
+    - nachricht schicken wenn man das spiel verlässt (rafael)
+    - vom holepunching server abmelden wenn das spiel geschlossen wird (rafael)
+    - cancel knopf beim verbinden + retry (rafael)
+    - ins hauptmenü zurück wenn spiel vorbei
+    - leben über network syncen (trici)
+    - escape in multiplayer, spiel läuft im bg weiter (trici)
 
 gameplay:
-    - laser cooldown, breiteren laserstrahl, delay vor aktivieren
+    - laser cooldown, breiteren laserstrahl, delay vor aktivieren (trici)
     - raketen spammen unattraktiv machen
         - krasses raketen powerup enablen, laser und cluster machen zu wenig damage
         - instant defense automatisch schießen
@@ -32,13 +33,21 @@ polish:
     - kurze anleitung einbauen (kein tutorial)
     - highlight auf dem planeten, wenn man den bauknopf nur einmal drückt
     - doppelklick für abbauen + description beim ersten klick
-
+    - visueller indikator für geld, dass man durch abgeschossene raketen kriegt
+    - sounds & musik
+    - shields überall anzeigen wo sie abwehren
+        - eigenes bild für shields
+        - hinter dem planeten anzeigen
+        - nur vorne abwehren, raketen hinter dem shield überleben
+    - satellitengebäude am boden / satelliten komplett auf den boden schieben
+    
 anderes:
     - discord server
     - mailing liste
     - marketing texte
 
 NACH DER BETA
+    - automatischer angriff, aber immer vorne am planeten für predictability
 	- upgrades
         - antisatellit rakete
         - schiff, das rüber fliegt und dronen released
@@ -59,36 +68,10 @@ NACH DER BETA
     - random upgrade drops die man einsammeln kann und damit freischaltet
     - drone animation when build intent
 
-
 PROBLEME
 	- lategame taktik nicht existent
     - satellite indicator on ground
 	- snowballing, comeback
-    - upgrade indicator on hold
-        
-TODO
-    - asteroiden blinken lassen
-    - satellit besser proportionieren
-    - satellitengebäude am boden
-    - better satellite destroyed graphic
-	- multiplayer restart
-	- spiel vorbei wenn einer leaved im multiplayer
-    - building shadows
-    - bg fixen
-    - farm asteroids automatisch machen
-    - shields überall anzeigen wo sie abwehren
-    - geld für abgewehrte raketen rausnehmen
-    - satelliten und shields können asteroiden abwehren
-    - asteroiden haben leben
-
-    - better indicator
-    - damage indicator animation
-    - meteoritenwaffe
-    - meteoriten indicator am rande des bildschirms, 
-        nicht am rande des viewports
-
-    - networking:
-        - raketen werden nicht richtig zerstört
 
 UPGRADE TREE
     - defense
@@ -103,19 +86,18 @@ UPGRADE TREE
             - healing drones
             - 
         - teleporter
-            - asteroid farm
+            - 
             - 
     - attack
         - laser
             - 
             -
         - split rocket
-            - slingshot
+            - nuke
             -
     
 UPGRADE IDEEN
     - speed buff
-    - fette nuke mit hp
     - instant defense reflect
     - verteidigungs chaff das incoming und outgoing raketen verwirrt
     - verteidigungsraketen die alles abballern
@@ -131,29 +113,3 @@ UPGRADE IDEEN
     - schnellere raketen
     - günstigere raketen
     - booster der alles in der umgebung schneller / stärker macht
-
-DONE
-    - upgrades einbauen
-    - viereckiger cursor um anzuzeigen wo man gerade ist (done)
-    - satelliten range mit linie, nicht mit gefülltem kreis anzeigen (done)
-	- gebaude bauen sich langsam auf (done)
-    - player grafik polieren (done)
-	- satelliten hinter planet nicht anzeigen (done)
-    - bg neu malen (done)
-    - stop game on game over
-    - full money if delete while buildup
-    - show upgrade cost (cost general)
-    - can_activate function
-    - animation for activation
-	- Kamera
-	- laserraketen instantschuss gerader schuss
-	- lebensanzeige
-    - planeten heilen für mehr lategame
-    - grey upgrades when cant afford
-    - building info wenn man über gebauten buildings steht
-    - anti-burst schild
-    - raketen, die sich mid-flight in mehrere kleinere aufsplitten
-    - drones deaktivieren wenn building kaputt
-    - variable building cost 
-    - split rocket explosion größe
-    - damage indicator animation
