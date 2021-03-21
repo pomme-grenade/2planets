@@ -25,7 +25,7 @@ func fire_rocket(name, position, rotation):
 	update()
 
 func on_activate():
-	for building in get_parent().connected_buildings:
+	for building in get_parent().get_connected_buildings():
 		building.call_children_method('shoot')
 	shoot()
 

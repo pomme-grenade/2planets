@@ -13,7 +13,6 @@ var base_type
 var building_info: String setget ,get_building_info
 var building_costs = preload('res://building/building_info.gd').costs
 var upgrading = false
-var connected_buildings = []
 
 func add_building_child(child):
 	children.append(child)
@@ -42,9 +41,7 @@ func add_building_child(child):
 
 
 func _process(_dt):
-	connected_buildings = get_connected_buildings()
-		
-	$Particles2D.emitting = true if connected_buildings.size() > 0 else false
+	$Particles2D.emitting = get_connected_buildings().size() > 0 and not is_destroyed
 
 	if is_destroyed and repair_time < initial_repair_time:
 		animation = type + '_buildup'
@@ -57,24 +54,24 @@ func _process(_dt):
 			activate_cost = child.activate_cost
 
 remotesync func destroy():
-	call_children_method('on_destroy')
-
 	is_destroyed = true
+	call_children_method('on_destroy')
 	play('%s_destroyed' % type)
 	stop()
+	update_connected_buildings()
 	planet.update()
 
 remotesync func deconstruct(cost):
-	for child in children:
-		if child.has_method("on_deconstruct") and not is_destroyed:
-			child.on_deconstruct()
+	if not is_destroyed:
+		is_destroyed = true
+		call_children_method('on_deconstruct')
+		update_connected_buildings()
 
 	if is_built:
 		planet.money += cost / 4
 	else:
 		planet.money += cost
 
-	is_destroyed = true
 	queue_free()
 	planet.update()
 
@@ -126,6 +123,7 @@ func repair_finished():
 			child.repair_finished()
 
 	buildup_animation_finished()
+	update_connected_buildings()
 
 func initial_build_finished():
 	for child in children:
@@ -140,9 +138,7 @@ func buildup_animation_finished():
 		if child.has_method('buildup_animation_finished'):
 			child.buildup_animation_finished()
 
-	for building in connected_buildings:
-		building.call_last_child_method('update_connection_bonus')
-	call_last_child_method('update_connection_bonus')
+	update_connected_buildings()
 
 	upgrading = false
 	is_built = true
@@ -194,6 +190,7 @@ func get_neighbours(previous):
 	for building in get_tree().get_nodes_in_group('building' + str(planet.player_number)):
 		if building != self \
 				and building != previous \
+				and not building.is_destroyed \
 				and abs(position.angle_to(building.position)) < (PI / planet.slot_count) * 1.1 \
 				and building.type == type:
 			neighbours.append(building)
@@ -209,6 +206,11 @@ func set_highlighted(is_highlighted: bool):
 		self.self_modulate = Color(1, 1, 1, 1)
 
 	call_children_method('on_highlight', [is_highlighted])
+
+func update_connected_buildings():
+	for building in get_connected_buildings():
+		building.call_last_child_method('update_income')
+	call_last_child_method('update_income')
 
 func call_last_child_method(method: String, args: Array = []):
 	var last_child = self.children[len(self.children) - 1]

@@ -4,22 +4,22 @@ BETA
     - Reaktion?
 code:
     - bugs fixen
-        - raketen node not found
         - wenn man kein geld hat und den knopf zum bauen doppelt drückt sieht es danach wieder normal aus, nicht ausgegraut
         - manchmal ist ein upgrade icon komplett weg, obwohl es da sein sollte
         - escape in multiplayer
     - multiplayer codes á la among us
-    - vom holepunching server abmelden wenn das spiel geschlossen wird
     - hintergrund sättigung senken, dunkler machen
-    - leben syncen
     - geld rot flashen wenn man bauen will und nicht genug geld hat
     - rot / gruen aufleuchtender text wenn sich income aendert
     - kurze anleitung einbauen (kein tutorial)
 netcode stability:
     - rocket spawn location & rotation übers netzwerk mitschicken
     - anzeigen, wenn disconnected
+    - vom holepunching server abmelden wenn das spiel geschlossen wird
+    - leben über network syncen
 
 gameplay:
+    - laser cooldown, breiteren laserstrahl
     - raketen spammen unattraktiv machen    
     - krasses raketen powerup enablen, laser und cluster machen zu wenig damage, viele raketengebäude bringen keinen vorteil gegenüber wenigen (im gegensatz zu income und defense)
 

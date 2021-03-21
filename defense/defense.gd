@@ -104,7 +104,7 @@ remotesync func shoot_rocket(path):
 		rocket.is_destroyed = true
 		planet.money += 5
 
-func update_connection_bonus():
+func update_income():
 	cooldown_time = 0.5;
 	cooldown_time -= (get_parent().get_connected_buildings().size() + 1) * 0.02
 	if cooldown_time < 0:
