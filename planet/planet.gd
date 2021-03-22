@@ -84,7 +84,6 @@ func draw_circle_arc(center, radius, angle_from, angle_to, arc_color):
 
 func _process(delta):
 	health_bar.health = health
-	health_bar.get_node('Label').text = ' %d' % health + '%'
 	money += income * delta
 	if player_number == 1:
 		rotation_degrees -= 5 * delta
