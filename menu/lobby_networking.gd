@@ -3,6 +3,8 @@ extends Node
 var other_player_id
 var players_done = []
 
+signal exit_lobby
+
 func _ready():	
 	# warning-ignore:return_value_discarded
 	get_tree().connect('network_peer_connected', self, '_player_connected')
