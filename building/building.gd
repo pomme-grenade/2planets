@@ -13,6 +13,9 @@ var base_type
 var building_info: String setget ,get_building_info
 var building_costs = preload('res://building/building_info.gd').costs
 var upgrading = false
+var do_dissolve = false
+var dissolve_amount = 1
+var deconstruction_timer_wait_time = 0.7
 
 func add_building_child(child):
 	children.append(child)
@@ -39,9 +42,12 @@ func add_building_child(child):
 	frame = 0
 	play(animation_name)
 
-
-func _process(_dt):
+func _process(dt):
 	$Particles2D.emitting = get_connected_buildings().size() > 0 and not is_destroyed
+	
+	if do_dissolve:
+		material.set_shader_param('value', dissolve_amount) 
+		dissolve_amount -= dt / 0.7
 
 	if is_destroyed and repair_time < initial_repair_time:
 		animation = type + '_buildup'
@@ -60,6 +66,21 @@ remotesync func destroy():
 	stop()
 	update_connected_buildings()
 	planet.update()
+
+func start_deconstruction_timer():
+	var deconstruction_timer = Timer.new()
+	deconstruction_timer.one_shot = true
+	deconstruction_timer.connect('timeout', self, 'try_deconstruct')
+	add_child(deconstruction_timer)
+	deconstruction_timer.start(deconstruction_timer_wait_time)
+	do_dissolve = true
+
+func try_deconstruct():
+	var price = building_costs[type] / 2 if not is_destroyed else 0
+	rpc('deconstruct', price)
+
+	do_dissolve = false
+	update()
 
 remotesync func deconstruct(cost):
 	if not is_destroyed:
@@ -115,7 +136,6 @@ remotesync func upgrade(index):
 	new_child.name = '%s_%s' % [self.name, type]
 	add_building_child(new_child)
 	upgrading = true
-
 
 func repair_finished():
 	for child in children:

@@ -8,13 +8,7 @@ var planet
 var current_building
 var player_action_key
 var ui
-var action_pressed_timer
-var building_to_destroy
-var timer_wait_time = 0.7
-var do_dissolve = false
-var dissolve_amount = 1
 var building_costs = preload('res://building/building_info.gd').costs
-
 
 export var speed = 1
 
@@ -30,11 +24,6 @@ func init():
 		player_action_key = "player1_"
 	else:
 		player_action_key = "player%d_" % player_number
-
-	action_pressed_timer = Timer.new()
-	action_pressed_timer.one_shot = true
-	action_pressed_timer.connect('timeout', self, 'action_timer_timeout')
-	add_child(action_pressed_timer)
 
 	set_process_unhandled_input(true)
 
@@ -82,15 +71,6 @@ func _process(dt):
 			new_building.set_highlighted(true)
 		current_building = new_building
 
-	if is_instance_valid(current_building) and do_dissolve:
-		dissolve_amount -= 1 / (0.7 / dt)
-		current_building.material.set_shader_param('value', dissolve_amount) 
-	else:
-		dissolve_amount = 1
-		var buildings = get_tree().get_nodes_in_group("building" + str(get_parent().player_number))
-		for building in buildings:
-			building.material.set_shader_param('value', dissolve_amount)
-
 	if is_network_master():
 		rpc_unreliable("set_pos_and_motion", position, movementDirection, rotation)
 
@@ -111,12 +91,8 @@ func _unhandled_input(event):
 		get_tree().paused = true
 
 	if event.is_action_pressed(self.player_action_key + "deconstruct") and is_network_master():
-		do_dissolve = true
-		start_destroy_timer()
-
-	if event.is_action_released(self.player_action_key + 'deconstruct') and is_network_master():
-		do_dissolve = false
-		action_pressed_timer.stop()
+		if is_instance_valid(current_building):
+			current_building.start_deconstruction_timer()
 
 	if event.is_action_pressed("god"):
 		planet.money += 100000
@@ -178,20 +154,3 @@ func init_ui():
 	ui.player = self
 	ui.set_network_master(get_network_master())
 	ui.init()
-
-
-func start_destroy_timer():
-	if not is_instance_valid(current_building):
-		return
-
-	building_to_destroy = current_building
-	action_pressed_timer.start(timer_wait_time)
-
-func action_timer_timeout():
-	if (is_instance_valid(building_to_destroy) and current_building == building_to_destroy):
-		var price = 0 if building_to_destroy.is_destroyed else 40
-		building_to_destroy.rpc('deconstruct', price)
-
-	do_dissolve = false
-	building_to_destroy = null
-	update()
