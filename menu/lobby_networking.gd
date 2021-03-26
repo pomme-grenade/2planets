@@ -2,6 +2,9 @@ extends Node
 
 var other_player_id
 var players_done = []
+var hole_puncher
+const traversal_server_ip := '88.198.36.14'
+const traversal_server_port := 13000
 
 signal exit_lobby
 
@@ -20,9 +23,10 @@ func server_for_local_game():
 
 	emit_signal('exit_lobby')
 
+
 func connect_to_server():
 	Helper.log('traversing nat...')
-	var result = yield(GameManager.traverse_nat($HolePunch, false, 'planet_2'), 'completed')
+	var result = yield(traverse_nat(false, 'planet_2'), 'completed')
 	Helper.log('nat traversed!')
 	var host_address = result[2]
 	var host_port = result[1]
@@ -34,10 +38,10 @@ func connect_to_server():
 	peer.create_client(host_address, host_port, 0, 0, own_port)
 	get_tree().set_network_peer(peer)
 
+
 func start_server():
 	Helper.log('traversing nat...')
-	var result =  \
-		yield(GameManager.traverse_nat($HolePunch, true, 'planet_1'), 'completed')
+	var result = yield(traverse_nat(true, 'planet_1'), 'completed')
 	Helper.log('nat traversed!')
 	var my_port = result[0]
 	Helper.log(['my port ', my_port])
@@ -48,11 +52,25 @@ func start_server():
 		Helper.log(err)
 	get_tree().set_network_peer(peer)
 
+func reset():
+	var tree = get_tree()
+	if hole_puncher != null:
+		hole_puncher.finalize_peers("test")
+		hole_puncher.queue_free()
+
+	if tree.network_peer == null:
+		return
+
+	tree.network_peer.close_connection()
+	tree.network_peer = null
+
+
 func _player_connected(id):
 	get_tree().refuse_new_network_connections = true
 	other_player_id = id
 	if get_tree().is_network_server():
 		rpc('pre_configure_game')
+
 
 remotesync func pre_configure_game():
 	var selfPeerID = get_tree().get_network_unique_id()
@@ -74,6 +92,7 @@ remotesync func pre_configure_game():
 	rpc("done_preconfiguring", selfPeerID)
 	get_tree().set_pause(true)
 
+
 master func done_preconfiguring(who):
 	assert(not who in players_done)
 
@@ -82,5 +101,18 @@ master func done_preconfiguring(who):
 	if players_done.size() == 2:
 		rpc("post_configure_game")
 
+
 remotesync func post_configure_game():
 	emit_signal('exit_lobby')
+
+
+func traverse_nat(is_host, player_name):
+	hole_puncher = preload('res://addons/Holepunch/holepunch_node.gd').new()
+	hole_puncher.rendevouz_address = traversal_server_ip
+	hole_puncher.rendevouz_port = traversal_server_port
+	add_child(hole_puncher)
+	hole_puncher.start_traversal("test", is_host, player_name)
+	var result = yield(hole_puncher, 'hole_punched')
+	yield(get_tree().create_timer(0.1), 'timeout')
+	return result
+

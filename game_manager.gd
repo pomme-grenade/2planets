@@ -18,15 +18,10 @@ func game_over(loser):
 	get_tree().get_root().add_child(game_over_screen)
 
 func traverse_nat(hole_puncher, is_host, player_name):
-	# upnp = UPNP.new()
-	# upnp.discover(2000, 2, "InternetGatewayDevice")
-	# var result = upnp.add_port_mapping(SERVER_PORT)
-	# if result != UPNP.UPNP_RESULT_SUCCESS:
-		# print('error while trying upnp port forwarding: ', result)
-		hole_puncher.start_traversal("test", is_host, player_name)
-		var result = yield(hole_puncher, 'hole_punched')
-		yield(get_tree().create_timer(0.1), 'timeout')
-		return result
+	hole_puncher.start_traversal("test", is_host, player_name)
+	var result = yield(hole_puncher, 'hole_punched')
+	yield(get_tree().create_timer(0.1), 'timeout')
+	return result
 
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:

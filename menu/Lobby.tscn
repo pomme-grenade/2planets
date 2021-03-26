@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://menu/lobby_ui.gd" type="Script" id=1]
 [ext_resource path="res://buttons/empty_button.png" type="Texture" id=2]
-[ext_resource path="res://addons/Holepunch/holepunch_node.gd" type="Script" id=3]
 [ext_resource path="res://menu/lobby_networking.gd" type="Script" id=4]
 
 [sub_resource type="StyleBoxTexture" id=1]
@@ -126,8 +125,3 @@ text = "connect"
 
 [node name="lobby_networking" type="Node" parent="."]
 script = ExtResource( 4 )
-
-[node name="HolePunch" type="Node" parent="lobby_networking"]
-script = ExtResource( 3 )
-rendevouz_address = "88.198.36.14"
-rendevouz_port = 13000

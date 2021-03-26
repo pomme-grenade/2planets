@@ -45,9 +45,14 @@ func _on_server():
 	$'network/server_status'.visible = true
 	$'network/server_status'.text = 'Server started.\nWaiting for other player...'
 
+	# todo show game code here *after* server has acknowledged the session
+	# to prevent clients registering with a non-existing session
+
 	networking.start_server()
 
 func reset_networking():
+	networking.reset()
+
 	$'network/server_status'.visible = false
 	$'network/client_status'.visible = false
 
