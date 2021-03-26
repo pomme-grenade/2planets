@@ -10,7 +10,7 @@ var activate_cost = 20
 var laser_range = 300
 var one_building_destroyed = false
 var building_info
-var initial_delay = 0.5
+var initial_delay = 5.0 / 10.0
 var initial_delay_timer 
 var animated_beam = AnimatedTexture.new()
 var beam_texture1
@@ -61,6 +61,7 @@ func stop_laser():
 	can_activate = true
 	one_building_destroyed = false
 	stop_laser_timer.stop()
+	get_parent().play('laser_buildup')
 	update()
 
 func start_shooting():
@@ -73,4 +74,5 @@ func start_shooting():
 func on_activate():
 	if can_activate:
 		can_activate = false
+		get_parent().play('beam_startup')
 		initial_delay_timer.start(initial_delay)
