@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://menu/lobby.gd" type="Script" id=1]
+[ext_resource path="res://menu/lobby_ui.gd" type="Script" id=1]
 [ext_resource path="res://buttons/empty_button.png" type="Texture" id=2]
 [ext_resource path="res://addons/Holepunch/holepunch_node.gd" type="Script" id=3]
+[ext_resource path="res://menu/lobby_networking.gd" type="Script" id=4]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 2 )
@@ -82,11 +83,11 @@ margin_right = 304.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 150, 0 )
 
-[node name="ip_address" type="LineEdit" parent="network/connect_container"]
+[node name="game_code" type="LineEdit" parent="network/connect_container"]
 margin_right = 150.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 100, 20 )
-placeholder_text = "ip address"
+placeholder_text = "game code"
 caret_blink = true
 
 [node name="connect" type="Button" parent="network/connect_container"]
@@ -104,7 +105,10 @@ shortcut_in_tooltip = false
 keep_pressed_outside = true
 text = "connect"
 
-[node name="HolePunch" type="Node" parent="."]
+[node name="lobby_networking" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="HolePunch" type="Node" parent="lobby_networking"]
 script = ExtResource( 3 )
 rendevouz_address = "88.198.36.14"
 rendevouz_port = 13000
