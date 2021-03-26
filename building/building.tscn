@@ -1,4 +1,4 @@
-[gd_scene load_steps=282 format=2]
+[gd_scene load_steps=277 format=2]
 
 [ext_resource path="res://building/building.gd" type="Script" id=1]
 [ext_resource path="res://income/mineAnimation.png" type="Texture" id=2]
@@ -1234,32 +1234,6 @@ tracks/0/keys = {
 "values": [ Color( 2, 2, 3, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Gradient" id=247]
-colors = PoolColorArray( 0.242187, 1, 0, 1, 0.231373, 0.835294, 0.121569, 0 )
-
-[sub_resource type="GradientTexture" id=248]
-gradient = SubResource( 247 )
-
-[sub_resource type="Curve" id=250]
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.454545 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=251]
-curve = SubResource( 250 )
-
-[sub_resource type="ParticlesMaterial" id=249]
-emission_shape = 2
-emission_box_extents = Vector3( 8, 1, 1 )
-flag_disable_z = true
-direction = Vector3( 0, 1, 0 )
-spread = 0.0
-gravity = Vector3( 0, -189, 0 )
-initial_velocity = 1.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 1.5
-scale_curve = SubResource( 251 )
-color_ramp = SubResource( 248 )
-
 [node name="Node2D" type="AnimatedSprite"]
 modulate = Color( 2, 2, 3, 1 )
 material = SubResource( 4 )
@@ -1276,4 +1250,3 @@ anims/flash = SubResource( 246 )
 position = Vector2( 5.63363e-06, 5.73866 )
 lifetime = 0.4
 speed_scale = 0.2
-process_material = SubResource( 249 )
