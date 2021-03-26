@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://planet_ui/health_bar.gd" type="Script" id=1]
+
+[node name="health_bar" type="Control"]
+margin_left = 171.348
+margin_top = 105.382
+margin_right = 239.348
+margin_bottom = 113.382
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = " 100%"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

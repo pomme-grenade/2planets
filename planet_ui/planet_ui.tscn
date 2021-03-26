@@ -8,11 +8,11 @@
 [ext_resource path="res://buttons/arrow.png" type="Texture" id=6]
 [ext_resource path="res://planet_ui/current_money_label.tscn" type="PackedScene" id=7]
 [ext_resource path="res://buttons/button_texture_normal.tres" type="StyleBox" id=8]
-[ext_resource path="res://planet_ui/health_bar.gd" type="Script" id=10]
+[ext_resource path="res://planet_ui/health_bar.tscn" type="PackedScene" id=9]
 
 [sub_resource type="BitmapFont" id=1]
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=2]
 resource_name = "no_money"
 length = 0.5
 tracks/0/type = "value"
@@ -26,24 +26,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 0, 0, 1 ), Color( 1, 0.980392, 0.980392, 1 ) ]
-}
-
-[sub_resource type="BitmapFont" id=2]
-
-[sub_resource type="Animation" id=11]
-resource_name = "no_money"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("TextureRect:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="BitmapFont" id=3]
@@ -69,6 +51,23 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=6]
 length = 0.5
 tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="BitmapFont" id=7]
+
+[sub_resource type="Animation" id=8]
+length = 0.5
+tracks/0/type = "value"
 tracks/0/path = NodePath("upgrade_texture:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -81,11 +80,11 @@ tracks/0/keys = {
 "values": [ Color( 0.972549, 0.0627451, 0.0627451, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="BitmapFont" id=7]
+[sub_resource type="BitmapFont" id=9]
 
-[sub_resource type="BitmapFont" id=8]
+[sub_resource type="BitmapFont" id=10]
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=11]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("upgrade_texture:modulate")
@@ -132,7 +131,7 @@ button_mask = 0
 clip_text = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="new_building/defense"]
-anims/no_money = SubResource( 10 )
+anims/no_money = SubResource( 2 )
 
 [node name="TextureRect" type="TextureRect" parent="new_building/defense"]
 margin_left = 0.174427
@@ -153,11 +152,11 @@ size_flags_horizontal = 3
 custom_styles/hover = ExtResource( 8 )
 custom_styles/pressed = ExtResource( 8 )
 custom_styles/normal = ExtResource( 8 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 clip_text = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="new_building/income"]
-anims/no_money = SubResource( 11 )
+anims/no_money = SubResource( 4 )
 
 [node name="TextureRect" type="TextureRect" parent="new_building/income"]
 anchor_right = 0.5
@@ -178,7 +177,7 @@ size_flags_horizontal = 3
 custom_styles/hover = ExtResource( 8 )
 custom_styles/pressed = ExtResource( 8 )
 custom_styles/normal = ExtResource( 8 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 5 )
 
 [node name="TextureRect" type="TextureRect" parent="new_building/attack"]
 anchor_left = 0.5
@@ -196,7 +195,7 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="new_building/attack"]
-anims/no_money = SubResource( 4 )
+anims/no_money = SubResource( 6 )
 
 [node name="upgrade_building" type="HBoxContainer" parent="."]
 margin_right = 64.0
@@ -214,7 +213,7 @@ size_flags_vertical = 3
 custom_styles/hover = ExtResource( 8 )
 custom_styles/pressed = ExtResource( 8 )
 custom_styles/normal = ExtResource( 8 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 7 )
 
 [node name="upgrade_texture" type="TextureRect" parent="upgrade_building/upgrade_1"]
 margin_left = 0.0410366
@@ -227,7 +226,7 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="upgrade_building/upgrade_1"]
-anims/no_money = SubResource( 6 )
+anims/no_money = SubResource( 8 )
 
 [node name="activate" type="Button" parent="upgrade_building"]
 margin_left = 24.0
@@ -239,7 +238,7 @@ size_flags_vertical = 3
 custom_styles/hover = ExtResource( 8 )
 custom_styles/pressed = ExtResource( 8 )
 custom_styles/normal = ExtResource( 8 )
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 9 )
 
 [node name="activate_texture" type="TextureRect" parent="upgrade_building/activate"]
 margin_left = 0.0963974
@@ -262,10 +261,10 @@ size_flags_vertical = 3
 custom_styles/hover = ExtResource( 8 )
 custom_styles/pressed = ExtResource( 8 )
 custom_styles/normal = ExtResource( 8 )
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 10 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="upgrade_building/upgrade_2"]
-anims/no_money = SubResource( 9 )
+anims/no_money = SubResource( 11 )
 
 [node name="upgrade_texture" type="TextureRect" parent="upgrade_building/upgrade_2"]
 margin_left = -0.011724
@@ -326,27 +325,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="health_bar" type="Control" parent="."]
-margin_left = 0.0688477
-margin_top = 27.8862
-margin_right = 68.0688
-margin_bottom = 34.8862
-script = ExtResource( 10 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Tween" type="Tween" parent="health_bar"]
-
-[node name="Label" type="Label" parent="health_bar"]
-anchor_right = 1.0
-margin_top = -4.26485
-margin_bottom = 3.73515
-text = "health"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="health_bar" parent="." instance=ExtResource( 9 )]
+margin_left = 0.409546
+margin_top = 23.8649
+margin_right = 68.4095
+margin_bottom = 31.8649
 
 [node name="building_info" type="Label" parent="."]
 anchor_right = 1.0
