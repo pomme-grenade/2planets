@@ -27,7 +27,7 @@ anchor_bottom = 0.5
 margin_left = -152.0
 margin_top = -68.0
 margin_right = 152.0
-margin_bottom = 68.0
+margin_bottom = 40.0
 custom_constants/separation = 5
 script = ExtResource( 1 )
 __meta__ = {
@@ -35,14 +35,14 @@ __meta__ = {
 }
 
 [node name="Label2" type="Label" parent="."]
-margin_right = 304.0
+margin_right = 308.0
 margin_bottom = 8.0
 text = "local game"
 
 [node name="local" type="Button" parent="."]
 margin_top = 13.0
-margin_right = 304.0
-margin_bottom = 70.0
+margin_right = 308.0
+margin_bottom = 40.0
 size_flags_vertical = 3
 custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 1 )
@@ -54,19 +54,20 @@ shortcut = SubResource( 3 )
 text = "start local game"
 
 [node name="Label" type="Label" parent="."]
-margin_top = 75.0
-margin_right = 304.0
-margin_bottom = 83.0
+margin_top = 45.0
+margin_right = 308.0
+margin_bottom = 53.0
 text = "network game"
 
 [node name="network" type="HBoxContainer" parent="."]
-margin_top = 88.0
-margin_right = 304.0
-margin_bottom = 136.0
+margin_top = 58.0
+margin_right = 308.0
+margin_bottom = 108.0
+rect_min_size = Vector2( 0, 50 )
 
 [node name="create" type="Button" parent="network"]
 margin_right = 150.0
-margin_bottom = 48.0
+margin_bottom = 50.0
 grow_horizontal = 0
 rect_min_size = Vector2( 150, 0 )
 custom_styles/hover = SubResource( 1 )
@@ -77,13 +78,19 @@ custom_styles/normal = SubResource( 1 )
 shortcut_in_tooltip = false
 text = "start server"
 
-[node name="connect_container" type="VBoxContainer" parent="network"]
+[node name="game_code_label" type="Label" parent="network"]
 margin_left = 154.0
-margin_right = 304.0
-margin_bottom = 48.0
+margin_top = 21.0
+margin_right = 154.0
+margin_bottom = 29.0
+
+[node name="connect_container" type="VBoxContainer" parent="network"]
+margin_left = 158.0
+margin_right = 308.0
+margin_bottom = 50.0
 rect_min_size = Vector2( 150, 0 )
 
-[node name="game_code" type="LineEdit" parent="network/connect_container"]
+[node name="game_code_input" type="LineEdit" parent="network/connect_container"]
 margin_right = 150.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 100, 20 )
@@ -93,7 +100,7 @@ caret_blink = true
 [node name="connect" type="Button" parent="network/connect_container"]
 margin_top = 24.0
 margin_right = 150.0
-margin_bottom = 48.0
+margin_bottom = 50.0
 rect_min_size = Vector2( 100, 0 )
 size_flags_vertical = 3
 custom_styles/hover = SubResource( 1 )

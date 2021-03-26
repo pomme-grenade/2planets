@@ -13,6 +13,8 @@ func _ready():
 	# warning-ignore:return_value_discarded
 	networking.connect('exit_lobby', self, '_on_exit_lobby')
 
+	$'network/game_code_label'.visible = false
+
 func _on_local():
 	networking.server_for_local_game()
 
@@ -23,9 +25,10 @@ func _on_connect():
 	networking.connect_to_server()
 
 func _on_server():
-	$'network/create'.disabled = true
-	$'network/connect_container/connect'.disabled = true
-	$'network/connect_container/ip_address'.editable = false
+	$'network/create'.text = 'Cancel'
+	$'network/connect_container'.visible = false
+	$'network/game_code_label'.visible = true
+	$'network/game_code_label'.text = 'Server started.\nWaiting for other player...'
 
 	networking.start_server()
 
