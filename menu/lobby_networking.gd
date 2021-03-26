@@ -9,6 +9,17 @@ func _ready():
 	# warning-ignore:return_value_discarded
 	get_tree().connect('network_peer_connected', self, '_player_connected')
 
+func server_for_local_game():
+	var peer = NetworkedMultiplayerENet.new()
+	peer.create_server(GameManager.SERVER_PORT, 2)
+	get_tree().set_network_peer(peer)
+	var world = load('res://Main.tscn').instance()
+	get_node('/root').add_child(world)
+	var selfPeerID = get_tree().get_network_unique_id()
+	get_node('/root').set_network_master(selfPeerID)
+
+	emit_signal('exit_lobby')
+
 func connect_to_server():
 	Helper.log('traversing nat...')
 	var result = yield(GameManager.traverse_nat($HolePunch, false, 'planet_2'), 'completed')

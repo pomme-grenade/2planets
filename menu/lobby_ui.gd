@@ -14,15 +14,7 @@ func _ready():
 	networking.connect('exit_lobby', self, '_on_exit_lobby')
 
 func _on_local():
-	var peer = NetworkedMultiplayerENet.new()
-	peer.create_server(GameManager.SERVER_PORT, 2)
-	get_tree().set_network_peer(peer)
-	var world = load('res://Main.tscn').instance()
-	get_node('/root').add_child(world)
-	var selfPeerID = get_tree().get_network_unique_id()
-	get_node('/root').set_network_master(selfPeerID)
-
-	queue_free()
+	networking.server_for_local_game()
 
 func _on_connect():
 	$'network/create'.disabled = true
