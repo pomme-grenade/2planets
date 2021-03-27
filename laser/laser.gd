@@ -13,7 +13,7 @@ var building_info
 var initial_delay = 14.0 / 60.0
 var initial_delay_timer 
 var animated_beam = AnimatedTexture.new()
-var beam_texture1
+var beam_texture
 
 func init():
 	building_info = ''
@@ -28,13 +28,9 @@ func init():
 
 	initial_delay_timer.connect('timeout', self, 'start_shooting')
 	add_child(initial_delay_timer)
-
-	beam_texture1 = preload('res://laser/beam1.png')
-	var beam_texture2 = preload('res://laser/beam2.png')
-	animated_beam.set_frame_texture(0, beam_texture1)
-	animated_beam.set_frame_texture(1, beam_texture2)
-	animated_beam.set_frames(2)
-	animated_beam.set_fps(5)
+	set_frame_images()
+	animated_beam.set_frames(10)
+	animated_beam.set_fps(20)
 
 func _process(_dt):
 	if shooting:
@@ -52,8 +48,8 @@ func _process(_dt):
 
 func _draw():
 	if shooting:
-		for n in range (1, laser_position, beam_texture1.get_size().y):
-			draw_texture(animated_beam, Vector2(-beam_texture1.get_size().y / 4, -n - beam_texture1.get_size().y))
+		for n in range (1, laser_position, beam_texture.get_size().y):
+			draw_texture(animated_beam, Vector2(-beam_texture.get_size().y / 4, -n - beam_texture.get_size().y))
 
 func stop_laser():
 	laser_position = 0
@@ -62,6 +58,7 @@ func stop_laser():
 	one_building_destroyed = false
 	stop_laser_timer.stop()
 	get_parent().play('laser')
+	animated_beam.set_current_frame(0)
 	update()
 
 func start_shooting():
@@ -76,3 +73,9 @@ func on_activate():
 		can_activate = false
 		get_parent().play('beam_startup')
 		initial_delay_timer.start(initial_delay)
+
+func set_frame_images():
+	for n in range (1, 10):
+		var png_path = "res://laser/beam%d.png" % n
+		beam_texture = load(png_path)
+		animated_beam.set_frame_texture(n-1, beam_texture)
