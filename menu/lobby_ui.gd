@@ -31,7 +31,10 @@ func _on_connect():
 	$'network/client_status'.text = 'Connecting to server...'
 	$'network/connect_container/connect'.text = 'cancel'
 
-	networking.connect_to_server()
+	var game_code = $'network/connect_container/game_code_input' \
+		.text \
+		.to_upper()
+	networking.connect_to_server(game_code)
 
 func _on_server():
 	if waiting_for_network:

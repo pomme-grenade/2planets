@@ -41,6 +41,7 @@ var gos_sent = 0
 const REGISTER_SESSION = "rs:"
 const REGISTER_CLIENT = "rc:"
 const EXCHANGE_PEERS = "ep:"
+const CHECKOUT_CLIENT = "cc:"
 const PEER_GREET = "greet"
 const PEER_CONFIRM = "confirm"
 const PEER_GO = "go"
@@ -179,7 +180,7 @@ func start_peer_contact():
 	p_timer.start()
 
 
-#this function can be called to the server if you want to end the holepunch before the server closes the session
+# end the holepunch before the server closes the session
 func finalize_peers(id):
 	var buffer = PoolByteArray()
 	buffer.append_array((EXCHANGE_PEERS+str(id)).to_utf8())
@@ -187,7 +188,15 @@ func finalize_peers(id):
 	server_udp.put_packet(buffer)
 
 
-#Call this function when you want to start the holepunch process
+# remove a client from the server
+func checkout():
+	var buffer = PoolByteArray()
+	buffer.append_array((CHECKOUT_CLIENT+client_name).to_utf8())
+	server_udp.set_dest_address(rendevouz_address, rendevouz_port)
+	server_udp.put_packet(buffer)
+
+
+# start the holepunch process
 func start_traversal(id, is_player_host, player_name):
 	if server_udp.is_listening():
 		server_udp.close()
@@ -220,6 +229,7 @@ func start_traversal(id, is_player_host, player_name):
 		_send_client_to_server()
 
 
+# register a client with the server
 func _send_client_to_server():
 	yield(get_tree().create_timer(2.0), "timeout")
 	var buffer = PoolByteArray()
