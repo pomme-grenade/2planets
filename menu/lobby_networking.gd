@@ -62,8 +62,9 @@ func reset():
 		hole_puncher.finalize_peers(game_code)
 		# we shouldn't have to call this as the server normally
 		# does this when we call finalize_peers,
-		# but sometimes the server doesn't do it :/
-		# hole_puncher.checkout()
+		# but if our client is still registered in an old, lingering 
+		# session, it won't get cleaned up without the following call
+		hole_puncher.checkout()
 		hole_puncher.queue_free()
 
 	if tree.network_peer == null:
