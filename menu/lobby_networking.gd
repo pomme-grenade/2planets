@@ -3,10 +3,12 @@ extends Node
 var other_player_id
 var players_done = []
 var hole_puncher
+var game_code
 const traversal_server_ip := '88.198.36.14'
 const traversal_server_port := 13000
 
 signal exit_lobby
+signal update_status(text)
 
 func _ready():	
 	# warning-ignore:return_value_discarded
@@ -24,7 +26,8 @@ func server_for_local_game():
 	emit_signal('exit_lobby')
 
 
-func connect_to_server():
+func connect_to_server(code):
+	game_code = code
 	Helper.log('traversing nat...')
 	var result = yield(traverse_nat(false, 'planet_2'), 'completed')
 	Helper.log('nat traversed!')
@@ -41,6 +44,7 @@ func connect_to_server():
 
 func start_server():
 	Helper.log('traversing nat...')
+	game_code = generate_game_code()
 	var result = yield(traverse_nat(true, 'planet_1'), 'completed')
 	Helper.log('nat traversed!')
 	var my_port = result[0]
@@ -55,7 +59,12 @@ func start_server():
 func reset():
 	var tree = get_tree()
 	if hole_puncher != null:
-		hole_puncher.finalize_peers("test")
+		hole_puncher.finalize_peers(game_code)
+		# we shouldn't have to call this as the server normally
+		# does this when we call finalize_peers,
+		# but if our client is still registered in an old, lingering 
+		# session, it won't get cleaned up without the following call
+		hole_puncher.checkout()
 		hole_puncher.queue_free()
 
 	if tree.network_peer == null:
@@ -111,8 +120,22 @@ func traverse_nat(is_host, player_name):
 	hole_puncher.rendevouz_address = traversal_server_ip
 	hole_puncher.rendevouz_port = traversal_server_port
 	add_child(hole_puncher)
-	hole_puncher.start_traversal("test", is_host, player_name)
+	hole_puncher.connect('session_registered', self, '_session_registered')
+	hole_puncher.start_traversal(game_code, is_host, player_name)
 	var result = yield(hole_puncher, 'hole_punched')
 	yield(get_tree().create_timer(0.1), 'timeout')
 	return result
 
+func generate_game_code():
+	# use a local randomized RNG to keep the global RNG reproducible
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	var length = 4
+	var result = ''
+	for _n in range(length):
+		var ascii = rng.randi_range(0, 25) + 65
+		result += '%c' % ascii
+	return result
+
+func _session_registered():
+	emit_signal('update_status', 'Game Code: %s\nWaiting for other player...' % game_code)

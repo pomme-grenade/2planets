@@ -7,6 +7,7 @@ bugs:
     - wenn man kein geld hat und den knopf zum bauen doppelt drückt sieht es danach wieder normal aus, nicht ausgegraut
     - knopf drücken, weglaufen, wiederkommen und knopf noch mal drücken baut sofort
     - manchmal ist ein upgrade icon komplett weg, obwohl es da sein sollte
+    - game finish ist manchmal nur beim einen player (life sync fixed das, aber der desync sollte gar nicht erst passieren)
 
 multiplayer:
     - multiplayer codes á la among us (rafael)
