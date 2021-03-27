@@ -3,6 +3,7 @@ extends Node
 #Signal is emitted when holepunch is complete. Connect this signal to your network manager
 #Once your network manager received the signal they can host or join a game on the host port
 signal hole_punched(my_port, hosts_port, hosts_address)
+signal session_registered
 
 var server_udp = PacketPeerUDP.new()
 var peer_udp = PacketPeerUDP.new()
@@ -74,6 +75,7 @@ func _process(delta):
 		if packet_string.begins_with(SERVER_OK):
 			var m = packet_string.split(":")
 			own_port = int( m[1] )
+			emit_signal('session_registered')
 			if is_host:
 				if !found_server:
 					_send_client_to_server()
@@ -129,7 +131,6 @@ func _cascade_peer(add, peer_port):
 
 
 func _ping_peer():
-	
 	if not recieved_peer_confirm and greets_sent < response_window:
 		for p in peer.keys():
 			peer_udp.set_dest_address(peer[p].address, int(peer[p].port))

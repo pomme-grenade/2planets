@@ -7,6 +7,7 @@ const traversal_server_ip := '88.198.36.14'
 const traversal_server_port := 13000
 
 signal exit_lobby
+signal update_status(text)
 
 func _ready():	
 	# warning-ignore:return_value_discarded
@@ -111,8 +112,11 @@ func traverse_nat(is_host, player_name):
 	hole_puncher.rendevouz_address = traversal_server_ip
 	hole_puncher.rendevouz_port = traversal_server_port
 	add_child(hole_puncher)
+	hole_puncher.connect('session_registered', self, '_session_registered')
 	hole_puncher.start_traversal("test", is_host, player_name)
 	var result = yield(hole_puncher, 'hole_punched')
 	yield(get_tree().create_timer(0.1), 'timeout')
 	return result
 
+func _session_registered():
+	emit_signal('update_status', 'Connected to Registry.\nWaiting for other player...')

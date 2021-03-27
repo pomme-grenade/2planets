@@ -43,12 +43,16 @@ func _on_server():
 	$'network/create'.text = 'Cancel'
 	$'network/connect_container'.visible = false
 	$'network/server_status'.visible = true
-	$'network/server_status'.text = 'Server started.\nWaiting for other player...'
+	$'network/server_status'.text = 'Connecting to registry...'
 
 	# todo show game code here *after* server has acknowledged the session
 	# to prevent clients registering with a non-existing session
 
 	networking.start_server()
+	var status = yield(networking, 'update_status')
+	$'network/server_status'.text = status
+
+
 
 func reset_networking():
 	networking.reset()
