@@ -34,13 +34,13 @@ __meta__ = {
 }
 
 [node name="Label2" type="Label" parent="."]
-margin_right = 304.0
+margin_right = 332.0
 margin_bottom = 8.0
 text = "local game"
 
 [node name="local" type="Button" parent="."]
 margin_top = 13.0
-margin_right = 304.0
+margin_right = 332.0
 margin_bottom = 40.0
 size_flags_vertical = 3
 custom_styles/hover = SubResource( 1 )
@@ -54,13 +54,13 @@ text = "start local game"
 
 [node name="Label" type="Label" parent="."]
 margin_top = 45.0
-margin_right = 304.0
+margin_right = 332.0
 margin_bottom = 53.0
 text = "network game"
 
 [node name="network" type="HBoxContainer" parent="."]
 margin_top = 58.0
-margin_right = 304.0
+margin_right = 332.0
 margin_bottom = 108.0
 rect_min_size = Vector2( 0, 50 )
 
@@ -84,7 +84,14 @@ custom_styles/focus = SubResource( 1 )
 custom_styles/disabled = SubResource( 1 )
 custom_styles/normal = SubResource( 1 )
 shortcut_in_tooltip = false
-text = "start server"
+text = "create game"
+
+[node name="Label" type="Label" parent="network"]
+margin_left = 154.0
+margin_top = 21.0
+margin_right = 178.0
+margin_bottom = 29.0
+text = "- or -"
 
 [node name="server_status" type="Label" parent="network"]
 visible = false
@@ -96,8 +103,8 @@ size_flags_vertical = 3
 text = "server status"
 
 [node name="connect_container" type="VBoxContainer" parent="network"]
-margin_left = 154.0
-margin_right = 304.0
+margin_left = 182.0
+margin_right = 332.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 150, 0 )
 
@@ -105,7 +112,7 @@ rect_min_size = Vector2( 150, 0 )
 margin_right = 150.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 100, 20 )
-placeholder_text = "game code"
+placeholder_text = "enter game code"
 caret_blink = true
 
 [node name="connect" type="Button" parent="network/connect_container"]
@@ -121,7 +128,7 @@ custom_styles/disabled = SubResource( 1 )
 custom_styles/normal = SubResource( 1 )
 shortcut_in_tooltip = false
 keep_pressed_outside = true
-text = "connect"
+text = "join game"
 
 [node name="lobby_networking" type="Node" parent="."]
 script = ExtResource( 4 )
