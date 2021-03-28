@@ -27,6 +27,7 @@ func _on_connect():
 
 	waiting_for_network = true
 	$'network/create'.visible = false
+	$'network/limiter'.visible = false
 	$'network/client_status'.visible = true
 	$'network/client_status'.text = 'Connecting to server...'
 	$'network/connect_container/connect'.text = 'cancel'
@@ -44,6 +45,7 @@ func _on_server():
 
 	waiting_for_network = true
 	$'network/create'.text = 'Cancel'
+	$'network/limiter'.visible = false
 	$'network/connect_container'.visible = false
 	$'network/server_status'.visible = true
 	$'network/server_status'.text = 'Connecting to registry...'
@@ -64,9 +66,10 @@ func reset_networking():
 	$'network/client_status'.visible = false
 
 	$'network/create'.visible = true
-	$'network/create'.text = 'start server'
+	$'network/create'.text = 'create game'
 	$'network/connect_container'.visible = true
-	$'network/connect_container/connect'.text = 'connect'
+	$'network/connect_container/connect'.text = 'join game'
+	$'network/limiter'.visible = true
 
 	waiting_for_network = false
 

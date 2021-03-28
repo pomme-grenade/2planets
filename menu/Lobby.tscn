@@ -86,7 +86,7 @@ custom_styles/normal = SubResource( 1 )
 shortcut_in_tooltip = false
 text = "create game"
 
-[node name="Label" type="Label" parent="network"]
+[node name="limiter" type="Label" parent="network"]
 margin_left = 154.0
 margin_top = 21.0
 margin_right = 178.0
