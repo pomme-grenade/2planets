@@ -21,13 +21,13 @@ func init():
 	enemy_player_number = 1 if planet.player_number == 2 else 2
 
 	stop_laser_timer = Timer.new()
-	initial_delay_timer = Timer.new()
-
-	stop_laser_timer.connect('timeout', self, 'stop_laser')
+	stop_laser_timer.one_shot = true
 	add_child(stop_laser_timer)
 
-	initial_delay_timer.connect('timeout', self, 'start_shooting')
+	initial_delay_timer = Timer.new()
+	initial_delay_timer.one_shot = true
 	add_child(initial_delay_timer)
+
 	set_frame_images()
 	animated_beam.set_frames(10)
 	animated_beam.set_fps(20)
@@ -46,33 +46,40 @@ func _process(_dt):
 				update()
 				return
 
+
 func _draw():
 	if shooting:
 		for n in range (1, laser_position, beam_texture.get_size().y):
 			draw_texture(animated_beam, Vector2(-beam_texture.get_size().y / 4, -n - beam_texture.get_size().y))
 
-func stop_laser():
-	laser_position = 0
-	shooting = false
-	can_activate = true
-	one_building_destroyed = false
-	stop_laser_timer.stop()
-	animated_beam.set_current_frame(0)
-	update()
-
-func start_shooting():
-	shooting = true
-	get_parent().play('laser')
-	initial_delay_timer.stop()
-	stop_laser_timer.start(0.27)
-	laser_position = laser_range
-	update()
 
 func on_activate():
 	if can_activate:
 		can_activate = false
 		get_parent().play('beam_startup')
 		initial_delay_timer.start(initial_delay)
+		yield(initial_delay_timer, 'timeout')
+		start_shooting()
+		yield(stop_laser_timer, 'timeout')
+		stop_laser()
+
+
+func stop_laser():
+	laser_position = 0
+	shooting = false
+	can_activate = true
+	one_building_destroyed = false
+	update()
+	animated_beam.set_current_frame(0)
+
+
+func start_shooting():
+	shooting = true
+	get_parent().play('laser')
+	stop_laser_timer.start(0.27)
+	laser_position = laser_range
+	update()
+
 
 func set_frame_images():
 	for n in range (1, 10):
