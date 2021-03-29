@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://menu/lobby_ui.gd" type="Script" id=1]
 [ext_resource path="res://buttons/empty_button.png" type="Texture" id=2]
+[ext_resource path="res://font/broken_input_workaround.tres" type="DynamicFont" id=3]
 [ext_resource path="res://menu/lobby_networking.gd" type="Script" id=4]
 
 [sub_resource type="StyleBoxTexture" id=1]
@@ -112,6 +113,7 @@ rect_min_size = Vector2( 150, 0 )
 margin_right = 150.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 100, 20 )
+custom_fonts/font = ExtResource( 3 )
 placeholder_text = "enter game code"
 caret_blink = true
 

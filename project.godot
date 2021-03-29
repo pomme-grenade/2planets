@@ -38,7 +38,7 @@ enabled=PoolStringArray( "Holepunch" )
 
 [gui]
 
-theme/custom_font="res://font/font.tres"
+theme/custom_font="res://font/default.tres"
 
 [importer_defaults]
 
