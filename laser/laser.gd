@@ -28,9 +28,10 @@ func init():
 	initial_delay_timer.one_shot = true
 	add_child(initial_delay_timer)
 
-	set_frame_images()
 	animated_beam.set_frames(10)
-	animated_beam.set_fps(20)
+	animated_beam.set_fps(20.0)
+	animated_beam.oneshot = true
+	set_frame_images()
 
 func _process(_dt):
 	if shooting:
@@ -70,19 +71,19 @@ func stop_laser():
 	can_activate = true
 	one_building_destroyed = false
 	update()
-	animated_beam.set_current_frame(0)
 
 
 func start_shooting():
 	shooting = true
 	get_parent().play('laser')
-	stop_laser_timer.start(0.27)
+	stop_laser_timer.start(0.5)
 	laser_position = laser_range
+	animated_beam.current_frame = 0
 	update()
 
 
 func set_frame_images():
-	for n in range (1, 10):
+	for n in range (1, 11):
 		var png_path = "res://laser/beam%d.png" % n
 		beam_texture = load(png_path)
 		animated_beam.set_frame_texture(n-1, beam_texture)
