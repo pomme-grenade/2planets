@@ -34,6 +34,7 @@ polish:
     - doppelklick für abbauen + description beim ersten klick
     - visueller indikator für geld, dass man durch abgeschossene raketen kriegt
     - sounds & musik
+    - font im menü größer
     - shields überall anzeigen wo sie abwehren
         - eigenes bild für shields
         - hinter dem planeten anzeigen
