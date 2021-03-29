@@ -58,13 +58,12 @@ func _process(dt):
 	else:
 		self_modulate.a = 1
 
-	if (is_network_master() and
-			nearest_target != null and
-			global_position.distance_to(nearest_target.global_position) \
+	if (nearest_target != null and
+			global_position.distance_to(nearest_target.global_position)
 				< attack_range):
-		rpc('shoot_pulse')
+		shoot_pulse()
 	
-remotesync func shoot_pulse():
+func shoot_pulse():
 	var instant_defense_pulse = preload('res://instant_defense/pulse.tscn').instance()
 	instant_defense_pulse.name = '%s_pulse_%d' % [name, pulse_index]
 	pulse_index += 1

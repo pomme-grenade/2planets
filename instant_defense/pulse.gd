@@ -37,7 +37,11 @@ func _process(dt):
 				wave_index += 1
 				add_child(electric_wave)
 				print("instant defense destroying rocket: ", rocket.name)
-				rocket.queue_free()
+				if (is_network_master()):
+					rpc('destroy_rocket', rocket.get_path())
+				
+remotesync func destroy_rocket(path):
+	get_node(path).is_destroyed = true
 
 func _draw():
 	if is_exploding:

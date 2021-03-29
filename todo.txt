@@ -21,6 +21,7 @@ multiplayer:
     - escape in multiplayer, spiel läuft im bg weiter (trici)
 
 gameplay:
+    - child scripts entfernen, nur das letzte behalten
     - laser cooldown, breiteren laserstrahl, delay vor aktivieren (trici)
     - raketen spammen unattraktiv machen
         - krasses raketen powerup enablen, laser und cluster machen zu wenig damage
