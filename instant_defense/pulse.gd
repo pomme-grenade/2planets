@@ -5,7 +5,7 @@ var explosion_timer
 var initial_time_until_explosion = 0.5
 var is_exploding = false
 var planet
-var attack_range = 50
+var attack_range = 20
 var electric_wave
 var wave_index = 0
 
@@ -46,7 +46,7 @@ func _draw():
 func explode():
 	if not is_exploding:
 		is_exploding = true
-		explosion_timer.start(1)
+		explosion_timer.start(0.1)
 	else:
 		queue_free()
 

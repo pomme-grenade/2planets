@@ -6,7 +6,8 @@ var fire_position
 var attack_range = 80
 var fire_origin
 var cooldown = 0
-var cooldown_time := 0.5
+var initial_cooldown_time := 0.5
+var cooldown_time
 var upgrade_1_type := 'shield'
 var upgrade_2_type := 'instant_defense'
 var building_info
@@ -15,6 +16,7 @@ var outline_visible := false
 var damage = 10
 
 func init():
+	cooldown_time = initial_cooldown_time
 	building_info = ''
 	get_parent().position *= 1.5
 	add_user_signal('income', [{'name': 'value', 'type': TYPE_INT}])
@@ -105,7 +107,7 @@ remotesync func shoot_rocket(path):
 		planet.money += 5
 
 func update_income():
-	cooldown_time = 0.5;
+	cooldown_time = initial_cooldown_time
 	cooldown_time -= (get_parent().get_connected_buildings().size() + 1) * 0.02
 	if cooldown_time < 0:
 		cooldown_time = 0
