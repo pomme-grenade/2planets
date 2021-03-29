@@ -57,12 +57,12 @@ func stop_laser():
 	can_activate = true
 	one_building_destroyed = false
 	stop_laser_timer.stop()
-	get_parent().play('laser')
 	animated_beam.set_current_frame(0)
 	update()
 
 func start_shooting():
 	shooting = true
+	get_parent().play('laser')
 	initial_delay_timer.stop()
 	stop_laser_timer.start(0.27)
 	laser_position = laser_range
