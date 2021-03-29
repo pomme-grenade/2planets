@@ -10,18 +10,16 @@ bugs:
     - game finish ist manchmal nur beim einen player (life sync fixed das, aber der desync sollte gar nicht erst passieren)
 
 multiplayer:
-    - multiplayer codes á la among us (rafael)
     - rocket spawn location & rotation übers netzwerk mitschicken (rafael)
     - anzeigen, wenn disconnected (rafael)
     - nachricht schicken wenn man das spiel verlässt (rafael)
     - vom holepunching server abmelden wenn das spiel geschlossen wird (rafael)
-    - cancel knopf beim verbinden + retry (rafael)
     - ins hauptmenü zurück wenn spiel vorbei
     - leben über network syncen (trici)
     - escape in multiplayer, spiel läuft im bg weiter (trici)
 
 gameplay:
-    - laser cooldown, breiteren laserstrahl, delay vor aktivieren (trici)
+    - laser cooldown (trici)
     - raketen spammen unattraktiv machen
         - krasses raketen powerup enablen, laser und cluster machen zu wenig damage
         - instant defense automatisch schießen
