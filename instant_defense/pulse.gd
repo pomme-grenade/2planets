@@ -5,7 +5,7 @@ var explosion_timer
 var initial_time_until_explosion = 0.5
 var is_exploding = false
 var planet
-var attack_range = 20
+var attack_range = 30
 var electric_wave
 var wave_index = 0
 

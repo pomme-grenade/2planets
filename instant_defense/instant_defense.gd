@@ -6,7 +6,7 @@ var fire_position
 var attack_range = 80
 var fire_origin
 var cooldown = 0
-var initial_cooldown_time := 5.0
+var initial_cooldown_time := 1.0
 var cooldown_time
 var building_info
 var circle_only_outline
@@ -68,6 +68,7 @@ remotesync func shoot_pulse():
 	var instant_defense_pulse = preload('res://instant_defense/pulse.tscn').instance()
 	instant_defense_pulse.name = '%s_pulse_%d' % [name, pulse_index]
 	pulse_index += 1
+	cooldown = initial_cooldown_time
 	instant_defense_pulse.planet = planet
 	add_child(instant_defense_pulse)
 
