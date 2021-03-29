@@ -2,6 +2,7 @@ extends Control
 
 onready var networking = get_node('lobby_networking')
 var waiting_for_network := false
+var current_status_label = null
 
 func _ready():
 	# warning-ignore:return_value_discarded
@@ -13,6 +14,7 @@ func _ready():
 
 	# warning-ignore:return_value_discarded
 	networking.connect('exit_lobby', self, '_on_exit_lobby')
+	networking.connect('update_status', self, '_update_status')
 
 	reset_networking()
 
@@ -30,6 +32,7 @@ func _on_connect():
 	$'network/limiter'.visible = false
 	$'network/client_status'.visible = true
 	$'network/client_status'.text = 'Connecting to server...'
+	current_status_label = $'network/client_status'
 	$'network/connect_container/connect'.text = 'cancel'
 
 	var game_code = $'network/connect_container/game_code_input' \
@@ -49,14 +52,9 @@ func _on_server():
 	$'network/connect_container'.visible = false
 	$'network/server_status'.visible = true
 	$'network/server_status'.text = 'Connecting to registry...'
-
-	# todo show game code here *after* server has acknowledged the session
-	# to prevent clients registering with a non-existing session
+	current_status_label = $'network/server_status'
 
 	networking.start_server()
-	var status = yield(networking, 'update_status')
-	$'network/server_status'.text = status
-
 
 
 func reset_networking():
@@ -70,6 +68,7 @@ func reset_networking():
 	$'network/connect_container'.visible = true
 	$'network/connect_container/connect'.text = 'join game'
 	$'network/limiter'.visible = true
+	current_status_label = null
 
 	waiting_for_network = false
 
@@ -77,3 +76,9 @@ func reset_networking():
 func _on_exit_lobby():
 	queue_free()
 	get_tree().set_pause(false)
+
+func _update_status(text):
+	if is_instance_valid(current_status_label):
+		current_status_label.text = text
+	else:
+		Helper.log('cannot set lobby ui status')

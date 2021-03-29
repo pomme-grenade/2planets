@@ -53,7 +53,8 @@ func start_server():
 	var peer = NetworkedMultiplayerENet.new()
 	var err = peer.create_server(my_port, 1)
 	if (err != OK):
-		Helper.log(err)
+		Helper.log(['could not create server: ', err])
+		emit_signal('update_status', 'Failed to create game server')
 	get_tree().set_network_peer(peer)
 
 func reset():
