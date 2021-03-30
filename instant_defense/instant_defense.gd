@@ -6,12 +6,12 @@ var fire_position : Vector2
 var attack_range := 80
 var fire_origin : Vector2
 var cooldown := 0.0
-var initial_cooldown_time := 1.0
+var initial_cooldown_time := 2.0
 var cooldown_time : float
 var building_info : String
 var circle_only_outline : Node2D
 var outline_visible := false
-var damage := 10.0
+var damage := 5.0
 var electric_wave_scene : PackedScene = preload('res://instant_defense/electric_wave.tscn')
 var wave_index := 0
 
@@ -136,7 +136,7 @@ func shoot_chain_rockets(initial_rocket : Sprite, already_connected_rockets : Ar
 		get_tree().get_root().add_child(electric_wave)
 		all_waves = shoot_chain_rockets(closest_rocket, already_connected_rockets, all_waves)
 		print("instant defense destroying rocket: ", closest_rocket.name)
-		closest_rocket.is_destroyed = true
+		closest_rocket.health = closest_rocket.health - damage
 		wave_index += 1
 
 	return all_waves
