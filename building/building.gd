@@ -9,7 +9,13 @@ var buildup_time = 1
 var repair_time
 var initial_repair_time = 50
 var activate_cost = 0
-var base_type
+
+# this is set in player.gd when spawning the building
+# warning-ignore:unused_class_variable
+var base_type: String
+
+# this is called from planet_ui.gd
+# warning-ignore:unused_class_variable
 var building_info: String setget ,get_building_info
 var building_costs = preload('res://building/building_info.gd').costs
 var upgrading = false
@@ -54,7 +60,7 @@ func _process(dt):
 	if is_destroyed and repair_time < initial_repair_time:
 		animation = type + '_buildup'
 		var completion = 1 - ( 0.8 * repair_time / initial_repair_time)
-		frame = floor(completion * frames.get_frame_count(type + '_buildup'))
+		frame = int(completion * frames.get_frame_count(type + '_buildup'))
 
 
 	if child.get('activate_cost') != null:

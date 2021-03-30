@@ -3,7 +3,6 @@
 tool
 extends Control
 
-var planet
 var health = 100
 var animated_health = health
 var background = 100

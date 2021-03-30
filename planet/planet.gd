@@ -2,7 +2,6 @@ extends Sprite
 
 export var planetRadius = 110
 export (int) var player_number
-export (Color) var color
 export var health := 100.0 setget set_health
 
 const slot_count = 14
@@ -13,7 +12,6 @@ var income = 7
 var start_money = 0
 remotesync var money = 0
 var slot_width
-var label_color = Color("#42286c")
 var health_bar
 var current_slot_index setget ,get_current_slot_index
 

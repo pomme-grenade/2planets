@@ -7,7 +7,9 @@ var attack_range = 80
 var fire_origin
 var cooldown = 0
 var cooldown_time := 0.5
+# warning-ignore:unused_class_variable
 var upgrade_1_type := 'shield'
+# warning-ignore:unused_class_variable
 var upgrade_2_type := 'instant_defense'
 var building_info
 var circle_only_outline

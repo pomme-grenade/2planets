@@ -1,13 +1,16 @@
 extends Node2D
 
 var planet
+# warning-ignore:unused_class_variable
 var upgrade_1_type = 'laser'
+# warning-ignore:unused_class_variable
 var upgrade_2_type = 'split_rocket'
 var rocket_name_index = 0
-var activate_cost = 20
+# warning-ignore:unused_class_variable
+var activate_cost := 20
 var target_player_number
-var building_info = ''
-var activated = false
+# warning-ignore:unused_class_variable
+var building_info := ''
 
 func init():
 	target_player_number = 2 if planet.player_number == 1 else 1

@@ -1,7 +1,6 @@
 extends Control
 
 var player
-var building_to_destroy
 var building_index = 0
 var info_container
 var buildings = preload('res://building/building_info.gd')

@@ -1,12 +1,14 @@
 extends Node2D
+
 var planet
 var enemy_player_number
 var buildings
 var stop_laser_timer
 var shooting = false
-var can_activate = true
+var can_activate := true
 var laser_position = 0
-var activate_cost = 20
+# warning-ignore:unused_class_variable
+var activate_cost := 20
 var laser_range = 300
 var one_building_destroyed = false
 var building_info

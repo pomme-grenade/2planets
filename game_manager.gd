@@ -1,9 +1,6 @@
 extends Node
 
 const SERVER_PORT = 10200
-var upnp
-# Private variable
-var _params = null
 
 func restart_game():
 	get_node('/root/main').free()
@@ -25,5 +22,4 @@ func traverse_nat(hole_puncher, is_host, player_name):
 
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
-		# var deleted = upnp.delete_port_mapping(SERVER_PORT)
 		get_tree().quit() # default behavior

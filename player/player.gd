@@ -1,7 +1,5 @@
 extends AnimatedSprite
 
-export var player_color = Color(1, 1, 1)
-
 var player_number
 var movementDirection = 0
 var planet
