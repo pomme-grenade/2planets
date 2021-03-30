@@ -102,10 +102,9 @@ remotesync func shoot_rocket(path):
 	var new_health = rocket.health - damage
 	rocket.health = new_health
 	rocket.can_hit_planet.play_explosion('satellite_shot')
+	Helper.log(["satellite damaging rocket: ", rocket.name])
 
 	if rocket.health <= 0:
-		Helper.log(["satellite destroying rocket: ", rocket.name])
-		rocket.is_destroyed = true
 		planet.money += 5
 
 func update_income():
