@@ -22,6 +22,8 @@ func init():
 	var previous_child = children[len(children) - 2]
 	children.erase(previous_child)
 	previous_child.queue_free()
+
+	circle_only_outline = preload('res://circle_only_outline.gd').new()
 	
 func _process(dt):
 	if get_parent().is_destroyed or not get_parent().is_built:
