@@ -108,7 +108,7 @@ remotesync func shoot_rocket(path) -> void:
 		planet.money += 5
 	
 	var all_waves = []
-	shoot_chain_rockets(rocket, [rocket], all_waves)
+	all_waves = shoot_chain_rockets(rocket, [rocket], all_waves)
 	rocket.is_destroyed = true
 
 	yield(get_tree().create_timer(0.5), 'timeout')
@@ -116,7 +116,7 @@ remotesync func shoot_rocket(path) -> void:
 		wave.queue_free()
 
 	
-func shoot_chain_rockets(initial_rocket : Sprite, already_connected_rockets : Array, all_waves : Array) -> void:
+func shoot_chain_rockets(initial_rocket : Sprite, already_connected_rockets : Array, all_waves : Array) -> Array:
 	var enemy_number = 1 if planet.player_number == 2 else 2
 	var rockets = get_tree().get_nodes_in_group('rocket' + str(enemy_number))
 	already_connected_rockets.append(initial_rocket)
@@ -125,18 +125,21 @@ func shoot_chain_rockets(initial_rocket : Sprite, already_connected_rockets : Ar
 	var closest_rocket_distance := INF
 	for rocket in rockets:
 		var distance_to_rocket := initial_rocket.position.distance_to(rocket.position)
+
 		if (distance_to_rocket < closest_rocket_distance) and distance_to_rocket < 20.0:
 			closest_rocket = rocket
 			closest_rocket_distance = distance_to_rocket
-		if closest_rocket != null and not closest_rocket in already_connected_rockets:
-			var electric_wave := spawn_wave(initial_rocket.global_position, rocket.global_position)
-			all_waves.append(electric_wave)
-			get_tree().get_root().add_child(electric_wave)
-			shoot_chain_rockets(closest_rocket, already_connected_rockets, all_waves)
-			print("instant defense destroying rocket: ", closest_rocket.name)
-			closest_rocket.is_destroyed = true
-			wave_index += 1
-			return
+
+	if closest_rocket != null and not closest_rocket in already_connected_rockets:
+		var electric_wave := spawn_wave(initial_rocket.global_position, closest_rocket.global_position)
+		all_waves.append(electric_wave)
+		get_tree().get_root().add_child(electric_wave)
+		all_waves = shoot_chain_rockets(closest_rocket, already_connected_rockets, all_waves)
+		print("instant defense destroying rocket: ", closest_rocket.name)
+		closest_rocket.is_destroyed = true
+		wave_index += 1
+
+	return all_waves
 	
 func spawn_wave(spawn_point : Vector2, end_point : Vector2) -> Sprite:
 	var distance_to_rocket = spawn_point.distance_to(end_point)
