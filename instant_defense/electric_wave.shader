@@ -1,7 +1,8 @@
 shader_type canvas_item;
 
 float plot(vec2 st, float pct, float half_width) {
-	return smoothstep( pct-half_width, pct, st.y) - smoothstep( pct, pct+half_width, st.y);
+	// return smoothstep( pct-half_width, pct, st.y) - smoothstep( pct, pct+half_width, st.y);
+    return step(pct + half_width, st.y) - step(pct - half_width, st.y);
 }
 
 float rand(vec2 n) {
@@ -28,12 +29,11 @@ void fragment() {
 	vec2 uv = UV;
 	vec4 color = vec4(0.0, 0.0, 0.0, 0.0);
 	vec2 t = uv * vec2(2.0,1.0) - TIME*3.0;
-	// float y = fbm(t)*0.5;
     float y = mix(0.5, fbm(t) * 0.5, (1.0 - pow(2.0 * uv.x - 1.0, 2.0)) / 2.0);
-	float pct = plot(uv, y, 0.02);
-	float buffer = plot(uv, y, 0.08);
+	float pct = plot(uv, y, 0.05);
+	float buffer = plot(uv, y, 0.12);
 	color += pct*vec4(1.0, 1.0, 1.0, 1.0);
-	// color += buffer*vec4(0.2, 0.2, 1.0, 0.0);
+	color += buffer*vec4(0.2, 0.2, 1.0, 0.4);
 	COLOR = color;	
 	
 }
