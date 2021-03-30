@@ -20,10 +20,6 @@ var all_waves = []
 func init():
 	cooldown_time = initial_cooldown_time
 	building_info = ''
-	var children = get_parent().children
-	var previous_child = children[len(children) - 2]
-	children.erase(previous_child)
-	previous_child.queue_free()
 
 	circle_only_outline = preload('res://circle_only_outline.gd').new()
 	
