@@ -60,7 +60,8 @@ func start_server():
 func reset():
 	var tree = get_tree()
 	if hole_puncher != null:
-		hole_puncher.finalize_peers(game_code)
+		if hole_puncher.is_host:
+			hole_puncher.finalize_peers(game_code)
 		# we shouldn't have to call this as the server normally
 		# does this when we call finalize_peers,
 		# but if our client is still registered in an old, lingering 
@@ -140,3 +141,10 @@ func generate_game_code():
 
 func _session_registered():
 	emit_signal('update_status', 'Game Code: %s\nWaiting for other player...' % game_code)
+
+# remove ourselves from the holepunch server before exiting
+func _notification(what):
+	if what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST and is_instance_valid(hole_puncher):
+		hole_puncher.checkout()
+		if hole_puncher.is_host:
+			hole_puncher.finalize_peers(game_code)
