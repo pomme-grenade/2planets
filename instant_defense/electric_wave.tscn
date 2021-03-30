@@ -3,11 +3,11 @@
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://instant_defense/electric_wave.shader" type="Shader" id=2]
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 2 )
 
 [node name="Node2D" type="Sprite"]
-material = SubResource( 2 )
+material = SubResource( 1 )
 position = Vector2( 46.3141, 18.7259 )
 scale = Vector2( 1.06007, 0.369981 )
 texture = ExtResource( 1 )

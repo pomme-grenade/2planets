@@ -109,9 +109,12 @@ remotesync func shoot_rocket(path) -> void:
 	
 	var all_waves = []
 	all_waves = shoot_chain_rockets(rocket, [rocket], all_waves)
-	rocket.is_destroyed = true
+	# rocket.is_destroyed = true
+	rocket.set_process(false)
 
 	yield(get_tree().create_timer(0.5), 'timeout')
+	get_tree().paused = true
+	return
 	for wave in all_waves:
 		wave.queue_free()
 
@@ -136,7 +139,9 @@ func shoot_chain_rockets(initial_rocket : Sprite, already_connected_rockets : Ar
 		get_tree().get_root().add_child(electric_wave)
 		all_waves = shoot_chain_rockets(closest_rocket, already_connected_rockets, all_waves)
 		print("instant defense destroying rocket: ", closest_rocket.name)
-		closest_rocket.is_destroyed = true
+		# closest_rocket.is_destroyed = true
+
+		closest_rocket.set_process(false)
 		wave_index += 1
 
 	return all_waves
