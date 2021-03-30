@@ -32,8 +32,8 @@ void fragment() {
     // vec2 t = uv * SCREEN_UV;
     float distance_from_edge =(1.0 - pow(2.0 * uv.x - 1.0, 2.0)) / 2.0;
     float y = mix(0.5, fbm(t) * 0.5, distance_from_edge);
-	float pct = plot(uv, y, 0.1 * distance_from_edge);
-	float buffer = plot(uv, y, 0.3 * distance_from_edge);
+	float pct = plot(uv, y, 0.05 * distance_from_edge + 0.05);
+	float buffer = plot(uv, y, 0.15 * distance_from_edge + 0.05);
 	color += pct*vec4(1.0, 1.0, 1.0, 1.0);
 	color += buffer*vec4(0.2, 0.5, 1.0, 0.6);
 	COLOR = color;	
