@@ -1,15 +1,14 @@
 extends Node2D
 
-var planet
+var planet: Sprite
 var enemy_player_number
 var buildings
 var stop_laser_timer
-var shooting = false
+var shooting := false
 var can_activate := true
-var laser_position = 0
-# warning-ignore:unused_class_variable
+var laser_position := 0
 var activate_cost := 20
-var laser_range = 300
+var laser_range := 300
 var one_building_destroyed = false
 var building_info
 var initial_delay = 14.0 / 60.0
@@ -17,7 +16,7 @@ var initial_delay_timer
 var animated_beam = AnimatedTexture.new()
 var beam_texture
 
-func init():
+func init() -> void:
 	building_info = ''
 
 	enemy_player_number = 1 if planet.player_number == 2 else 2
@@ -35,7 +34,7 @@ func init():
 	animated_beam.oneshot = true
 	set_frame_images()
 
-func _process(_dt):
+func _process(_dt) -> void:
 	if shooting:
 		buildings = get_tree().get_nodes_in_group('building' + str(enemy_player_number))
 		for building in buildings:
@@ -49,14 +48,13 @@ func _process(_dt):
 				update()
 				return
 
-
-func _draw():
+func _draw() -> void:
 	if shooting:
 		for n in range (1, laser_position, beam_texture.get_size().y):
 			draw_texture(animated_beam, Vector2(-beam_texture.get_size().y / 4, -n - beam_texture.get_size().y))
 
 
-func on_activate():
+func on_activate() -> void:
 	if can_activate:
 		can_activate = false
 		get_parent().play('beam_startup')
@@ -67,7 +65,7 @@ func on_activate():
 		stop_laser()
 
 
-func stop_laser():
+func stop_laser() -> void:
 	laser_position = 0
 	shooting = false
 	can_activate = true
@@ -75,7 +73,7 @@ func stop_laser():
 	update()
 
 
-func start_shooting():
+func start_shooting() -> void:
 	shooting = true
 	get_parent().play('laser')
 	stop_laser_timer.start(0.5)
@@ -84,7 +82,7 @@ func start_shooting():
 	update()
 
 
-func set_frame_images():
+func set_frame_images() -> void:
 	for n in range (1, 11):
 		var png_path = "res://laser/beam%d.png" % n
 		beam_texture = load(png_path)

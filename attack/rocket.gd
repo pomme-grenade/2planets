@@ -15,7 +15,7 @@ var child_counter = 0
 var color = Color(1, 0.3, 0.3)
 var can_hit_planet
 var type = 'normal_rocket'
-remotesync var health = 10
+remotesync var health = 10 setget set_health
 
 func _ready():
 	velocity = Vector2(start_velocity, 0).rotated(rotation)
@@ -84,6 +84,7 @@ remotesync func split():
 		rocket.init(target_player_number)
 		rocket.can_hit_planet.explosion_radius = 8
 		rocket.can_hit_planet.damage = 1
+		rocket.health = 5
 		rocket.type = 'split_rocket'
 		$'/root/main'.add_child(rocket)
 		rocket.velocity = velocity.rotated(rocket.rotation - rotation) * 0.8
@@ -97,3 +98,8 @@ func find_new_target():
 	else:
 		return get_node("/root/main/planet_1")
 
+
+func set_health(new_health):
+	health = new_health
+	if health <= 0:
+		is_destroyed = true

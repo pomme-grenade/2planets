@@ -5,7 +5,7 @@ var explosion_timer
 var initial_time_until_explosion = 0.5
 var is_exploding = false
 var planet
-var attack_range = 50
+var attack_range = 30
 var electric_wave
 var wave_index = 0
 
@@ -37,7 +37,11 @@ func _process(dt):
 				wave_index += 1
 				add_child(electric_wave)
 				print("instant defense destroying rocket: ", rocket.name)
-				rocket.queue_free()
+				if (is_network_master()):
+					rpc('destroy_rocket', rocket.get_path())
+				
+remotesync func destroy_rocket(path):
+	get_node(path).is_destroyed = true
 
 func _draw():
 	if is_exploding:
@@ -46,7 +50,7 @@ func _draw():
 func explode():
 	if not is_exploding:
 		is_exploding = true
-		explosion_timer.start(1)
+		explosion_timer.start(0.1)
 	else:
 		queue_free()
 

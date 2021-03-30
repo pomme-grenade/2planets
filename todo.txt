@@ -18,6 +18,8 @@ multiplayer:
 
 gameplay:
     - laser cooldown (trici)
+    - child scripts entfernen, nur das letzte behalten
+    - laser cooldown, breiteren laserstrahl, delay vor aktivieren (trici)
     - raketen spammen unattraktiv machen
         - krasses raketen powerup enablen, laser und cluster machen zu wenig damage
         - instant defense automatisch schießen
