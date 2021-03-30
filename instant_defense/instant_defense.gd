@@ -122,13 +122,13 @@ func shoot_chain_rockets(initial_rocket : Sprite, already_connected_rockets : Ar
 	already_connected_rockets.append(initial_rocket)
 
 	var closest_rocket : Sprite
-	var closest_rocket_distance := 0.0
+	var closest_rocket_distance := INF
 	for rocket in rockets:
 		var distance_to_rocket := initial_rocket.position.distance_to(rocket.position)
-		if (closest_rocket_distance == 0.0 or distance_to_rocket < closest_rocket_distance) and distance_to_rocket < 20.0:
+		if (distance_to_rocket < closest_rocket_distance) and distance_to_rocket < 20.0:
 			closest_rocket = rocket
 			closest_rocket_distance = distance_to_rocket
-		if not closest_rocket == null and not closest_rocket_distance == 0.0 and not closest_rocket in already_connected_rockets:
+		if closest_rocket != null and not closest_rocket in already_connected_rockets:
 			var electric_wave := spawn_wave(initial_rocket.global_position, rocket.global_position)
 			all_waves.append(electric_wave)
 			get_tree().get_root().add_child(electric_wave)
