@@ -6,7 +6,8 @@ var fire_position : Vector2
 var attack_range := 80
 var fire_origin : Vector2
 var cooldown := 0.0
-var initial_cooldown_time := 2.0
+var initial_cooldown_time := 1.0
+var jump_range = 30
 var cooldown_time : float
 var building_info : String
 var circle_only_outline : Node2D
@@ -126,7 +127,7 @@ func shoot_chain_rockets(initial_rocket : Sprite, already_connected_rockets : Ar
 	for rocket in rockets:
 		var distance_to_rocket := initial_rocket.position.distance_to(rocket.position)
 
-		if not rocket in already_connected_rockets and distance_to_rocket < closest_rocket_distance and distance_to_rocket < 20.0:
+		if not rocket in already_connected_rockets and distance_to_rocket < closest_rocket_distance and distance_to_rocket < jump_range:
 			closest_rocket = rocket
 			closest_rocket_distance = distance_to_rocket
 
