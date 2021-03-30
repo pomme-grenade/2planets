@@ -11,9 +11,7 @@ bugs:
 
 multiplayer:
     - rocket spawn location & rotation übers netzwerk mitschicken (rafael)
-    - anzeigen, wenn disconnected (rafael)
     - nachricht schicken wenn man das spiel verlässt (rafael)
-    - vom holepunching server abmelden wenn das spiel geschlossen wird (rafael)
     - ins hauptmenü zurück wenn spiel vorbei
     - leben über network syncen (trici)
     - escape in multiplayer, spiel läuft im bg weiter (trici)
