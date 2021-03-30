@@ -121,21 +121,26 @@ func shoot_chain_rockets(initial_rocket : Sprite, already_connected_rockets : Ar
 	var rockets = get_tree().get_nodes_in_group('rocket' + str(enemy_number))
 	already_connected_rockets.append(initial_rocket)
 
+	var closest_rocket : Sprite
+	var closest_rocket_distance := 0.0
 	for rocket in rockets:
-		var distance_to_rocket : float = initial_rocket.position.distance_to(rocket.position)
-		if distance_to_rocket < 20.0 and not rocket in already_connected_rockets:
-			var electric_wave : Sprite = electric_wave_scene.instance()
+		var distance_to_rocket := initial_rocket.position.distance_to(rocket.position)
+		if (closest_rocket_distance == 0.0 or distance_to_rocket < closest_rocket_distance) and distance_to_rocket < 20.0:
+			closest_rocket = rocket
+			closest_rocket_distance = distance_to_rocket
+		if not closest_rocket == null and not closest_rocket_distance == 0.0 and not closest_rocket in already_connected_rockets:
+			var electric_wave := electric_wave_scene.instance()
 			all_waves.append(electric_wave)
 			var initial_wave_length = electric_wave.texture.get_size().x
-			var angle_to_rocket = (rocket.position - initial_rocket.position).angle()
+			var angle_to_rocket = (closest_rocket.position - initial_rocket.position).angle()
 			electric_wave.global_position = initial_rocket.global_position
 			electric_wave.scale = Vector2(distance_to_rocket / initial_wave_length, 0.2)
 			electric_wave.rotation = angle_to_rocket
 			electric_wave.name = '%s_electric_wave%d' % [name, wave_index]
 			get_tree().get_root().add_child(electric_wave)
-			shoot_chain_rockets(rocket, already_connected_rockets, all_waves)
-			print("instant defense destroying rocket: ", rocket.name)
-			rocket.is_destroyed = true
+			shoot_chain_rockets(closest_rocket, already_connected_rockets, all_waves)
+			print("instant defense destroying rocket: ", closest_rocket.name)
+			closest_rocket.is_destroyed = true
 			wave_index += 1
 			return
 
