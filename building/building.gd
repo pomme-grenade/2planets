@@ -31,7 +31,7 @@ func add_building_child(new_child):
 	repair_time = initial_repair_time
 	add_child(child)
 	child.set_network_master(get_network_master())
-	child.planet = planet
+	child.set('planet', planet)
 	if child.has_method("init"):
 		child.init()
 
