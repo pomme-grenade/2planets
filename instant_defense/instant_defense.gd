@@ -102,7 +102,7 @@ remotesync func shoot_rocket(path) -> void:
 	rocket.can_hit_planet.play_explosion('satellite_shot')
 
 	if rocket.health <= 0:
-		Helper.log(["satellite destroying rocket: ", rocket.name])
+		Helper.log(["instant defense targeting rocket: ", rocket.name])
 		rocket.is_destroyed = true
 		planet.money += 5
 	
@@ -133,7 +133,6 @@ func shoot_chain_rockets(initial_rocket : Sprite, already_connected_rockets : Ar
 	if closest_rocket != null:
 		rpc('spawn_wave', initial_rocket.get_path(), closest_rocket.get_path())
 		shoot_chain_rockets(closest_rocket, already_connected_rockets)
-		print("instant defense destroying rocket: ", closest_rocket.name)
 
 remotesync func spawn_wave(start_rocket_path: String, end_rocket_path: String):
 	var start_rocket = .get_node(start_rocket_path)
@@ -142,6 +141,7 @@ remotesync func spawn_wave(start_rocket_path: String, end_rocket_path: String):
 	var end_point = end_rocket.global_position
 
 	end_rocket.health = end_rocket.health - damage
+	Helper.log(['instant defense wave damaging rocket: ', end_rocket.name])
 
 	var distance_to_rocket = spawn_point.distance_to(end_point)
 	var electric_wave = electric_wave_scene.instance()

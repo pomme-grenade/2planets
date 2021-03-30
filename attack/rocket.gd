@@ -102,4 +102,5 @@ func find_new_target():
 func set_health(new_health):
 	health = new_health
 	if health <= 0:
+		Helper.log(['rocket destroying itself: ', name])
 		is_destroyed = true
