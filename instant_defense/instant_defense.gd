@@ -131,6 +131,7 @@ func shoot_chain_rockets(initial_rocket : Sprite, already_connected_rockets : Ar
 			closest_rocket_distance = distance_to_rocket
 
 	if closest_rocket != null:
+		# todo aggregate rockets to destroy and send them all at once
 		rpc('spawn_wave', initial_rocket.get_path(), closest_rocket.get_path())
 		shoot_chain_rockets(closest_rocket, already_connected_rockets)
 
@@ -140,8 +141,8 @@ remotesync func spawn_wave(start_rocket_path: String, end_rocket_path: String):
 	var end_rocket = .get_node(end_rocket_path)
 	var end_point = end_rocket.global_position
 
+	Helper.log(['instant defense wave damaging rocket', end_rocket.name])
 	end_rocket.health = end_rocket.health - damage
-	Helper.log(['instant defense wave damaging rocket: ', end_rocket.name])
 
 	var distance_to_rocket = spawn_point.distance_to(end_point)
 	var electric_wave = electric_wave_scene.instance()
