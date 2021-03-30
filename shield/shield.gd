@@ -69,7 +69,6 @@ func draw_circle_arc(center, radius, angle_from, angle_to, color):
 		
 remotesync func destroy_rocket(path):
 	var rocket = get_node(path)
-	rocket.is_destroyed = true
 	strength -= rocket.health
 	rocket.health = 0
 
