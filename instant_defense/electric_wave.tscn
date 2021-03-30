@@ -8,6 +8,7 @@ shader = ExtResource( 2 )
 
 [node name="Node2D" type="Sprite"]
 material = SubResource( 1 )
+position = Vector2( 0, 0.353554 )
 scale = Vector2( 1.06007, 0.369981 )
 texture = ExtResource( 1 )
 centered = false

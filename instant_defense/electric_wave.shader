@@ -28,12 +28,14 @@ float fbm(vec2 n) {
 void fragment() {
 	vec2 uv = UV;
 	vec4 color = vec4(0.0, 0.0, 0.0, 0.0);
-	vec2 t = uv * vec2(2.0,1.0) - TIME*3.0;
-    float y = mix(0.5, fbm(t) * 0.5, (1.0 - pow(2.0 * uv.x - 1.0, 2.0)) / 2.0);
-	float pct = plot(uv, y, 0.05);
-	float buffer = plot(uv, y, 0.12);
+	vec2 t = uv * vec2(2.0,1.0) - TIME*3.0 - (SCREEN_UV * vec2(10.0));
+    // vec2 t = uv * SCREEN_UV;
+    float distance_from_edge =(1.0 - pow(2.0 * uv.x - 1.0, 2.0)) / 2.0;
+    float y = mix(0.5, fbm(t) * 0.5, distance_from_edge);
+	float pct = plot(uv, y, 0.1 * distance_from_edge);
+	float buffer = plot(uv, y, 0.3 * distance_from_edge);
 	color += pct*vec4(1.0, 1.0, 1.0, 1.0);
-	color += buffer*vec4(0.2, 0.2, 1.0, 0.4);
+	color += buffer*vec4(0.2, 0.5, 1.0, 0.6);
 	COLOR = color;	
 	
 }
