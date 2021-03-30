@@ -15,6 +15,7 @@ var outline_visible := false
 var damage := 5.0
 var electric_wave_scene : PackedScene = preload('res://instant_defense/electric_wave.tscn')
 var wave_index := 0
+var all_waves = []
 
 func init():
 	cooldown_time = initial_cooldown_time
@@ -62,7 +63,8 @@ func _process(dt):
 	else:
 		self_modulate.a = 1
 
-	if (nearest_target != null and
+	if (is_network_master() and
+			nearest_target != null and
 			global_position.distance_to(nearest_target.global_position)
 				< attack_range):
 		rpc('shoot_rocket', nearest_target.get_path())
@@ -108,8 +110,9 @@ remotesync func shoot_rocket(path) -> void:
 		rocket.is_destroyed = true
 		planet.money += 5
 	
-	var all_waves = []
-	all_waves = shoot_chain_rockets(rocket, [rocket], all_waves)
+	all_waves = []
+	if is_network_master():
+		shoot_chain_rockets(rocket, [rocket])
 	rocket.is_destroyed = true
 
 	yield(get_tree().create_timer(0.5), 'timeout')
@@ -117,7 +120,7 @@ remotesync func shoot_rocket(path) -> void:
 		wave.queue_free()
 
 	
-func shoot_chain_rockets(initial_rocket : Sprite, already_connected_rockets : Array, all_waves : Array) -> Array:
+func shoot_chain_rockets(initial_rocket : Sprite, already_connected_rockets : Array) -> void:
 	var enemy_number = 1 if planet.player_number == 2 else 2
 	var rockets = get_tree().get_nodes_in_group('rocket' + str(enemy_number))
 	already_connected_rockets.append(initial_rocket)
@@ -132,17 +135,18 @@ func shoot_chain_rockets(initial_rocket : Sprite, already_connected_rockets : Ar
 			closest_rocket_distance = distance_to_rocket
 
 	if closest_rocket != null:
-		var electric_wave := spawn_wave(initial_rocket.global_position, closest_rocket.global_position)
-		all_waves.append(electric_wave)
-		get_tree().get_root().add_child(electric_wave)
-		all_waves = shoot_chain_rockets(closest_rocket, already_connected_rockets, all_waves)
+		rpc('spawn_wave', initial_rocket.get_path(), closest_rocket.get_path())
+		shoot_chain_rockets(closest_rocket, already_connected_rockets)
 		print("instant defense destroying rocket: ", closest_rocket.name)
-		closest_rocket.health = closest_rocket.health - damage
-		wave_index += 1
 
-	return all_waves
-	
-func spawn_wave(spawn_point : Vector2, end_point : Vector2) -> Sprite:
+remotesync func spawn_wave(start_rocket_path: String, end_rocket_path: String):
+	var start_rocket = .get_node(start_rocket_path)
+	var spawn_point = start_rocket.global_position
+	var end_rocket = .get_node(end_rocket_path)
+	var end_point = end_rocket.global_position
+
+	end_rocket.health = end_rocket.health - damage
+
 	var distance_to_rocket = spawn_point.distance_to(end_point)
 	var electric_wave = electric_wave_scene.instance()
 	var initial_wave_length = electric_wave.texture.get_size().x
@@ -151,7 +155,10 @@ func spawn_wave(spawn_point : Vector2, end_point : Vector2) -> Sprite:
 	electric_wave.scale = Vector2(distance_to_rocket / initial_wave_length, 0.2)
 	electric_wave.rotation = angle_to_rocket
 	electric_wave.name = '%s_electric_wave%d' % [name, wave_index]
-	return electric_wave
+	all_waves.append(electric_wave)
+	get_tree().get_root().add_child(electric_wave)
+
+	wave_index += 1
 
 func update_income() -> void:
 	cooldown_time = initial_cooldown_time
