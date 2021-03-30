@@ -4,7 +4,7 @@ var planet
 var is_destroyed = false
 var is_built = false
 var type
-var children := []
+var child: Node = null
 var buildup_time = 1
 var repair_time
 var initial_repair_time = 50
@@ -17,8 +17,10 @@ var do_dissolve = false
 var dissolve_amount = 1
 var deconstruction_timer_wait_time = 0.7
 
-func add_building_child(child):
-	children.append(child)
+func add_building_child(new_child):
+	if is_instance_valid(child):
+		child.queue_free()
+	child = new_child
 	is_built = false
 	repair_time = initial_repair_time
 	add_child(child)
@@ -55,13 +57,12 @@ func _process(dt):
 		frame = floor(completion * frames.get_frame_count(type + '_buildup'))
 
 
-	for child in children:
-		if child.get('activate_cost') != null:
-			activate_cost = child.activate_cost
+	if child.get('activate_cost') != null:
+		activate_cost = child.activate_cost
 
 remotesync func destroy():
 	is_destroyed = true
-	call_children_method('on_destroy')
+	call_last_child_method('on_destroy')
 	play('%s_destroyed' % type)
 	stop()
 	update_connected_buildings()
@@ -85,7 +86,7 @@ func try_deconstruct():
 remotesync func deconstruct(cost):
 	if not is_destroyed:
 		is_destroyed = true
-		call_children_method('on_deconstruct')
+		call_last_child_method('on_deconstruct')
 		update_connected_buildings()
 
 	if is_built:
@@ -97,16 +98,14 @@ remotesync func deconstruct(cost):
 	planet.update()
 
 func add_money(value):
-	var last_child = children[len(children) - 1]
 	var income_animation = \
 		preload('res://income/Income_animation.tscn').instance()
 	$'/root/main'.add_child(income_animation)
 	income_animation.label.text = '+' + str(value) + '$'
-	income_animation.global_position = last_child.global_position
+	income_animation.global_position = child.global_position
 
 func can_upgrade(index):
-	var last_child = children[len(children) - 1]
-	var upgrade_type = last_child.get('upgrade_%d_type' % index)
+	var upgrade_type = child.get('upgrade_%d_type' % index)
 	return (
 		is_network_master() and
 		typeof(upgrade_type) == TYPE_STRING and
@@ -122,9 +121,7 @@ func try_upgrade(index):
 	rpc('upgrade', index)
 
 remotesync func upgrade(index):
-	var last_child = children[len(children) - 1]
-
-	type = last_child.get('upgrade_%d_type' % index)
+	type = child.get('upgrade_%d_type' % index)
 
 	var new_child_script = 'res://%s/%s.gd' % [type, type]
 	if typeof(new_child_script) != TYPE_STRING:
@@ -138,25 +135,22 @@ remotesync func upgrade(index):
 	upgrading = true
 
 func repair_finished():
-	for child in children:
-		if child.has_method('repair_finished'):
-			child.repair_finished()
+	if child.has_method('repair_finished'):
+		child.repair_finished()
 
 	buildup_animation_finished()
 	update_connected_buildings()
 
 func initial_build_finished():
-	for child in children:
-		if child.has_method('initial_build_finished'):
-			child.initial_build_finished()
+	if child.has_method('initial_build_finished'):
+		child.initial_build_finished()
 		
 func buildup_animation_finished():
 	if is_destroyed:
 		return
 
-	for child in children:
-		if child.has_method('buildup_animation_finished'):
-			child.buildup_animation_finished()
+	if child.has_method('buildup_animation_finished'):
+		child.buildup_animation_finished()
 
 	update_connected_buildings()
 
@@ -168,37 +162,33 @@ func buildup_animation_finished():
 	speed_scale = 1
 
 remotesync func activate():
-	var last_child = children[len(children) - 1]
-	planet.money -= last_child.activate_cost
-	last_child.on_activate()
+	planet.money -= child.activate_cost
+	child.on_activate()
 
 func try_activate():
 	if can_activate():
 		rpc('activate')
 
 func is_activatable():
-	var last_child = children[len(children) - 1]
 	return (
-		last_child.get('activate_cost') != null
-		and last_child.has_method('on_activate')
+		child.get('activate_cost') != null
+		and child.has_method('on_activate')
 	)
 
 func can_activate():
-	var last_child = children[len(children) - 1]
 	var animation_finished = \
-		last_child.get('animation_finished') == null || last_child.animation_finished
+		child.get('animation_finished') == null || child.animation_finished
 	return (
 		is_activatable() 
-		and planet.money >= last_child.activate_cost
+		and planet.money >= child.activate_cost
 		and is_built
-		and (not last_child.has_method('can_activate') or last_child.can_activate())
+		and (not child.has_method('can_activate') or child.can_activate())
 		and not is_destroyed 
 		and animation_finished
 	)
 
 func get_building_info() -> String:
-	var last_child = children[len(children) - 1]
-	return last_child.building_info
+	return child.building_info
 
 func get_connected_buildings():
 	var neighbours = get_neighbours(self)
@@ -225,7 +215,7 @@ func set_highlighted(is_highlighted: bool):
 	else:
 		self.self_modulate = Color(1, 1, 1, 1)
 
-	call_children_method('on_highlight', [is_highlighted])
+	call_last_child_method('on_highlight', [is_highlighted])
 
 func update_connected_buildings():
 	for building in get_connected_buildings():
@@ -233,12 +223,5 @@ func update_connected_buildings():
 	call_last_child_method('update_income')
 
 func call_last_child_method(method: String, args: Array = []):
-	var last_child = self.children[len(self.children) - 1]
-	if last_child.has_method(method):
-		last_child.callv(method, args)
-
-
-func call_children_method(method: String, args: Array = []):
-	for child in children:
-		if child.has_method(method):
-			child.callv(method, args)
+	if child.has_method(method):
+		child.callv(method, args)

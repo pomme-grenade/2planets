@@ -80,8 +80,7 @@ func update_upgrade_ui():
 
 	for index in [1, 2]:
 		var upgrade_type = get_upgrade_type(index)
-		var children = player.current_building.children
-		var last_child = children[len(children) - 1]
+		var child = player.current_building.child
 
 		var upgrade_cost = ''
 		if buildings.costs.get(upgrade_type) != null:
@@ -96,11 +95,11 @@ func update_upgrade_ui():
 		if player.current_building.can_upgrade(index):
 			upgrade_button.visible = true
 			upgrade_button.texture = load('res://buttons/%s_button.png' \
-				% last_child.get('upgrade_%s_type' % index))
+				% child.get('upgrade_%s_type' % index))
 			upgrade_button.self_modulate = Color(1, 1, 1, 1)
-		elif last_child.get('upgrade_%s_type' % index) != null:
+		elif child.get('upgrade_%s_type' % index) != null:
 			upgrade_button.texture = load('res://buttons/%s_button.png' \
-				% last_child.get('upgrade_%s_type' % index))
+				% child.get('upgrade_%s_type' % index))
 			upgrade_button.self_modulate = Color(1, 1, 1, 0.3)
 		else:
 			upgrade_button.visible = false
@@ -195,6 +194,4 @@ func was_double_press(button_name: String, type) -> bool:
 	return was_pressed_twice
 
 func get_upgrade_type(index):
-	var children = player.current_building.children
-	var last_child = children[len(children) - 1]
-	return last_child.get('upgrade_%s_type' % index)
+	return player.current_building.child.get('upgrade_%s_type' % index)
