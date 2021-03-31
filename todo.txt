@@ -1,56 +1,60 @@
 BETA
 
-morgen:
+bis dienstag, 06.04. (6 tage noch):
     - kurze anleitung einbauen (kein tutorial)
     - sounds raussuchen
-    - discord server
+    - musik einbauen
+    - money particles
+        - visueller indikator für geld, dass man durch abgeschossene raketen kriegt
+    - better connected buildings
+        - only base buildings have particles
+    - better descriptions
+    - healing drone button icon ist noch nicht grün
+    - player grafik für aktivieren
+    - planet ui vergrößern
+    - instant defense graphic
+    - pause menu neu machen und exakt das selbe für game over nehmen
+        - kein restart oder quit
+        - "leave game" / "back to menu"
+    - quit knopf im menü
+    - release auf itch.io hochladen
+    - mehr screenshots auf itch.io
+    - quadratisches logo für itch, godot etc.
 
 bugs:
     - wenn man kein geld hat und den knopf zum bauen doppelt drückt sieht es danach wieder normal aus, nicht ausgegraut (rafael später)
     - knopf drücken, weglaufen, wiederkommen und knopf noch mal drücken baut sofort (rafael später)
     - manchmal ist ein upgrade icon komplett weg, obwohl es da sein sollte (??? später)
-    - connection particles fixen
-    - healing drone button icon ist noch nicht grün
 
 multiplayer:
-    - game finish ist manchmal nur beim einen player (life sync fixed das, aber der desync sollte gar nicht erst passieren)
     - rocket spawn location & rotation übers netzwerk mitschicken (rafael)
     - nachricht schicken wenn man das spiel verlässt (rafael)
-    - ins hauptmenü zurück wenn spiel vorbei
     - leben über network syncen (trici)
-    - "leave game" button
 
 gameplay:
-    - raketen spammen unattraktiv machen
-        - krasses raketen powerup enablen
-        - laser und cluster machen zu wenig damage
+    - krasses raketen powerup bauen
+    - laser und cluster machen zu wenig damage
 
 polish:
-    - automatisch fullscreen
     - hintergrund sättigung senken, dunkler machen
     - geld rot flashen wenn man bauen will und nicht genug geld hat
     - rot / gruen aufleuchtender text wenn sich income aendert
-    - neue player grafik
-        - auge
-        - gottartige figur
-        - hübschere drone / raumschiff
-        - alien
     - highlight auf dem planeten, wenn man den bauknopf nur einmal drückt
     - doppelklick für abbauen + description beim ersten klick
-    - visueller indikator für geld, dass man durch abgeschossene raketen kriegt
-    - sounds & musik
     - shields überall anzeigen wo sie abwehren
         - eigenes bild für shields
         - hinter dem planeten anzeigen
         - nur vorne abwehren, raketen hinter dem shield überleben
     - satellitengebäude am boden / satelliten komplett auf den boden schieben
-    - planet ui vergrößern
+    - neue player grafik
+        - auge
+        - gottartige figur
+        - hübschere drone / raumschiff
+        - alien
     
 anderes:
     - mailing liste
     - marketing texte
-    - release auf itch.io hochladen
-    - mehr screenshots auf itch.io
 
 NACH DER BETA
     - automatischer angriff, aber immer vorne am planeten für predictability
@@ -91,7 +95,7 @@ UPGRADE TREE
         - repair drones
             - healing drones
             - 
-        - teleporter
+        - (teleporter)
             - 
             - 
     - attack
