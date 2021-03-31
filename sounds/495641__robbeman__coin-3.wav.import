@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/495641__robbeman__coin-3.wav-743f70616e29b84c786c4c6c65e146a1.sample"
+
+[deps]
+
+source_file="res://sounds/495641__robbeman__coin-3.wav"
+dest_files=[ "res://.import/495641__robbeman__coin-3.wav-743f70616e29b84c786c4c6c65e146a1.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
