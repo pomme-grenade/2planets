@@ -2,14 +2,14 @@ extends Node2D
 
 var planet
 
-var fire_position : Vector2
+var fire_position: Vector2
 var attack_range := 80
-var fire_origin : Vector2
+var fire_origin: Vector2
 var cooldown := 0.0
 var initial_cooldown_time := 1.0
 var jump_range = 30
-var cooldown_time : float
-var building_info : String
+var cooldown_time: float
+var building_info: String
 var circle_only_outline : Node2D
 var outline_visible := false
 var damage := 5.0
@@ -29,25 +29,25 @@ func _process(dt):
 	if fire_position != Vector2.ZERO or not get_parent().is_built:
 		update()
 
-	var enemy_number = 1 if planet.player_number == 2 else 2
-	var enemy_group = 'rocket' + str(enemy_number)
-	var rockets = get_tree().get_nodes_in_group(enemy_group)
-	var nearest_target = get_node('/root/main/planet_%s' % enemy_number)
+	var enemy_number := 1 if planet.player_number == 2 else 2
+	var enemy_group := 'rocket' + str(enemy_number)
+	var rockets := get_tree().get_nodes_in_group(enemy_group)
+	var nearest_target := get_node('/root/main/planet_%s' % enemy_number)
 	for rocket in rockets:
 		if rocket.is_destroyed:
 			continue
 
-		var distance_rocket = global_position.distance_to(rocket.global_position)
-		var distance_current_target = global_position.distance_to(nearest_target.global_position)
+		var distance_rocket := global_position.distance_to(rocket.global_position)
+		var distance_current_target := global_position.distance_to(nearest_target.global_position)
 		if distance_rocket < distance_current_target:
 			nearest_target = rocket
 
-	var parent = get_parent()
-	var target_quat = Quat(
+	var parent := get_parent()
+	var target_quat := Quat(
 		Vector3.BACK, 
 		global_position.angle_to_point(nearest_target.global_position) - PI/2
 	)
-	var current_quat = Quat(Vector3.BACK, parent.global_rotation)
+	var current_quat := Quat(Vector3.BACK, parent.global_rotation)
 	parent.global_rotation = \
 		current_quat.slerp(target_quat, 5 * dt).get_euler().z
 	cooldown -= dt
@@ -77,7 +77,7 @@ func _draw():
 			0.5, self)
 
 	if fire_position != null:
-		var alpha = cooldown * (1 / cooldown_time)
+		var alpha := cooldown * (1 / cooldown_time)
 		if alpha > 0:
 			draw_line(
 				to_local(fire_origin), 
@@ -89,7 +89,7 @@ func _draw():
 			fire_position = Vector2.ZERO
 	
 remotesync func shoot_rocket(path) -> void:
-	var rocket = get_node(path)
+	var rocket := get_node(path)
 	if rocket == null:
 		Helper.log(['unknown rocket ', path])
 		return
@@ -97,28 +97,36 @@ remotesync func shoot_rocket(path) -> void:
 	fire_origin = to_global(Vector2(0, -8))
 	cooldown = cooldown_time
 	self_modulate.a = 0.8
-	var new_health = rocket.health - damage
-	rocket.health = new_health
 	rocket.can_hit_planet.play_explosion('satellite_shot')
+	Helper.log(["instant defense damaging rocket: ", rocket.name])
 
 	if rocket.health <= 0:
-		Helper.log(["instant defense targeting rocket: ", rocket.name])
-		rocket.is_destroyed = true
 		planet.money += 5
 	
 	all_waves = []
+	var damaged_rockets = []
 	if is_network_master():
-		shoot_chain_rockets(rocket, [rocket])
-	rocket.is_destroyed = true
+		damaged_rockets = shoot_chain_rockets(rocket, [rocket], [rocket.get_path()])
+		rpc('damage_rockets', damaged_rockets)
+
 
 	yield(get_tree().create_timer(0.5), 'timeout')
 	for wave in all_waves:
 		wave.queue_free()
-
 	
-func shoot_chain_rockets(initial_rocket : Sprite, already_connected_rockets : Array) -> void:
-	var enemy_number = 1 if planet.player_number == 2 else 2
-	var rockets = get_tree().get_nodes_in_group('rocket' + str(enemy_number))
+remotesync func damage_rockets(damaged_rockets: Array) -> void:
+	var previous_rocket: Sprite = null
+	for path in damaged_rockets:
+		var damaged_rocket: Sprite = get_node(path)
+		if previous_rocket != null:
+			spawn_wave(previous_rocket.global_position, damaged_rocket.global_position)
+		previous_rocket = damaged_rocket
+		Helper.log(['instant defense wave damaging rocket: ', damaged_rocket.name])
+		damaged_rocket.health -= damage
+	
+func shoot_chain_rockets(initial_rocket : Sprite, already_connected_rockets: Array, damaged_rockets: Array) -> Array:
+	var enemy_number := 1 if planet.player_number == 2 else 2
+	var rockets := get_tree().get_nodes_in_group('rocket' + str(enemy_number))
 	already_connected_rockets.append(initial_rocket)
 
 	var closest_rocket : Sprite
@@ -131,22 +139,16 @@ func shoot_chain_rockets(initial_rocket : Sprite, already_connected_rockets : Ar
 			closest_rocket_distance = distance_to_rocket
 
 	if closest_rocket != null:
-		rpc('spawn_wave', initial_rocket.get_path(), closest_rocket.get_path())
-		shoot_chain_rockets(closest_rocket, already_connected_rockets)
+		damaged_rockets.append(closest_rocket.get_path())
+		damaged_rockets = shoot_chain_rockets(closest_rocket, already_connected_rockets, damaged_rockets)
 
-remotesync func spawn_wave(start_rocket_path: String, end_rocket_path: String):
-	var start_rocket = .get_node(start_rocket_path)
-	var spawn_point = start_rocket.global_position
-	var end_rocket = .get_node(end_rocket_path)
-	var end_point = end_rocket.global_position
+	return damaged_rockets
 
-	end_rocket.health = end_rocket.health - damage
-	Helper.log(['instant defense wave damaging rocket: ', end_rocket.name])
-
-	var distance_to_rocket = spawn_point.distance_to(end_point)
-	var electric_wave = electric_wave_scene.instance()
-	var initial_wave_length = electric_wave.texture.get_size().x
-	var angle_to_rocket = (end_point - spawn_point).angle()
+func spawn_wave(spawn_point: Vector2, end_point: Vector2) -> void:
+	var distance_to_rocket := spawn_point.distance_to(end_point)
+	var electric_wave := electric_wave_scene.instance()
+	var initial_wave_length: float = electric_wave.texture.get_size().x
+	var angle_to_rocket := (end_point - spawn_point).angle()
 	electric_wave.global_position = spawn_point
 	electric_wave.scale = Vector2(distance_to_rocket / initial_wave_length, 0.2)
 	electric_wave.rotation = angle_to_rocket
