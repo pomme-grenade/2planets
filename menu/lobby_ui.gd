@@ -11,6 +11,7 @@ func _ready():
 	$'network/connect_container/connect'.connect('pressed', self, '_on_connect')
 	# warning-ignore:return_value_discarded
 	$'local'.connect('pressed', self, '_on_local')
+	$'network/connect_container/game_code_input'.connect('text_entered', self, '_on_connect')
 
 	# warning-ignore:return_value_discarded
 	networking.connect('exit_lobby', self, '_on_exit_lobby')
@@ -21,7 +22,7 @@ func _ready():
 func _on_local():
 	networking.server_for_local_game()
 
-func _on_connect():
+func _on_connect(_maybe_game_code = null):
 	if waiting_for_network:
 		# player pressed 'cancel'
 		reset_networking()
