@@ -14,9 +14,9 @@ const costs = {
 }
 
 const descriptions = {
-    'attack': 'fire missiles for 10$ each',
+    'attack': 'fire missiles',
     'defense': 'automatically destroys incoming rockets',
-    'income': 'produces 1$/s',
+    'income': 'produces $',
     'repair_drone_factory': 'spawn drones that repair buildings',
     'healing_drone_factory': 'spawn drones that restore planet health',
     'instant_defense': 'instantly destroy nearby rockets on activation',
