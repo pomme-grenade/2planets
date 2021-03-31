@@ -7,6 +7,7 @@ var current_building
 var player_action_key
 var ui
 var building_costs = preload('res://building/building_info.gd').costs
+var paused_input := false
 
 export var speed = 1
 
@@ -36,7 +37,7 @@ func _process(dt):
 	var rightAction = self.player_action_key + "right"
 	var leftAction = self.player_action_key + "left"
 
-	if is_network_master():
+	if is_network_master() and not paused_input:
 		if Input.is_action_pressed(rightAction):
 			movementDirection = 1
 			flip_h = true
@@ -83,11 +84,8 @@ puppet func set_pos_and_motion(p_pos, p_dir, p_rot):
 			flip_h = false
 
 func _unhandled_input(event):
-	if event.is_action_pressed("pause"):
-		var scene = preload('res://menu/pause_menu.tscn').instance()
-		get_node('/root').add_child(scene)
-		get_tree().paused = true
-
+	if paused_input:
+		return
 	if event.is_action_pressed(self.player_action_key + "deconstruct") and is_network_master():
 		if is_instance_valid(current_building):
 			current_building.start_deconstruction_timer()

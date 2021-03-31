@@ -1,6 +1,7 @@
 extends Control
 
-var current_label 
+var current_label: Label
+signal unpause
 
 func _ready():
 	$Label1.set("custom_colors/font_color", Color(1, 1, 0))
@@ -18,8 +19,7 @@ func _unhandled_input(event):
 		$Label1.set("custom_colors/font_color", Color(1, 1, 0))
 		current_label = $Label1 
 	if event.is_action_pressed('pause'):
-		get_tree().set_input_as_handled()
-		get_tree().paused = false
+		emit_signal('unpause')
 		queue_free()
 	if event.is_action_pressed("ui_accept"):
 		if current_label ==  $Label1:
@@ -27,3 +27,4 @@ func _unhandled_input(event):
 			GameManager.restart_game()
 		elif current_label == $Label2:
 			get_tree().quit()
+	get_node('/root').get_tree().set_input_as_handled()

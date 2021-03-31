@@ -13,6 +13,7 @@ bugs:
     - knopf drücken, weglaufen, wiederkommen und knopf noch mal drücken baut sofort (rafael später)
     - manchmal ist ein upgrade icon komplett weg, obwohl es da sein sollte (??? später)
     - connection particles fixen
+    - healing drone button icon ist noch nicht grün
 
 multiplayer:
     - game finish ist manchmal nur beim einen player (life sync fixed das, aber der desync sollte gar nicht erst passieren)

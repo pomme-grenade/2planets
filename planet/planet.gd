@@ -109,5 +109,9 @@ func current_slot_position():
 func set_health(new_health: float):
 	health = new_health
 
-	if health <= 0:
-		GameManager.game_over(player_number)
+	if is_network_master() and health <= 0:
+		rpc('game_over')
+
+
+remotesync func game_over():
+	GameManager.game_over(player_number)
