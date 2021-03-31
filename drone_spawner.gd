@@ -13,12 +13,15 @@ func _ready():
 	add_child(new_drone_timer)
 
 func spawn_drone():
+	assert(len(drones) < max_drones)
+
+	factory.new_drone()
+
 	if len(drones) >= max_drones:
 		new_drone_timer.stop()
 		base_building.play(base_building.type)
 		return
 
-	factory.new_drone()
 
 func stop():
 	new_drone_timer.stop()
