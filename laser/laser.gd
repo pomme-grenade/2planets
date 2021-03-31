@@ -7,6 +7,7 @@ var stop_laser_timer
 var shooting := false
 var can_activate := true
 var laser_position := 0
+# warning-ignore:unused_class_variable
 var activate_cost := 20
 var laser_range := 300
 var one_building_destroyed = false

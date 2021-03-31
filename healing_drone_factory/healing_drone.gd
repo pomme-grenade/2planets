@@ -2,7 +2,6 @@ extends Node2D
 
 var destroyed_building
 var laser_on
-var proximity = 0
 var distance_to_planet = 10
 var toggle_laser_timer
 var current_sin_param = rand_range(0, 10)
