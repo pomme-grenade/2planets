@@ -1,7 +1,6 @@
 BETA
 
 morgen:
-    - mit network delay + healing drones testen
     - balancing
     - kurze anleitung einbauen (kein tutorial)
     - sounds raussuchen
