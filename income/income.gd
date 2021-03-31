@@ -6,7 +6,7 @@ var additional_income := default_additional_income
 var upgrade_1_type := 'repair_drone_factory'
 # warning-ignore:unused_class_variable
 # var upgrade_2_type := 'teleporter'
-var building_info 
+var building_info
 var bonus_per_building := 0.1
 var connection_bonus := 0.0
 
@@ -23,4 +23,4 @@ func update_income():
 	else:
 		connection_bonus = 0
 		additional_income = 0
-	building_info = '+ %.1f $/s\nactivate to teleport' % [additional_income + connection_bonus]
+	building_info = '+ %.1f $/s' % [additional_income + connection_bonus]
