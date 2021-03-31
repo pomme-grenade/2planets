@@ -7,7 +7,6 @@ bis dienstag, 06.04. (6 tage noch):
     - money particles
         - visueller indikator für geld, dass man durch abgeschossene raketen kriegt
     - better connected buildings
-        - only base buildings have particles
     - better descriptions
     - healing drone button icon ist noch nicht grün
     - player grafik für aktivieren

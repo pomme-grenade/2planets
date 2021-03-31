@@ -55,7 +55,9 @@ func add_building_child(new_child):
 	play(animation_name)
 
 func _process(dt):
-	$Particles2D.emitting = get_connected_buildings().size() > 0 and not is_destroyed
+	$Particles2D.emitting = get_connected_buildings().size() > 0 \
+		and not is_destroyed \
+		and type in ['attack', 'income', 'defense']
 	
 	if do_dissolve:
 		material.set_shader_param('value', dissolve_amount) 
