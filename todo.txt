@@ -1,50 +1,60 @@
 BETA
-- Was ist die Identität des Spiels?
-    - Rein strategischer aufbau und
-    - Reaktion
+
+morgen:
+    - mit network delay + healing drones testen
+    - instant defense multiplayer fixen
+    - balancing
+    - kurze anleitung einbauen (kein tutorial)
+    - sounds raussuchen
+    - reddit post
+    - discord server
 
 bugs:
-    - wenn man kein geld hat und den knopf zum bauen doppelt drückt sieht es danach wieder normal aus, nicht ausgegraut
-    - knopf drücken, weglaufen, wiederkommen und knopf noch mal drücken baut sofort
-    - manchmal ist ein upgrade icon komplett weg, obwohl es da sein sollte
-    - game finish ist manchmal nur beim einen player (life sync fixed das, aber der desync sollte gar nicht erst passieren)
+    - wenn man kein geld hat und den knopf zum bauen doppelt drückt sieht es danach wieder normal aus, nicht ausgegraut (rafael später)
+    - knopf drücken, weglaufen, wiederkommen und knopf noch mal drücken baut sofort (rafael später)
+    - manchmal ist ein upgrade icon komplett weg, obwohl es da sein sollte (??? später)
+    - connection particles fixen
 
 multiplayer:
+    - game finish ist manchmal nur beim einen player (life sync fixed das, aber der desync sollte gar nicht erst passieren)
     - rocket spawn location & rotation übers netzwerk mitschicken (rafael)
     - nachricht schicken wenn man das spiel verlässt (rafael)
     - ins hauptmenü zurück wenn spiel vorbei
     - leben über network syncen (trici)
     - escape in multiplayer, spiel läuft im bg weiter (trici)
+        - "leave game" button
 
 gameplay:
-    - laser cooldown (trici)
-    - child scripts entfernen, nur das letzte behalten
-    - laser cooldown, breiteren laserstrahl, delay vor aktivieren (trici)
     - raketen spammen unattraktiv machen
-        - krasses raketen powerup enablen, laser und cluster machen zu wenig damage
-        - instant defense automatisch schießen
+        - krasses raketen powerup enablen
+        - laser und cluster machen zu wenig damage
 
 polish:
+    - automatisch fullscreen
     - hintergrund sättigung senken, dunkler machen
     - geld rot flashen wenn man bauen will und nicht genug geld hat
     - rot / gruen aufleuchtender text wenn sich income aendert
-    - player als kleinen dude im space anzug
-    - kurze anleitung einbauen (kein tutorial)
+    - neue player grafik
+        - auge
+        - gottartige figur
+        - hübschere drone / raumschiff
+        - alien
     - highlight auf dem planeten, wenn man den bauknopf nur einmal drückt
     - doppelklick für abbauen + description beim ersten klick
     - visueller indikator für geld, dass man durch abgeschossene raketen kriegt
     - sounds & musik
-    - font im menü größer
     - shields überall anzeigen wo sie abwehren
         - eigenes bild für shields
         - hinter dem planeten anzeigen
         - nur vorne abwehren, raketen hinter dem shield überleben
     - satellitengebäude am boden / satelliten komplett auf den boden schieben
+    - planet ui vergrößern
     
 anderes:
-    - discord server
     - mailing liste
     - marketing texte
+    - release auf itch.io hochladen
+    - mehr screenshots auf itch.io
 
 NACH DER BETA
     - automatischer angriff, aber immer vorne am planeten für predictability
