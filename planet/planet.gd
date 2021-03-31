@@ -8,8 +8,8 @@ const slot_count = 14
 const slot_angle_width = PI / slot_count
 
 var player
-var income = 7
-var start_money = 0
+var income = 3
+var start_money = 80 * 4
 remotesync var money = 0
 var slot_width
 var health_bar

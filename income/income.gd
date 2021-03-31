@@ -9,9 +9,6 @@ var upgrade_1_type := 'repair_drone_factory'
 var building_info 
 var bonus_per_building := 0.1
 var connection_bonus := 0.0
-# warning-ignore:unused_class_variable
-var activate_cost = 0
-var planet
 
 func init():
 	get_parent().planet.income += additional_income
@@ -27,7 +24,3 @@ func update_income():
 		connection_bonus = 0
 		additional_income = 0
 	building_info = '+ %.1f $/s\nactivate to teleport' % [additional_income + connection_bonus]
-
-func on_activate():
-	if get_parent().is_built and not get_parent().is_destroyed:
-		planet.player.position = planet.player.position.rotated(PI)
