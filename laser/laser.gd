@@ -11,7 +11,7 @@ var activate_cost := 20
 var laser_range := 300
 var one_building_destroyed = false
 var building_info
-var initial_delay = 14.0 / 60.0
+var initial_delay = 1.0
 var initial_delay_timer 
 var animated_beam = AnimatedTexture.new()
 var beam_texture

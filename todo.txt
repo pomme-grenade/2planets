@@ -2,7 +2,6 @@ BETA
 
 morgen:
     - mit network delay + healing drones testen
-    - instant defense multiplayer fixen
     - balancing
     - kurze anleitung einbauen (kein tutorial)
     - sounds raussuchen

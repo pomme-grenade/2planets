@@ -29,7 +29,7 @@ func new_drone():
 	healing_drone.position = \
 		healing_drone.position.rotated(healing_drone_rotation)
 	healing_drone.position += \
-		get_parent().position + Vector2(0, 20).rotated(direction_to_planet)
+		get_parent().position + Vector2(0, 10).rotated(direction_to_planet)
 	healing_drone.z_index = 3 if round(rand_range(1, 3)) == 1 else 1
 	planet.add_child(healing_drone)
 	healing_drone.init()
@@ -40,17 +40,15 @@ func get_building_info() -> String:
 	return '%d/%d drones' % [len(drones), max_drones]
 
 func buildup_animation_finished():
+	drone_spawner.start_spawning()
 	for drone in drones:
 		drone.active = true
 
 func on_destroy():
+	drone_spawner.stop()
 	for drone in drones:
 		drone.active = false
 
 func on_deconstruct():
 	for drone in drones:
 		drone.queue_free()
-
-func on_animation_finished():
-	new_drone()
-	get_parent().play(get_parent().type)

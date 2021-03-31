@@ -25,6 +25,10 @@ var deconstruction_timer_wait_time = 0.7
 
 func add_building_child(new_child):
 	if is_instance_valid(child):
+		is_destroyed = true
+		call_last_child_method('on_deconstruct')
+		update_connected_buildings()
+		is_destroyed = false
 		child.queue_free()
 	child = new_child
 	is_built = false
@@ -147,18 +151,9 @@ func repair_finished():
 	buildup_animation_finished()
 	update_connected_buildings()
 
-func initial_build_finished():
-	if child.has_method('initial_build_finished'):
-		child.initial_build_finished()
-		
 func buildup_animation_finished():
 	if is_destroyed:
 		return
-
-	if child.has_method('buildup_animation_finished'):
-		child.buildup_animation_finished()
-
-	update_connected_buildings()
 
 	upgrading = false
 	is_built = true
@@ -166,6 +161,12 @@ func buildup_animation_finished():
 	$AnimationPlayer.play('flash');
 	animation = type
 	speed_scale = 1
+
+	if child.has_method('buildup_animation_finished'):
+		child.buildup_animation_finished()
+
+	update_connected_buildings()
+
 
 remotesync func activate():
 	planet.money -= child.activate_cost
