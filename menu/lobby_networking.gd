@@ -29,7 +29,7 @@ func server_for_local_game():
 func connect_to_server(code):
 	game_code = code
 	Helper.log('traversing nat...')
-	var result = yield(traverse_nat(false, 'planet_2'), 'completed')
+	var result = yield(traverse_nat(false), 'completed')
 	Helper.log('nat traversed!')
 	var host_address = result[2]
 	var host_port = result[1]
@@ -45,7 +45,7 @@ func connect_to_server(code):
 func start_server():
 	Helper.log('traversing nat...')
 	game_code = generate_game_code()
-	var result = yield(traverse_nat(true, 'planet_1'), 'completed')
+	var result = yield(traverse_nat(true), 'completed')
 	Helper.log('nat traversed!')
 	var my_port = result[0]
 	Helper.log(['my port ', my_port])
@@ -117,12 +117,13 @@ remotesync func post_configure_game():
 	emit_signal('exit_lobby')
 
 
-func traverse_nat(is_host, player_name):
+func traverse_nat(is_host):
 	hole_puncher = preload('res://addons/Holepunch/holepunch_node.gd').new()
 	hole_puncher.rendevouz_address = traversal_server_ip
 	hole_puncher.rendevouz_port = traversal_server_port
 	add_child(hole_puncher)
 	hole_puncher.connect('session_registered', self, '_session_registered')
+	var player_name = OS.get_unique_id()
 	hole_puncher.start_traversal(game_code, is_host, player_name)
 	var result = yield(hole_puncher, 'hole_punched')
 	yield(get_tree().create_timer(0.1), 'timeout')
