@@ -33,6 +33,14 @@ func init():
 
 	init_ui()
 
+	yield(get_tree().create_timer(0.2), 'timeout')
+	if is_network_master():
+		for i in range(4):
+			var name = '%d_start_building_%d' % [player_number, i]
+			var position = planet.current_slot_position().rotated(planet.slot_angle_width * i * 7)
+			rpc('spawn_building', 'income', name, position)
+
+
 func _process(dt):
 	var rightAction = self.player_action_key + "right"
 	var leftAction = self.player_action_key + "left"
