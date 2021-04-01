@@ -15,10 +15,10 @@ _global_script_class_icons={
 
 [application]
 
-config/name="2planets"
+config/name="2 Planets"
 run/main_scene="res://menu/Lobby.tscn"
 boot_splash/bg_color=Color( 0.141176, 0.141176, 0.141176, 1 )
-config/icon="res://icon.png"
+config/icon="res://images/avatar.png"
 
 [autoload]
 
