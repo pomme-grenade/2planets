@@ -19,6 +19,8 @@ func _ready():
 
 	reset_networking()
 
+	$'network/connect_container/game_code_input'.grab_focus()
+
 func _on_local():
 	networking.server_for_local_game()
 

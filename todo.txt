@@ -15,7 +15,6 @@ bis dienstag, 06.04. (6 tage noch):
     - pause menu neu machen und exakt das selbe für game over nehmen
         - kein restart oder quit
         - "leave game" / "back to menu"
-    - quit knopf im menü
     - release auf itch.io hochladen
     - mehr screenshots auf itch.io
     - quadratisches logo für itch, godot etc.
