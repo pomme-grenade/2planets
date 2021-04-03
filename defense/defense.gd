@@ -3,7 +3,7 @@ extends Node2D
 var planet
 
 var fire_position
-var attack_range = 80
+var attack_range := 80
 var fire_origin
 var cooldown = 0
 var cooldown_time
@@ -15,7 +15,8 @@ var upgrade_2_type := 'instant_defense'
 var building_info
 var circle_only_outline
 var outline_visible := false
-var damage = 10
+var damage := 10
+var money_animation
 
 func init():
 	cooldown_time = initial_cooldown_time
@@ -24,6 +25,9 @@ func init():
 	add_user_signal('income', [{'name': 'value', 'type': TYPE_INT}])
 	circle_only_outline = preload('res://circle_only_outline.gd').new()
 	cooldown_time -= (get_parent().get_connected_buildings().size() + 1) * 0.02
+	money_animation = preload('res://money_animation.gd').new()
+	# get_tree().get_root().add_child(money_animation)
+	get_tree().get_root().add_child(money_animation)
 
 func _process(dt):
 	if get_parent().is_destroyed or not get_parent().is_built:
@@ -104,7 +108,9 @@ remotesync func shoot_rocket(path):
 	rocket.can_hit_planet.play_explosion('satellite_shot')
 	Helper.log(["satellite damaging rocket: ", rocket.name])
 
+
 	if rocket.health <= 0:
+        money_animation.create(rocket.global_position, planet)
 		planet.money += 5
 
 func update_income():
