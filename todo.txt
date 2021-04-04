@@ -1,6 +1,6 @@
 BETA
 
-bis dienstag, 06.04. (6 tage noch):
+bis dienstag, 06.04. (3 tage noch):
     - kurze anleitung einbauen (kein tutorial)
     - sounds raussuchen
     - musik einbauen
@@ -17,7 +17,6 @@ bis dienstag, 06.04. (6 tage noch):
         - "leave game" / "back to menu"
     - release auf itch.io hochladen
     - mehr screenshots auf itch.io
-    - quadratisches logo für itch, godot etc.
 
 bugs:
     - wenn man kein geld hat und den knopf zum bauen doppelt drückt sieht es danach wieder normal aus, nicht ausgegraut (rafael später)

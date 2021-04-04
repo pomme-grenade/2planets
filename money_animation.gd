@@ -15,7 +15,7 @@ func _process(dt: float) -> void:
 		texture.direction = texture.position.direction_to(planet.global_position)
 		texture.acceleration += 10.0
 		texture.position += texture.direction * texture.acceleration * dt
-        texture.alpha -= 0.01
+		texture.alpha -= 0.01
 		update()
 
 		if texture.position.distance_to(planet.global_position) < 20.0:

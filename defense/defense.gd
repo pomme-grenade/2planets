@@ -110,7 +110,7 @@ remotesync func shoot_rocket(path):
 
 
 	if rocket.health <= 0:
-        money_animation.create(rocket.global_position, planet)
+		money_animation.create(rocket.global_position, planet)
 		planet.money += 5
 
 func update_income():
