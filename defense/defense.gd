@@ -26,7 +26,6 @@ func init():
 	circle_only_outline = preload('res://circle_only_outline.gd').new()
 	cooldown_time -= (get_parent().get_connected_buildings().size() + 1) * 0.02
 	money_animation = preload('res://money_animation.gd').new()
-	# get_tree().get_root().add_child(money_animation)
 	get_tree().get_root().add_child(money_animation)
 
 func _process(dt):

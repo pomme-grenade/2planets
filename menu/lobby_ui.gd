@@ -77,7 +77,7 @@ func reset_networking():
 
 # remove the lobby scene completely and unpause
 func _on_exit_lobby():
-	queue_free()
+	get_parent().queue_free()
 	get_tree().set_pause(false)
 
 func _update_status(text):
