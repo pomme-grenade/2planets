@@ -147,6 +147,9 @@ custom_styles/disabled = ExtResource( 2 )
 custom_styles/normal = ExtResource( 2 )
 text = "Exit to Desktop"
 script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="."]
 anchor_right = 1.0

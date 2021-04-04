@@ -35,6 +35,9 @@ func _ready():
 
 	add_to_group('planets')
 
+	if has_node('/root/main/menu/game_over'):
+		get_node('/root/main/menu/game_over').my_player_number = player_number
+
 	if is_network_master():
 		var timer = Timer.new()
 		timer.one_shot = false;

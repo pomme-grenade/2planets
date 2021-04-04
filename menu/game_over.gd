@@ -2,23 +2,26 @@ extends Control
 
 signal unpause
 
+var loser: int
+var my_player_number: int
+
 var lobby = preload('res://menu/Lobby.tscn').instance()
 
 func _ready() -> void:
-	$'VBoxContainer/resume'.connect('pressed', self, '_on_resume')
 	$'VBoxContainer/menu'.connect('pressed', self, '_on_menu')
 	$'VBoxContainer/quit'.connect('pressed', self, '_on_quit')
 
-func _unhandled_input(event) -> void:
-	if event.is_action_pressed('pause'):
-		emit_signal('unpause')
-		queue_free()
+	if len(get_tree().get_network_connected_peers()) > 0:
+		if loser == my_player_number:
+			$'Label'.text = 'You Lose'
+		else:
+			$'Label'.text = 'You Win'
 
-	get_node('/root').get_tree().set_input_as_handled()
-
-func _on_resume() -> void:
-	emit_signal('unpause')
-	queue_free()
+	else:
+		if loser == 2:
+			$'Label'.text = 'left player wins'
+		else:
+			$'Label'.text = 'right player wins'
 
 func _on_menu() -> void:
 	get_tree().get_root().add_child(lobby)

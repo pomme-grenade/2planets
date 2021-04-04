@@ -9,7 +9,7 @@ func restart_game() -> void:
 	get_tree().paused = false
 
 func game_over(loser) -> void:
-	var game_over_screen = preload('res://menu/gameOver.tscn').instance()
+	var game_over_screen = preload('res://menu/game_over.tscn').instance()
 	game_over_screen.loser = loser
 	get_tree().paused = true
 	get_tree().get_root().add_child(game_over_screen)
