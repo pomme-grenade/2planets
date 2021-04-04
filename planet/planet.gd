@@ -36,7 +36,8 @@ func _ready():
 	add_to_group('planets')
 
 	if has_node('/root/main/menu/game_over'):
-		get_node('/root/main/menu/game_over').my_player_number = player_number
+		get_node('/root/main/menu/game_over').network_id = get_tree(). \
+				get_unique_network_id()
 
 	if is_network_master():
 		var timer = Timer.new()
@@ -117,4 +118,4 @@ func set_health(new_health: float):
 
 
 remotesync func game_over():
-	GameManager.game_over(player_number)
+	GameManager.game_over(player_number, get_tree().multiplayer.get_network_unique_id())

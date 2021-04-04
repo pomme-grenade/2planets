@@ -3,7 +3,8 @@ extends Control
 signal unpause
 
 var loser: int
-var my_player_number: int
+var loser_network_id: int
+var network_id: int
 
 var lobby = preload('res://menu/Lobby.tscn').instance()
 
@@ -12,7 +13,7 @@ func _ready() -> void:
 	$'VBoxContainer/quit'.connect('pressed', self, '_on_quit')
 
 	if len(get_tree().get_network_connected_peers()) > 0:
-		if loser == my_player_number:
+		if loser_network_id == network_id:
 			$'Label'.text = 'You Lose'
 		else:
 			$'Label'.text = 'You Win'

@@ -8,9 +8,10 @@ func restart_game() -> void:
 	get_tree().get_root().add_child(main)
 	get_tree().paused = false
 
-func game_over(loser) -> void:
+func game_over(loser, loser_network_id) -> void:
 	var game_over_screen = preload('res://menu/game_over.tscn').instance()
 	game_over_screen.loser = loser
+	game_over_screen.loser_network_id = loser_network_id
 	get_tree().paused = true
 	get_tree().get_root().add_child(game_over_screen)
 
