@@ -99,7 +99,7 @@ func _unhandled_input(event):
 			current_building.start_deconstruction_timer()
 
 	if event.is_action_pressed("god"):
-		planet.money += 100000
+		planet.money += 10000
 
 
 func get_building_in_range():

@@ -31,6 +31,7 @@ func init():
 		'upgrade_building/upgrade_2', 'build_attack', 'start_upgrade', [2])
 
 	$building_info.text = ''
+	$building_name.text = ''
 
 func add_button_shortcut(
 		path: String, 
@@ -76,6 +77,7 @@ func update_upgrade_ui():
 
 	if previously_pressed_button == null:
 		$building_info.text = player.current_building.building_info
+		$building_name.text = buildings.info.get(player.current_building.type)['name']
 
 	for index in [1, 2]:
 		var upgrade_type = get_upgrade_type(index)
@@ -127,6 +129,7 @@ func update_new_building_ui():
 	if (previously_pressed_button == null 
 			or previously_pressed_slot != player.planet.current_slot_index):
 		$building_info.text = ''
+		$building_name.text = ''
 	
 	if (previously_pressed_button != null && previously_pressed_slot != player.planet.current_slot_index):
 		get_node(previously_pressed_button).modulate = Color(1, 1, 1)
@@ -186,9 +189,10 @@ func was_double_press(button_name: String, type) -> bool:
 		get_node(button_name).modulate = Color(2, 2, 2)
 		if type != null:
 			$building_info.text = Helper.with_default(
-				buildings.descriptions.get(type),
+				buildings.info.get(type)['description'],
 				''
 			)
+			$building_name.text = buildings.info.get(type)['name']
 
 	return was_pressed_twice
 

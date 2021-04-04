@@ -109,10 +109,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="health_bar" parent="." instance=ExtResource( 9 )]
+margin_left = 0.409546
+margin_top = 0.0
+margin_right = 68.4095
+margin_bottom = 8.0
+
+[node name="current_money_label" parent="." instance=ExtResource( 7 )]
+anchor_right = 1.0
+margin_left = 0.409546
+margin_top = 10.0
+margin_right = 0.242691
+margin_bottom = 18.0
+
 [node name="new_building" type="HBoxContainer" parent="."]
-visible = false
-margin_right = 64.0
-margin_bottom = 20.0
+margin_top = 31.336
+margin_right = 68.0
+margin_bottom = 51.336
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -199,8 +212,9 @@ __meta__ = {
 anims/no_money = SubResource( 6 )
 
 [node name="upgrade_building" type="HBoxContainer" parent="."]
-margin_right = 64.0
-margin_bottom = 20.0
+margin_top = 31.336
+margin_right = 68.0
+margin_bottom = 51.336
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -277,16 +291,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="current_money_label" parent="." instance=ExtResource( 7 )]
-margin_left = 0.166855
-margin_top = 34.1669
-margin_right = 62.1669
-margin_bottom = 42.1669
-
 [node name="building_cost" type="HBoxContainer" parent="."]
 margin_left = -2.0
-margin_top = -7.0
+margin_top = 23.6821
 margin_right = 66.0
+margin_bottom = 31.6821
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -329,19 +338,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="health_bar" parent="." instance=ExtResource( 9 )]
-margin_left = 0.409546
-margin_top = 23.8649
-margin_right = 68.4095
-margin_bottom = 31.8649
+[node name="building_name" type="Label" parent="."]
+anchor_right = 1.0
+margin_left = -20.0
+margin_top = 54.828
+margin_bottom = 64.828
+text = "building name"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="building_info" type="Label" parent="."]
 anchor_right = 1.0
-margin_left = 0.409546
-margin_top = 44.1493
-margin_bottom = 52.1493
+margin_left = -20.0
+margin_top = 64.1719
+margin_right = 20.0
+margin_bottom = 79.1719
 custom_fonts/font = ExtResource( 5 )
-text = "building info"
+custom_colors/font_color = Color( 0.811765, 0.705882, 0.937255, 1 )
+text = "building info
+building info"
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false

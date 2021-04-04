@@ -13,17 +13,53 @@ const costs = {
     'asteroid_farmer': 40
 }
 
-const descriptions = {
-    'attack': 'fire missiles',
-    'defense': 'automatically destroys incoming missiles',
-    'income': 'produces $',
-    'repair_drone_factory': 'spawn drones that repair buildings',
-    'healing_drone_factory': 'spawn drones that restore planet health',
-    'instant_defense': 'chain attack on multiple missiles',
-    'laser': 'laser beam that penetrates shields',
-    'shield': 'a protective shield',
-    'split_rocket': 'cluster missiles that split in-flight',
-    'teleporter': 'teleporter',
-    'slingshot': 'throw asteroids towards enemy planet',
-    'asteroid_farmer': 'convert asteroids into money'
+const info = {
+    'attack': {
+        'description': 'fire missiles',
+        'name': 'missile launcher'
+    },
+    'defense': {
+        'description': 'automatically destroys incoming missiles',
+        'name': 'satellite'
+    },
+    'income': {
+        'description': 'produces $',
+        'name': 'mine'
+    },
+    'repair_drone_factory': {
+        'description': 'spawn drones that repair buildings',
+        'name': 'repair drone factory'
+    },
+    'healing_drone_factory': {
+        'description': 'spawn drones that restore planet health',
+        'name': 'healing drone factory'
+    },
+    'instant_defense': {
+        'description': 'chain attack on multiple missiles',
+        'name': 'lightning satellite'
+    },
+    'laser': {
+        'description': 'laser beam that penetrates shields',
+        'name': 'tactical laser'
+    },
+    'shield': {
+        'description': 'Recharges over time',
+        'name': 'shield'
+    },
+    'split_rocket': {
+        'description': 'cluster missiles that split in-flight',
+        'name': 'cluster missile launcher'
+    },
+    'teleporter': {
+        'description': 'teleport to the other side of the planet',
+        'name': 'teleporter'
+    },
+    'slingshot': {
+        'description': 'throw asteroids towards enemy planet',
+        'name': 'slingshot'
+    },
+    'asteroid_farmer': {
+        'description': 'convert asteroids into money',
+        'name': 'asteroid farmer'
+    },
 }
