@@ -8,7 +8,6 @@ bis dienstag, 06.04. (3 tage noch):
         - visueller indikator für geld, dass man durch abgeschossene raketen kriegt
     - better connected buildings
     - better descriptions
-    - healing drone button icon ist noch nicht grün
     - player grafik für aktivieren
     - planet ui vergrößern
     - instant defense graphic

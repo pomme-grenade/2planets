@@ -4,7 +4,7 @@ var planet
 var rocket_name_index = 0
 var activate_cost = 30
 var target_player_number
-var building_info
+var building_info = 'activate to fire'
 # var upgrade_2_type = 'slingshot'
 
 func init():

@@ -15,11 +15,11 @@ const costs = {
 
 const descriptions = {
     'attack': 'fire missiles',
-    'defense': 'automatically destroys incoming rockets',
+    'defense': 'automatically destroys incoming missiles',
     'income': 'produces $',
     'repair_drone_factory': 'spawn drones that repair buildings',
     'healing_drone_factory': 'spawn drones that restore planet health',
-    'instant_defense': 'instantly destroy nearby rockets on activation',
+    'instant_defense': 'chain attack on multiple missiles',
     'laser': 'laser beam that penetrates shields',
     'shield': 'a protective shield',
     'split_rocket': 'cluster missiles that split in-flight',

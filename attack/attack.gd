@@ -10,7 +10,7 @@ var rocket_name_index = 0
 var activate_cost := 20
 var target_player_number
 # warning-ignore:unused_class_variable
-var building_info := ''
+var building_info := 'activate to fire'
 
 func init():
 	target_player_number = 2 if planet.player_number == 1 else 1
