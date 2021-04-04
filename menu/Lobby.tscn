@@ -148,7 +148,7 @@ custom_styles/normal = ExtResource( 2 )
 text = "Exit to Desktop"
 script = ExtResource( 6 )
 
-[node name="Header" type="Label" parent="."]
+[node name="Label" type="Label" parent="."]
 anchor_right = 1.0
 anchor_bottom = 0.3
 margin_bottom = 9.99999
