@@ -1,15 +1,12 @@
 BETA
 
-bis dienstag, 06.04. (3 tage noch):
+bis dienstag, 06.04. (2 tage noch):
     - kurze anleitung einbauen (kein tutorial)
     - sounds raussuchen
-    - musik einbauen
     - money particles
         - visueller indikator für geld, dass man durch abgeschossene raketen kriegt
     - better connected buildings
-    - better descriptions
     - player grafik für aktivieren
-    - planet ui vergrößern
     - instant defense graphic
     - pause menu neu machen und exakt das selbe für game over nehmen
         - kein restart oder quit
