@@ -55,9 +55,16 @@ func add_building_child(new_child):
 	play(animation_name)
 
 func _process(dt):
-	$Particles2D.emitting = get_connected_buildings().size() > 0 \
+	if get_connected_buildings().size() > 0 \
 		and not is_destroyed \
-		and type in ['attack', 'income', 'defense']
+		and type in ['attack', 'income', 'defense']:
+		if has_neighbour('right'):
+			$ParticlesRight.emitting = true
+		if has_neighbour('left'):
+			$ParticlesLeft.emitting = true
+	else:
+		$ParticlesRight.emitting = false
+		$ParticlesLeft.emitting = false
 	
 	if do_dissolve:
 		material.set_shader_param('value', dissolve_amount) 
@@ -204,8 +211,8 @@ func get_connected_buildings():
 
 	return neighbours
 
-func get_neighbours(previous):
-	var neighbours = []
+func get_neighbours(previous) -> Array:
+	var neighbours := []
 	for building in get_tree().get_nodes_in_group('building' + str(planet.player_number)):
 		if building != self \
 				and building != previous \
@@ -218,6 +225,24 @@ func get_neighbours(previous):
 
 	return neighbours
 
+func has_neighbour(direction: String) -> bool:
+	var dir := 1 if direction == 'right' else -1
+
+	var buildings: Array = get_connected_buildings()
+	for building in buildings:
+		var angle_to_building := position.angle_to(building.position)
+		if (building != self
+			and abs(angle_to_building) < (PI / planet.slot_count) * 1.1
+			and sign(angle_to_building) == dir):
+			return true
+	return false
+
+func update_connected_buildings():
+	for building in get_connected_buildings():
+		building.call_last_child_method('update_income')
+	call_last_child_method('update_income')
+
+
 func set_highlighted(is_highlighted: bool):
 	if is_highlighted:
 		self.self_modulate = Color(2, 2, 2, 1)
@@ -225,11 +250,6 @@ func set_highlighted(is_highlighted: bool):
 		self.self_modulate = Color(1, 1, 1, 1)
 
 	call_last_child_method('on_highlight', [is_highlighted])
-
-func update_connected_buildings():
-	for building in get_connected_buildings():
-		building.call_last_child_method('update_income')
-	call_last_child_method('update_income')
 
 func call_last_child_method(method: String, args: Array = []):
 	if child.has_method(method):

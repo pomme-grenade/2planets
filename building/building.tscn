@@ -1,4 +1,4 @@
-[gd_scene load_steps=408 format=2]
+[gd_scene load_steps=409 format=2]
 
 [ext_resource path="res://building/building.gd" type="Script" id=1]
 [ext_resource path="res://income/mineAnimation.png" type="Texture" id=2]
@@ -1378,87 +1378,87 @@ region = Rect2( 192, 0, 16, 16 )
 atlas = ExtResource( 7 )
 region = Rect2( 208, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=376]
+[sub_resource type="AtlasTexture" id=334]
 atlas = ExtResource( 12 )
 region = Rect2( 0, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=377]
+[sub_resource type="AtlasTexture" id=335]
 atlas = ExtResource( 12 )
 region = Rect2( 16, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=378]
+[sub_resource type="AtlasTexture" id=336]
 atlas = ExtResource( 12 )
 region = Rect2( 32, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=379]
+[sub_resource type="AtlasTexture" id=337]
 atlas = ExtResource( 12 )
 region = Rect2( 48, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=380]
+[sub_resource type="AtlasTexture" id=338]
 atlas = ExtResource( 12 )
 region = Rect2( 64, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=381]
+[sub_resource type="AtlasTexture" id=339]
 atlas = ExtResource( 12 )
 region = Rect2( 80, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=382]
+[sub_resource type="AtlasTexture" id=340]
 atlas = ExtResource( 12 )
 region = Rect2( 96, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=383]
+[sub_resource type="AtlasTexture" id=341]
 atlas = ExtResource( 12 )
 region = Rect2( 112, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=384]
+[sub_resource type="AtlasTexture" id=342]
 atlas = ExtResource( 12 )
 region = Rect2( 128, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=385]
+[sub_resource type="AtlasTexture" id=343]
 atlas = ExtResource( 12 )
 region = Rect2( 144, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=386]
+[sub_resource type="AtlasTexture" id=344]
 atlas = ExtResource( 12 )
 region = Rect2( 160, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=387]
+[sub_resource type="AtlasTexture" id=345]
 atlas = ExtResource( 12 )
 region = Rect2( 176, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=388]
+[sub_resource type="AtlasTexture" id=346]
 atlas = ExtResource( 12 )
 region = Rect2( 192, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=389]
+[sub_resource type="AtlasTexture" id=347]
 atlas = ExtResource( 12 )
 region = Rect2( 208, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=390]
+[sub_resource type="AtlasTexture" id=348]
 atlas = ExtResource( 12 )
 region = Rect2( 224, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=391]
+[sub_resource type="AtlasTexture" id=349]
 atlas = ExtResource( 12 )
 region = Rect2( 240, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=392]
+[sub_resource type="AtlasTexture" id=350]
 atlas = ExtResource( 12 )
 region = Rect2( 256, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=393]
+[sub_resource type="AtlasTexture" id=351]
 atlas = ExtResource( 12 )
 region = Rect2( 272, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=394]
+[sub_resource type="AtlasTexture" id=352]
 atlas = ExtResource( 12 )
 region = Rect2( 288, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=395]
+[sub_resource type="AtlasTexture" id=353]
 atlas = ExtResource( 12 )
 region = Rect2( 304, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=396]
+[sub_resource type="AtlasTexture" id=354]
 atlas = ExtResource( 12 )
 region = Rect2( 320, 0, 16, 16 )
 
@@ -1631,7 +1631,7 @@ animations = [ {
 "name": "destroyed",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 376 ), SubResource( 377 ), SubResource( 378 ), SubResource( 379 ), SubResource( 380 ), SubResource( 381 ), SubResource( 382 ), SubResource( 383 ), SubResource( 384 ), SubResource( 385 ), SubResource( 386 ), SubResource( 387 ), SubResource( 388 ), SubResource( 389 ), SubResource( 390 ), SubResource( 391 ), SubResource( 392 ), SubResource( 393 ), SubResource( 394 ), SubResource( 395 ), SubResource( 396 ) ],
+"frames": [ SubResource( 334 ), SubResource( 335 ), SubResource( 336 ), SubResource( 337 ), SubResource( 338 ), SubResource( 339 ), SubResource( 340 ), SubResource( 341 ), SubResource( 342 ), SubResource( 343 ), SubResource( 344 ), SubResource( 345 ), SubResource( 346 ), SubResource( 347 ), SubResource( 348 ), SubResource( 349 ), SubResource( 350 ), SubResource( 351 ), SubResource( 352 ), SubResource( 353 ), SubResource( 354 ) ],
 "loop": true,
 "name": "healing_drone_factory_activate",
 "speed": 5.0
@@ -1755,7 +1755,13 @@ tracks/0/keys = {
 
 [sub_resource type="ParticlesMaterial" id=375]
 flag_disable_z = true
-gravity = Vector3( 0, 98, 0 )
+gravity = Vector3( -80, 5, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+
+[sub_resource type="ParticlesMaterial" id=376]
+flag_disable_z = true
+gravity = Vector3( 80, 5, 0 )
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 
@@ -1771,9 +1777,14 @@ script = ExtResource( 1 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/flash = SubResource( 374 )
 
-[node name="Particles2D" type="Particles2D" parent="."]
-position = Vector2( 5.63363e-06, 5.73866 )
+[node name="ParticlesLeft" type="Particles2D" parent="."]
+position = Vector2( 0, 5 )
 emitting = false
-lifetime = 0.4
-speed_scale = 0.2
+lifetime = 0.7
 process_material = SubResource( 375 )
+
+[node name="ParticlesRight" type="Particles2D" parent="."]
+position = Vector2( 0, 5 )
+emitting = false
+lifetime = 0.7
+process_material = SubResource( 376 )
