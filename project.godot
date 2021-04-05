@@ -24,6 +24,7 @@ config/icon="res://images/avatar.png"
 
 GameManager="*res://game_manager.gd"
 Helper="*res://helper.gd"
+MusicPlayer="*res://music/music_player.tscn"
 
 [debug]
 

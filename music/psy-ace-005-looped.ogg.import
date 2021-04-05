@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/psy-ace-005-looped.ogg-060c82e15f17705acd309b63b1ac229b.oggstr"
+
+[deps]
+
+source_file="res://music/psy-ace-005-looped.ogg"
+dest_files=[ "res://.import/psy-ace-005-looped.ogg-060c82e15f17705acd309b63b1ac229b.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

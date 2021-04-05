@@ -79,6 +79,7 @@ func reset_networking():
 func _on_exit_lobby():
 	get_parent().queue_free()
 	get_tree().set_pause(false)
+	get_node('/root/MusicPlayer').set_lowpass_active(false)
 
 func _update_status(text):
 	if is_instance_valid(current_status_label):

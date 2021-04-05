@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://music/psy-ace-005-looped.ogg" type="AudioStream" id=1]
+[ext_resource path="res://music/music_player.gd" type="Script" id=2]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource( 1 )
+autoplay = true
+bus = "music"
+script = ExtResource( 2 )
