@@ -6,7 +6,7 @@ func _ready():
 	config = ConfigFile.new()
 	var err = config.load('user://settings.cfg')
 	if err != OK and err != ERR_FILE_NOT_FOUND:
-		print('could not load settings file! ', err)
+		Helper.log(['could not load settings file! ', err])
 	var sound_enabled = config.get_value('sound', 'enabled', true)
 	self.pressed = sound_enabled
 
