@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://menu/lobby_ui.gd" type="Script" id=1]
 [ext_resource path="res://menu/button_texture.tres" type="StyleBox" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://menu/button_pressed_texture.tres" type="StyleBox" id=5]
 [ext_resource path="res://menu/quit_button.gd" type="Script" id=6]
 [ext_resource path="res://font/ultralarge.tres" type="DynamicFont" id=7]
+[ext_resource path="res://menu/toggle_sound.gd" type="Script" id=8]
 
 [sub_resource type="InputEventAction" id=1]
 action = "ui_accept"
@@ -21,7 +22,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Control" type="VBoxContainer" parent="."]
+[node name="StartButtons" type="VBoxContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -35,15 +36,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label2" type="Label" parent="Control"]
+[node name="Label2" type="Label" parent="StartButtons"]
 margin_right = 338.0
-margin_bottom = 10.0
+margin_bottom = 6.0
 text = "local game"
 
-[node name="local" type="Button" parent="Control"]
-margin_top = 14.0
+[node name="local" type="Button" parent="StartButtons"]
+margin_top = 10.0
 margin_right = 338.0
-margin_bottom = 40.0
+margin_bottom = 44.0
 size_flags_vertical = 3
 custom_styles/hover = ExtResource( 2 )
 custom_styles/pressed = ExtResource( 5 )
@@ -53,19 +54,19 @@ shortcut_in_tooltip = false
 shortcut = SubResource( 2 )
 text = "start local game"
 
-[node name="Label" type="Label" parent="Control"]
-margin_top = 44.0
+[node name="Label" type="Label" parent="StartButtons"]
+margin_top = 48.0
 margin_right = 338.0
 margin_bottom = 54.0
 text = "network game"
 
-[node name="network" type="HBoxContainer" parent="Control"]
+[node name="network" type="HBoxContainer" parent="StartButtons"]
 margin_top = 58.0
 margin_right = 338.0
 margin_bottom = 108.0
 rect_min_size = Vector2( 0, 50 )
 
-[node name="client_status" type="Label" parent="Control/network"]
+[node name="client_status" type="Label" parent="StartButtons/network"]
 visible = false
 margin_right = 102.0
 margin_bottom = 50.0
@@ -74,7 +75,7 @@ size_flags_vertical = 3
 text = "test text"
 align = 2
 
-[node name="create" type="Button" parent="Control/network"]
+[node name="create" type="Button" parent="StartButtons/network"]
 margin_right = 150.0
 margin_bottom = 50.0
 grow_horizontal = 0
@@ -85,14 +86,14 @@ custom_styles/disabled = ExtResource( 2 )
 custom_styles/normal = ExtResource( 2 )
 shortcut_in_tooltip = false
 
-[node name="limiter" type="Label" parent="Control/network"]
+[node name="limiter" type="Label" parent="StartButtons/network"]
 margin_left = 154.0
-margin_top = 20.0
+margin_top = 22.0
 margin_right = 184.0
-margin_bottom = 30.0
+margin_bottom = 28.0
 text = "- or -"
 
-[node name="server_status" type="Label" parent="Control/network"]
+[node name="server_status" type="Label" parent="StartButtons/network"]
 visible = false
 margin_left = 196.0
 margin_right = 256.0
@@ -101,13 +102,13 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "server status"
 
-[node name="connect_container" type="VBoxContainer" parent="Control/network"]
+[node name="connect_container" type="VBoxContainer" parent="StartButtons/network"]
 margin_left = 188.0
 margin_right = 338.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 150, 0 )
 
-[node name="game_code_input" type="LineEdit" parent="Control/network/connect_container"]
+[node name="game_code_input" type="LineEdit" parent="StartButtons/network/connect_container"]
 margin_right = 150.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 100, 20 )
@@ -115,7 +116,7 @@ custom_fonts/font = ExtResource( 3 )
 placeholder_text = "enter game code"
 caret_blink = true
 
-[node name="connect" type="Button" parent="Control/network/connect_container"]
+[node name="connect" type="Button" parent="StartButtons/network/connect_container"]
 margin_top = 24.0
 margin_right = 150.0
 margin_bottom = 50.0
@@ -129,16 +130,25 @@ shortcut_in_tooltip = false
 keep_pressed_outside = true
 text = "join game"
 
-[node name="lobby_networking" type="Node" parent="Control"]
+[node name="lobby_networking" type="Node" parent="StartButtons"]
 script = ExtResource( 4 )
 
-[node name="Button" type="Button" parent="."]
-anchor_left = 1.0
+[node name="Settings" type="Control" parent="."]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -10.0
-margin_bottom = -10.0
+margin_left = 5.0
+margin_top = -40.0
+margin_right = -5.0
+margin_bottom = -5.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Exit" type="Button" parent="Settings"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 0
 custom_styles/hover = ExtResource( 2 )
@@ -147,6 +157,19 @@ custom_styles/disabled = ExtResource( 2 )
 custom_styles/normal = ExtResource( 2 )
 text = "Exit to Desktop"
 script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sound" type="CheckBox" parent="Settings"]
+anchor_bottom = 1.0
+custom_styles/hover = ExtResource( 2 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/disabled = ExtResource( 2 )
+custom_styles/normal = ExtResource( 2 )
+pressed = true
+text = "Sound"
+script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
