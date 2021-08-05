@@ -1,6 +1,7 @@
-BETA
+## BETA
 
 bis dienstag, 06.04. (2 tage noch):
+
     - kurze anleitung einbauen (kein tutorial)
     - sounds raussuchen
     - money particles
@@ -15,20 +16,24 @@ bis dienstag, 06.04. (2 tage noch):
     - mehr screenshots auf itch.io
 
 bugs:
+
     - wenn man kein geld hat und den knopf zum bauen doppelt drückt sieht es danach wieder normal aus, nicht ausgegraut (rafael später)
     - knopf drücken, weglaufen, wiederkommen und knopf noch mal drücken baut sofort (rafael später)
     - manchmal ist ein upgrade icon komplett weg, obwohl es da sein sollte (??? später)
 
 multiplayer:
+
     - rocket spawn location & rotation übers netzwerk mitschicken (rafael)
     - nachricht schicken wenn man das spiel verlässt (rafael)
     - leben über network syncen (trici)
 
 gameplay:
+
     - krasses raketen powerup bauen
     - laser und cluster machen zu wenig damage
 
 polish:
+
     - hintergrund sättigung senken, dunkler machen
     - geld rot flashen wenn man bauen will und nicht genug geld hat
     - rot / gruen aufleuchtender text wenn sich income aendert
@@ -44,19 +49,21 @@ polish:
         - gottartige figur
         - hübschere drone / raumschiff
         - alien
-    
+
 anderes:
+
     - mailing liste
     - marketing texte
 
-NACH DER BETA
+## NACH DER BETA
+
     - automatischer angriff, aber immer vorne am planeten für predictability
-	- upgrades
+    - upgrades
         - antisatellit rakete
         - schiff, das rüber fliegt und dronen released
         - thruster um seinen planeten zu bewegen
         - schnellere raketen
-	- planet upgrade fuer bessere einheiten (neues set einheiten) (neue waffenarten)
+    - planet upgrade fuer bessere einheiten (neues set einheiten) (neue waffenarten)
     - verschiedene modifier um das meta spannend zu halten
     - tower / upgrades / units draften a la bloons TD?
     - gegner planeten einnehmen
@@ -71,12 +78,14 @@ NACH DER BETA
     - random upgrade drops die man einsammeln kann und damit freischaltet
     - drone animation when build intent
 
-PROBLEME
-	- lategame taktik nicht existent
-    - satellite indicator on ground
-	- snowballing, comeback
+## PROBLEME
 
-UPGRADE TREE
+    - lategame taktik nicht existent
+    - satellite indicator on ground
+    - snowballing, comeback
+
+## UPGRADE TREE
+
     - defense
         - shield
             -
@@ -87,19 +96,20 @@ UPGRADE TREE
     - income
         - repair drones
             - healing drones
-            - 
+            -
         - (teleporter)
-            - 
-            - 
+            -
+            -
     - attack
         - laser
-            - 
+            -
             -
         - split rocket
             - nuke
             -
-    
-UPGRADE IDEEN
+
+## UPGRADE IDEEN
+
     - speed buff
     - instant defense reflect
     - verteidigungs chaff das incoming und outgoing raketen verwirrt
