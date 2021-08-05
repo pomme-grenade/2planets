@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://planet_ui/planet_ui.tscn" type="PackedScene" id=1]
 [ext_resource path="res://planet/planet.tscn" type="PackedScene" id=2]
 [ext_resource path="res://background.png" type="Texture" id=3]
 [ext_resource path="res://planet/blue_planet.png" type="Texture" id=4]
 [ext_resource path="res://network_status.gd" type="Script" id=5]
+[ext_resource path="res://menu/button_texture.tres" type="StyleBox" id=6]
+[ext_resource path="res://menu/button_pressed_texture.tres" type="StyleBox" id=7]
+[ext_resource path="res://tutorial/tutorial.gd" type="Script" id=8]
 
 [node name="main" type="Control"]
 margin_right = 800.0
@@ -22,11 +25,12 @@ offset = Vector2( 400, 200 )
 current = true
 
 [node name="planet_1" parent="." instance=ExtResource( 2 )]
-position = Vector2( 200, 200 )
+position = Vector2( 200, 144.107 )
 texture = ExtResource( 4 )
 player_number = 1
 
 [node name="planet_2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 600, 144.107 )
 texture = ExtResource( 4 )
 
 [node name="planet_ui_1" parent="." instance=ExtResource( 1 )]
@@ -35,9 +39,9 @@ anchor_top = 0.5
 anchor_right = 0.25
 anchor_bottom = 0.5
 margin_left = -34.0
-margin_top = -49.0068
+margin_top = -104.9
 margin_right = 34.0
-margin_bottom = -29.0068
+margin_bottom = -84.8995
 
 [node name="planet_ui_2" parent="." instance=ExtResource( 1 )]
 anchor_left = 0.75
@@ -45,9 +49,9 @@ anchor_top = 0.5
 anchor_right = 0.75
 anchor_bottom = 0.5
 margin_left = -34.0
-margin_top = -49.0068
+margin_top = -104.9
 margin_right = 34.0
-margin_bottom = -29.0068
+margin_bottom = -84.8995
 
 [node name="network_status" type="Label" parent="."]
 anchor_right = 1.0
@@ -58,6 +62,79 @@ custom_colors/font_color = Color( 0.768627, 0.25098, 0.372549, 1 )
 text = "connection lost"
 align = 2
 script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="tutorial" type="VBoxContainer" parent="."]
+anchor_top = 0.65
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_right = -20.0
+margin_bottom = -10.0
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="steps" type="Control" parent="tutorial"]
+margin_right = 760.0
+margin_bottom = 104.0
+size_flags_vertical = 3
+
+[node name="1" type="RichTextLabel" parent="tutorial/steps"]
+margin_top = 4.0
+margin_right = 760.0
+margin_bottom = 123.0
+size_flags_vertical = 3
+text = "asdf"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="2" type="RichTextLabel" parent="tutorial/steps"]
+margin_top = 8.0
+margin_right = 760.0
+margin_bottom = 127.0
+size_flags_vertical = 3
+text = "asdf"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="HBoxContainer" parent="tutorial"]
+margin_left = 329.0
+margin_top = 108.0
+margin_right = 431.0
+margin_bottom = 130.0
+size_flags_horizontal = 4
+
+[node name="previous" type="Button" parent="tutorial/Buttons"]
+margin_right = 59.0
+margin_bottom = 22.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_styles/hover = ExtResource( 6 )
+custom_styles/pressed = ExtResource( 7 )
+custom_styles/disabled = ExtResource( 6 )
+custom_styles/normal = ExtResource( 6 )
+text = "previous"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="next" type="Button" parent="tutorial/Buttons"]
+margin_left = 63.0
+margin_right = 102.0
+margin_bottom = 22.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_styles/hover = ExtResource( 6 )
+custom_styles/pressed = ExtResource( 7 )
+custom_styles/disabled = ExtResource( 6 )
+custom_styles/normal = ExtResource( 6 )
+text = "next"
 __meta__ = {
 "_edit_use_anchors_": false
 }
