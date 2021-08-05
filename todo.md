@@ -1,6 +1,6 @@
-## BETA
+## BETA TODOS
 
-bis dienstag, 06.04. (2 tage noch):
+### absolut notwendig für die beta
 
     - kurze anleitung einbauen (kein tutorial)
     - sounds raussuchen
@@ -15,24 +15,33 @@ bis dienstag, 06.04. (2 tage noch):
     - release auf itch.io hochladen
     - mehr screenshots auf itch.io
 
-bugs:
+#### tutorial
+
+1. Use A and D keys to move your drone.
+2. Use Q, and E keys to show information for a building. Tap the same key again to build the selected building.
+3. Once built, some buildings can be activated using the W key.
+4. Build missile launchers and activate them to destroy the enemy planet.
+5. Build satellites to defend against incoming missiles.
+6. Build mines to increase your income.
+
+### bugs
 
     - wenn man kein geld hat und den knopf zum bauen doppelt drückt sieht es danach wieder normal aus, nicht ausgegraut (rafael später)
     - knopf drücken, weglaufen, wiederkommen und knopf noch mal drücken baut sofort (rafael später)
     - manchmal ist ein upgrade icon komplett weg, obwohl es da sein sollte (??? später)
 
-multiplayer:
+### multiplayer robustness
 
     - rocket spawn location & rotation übers netzwerk mitschicken (rafael)
     - nachricht schicken wenn man das spiel verlässt (rafael)
     - leben über network syncen (trici)
 
-gameplay:
+### gameplay
 
     - krasses raketen powerup bauen
     - laser und cluster machen zu wenig damage
 
-polish:
+### polish
 
     - hintergrund sättigung senken, dunkler machen
     - geld rot flashen wenn man bauen will und nicht genug geld hat
@@ -50,7 +59,7 @@ polish:
         - hübschere drone / raumschiff
         - alien
 
-anderes:
+### anderes
 
     - mailing liste
     - marketing texte
