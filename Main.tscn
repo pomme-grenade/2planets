@@ -67,7 +67,7 @@ __meta__ = {
 }
 
 [node name="tutorial" type="VBoxContainer" parent="."]
-anchor_top = 0.65
+anchor_top = 0.7
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 20.0
@@ -80,34 +80,72 @@ __meta__ = {
 
 [node name="steps" type="Control" parent="tutorial"]
 margin_right = 760.0
-margin_bottom = 104.0
+margin_bottom = 84.0
 size_flags_vertical = 3
 
-[node name="1" type="RichTextLabel" parent="tutorial/steps"]
-margin_top = 4.0
-margin_right = 760.0
-margin_bottom = 123.0
+[node name="1" type="Label" parent="tutorial/steps"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 size_flags_vertical = 3
-text = "asdf"
+text = "Use A and D keys to move your drone."
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="2" type="RichTextLabel" parent="tutorial/steps"]
-margin_top = 8.0
-margin_right = 760.0
-margin_bottom = 127.0
+[node name="2" type="Label" parent="tutorial/steps"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
 size_flags_vertical = 3
-text = "asdf"
+text = "Use Q, and E keys to show information for a building. Tap the same key again to build the selected building."
+align = 1
+
+[node name="3" type="Label" parent="tutorial/steps"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Once built, some buildings can be activated using the W key."
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="4" type="Label" parent="tutorial/steps"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Build missile launchers and activate them to destroy the enemy planet."
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="5" type="Label" parent="tutorial/steps"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Build satellites to defend against incoming missiles."
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="6" type="Label" parent="tutorial/steps"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Build mines to increase your income."
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Buttons" type="HBoxContainer" parent="tutorial"]
 margin_left = 329.0
-margin_top = 108.0
+margin_top = 88.0
 margin_right = 431.0
-margin_bottom = 130.0
+margin_bottom = 110.0
 size_flags_horizontal = 4
 
 [node name="previous" type="Button" parent="tutorial/Buttons"]

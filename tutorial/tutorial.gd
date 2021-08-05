@@ -1,7 +1,7 @@
 extends VBoxContainer
 
 var current_index := 1
-var step_amount := 10
+var step_amount := 6
 
 func _ready():
 	$'Buttons/next'.connect('pressed', self, '_on_next')
@@ -9,15 +9,19 @@ func _ready():
 
 
 func _on_previous():
-	var current_step := get_node('steps/%d' % current_index)
-	current_step.visible = false
-
 	if current_index > 1:
-		get_node('steps/%d' % (current_index - 1)).visible = false
+		var current_step := get_node('steps/%d' % current_index)
+		current_step.visible = false
+
+		get_node('steps/%d' % (current_index - 1)).visible = true
+
+		current_index -= 1
 
 func _on_next():
-	var current_step := get_node('steps/%d' % current_index)
-	current_step.visible = false
-
 	if current_index < step_amount:
-		get_node('steps/%d' % (current_index + 1)).visible = false
+		var current_step := get_node('steps/%d' % current_index)
+		current_step.visible = false
+
+		get_node('steps/%d' % (current_index + 1)).visible = true
+
+		current_index += 1
