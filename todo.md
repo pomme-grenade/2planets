@@ -4,8 +4,7 @@
 
     - kurze anleitung einbauen (kein tutorial)
     - sounds raussuchen
-    - money particles
-        - visueller indikator für geld, dass man durch abgeschossene raketen kriegt
+    - money particles für shield, lightning und evtl. mines
     - better connected buildings
     - player grafik für aktivieren
     - instant defense graphic

@@ -30,17 +30,17 @@ func move_down(texture, dt) -> void:
 	texture.position += texture.direction * texture.acceleration * dt
 	texture.alpha -= 0.01
 
-func create(initial_position: Vector2, planet: Sprite) -> void:
+func create(initial_position: Vector2, for_planet: Sprite) -> void:
 	var direction: Vector2
 
-	self.planet = planet
+	self.planet = for_planet
 
 	var image: Image = money_texture.get_data()
 
 	image_texture = ImageTexture.new()
 	image_texture.create_from_image(image)
 
-	direction = initial_position.direction_to(planet.global_position)
+	direction = initial_position.direction_to(for_planet.global_position)
 
 	initial_position.x -= image_texture.get_size().x / 2.0
 	initial_position.y -= image_texture.get_size().y / 2.0

@@ -1,7 +1,5 @@
 extends Control
 
-signal unpause
-
 var loser: int
 var loser_network_id: int
 var network_id: int

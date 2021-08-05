@@ -22,6 +22,10 @@ func _ready():
 	$'network/connect_container/game_code_input'.grab_focus()
 
 func _on_local():
+	if waiting_for_network:
+		# player started a network game before
+		reset_networking()
+		
 	networking.server_for_local_game()
 
 func _on_connect(_maybe_game_code = null):
