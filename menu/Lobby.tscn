@@ -30,40 +30,21 @@ anchor_bottom = 0.5
 margin_left = -169.492
 margin_top = -55.0006
 margin_right = 168.508
-margin_bottom = 52.9994
+margin_bottom = 100.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label2" type="Label" parent="StartButtons"]
+[node name="network_label" type="Label" parent="StartButtons"]
 margin_right = 338.0
 margin_bottom = 6.0
-text = "local game"
-
-[node name="local" type="Button" parent="StartButtons"]
-margin_top = 10.0
-margin_right = 338.0
-margin_bottom = 44.0
-size_flags_vertical = 3
-custom_styles/hover = ExtResource( 2 )
-custom_styles/pressed = ExtResource( 5 )
-custom_styles/disabled = ExtResource( 2 )
-custom_styles/normal = ExtResource( 2 )
-shortcut_in_tooltip = false
-shortcut = SubResource( 2 )
-text = "start local game"
-
-[node name="Label" type="Label" parent="StartButtons"]
-margin_top = 48.0
-margin_right = 338.0
-margin_bottom = 54.0
 text = "network game"
 
 [node name="network" type="HBoxContainer" parent="StartButtons"]
-margin_top = 58.0
+margin_top = 10.0
 margin_right = 338.0
-margin_bottom = 108.0
+margin_bottom = 60.0
 rect_min_size = Vector2( 0, 50 )
 
 [node name="client_status" type="Label" parent="StartButtons/network"]
@@ -132,6 +113,51 @@ text = "join game"
 
 [node name="lobby_networking" type="Node" parent="StartButtons"]
 script = ExtResource( 4 )
+
+[node name="local_label" type="Label" parent="StartButtons"]
+margin_top = 64.0
+margin_right = 338.0
+margin_bottom = 84.0
+rect_min_size = Vector2( 0, 20 )
+text = "local game"
+valign = 2
+
+[node name="local" type="HBoxContainer" parent="StartButtons"]
+margin_top = 88.0
+margin_right = 338.0
+margin_bottom = 118.0
+
+[node name="multiplayer" type="Button" parent="StartButtons/local"]
+margin_right = 167.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/hover = ExtResource( 2 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/disabled = ExtResource( 2 )
+custom_styles/normal = ExtResource( 2 )
+shortcut_in_tooltip = false
+shortcut = SubResource( 2 )
+text = "Start local game"
+
+[node name="tutorial" type="Button" parent="StartButtons/local"]
+margin_left = 171.0
+margin_right = 338.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/hover = ExtResource( 2 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/disabled = ExtResource( 2 )
+custom_styles/normal = ExtResource( 2 )
+shortcut_in_tooltip = false
+shortcut = SubResource( 2 )
+text = "Tutorial"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Settings" type="Control" parent="."]
 anchor_top = 1.0

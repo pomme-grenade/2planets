@@ -14,12 +14,20 @@ func _ready():
 	# warning-ignore:return_value_discarded
 	get_tree().connect('network_peer_connected', self, '_player_connected')
 
-func server_for_local_game():
+func server_for_local_game(tutorial: bool):
 	var peer = NetworkedMultiplayerENet.new()
 	peer.create_server(GameManager.SERVER_PORT, 2)
 	get_tree().set_network_peer(peer)
 	var world = load('res://Main.tscn').instance()
 	get_node('/root').add_child(world)
+
+	if !tutorial:
+		world.get_node('tutorial').queue_free()
+	else:
+		world.get_node('planet_1').position.y -= 50
+		world.get_node('planet_2').position.y -= 50
+		world.get_node('planet_ui_1').set_margin(MARGIN_TOP, -100)
+		world.get_node('planet_ui_2').set_margin(MARGIN_TOP, -100)
 	var selfPeerID = get_tree().get_network_unique_id()
 	get_node('/root').set_network_master(selfPeerID)
 

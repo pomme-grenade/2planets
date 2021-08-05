@@ -17,7 +17,7 @@ __meta__ = {
 }
 
 [node name="background" type="Sprite" parent="."]
-position = Vector2( 400.667, 200 )
+position = Vector2( 399.873, 200 )
 texture = ExtResource( 3 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -25,12 +25,11 @@ offset = Vector2( 400, 200 )
 current = true
 
 [node name="planet_1" parent="." instance=ExtResource( 2 )]
-position = Vector2( 200, 144.107 )
+position = Vector2( 200, 200 )
 texture = ExtResource( 4 )
 player_number = 1
 
 [node name="planet_2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 600, 144.107 )
 texture = ExtResource( 4 )
 
 [node name="planet_ui_1" parent="." instance=ExtResource( 1 )]
@@ -39,9 +38,9 @@ anchor_top = 0.5
 anchor_right = 0.25
 anchor_bottom = 0.5
 margin_left = -34.0
-margin_top = -104.9
+margin_top = -50.0
 margin_right = 34.0
-margin_bottom = -84.8995
+margin_bottom = -29.9995
 
 [node name="planet_ui_2" parent="." instance=ExtResource( 1 )]
 anchor_left = 0.75
@@ -49,9 +48,9 @@ anchor_top = 0.5
 anchor_right = 0.75
 anchor_bottom = 0.5
 margin_left = -34.0
-margin_top = -104.9
+margin_top = -50.0
 margin_right = 34.0
-margin_bottom = -84.8995
+margin_bottom = -29.9995
 
 [node name="network_status" type="Label" parent="."]
 anchor_right = 1.0
@@ -72,20 +71,23 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 20.0
 margin_right = -20.0
-margin_bottom = -10.0
+margin_bottom = -5.0
+custom_constants/separation = 10
+alignment = 2
 script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="steps" type="Control" parent="tutorial"]
-margin_right = 760.0
-margin_bottom = 84.0
-size_flags_vertical = 3
+[node name="steps" type="MarginContainer" parent="tutorial"]
+anchor_left = 0.2
+anchor_right = 0.8
+margin_top = 77.0
+margin_bottom = 83.0
 
 [node name="1" type="Label" parent="tutorial/steps"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_right = 456.0
+margin_bottom = 6.0
 size_flags_vertical = 3
 text = "Use A and D keys to move your drone."
 align = 1
@@ -95,16 +97,16 @@ __meta__ = {
 
 [node name="2" type="Label" parent="tutorial/steps"]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_right = 544.0
+margin_bottom = 6.0
 size_flags_vertical = 3
 text = "Use Q, and E keys to show information for a building. Tap the same key again to build the selected building."
 align = 1
 
 [node name="3" type="Label" parent="tutorial/steps"]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_right = 456.0
+margin_bottom = 6.0
 text = "Once built, some buildings can be activated using the W key."
 align = 1
 __meta__ = {
@@ -113,8 +115,8 @@ __meta__ = {
 
 [node name="4" type="Label" parent="tutorial/steps"]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_right = 456.0
+margin_bottom = 6.0
 text = "Build missile launchers and activate them to destroy the enemy planet."
 align = 1
 __meta__ = {
@@ -123,8 +125,8 @@ __meta__ = {
 
 [node name="5" type="Label" parent="tutorial/steps"]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_right = 456.0
+margin_bottom = 6.0
 text = "Build satellites to defend against incoming missiles."
 align = 1
 __meta__ = {
@@ -133,8 +135,8 @@ __meta__ = {
 
 [node name="6" type="Label" parent="tutorial/steps"]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_right = 456.0
+margin_bottom = 6.0
 text = "Build mines to increase your income."
 align = 1
 __meta__ = {
@@ -143,9 +145,9 @@ __meta__ = {
 
 [node name="Buttons" type="HBoxContainer" parent="tutorial"]
 margin_left = 329.0
-margin_top = 88.0
+margin_top = 93.0
 margin_right = 431.0
-margin_bottom = 110.0
+margin_bottom = 115.0
 size_flags_horizontal = 4
 
 [node name="previous" type="Button" parent="tutorial/Buttons"]

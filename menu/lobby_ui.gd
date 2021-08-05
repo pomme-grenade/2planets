@@ -10,7 +10,8 @@ func _ready():
 	# warning-ignore:return_value_discarded
 	$'network/connect_container/connect'.connect('pressed', self, '_on_connect')
 	# warning-ignore:return_value_discarded
-	$'local'.connect('pressed', self, '_on_local')
+	$'local/multiplayer'.connect('pressed', self, '_on_local')
+	$'local/tutorial'.connect('pressed', self, '_on_tutorial')
 	$'network/connect_container/game_code_input'.connect('text_entered', self, '_on_connect')
 
 	# warning-ignore:return_value_discarded
@@ -21,12 +22,19 @@ func _ready():
 
 	$'network/connect_container/game_code_input'.grab_focus()
 
+func _on_tutorial():
+	if waiting_for_network:
+		# player started a network game before
+		reset_networking()
+
+	networking.server_for_local_game(true)
+
 func _on_local():
 	if waiting_for_network:
 		# player started a network game before
 		reset_networking()
-		
-	networking.server_for_local_game()
+
+	networking.server_for_local_game(false)
 
 func _on_connect(_maybe_game_code = null):
 	if waiting_for_network:
