@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/psy-ace-005-looped.mp3-136ad098b32500a6c1412f742768a1c1.mp3str"
+
+[deps]
+
+source_file="res://music/psy-ace-005-looped.mp3"
+dest_files=[ "res://.import/psy-ace-005-looped.mp3-136ad098b32500a6c1412f742768a1c1.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
