@@ -25,10 +25,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: josephbmanley/butler-publish-itchio-action@v1
-        env:
-          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
-          CHANNEL: windows
-          ITCH_GAME: example-project
-          ITCH_USER: username
-          PACKAGE: build/windows
+      # - uses: josephbmanley/butler-publish-itchio-action@v1.0.2
+      #   env:
+      #     BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+      #     CHANNEL: windows
+      #     ITCH_GAME: example-project
+      #     ITCH_USER: username
+      #     PACKAGE: build/windows
