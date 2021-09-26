@@ -80,15 +80,16 @@ __meta__ = {
 }
 
 [node name="steps" type="MarginContainer" parent="tutorial"]
-margin_top = 77.0
+margin_top = 68.0
 margin_right = 760.0
 margin_bottom = 83.0
 
 [node name="1" type="Label" parent="tutorial/steps"]
 margin_right = 760.0
-margin_bottom = 6.0
+margin_bottom = 15.0
 size_flags_vertical = 3
-text = "Use A and D keys to move your drone."
+text = "Welcome to 2 Planets!
+In this tutorial, your enemy will do nothing at all, so take your time to try out everything!"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -97,15 +98,17 @@ __meta__ = {
 [node name="2" type="Label" parent="tutorial/steps"]
 visible = false
 margin_right = 760.0
-margin_bottom = 6.0
+margin_bottom = 15.0
 size_flags_vertical = 3
-text = "Use Q, and E keys to show information for a building. Tap the same key again to build the selected building."
+text = "Use A and D keys to move your drone.
+Use Q and E keys to show information for a building. Tap the same key again to build the selected building."
 align = 1
 
 [node name="3" type="Label" parent="tutorial/steps"]
 visible = false
+margin_top = 4.0
 margin_right = 760.0
-margin_bottom = 6.0
+margin_bottom = 10.0
 text = "Once built, some buildings can be activated using the W key."
 align = 1
 __meta__ = {
@@ -114,8 +117,9 @@ __meta__ = {
 
 [node name="4" type="Label" parent="tutorial/steps"]
 visible = false
+margin_top = 4.0
 margin_right = 760.0
-margin_bottom = 6.0
+margin_bottom = 10.0
 text = "Build missile launchers and activate them to destroy the enemy planet."
 align = 1
 __meta__ = {
@@ -124,8 +128,9 @@ __meta__ = {
 
 [node name="5" type="Label" parent="tutorial/steps"]
 visible = false
+margin_top = 4.0
 margin_right = 760.0
-margin_bottom = 6.0
+margin_bottom = 10.0
 text = "Build satellites to defend against incoming missiles."
 align = 1
 __meta__ = {
@@ -134,8 +139,9 @@ __meta__ = {
 
 [node name="6" type="Label" parent="tutorial/steps"]
 visible = false
+margin_top = 4.0
 margin_right = 760.0
-margin_bottom = 6.0
+margin_bottom = 10.0
 text = "Build mines to increase your income."
 align = 1
 __meta__ = {
