@@ -12,9 +12,9 @@ var connection_bonus := 0.0
 
 func init():
 	get_parent().planet.income += additional_income
-	update_income()
+	update_connection_bonus()
 	
-func update_income():
+func update_connection_bonus():
 	get_parent().planet.income -= connection_bonus + additional_income
 	if not get_parent().is_destroyed:
 		additional_income = default_additional_income

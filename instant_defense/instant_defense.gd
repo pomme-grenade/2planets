@@ -158,7 +158,7 @@ func spawn_wave(spawn_point: Vector2, end_point: Vector2) -> void:
 
 	wave_index += 1
 
-func update_income() -> void:
+func update_connection_bonus() -> void:
 	cooldown_time = initial_cooldown_time
 	cooldown_time -= (get_parent().get_connected_buildings().size() + 1) * 0.02
 	if cooldown_time < 0:

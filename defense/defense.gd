@@ -112,7 +112,7 @@ remotesync func shoot_rocket(path):
 		money_animation.create(rocket.global_position, planet)
 		planet.money += 5
 
-func update_income():
+func update_connection_bonus():
 	cooldown_time = initial_cooldown_time
 	cooldown_time -= (get_parent().get_connected_buildings().size() + 1) * 0.02
 	if cooldown_time < 0:

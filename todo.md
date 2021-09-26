@@ -2,17 +2,10 @@
 
 ### absolut notwendig für die beta
 
-- kurze anleitung einbauen (kein tutorial)
-- sounds raussuchen
-- money particles für shield, lightning und evtl. mines
-- better connected buildings
-- player grafik für aktivieren
-- instant defense graphic
-- pause menu neu machen und exakt das selbe für game over nehmen
-  - kein restart oder quit
-  - "leave game" / "back to menu"
+- satellit connection bonus anzeigen
 - release auf itch.io hochladen
 - mehr screenshots auf itch.io
+- connection particle linie
 
 ### bugs
 
@@ -33,6 +26,9 @@
 
 ### polish
 
+- sounds raussuchen
+- money particles für evtl. mines
+- player grafik für aktivieren
 - hintergrund sättigung senken, dunkler machen
 - geld rot flashen wenn man bauen will und nicht genug geld hat
 - rot / gruen aufleuchtender text wenn sich income aendert

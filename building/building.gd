@@ -256,8 +256,8 @@ func has_neighbour(direction: String) -> Node2D:
 
 func update_connected_buildings():
 	for building in get_connected_buildings():
-		building.call_last_child_method('update_income')
-	call_last_child_method('update_income')
+		building.call_last_child_method('update_connection_bonus')
+	call_last_child_method('update_connection_bonus')
 
 
 func set_highlighted(is_highlighted: bool):
