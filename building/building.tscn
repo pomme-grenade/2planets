@@ -1,4 +1,4 @@
-[gd_scene load_steps=409 format=2]
+[gd_scene load_steps=415 format=2]
 
 [ext_resource path="res://building/building.gd" type="Script" id=1]
 [ext_resource path="res://income/mineAnimation.png" type="Texture" id=2]
@@ -32,6 +32,7 @@
 [ext_resource path="res://asteroid_farmer/asteroid_farmer.png" type="Texture" id=30]
 [ext_resource path="res://images/buildings/beam_startup.png" type="Texture" id=31]
 [ext_resource path="res://laser/laser_buildup.png" type="Texture" id=32]
+[ext_resource path="res://building/particle_textures/PNG (Transparent)/circle_03.png" type="Texture" id=33]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -1755,15 +1756,39 @@ tracks/0/keys = {
 
 [sub_resource type="ParticlesMaterial" id=375]
 flag_disable_z = true
-gravity = Vector3( -80, 5, 0 )
+gravity = Vector3( 80, 5, 0 )
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 
 [sub_resource type="ParticlesMaterial" id=376]
 flag_disable_z = true
-gravity = Vector3( 80, 5, 0 )
+gravity = Vector3( -80, 5, 0 )
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
+
+[sub_resource type="Gradient" id=380]
+colors = PoolColorArray( 0.0349121, 0.059992, 0.0625, 0, 0.0898438, 0.898674, 1, 1 )
+
+[sub_resource type="GradientTexture" id=381]
+gradient = SubResource( 380 )
+
+[sub_resource type="Curve" id=377]
+_data = [ Vector2( 0, 0.893182 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.593182 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=378]
+curve = SubResource( 377 )
+
+[sub_resource type="ParticlesMaterial" id=379]
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 0.0
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 30.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.01
+scale_curve = SubResource( 378 )
+color_ramp = SubResource( 381 )
 
 [node name="Node2D" type="AnimatedSprite"]
 modulate = Color( 2, 2, 3, 1 )
@@ -1777,14 +1802,32 @@ script = ExtResource( 1 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/flash = SubResource( 374 )
 
-[node name="ParticlesLeft" type="Particles2D" parent="."]
-position = Vector2( 0, 5 )
-emitting = false
-lifetime = 0.7
-process_material = SubResource( 375 )
-
 [node name="ParticlesRight" type="Particles2D" parent="."]
 position = Vector2( 0, 5 )
 emitting = false
 lifetime = 0.7
+preprocess = 2.0
+process_material = SubResource( 375 )
+
+[node name="ParticlesLeft" type="Particles2D" parent="."]
+position = Vector2( 0, 5 )
+emitting = false
+lifetime = 0.7
+preprocess = 2.0
 process_material = SubResource( 376 )
+
+[node name="SatelliteParticlesLeft" type="Particles2D" parent="."]
+emitting = false
+amount = 30
+lifetime = 1.2
+preprocess = 2.0
+process_material = SubResource( 379 )
+texture = ExtResource( 33 )
+
+[node name="SatelliteParticlesRight" type="Particles2D" parent="."]
+emitting = false
+amount = 30
+lifetime = 1.2
+preprocess = 2.0
+process_material = SubResource( 379 )
+texture = ExtResource( 33 )

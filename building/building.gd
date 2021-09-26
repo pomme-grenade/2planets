@@ -56,12 +56,25 @@ func add_building_child(new_child):
 
 func _process(dt):
 	if get_connected_buildings().size() > 0 \
+		and is_built \
 		and not is_destroyed \
 		and type in ['attack', 'income', 'defense']:
-		if has_neighbour('right'):
-			$ParticlesRight.emitting = true
-		if has_neighbour('left'):
-			$ParticlesLeft.emitting = true
+		var right_neighbour = has_neighbour('right')
+		var left_neighbour = has_neighbour('left')
+		if type != 'defense':
+			if (right_neighbour and right_neighbour.is_built):
+				$ParticlesRight.emitting = true
+			if (left_neighbour and left_neighbour.is_built):
+				$ParticlesLeft.emitting = true
+		else:
+			if (right_neighbour and right_neighbour.is_built):
+				$SatelliteParticlesRight.global_rotation = (right_neighbour.global_position - global_position).angle() - (PI / 2)
+				$SatelliteParticlesRight.emitting = true
+
+			if (left_neighbour and left_neighbour.is_built):
+				$SatelliteParticlesLeft.global_rotation = (left_neighbour.global_position - global_position).angle() - (PI / 2)
+				$SatelliteParticlesLeft.emitting = true
+
 	else:
 		$ParticlesRight.emitting = false
 		$ParticlesLeft.emitting = false
@@ -225,7 +238,7 @@ func get_neighbours(previous) -> Array:
 
 	return neighbours
 
-func has_neighbour(direction: String) -> bool:
+func has_neighbour(direction: String) -> Node2D:
 	var dir := 1 if direction == 'right' else -1
 
 	var buildings: Array = get_connected_buildings()
@@ -234,8 +247,8 @@ func has_neighbour(direction: String) -> bool:
 		if (building != self
 			and abs(angle_to_building) < (PI / planet.slot_count) * 1.1
 			and sign(angle_to_building) == dir):
-			return true
-	return false
+			return building
+	return null
 
 func update_connected_buildings():
 	for building in get_connected_buildings():

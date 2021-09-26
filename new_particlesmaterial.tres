@@ -1,0 +1,7 @@
+[gd_resource type="ParticlesMaterial" format=2]
+
+[resource]
+flag_disable_z = true
+gravity = Vector3( 98, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0

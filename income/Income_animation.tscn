@@ -35,10 +35,10 @@ tracks/1/keys = {
 script = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="."]
-modulate = Color( 0.592157, 0.990588, 0.664314, 0.6 )
-margin_top = -16.8116
+modulate = Color( 0.396078, 0.968627, 0.498039, 0 )
+margin_top = -50.0
 margin_right = 40.0
-margin_bottom = 4.18839
+margin_bottom = -29.0
 rect_scale = Vector2( 0.5, 0.5 )
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
