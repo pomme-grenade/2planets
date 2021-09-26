@@ -63,9 +63,9 @@ func _process(dt):
 		var left_neighbour = has_neighbour('left')
 		if type != 'defense':
 			if (right_neighbour and right_neighbour.is_built):
-				$ParticlesRight.emitting = true
+				get_node('%sParticlesRight' % type).emitting = true
 			if (left_neighbour and left_neighbour.is_built):
-				$ParticlesLeft.emitting = true
+				get_node('%sParticlesLeft' % type).emitting = true
 		else:
 			if (right_neighbour and right_neighbour.is_built):
 				$SatelliteParticlesRight.global_rotation = (right_neighbour.global_position - global_position).angle() - (PI / 2)
@@ -76,8 +76,12 @@ func _process(dt):
 				$SatelliteParticlesLeft.emitting = true
 
 	else:
-		$ParticlesRight.emitting = false
-		$ParticlesLeft.emitting = false
+		$attackParticlesRight.emitting = false
+		$attackParticlesLeft.emitting = false
+		$incomeParticlesRight.emitting = false
+		$incomeParticlesLeft.emitting = false
+		$SatelliteParticlesRight.emitting = false
+		$SatelliteParticlesLeft.emitting = false
 	
 	if do_dissolve:
 		material.set_shader_param('value', dissolve_amount) 
