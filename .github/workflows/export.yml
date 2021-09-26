@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: export game
-        uses: firebelley/godot-export@v2
+        uses: firebelley/godot-export@v2.8.1
         with:
           godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}-stable_linux_headless.64.zip
           godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}-stable_export_templates.tpz
@@ -24,3 +24,11 @@ jobs:
           base_version: 0.3.0-alpha
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: josephbmanley/butler-publish-itchio-action@v1
+        env:
+          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+          CHANNEL: windows
+          ITCH_GAME: example-project
+          ITCH_USER: username
+          PACKAGE: build/windows
