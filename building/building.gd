@@ -75,13 +75,15 @@ func _process(dt):
 				$SatelliteParticlesLeft.global_rotation = (left_neighbour.global_position - global_position).angle() - (PI / 2)
 				$SatelliteParticlesLeft.emitting = true
 
-	else:
+	if !has_neighbour('right'):
 		$attackParticlesRight.emitting = false
-		$attackParticlesLeft.emitting = false
 		$incomeParticlesRight.emitting = false
-		$incomeParticlesLeft.emitting = false
 		$SatelliteParticlesRight.emitting = false
+
+	if !has_neighbour('left'):
 		$SatelliteParticlesLeft.emitting = false
+		$incomeParticlesLeft.emitting = false
+		$attackParticlesLeft.emitting = false
 	
 	if do_dissolve:
 		material.set_shader_param('value', dissolve_amount) 
