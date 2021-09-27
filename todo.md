@@ -2,10 +2,7 @@
 
 ### absolut notwendig für die beta
 
-- release auf itch.io hochladen
 - mehr screenshots auf itch.io
-- connection particles durch linie ersetzen
-- discord link
 
 ### bugs
 

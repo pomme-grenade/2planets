@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://menu/lobby_ui.gd" type="Script" id=1]
 [ext_resource path="res://menu/button_texture.tres" type="StyleBox" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://menu/quit_button.gd" type="Script" id=6]
 [ext_resource path="res://font/ultralarge.tres" type="DynamicFont" id=7]
 [ext_resource path="res://menu/toggle_sound.gd" type="Script" id=8]
+[ext_resource path="res://menu/open_discord.gd" type="Script" id=9]
 
 [sub_resource type="InputEventAction" id=1]
 action = "ui_accept"
@@ -159,7 +160,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Settings" type="Control" parent="."]
+[node name="Footer" type="HBoxContainer" parent="."]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -171,31 +172,70 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Exit" type="Button" parent="Settings"]
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="Left" type="HBoxContainer" parent="Footer"]
+margin_right = 260.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+
+[node name="Sound" type="CheckBox" parent="Footer/Left"]
+margin_right = 65.0
+margin_bottom = 35.0
+custom_styles/hover = ExtResource( 2 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/disabled = ExtResource( 2 )
+custom_styles/normal = ExtResource( 2 )
+custom_colors/font_color = Color( 0.854902, 0.854902, 0.854902, 1 )
+pressed = true
+text = "Sound"
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Center" type="HBoxContainer" parent="Footer"]
+margin_left = 264.0
+margin_right = 525.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="OpenDiscord" type="Button" parent="Footer/Center"]
+margin_left = 54.0
+margin_right = 206.0
+margin_bottom = 35.0
 grow_horizontal = 0
 grow_vertical = 0
 custom_styles/hover = ExtResource( 2 )
 custom_styles/pressed = ExtResource( 5 )
 custom_styles/disabled = ExtResource( 2 )
 custom_styles/normal = ExtResource( 2 )
-text = "Exit to Desktop"
-script = ExtResource( 6 )
+custom_colors/font_color = Color( 0.854902, 0.854902, 0.854902, 1 )
+text = "Join our Discord Community!"
+script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sound" type="CheckBox" parent="Settings"]
-anchor_bottom = 1.0
+[node name="Right" type="HBoxContainer" parent="Footer"]
+margin_left = 529.0
+margin_right = 790.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="Exit" type="Button" parent="Footer/Right"]
+margin_left = 166.0
+margin_right = 261.0
+margin_bottom = 35.0
+grow_horizontal = 0
+grow_vertical = 0
 custom_styles/hover = ExtResource( 2 )
 custom_styles/pressed = ExtResource( 5 )
 custom_styles/disabled = ExtResource( 2 )
 custom_styles/normal = ExtResource( 2 )
-pressed = true
-text = "Sound"
-script = ExtResource( 8 )
+custom_colors/font_color = Color( 0.854902, 0.854902, 0.854902, 1 )
+text = "Exit to Desktop"
+script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
