@@ -33,3 +33,19 @@ jobs:
           ITCH_GAME: 2planets
           ITCH_USER: 2planets
           PACKAGE: export/windows
+
+      - uses: josephbmanley/butler-publish-itchio-action@v1.0.2
+        env:
+          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+          CHANNEL: linux
+          ITCH_GAME: 2planets
+          ITCH_USER: 2planets
+          PACKAGE: export/linux
+
+      - uses: josephbmanley/butler-publish-itchio-action@v1.0.2
+        env:
+          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+          CHANNEL: osx
+          ITCH_GAME: 2planets
+          ITCH_USER: 2planets
+          PACKAGE: export/osx
