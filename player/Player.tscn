@@ -131,6 +131,7 @@ tracks/0/keys = {
 position = Vector2( 0, -20 )
 frames = SubResource( 25 )
 speed_scale = 1.5
+offset = Vector2( 0, -1.6974 )
 script = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

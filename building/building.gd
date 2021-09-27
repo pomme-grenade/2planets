@@ -9,6 +9,7 @@ var buildup_time = 1
 var repair_time
 var initial_repair_time = 50
 var activate_cost = 0
+onready var lineShader = preload('res://building/connectedLine.gdshader')
 
 # this is set in player.gd when spawning the building
 # warning-ignore:unused_class_variable
@@ -22,6 +23,14 @@ var upgrading = false
 var do_dissolve = false
 var dissolve_amount = 1
 var deconstruction_timer_wait_time = 0.7
+
+func _ready():
+	if (type == 'income'):
+		$ConnectedLine.modulate = Color(0.2, 0.3, 0.3)
+	if (type == 'attack'):
+		$ConnectedLine.modulate = Color(0.7, 0.3, 0.5)
+	if (type == 'defense'):
+		$ConnectedLine.modulate = Color(0.2, 0.1, 0.5)
 
 func add_building_child(new_child):
 	if is_instance_valid(child):
@@ -63,27 +72,18 @@ func _process(dt):
 		var left_neighbour = has_neighbour('left')
 		if type != 'defense':
 			if (right_neighbour and right_neighbour.is_built):
-				get_node('%sParticlesRight' % type).emitting = true
-			if (left_neighbour and left_neighbour.is_built):
-				get_node('%sParticlesLeft' % type).emitting = true
+				$ConnectedLine.visible = true
 		else:
 			if (right_neighbour and right_neighbour.is_built):
-				$SatelliteParticlesRight.global_rotation = (right_neighbour.global_position - global_position).angle() - (PI / 2)
-				$SatelliteParticlesRight.emitting = true
-
-			if (left_neighbour and left_neighbour.is_built):
-				$SatelliteParticlesLeft.global_rotation = (left_neighbour.global_position - global_position).angle() - (PI / 2)
-				$SatelliteParticlesLeft.emitting = true
+				$ConnectedLine.visible = true
+				$ConnectedLine.global_rotation = (right_neighbour.global_position - global_position).angle()
+				var offset = (right_neighbour.global_position - global_position).normalized() * 18
+				offset += (planet.global_position - global_position).normalized() * 10
+				$ConnectedLine.scale.x = 1.3
+				$ConnectedLine.global_position = global_position + offset
 
 	if !has_neighbour('right'):
-		$attackParticlesRight.emitting = false
-		$incomeParticlesRight.emitting = false
-		$SatelliteParticlesRight.emitting = false
-
-	if !has_neighbour('left'):
-		$SatelliteParticlesLeft.emitting = false
-		$incomeParticlesLeft.emitting = false
-		$attackParticlesLeft.emitting = false
+		$ConnectedLine.visible = false
 	
 	if do_dissolve:
 		material.set_shader_param('value', dissolve_amount) 
