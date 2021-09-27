@@ -145,8 +145,6 @@ remotesync func spawn_building(type, name, position):
 	new_child.name = '%s_%s' % [name, type]
 	building.add_building_child(new_child)
 
-	current_building = building
-	current_building.set_highlighted(true)
 	ui.update()
 	# re-draw circle highlighting the new building
 	planet.update()
