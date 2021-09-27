@@ -4,7 +4,7 @@ var other_player_id
 var players_done = []
 var hole_puncher
 var game_code
-const traversal_server_ip := '88.198.36.14'
+const traversal_server_ip := '88.198.207.9'
 const traversal_server_port := 13000
 
 signal exit_lobby
