@@ -115,6 +115,7 @@ remotesync func shoot_rocket(path):
 func update_connection_bonus():
 	cooldown_time = initial_cooldown_time
 	cooldown_time -= (get_parent().get_connected_buildings().size() + 1) * 0.02
+	building_info = '%s sec cooldown' % str(cooldown_time)
 	if cooldown_time < 0:
 		cooldown_time = 0
 

@@ -2,10 +2,10 @@
 
 ### absolut notwendig für die beta
 
-- satellit connection bonus anzeigen
 - release auf itch.io hochladen
 - mehr screenshots auf itch.io
-- connection particle linie
+- connection particles durch linie ersetzen
+- discord link
 
 ### bugs
 
@@ -26,6 +26,7 @@
 
 ### polish
 
+- spiel wirklich pausieren im single player mode
 - sounds raussuchen
 - money particles für evtl. mines
 - player grafik für aktivieren
