@@ -22,13 +22,14 @@ jobs:
           godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/${{ env.GODOT_VERSION }}/Godot_v${{ env.GODOT_VERSION }}-stable_export_templates.tpz
           relative_project_path: ./
           base_version: 0.3.0-alpha
+          use_preset_export_path: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # - uses: josephbmanley/butler-publish-itchio-action@v1.0.2
-      #   env:
-      #     BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
-      #     CHANNEL: windows
-      #     ITCH_GAME: example-project
-      #     ITCH_USER: username
-      #     PACKAGE: build/windows
+      - uses: josephbmanley/butler-publish-itchio-action@v1.0.2
+        env:
+          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+          CHANNEL: windows
+          ITCH_GAME: 2planets
+          ITCH_USER: 2planets
+          PACKAGE: export/windows
