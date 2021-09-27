@@ -26,6 +26,7 @@
 
 ### polish
 
+- spiel wirklich pausieren im single player mode
 - sounds raussuchen
 - money particles für evtl. mines
 - player grafik für aktivieren

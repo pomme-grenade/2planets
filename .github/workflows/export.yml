@@ -26,7 +26,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: josephbmanley/butler-publish-itchio-action@v1.0.2
+      - name: Upload windows build to itch.io
+        uses: josephbmanley/butler-publish-itchio-action@v1.0.2
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
           CHANNEL: windows
@@ -34,7 +35,8 @@ jobs:
           ITCH_USER: 2planets
           PACKAGE: export/windows
 
-      - uses: josephbmanley/butler-publish-itchio-action@v1.0.2
+      - name: Upload linux build to itch.io
+        uses: josephbmanley/butler-publish-itchio-action@v1.0.2
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
           CHANNEL: linux
@@ -42,7 +44,8 @@ jobs:
           ITCH_USER: 2planets
           PACKAGE: export/linux
 
-      - uses: josephbmanley/butler-publish-itchio-action@v1.0.2
+      - name: Upload OSX build to itch.io
+        uses: josephbmanley/butler-publish-itchio-action@v1.0.2
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
           CHANNEL: osx
