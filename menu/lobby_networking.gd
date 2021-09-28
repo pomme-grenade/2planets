@@ -131,8 +131,9 @@ func traverse_nat(is_host):
 	hole_puncher.rendevouz_port = traversal_server_port
 	add_child(hole_puncher)
 	hole_puncher.connect('session_registered', self, '_session_registered')
-	var player_name = OS.get_unique_id()
-	hole_puncher.start_traversal(game_code, is_host, player_name)
+	var player_host = 'host' if is_host else 'client'
+	var traversal_id = '%s_%s' % [OS.get_unique_id(), player_host]
+	hole_puncher.start_traversal(game_code, is_host, traversal_id)
 	var result = yield(hole_puncher, 'hole_punched')
 	yield(get_tree().create_timer(0.1), 'timeout')
 	return result
