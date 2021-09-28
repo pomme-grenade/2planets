@@ -44,11 +44,13 @@ jobs:
           ITCH_USER: pomme-grenade
           PACKAGE: export/linux
 
-      - name: Upload OSX build to itch.io
-        uses: josephbmanley/butler-publish-itchio-action@v1.0.2
-        env:
-          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
-          CHANNEL: osx
-          ITCH_GAME: 2planets
-          ITCH_USER: pomme-grenade
-          PACKAGE: export/osx
+      # OSX headless export is broken until godot 4.0 is released:
+      # https://github.com/godotengine/godot/issues/39931
+      # - name: Upload OSX build to itch.io
+      #   uses: josephbmanley/butler-publish-itchio-action@v1.0.2
+      #   env:
+      #     BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+      #     CHANNEL: osx
+      #     ITCH_GAME: 2planets
+      #     ITCH_USER: pomme-grenade
+      #     PACKAGE: export/osx
