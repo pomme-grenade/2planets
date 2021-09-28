@@ -89,7 +89,7 @@ margin_right = 760.0
 margin_bottom = 15.0
 size_flags_vertical = 3
 text = "Welcome to 2 Planets!
-In this tutorial, your enemy will do nothing at all, so take your time to try out everything!"
+In this tutorial, your enemy will not attack, so take your time to try out everything!"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -100,7 +100,7 @@ visible = false
 margin_right = 760.0
 margin_bottom = 15.0
 size_flags_vertical = 3
-text = "Use A and D keys to move your drone.
+text = "You play the little red drone on the left planet. Use A and D keys to move it.
 Use Q and E keys to show information for a building. Tap the same key again to build the selected building."
 align = 1
 
@@ -109,7 +109,8 @@ visible = false
 margin_top = 4.0
 margin_right = 760.0
 margin_bottom = 10.0
-text = "Once built, some buildings can be activated using the W key."
+text = "Once built, some buildings can be activated using the W key.
+Try this by building a missile launcher!"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -120,7 +121,7 @@ visible = false
 margin_top = 4.0
 margin_right = 760.0
 margin_bottom = 10.0
-text = "Build missile launchers and activate them to destroy the enemy planet."
+text = "Buildings have upgrades that can be built with Q and E keys like normal buildings."
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -131,7 +132,8 @@ visible = false
 margin_top = 4.0
 margin_right = 760.0
 margin_bottom = 10.0
-text = "Build satellites to defend against incoming missiles."
+text = "Build satellites to defend against incoming missiles.
+Build mines to increase your income."
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -142,7 +144,8 @@ visible = false
 margin_top = 4.0
 margin_right = 760.0
 margin_bottom = 10.0
-text = "Build mines to increase your income."
+text = "The goal is to destroy the enemy planet by bringing its health bar to 0%. 
+You've completed the tutorial. Find a friend to duel and create a new game in the main menu!!"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
