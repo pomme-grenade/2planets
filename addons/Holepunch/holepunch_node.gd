@@ -55,6 +55,7 @@ func _process(delta):
 	if peer_udp.get_available_packet_count() > 0:
 		var array_bytes = peer_udp.get_packet()
 		var packet_string = array_bytes.get_string_from_ascii()
+		print('packet from peer: ', packet_string)
 		if not recieved_peer_greet:
 			if packet_string.begins_with(PEER_GREET):
 				var m = packet_string.split(":")
@@ -73,6 +74,7 @@ func _process(delta):
 	if server_udp.get_available_packet_count() > 0:
 		var array_bytes = server_udp.get_packet()
 		var packet_string = array_bytes.get_string_from_ascii()
+		print('packet from server: ', packet_string)
 		if packet_string.begins_with(SERVER_OK):
 			var m = packet_string.split(":")
 			own_port = int( m[1] )
