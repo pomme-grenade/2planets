@@ -18,22 +18,24 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -56.0
 color = Color( 0.0117647, 0.0117647, 0.0117647, 0.411765 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_left = 350.0
-margin_top = 150.0
-margin_right = 450.0
-margin_bottom = 250.0
+anchor_bottom = 1.0
+margin_left = 330.0
+margin_bottom = 1.0
+alignment = 1
 __meta__ = {
-"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="resume" type="Button" parent="VBoxContainer"]
-margin_right = 100.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 100, 0 )
-size_flags_vertical = 3
+margin_top = 151.0
+margin_right = 140.0
+margin_bottom = 181.0
+rect_min_size = Vector2( 140, 30 )
 custom_styles/hover = ExtResource( 2 )
 custom_styles/pressed = ExtResource( 3 )
 custom_styles/disabled = ExtResource( 2 )
@@ -46,35 +48,33 @@ __meta__ = {
 }
 
 [node name="menu" type="Button" parent="VBoxContainer"]
-margin_top = 34.0
-margin_right = 100.0
-margin_bottom = 65.0
-rect_min_size = Vector2( 100, 0 )
-size_flags_vertical = 3
+margin_top = 185.0
+margin_right = 140.0
+margin_bottom = 215.0
+rect_min_size = Vector2( 140, 30 )
 custom_styles/hover = ExtResource( 2 )
 custom_styles/pressed = ExtResource( 3 )
 custom_styles/disabled = ExtResource( 2 )
 custom_styles/normal = ExtResource( 2 )
 shortcut_in_tooltip = false
 keep_pressed_outside = true
-text = "quit to menu"
+text = "Back to main menu"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="quit" type="Button" parent="VBoxContainer"]
-margin_top = 69.0
-margin_right = 100.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 100, 0 )
-size_flags_vertical = 3
+margin_top = 219.0
+margin_right = 140.0
+margin_bottom = 249.0
+rect_min_size = Vector2( 140, 30 )
 custom_styles/hover = ExtResource( 2 )
 custom_styles/pressed = ExtResource( 3 )
 custom_styles/disabled = ExtResource( 2 )
 custom_styles/normal = ExtResource( 2 )
 shortcut_in_tooltip = false
 keep_pressed_outside = true
-text = "leave game"
+text = "Exit to desktop"
 __meta__ = {
 "_edit_use_anchors_": false
 }

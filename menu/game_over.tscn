@@ -40,7 +40,7 @@ custom_styles/disabled = ExtResource( 2 )
 custom_styles/normal = ExtResource( 2 )
 shortcut_in_tooltip = false
 keep_pressed_outside = true
-text = "quit to menu"
+text = "Back to main menu"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -57,7 +57,7 @@ custom_styles/disabled = ExtResource( 2 )
 custom_styles/normal = ExtResource( 2 )
 shortcut_in_tooltip = false
 keep_pressed_outside = true
-text = "leave game"
+text = "Exit to desktop"
 __meta__ = {
 "_edit_use_anchors_": false
 }
