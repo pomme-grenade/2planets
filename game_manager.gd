@@ -9,10 +9,10 @@ func restart_game() -> void:
 	get_tree().paused = false
 
 func game_over(loser, loser_network_id) -> void:
+	pause_input(true)
 	var game_over_screen = preload('res://menu/game_over.tscn').instance()
 	game_over_screen.loser = loser
 	game_over_screen.loser_network_id = loser_network_id
-	get_tree().paused = true
 	get_tree().get_root().add_child(game_over_screen)
 
 func traverse_nat(hole_puncher, is_host, player_name):
@@ -27,16 +27,18 @@ func _notification(what) -> void:
 	
 func _unhandled_input(event: InputEvent):
 	if has_node('/root/main') and event.is_action_pressed('pause'):
-		var player1: AnimatedSprite = get_node('/root/main/planet_1').player
-		var player2: AnimatedSprite = get_node('/root/main/planet_2').player
-
-		player1.paused_input = true
-		player2.paused_input = true
+		pause_input(true)
 		var pause_menu = preload('res://menu/pause_menu.tscn').instance()
 		get_node('/root').add_child(pause_menu)
 		get_node('/root').get_tree().set_input_as_handled()
 
 		# wait until pause is over
 		yield(pause_menu, 'unpause')
-		player1.paused_input = false
-		player2.paused_input = false
+		pause_input(false)
+
+func pause_input(paused: bool):
+		var player1: AnimatedSprite = get_node('/root/main/planet_1').player
+		var player2: AnimatedSprite = get_node('/root/main/planet_2').player
+
+		player1.paused_input = paused
+		player2.paused_input = paused

@@ -14,6 +14,7 @@ remotesync var money = 0
 var slot_width
 var health_bar
 var current_slot_index setget ,get_current_slot_index
+var game_over_called = false
 
 
 func _ready():
@@ -111,11 +112,19 @@ func current_slot_position():
 
 
 func set_health(new_health: float):
-	health = new_health
+	# don't set a health value below zero
+	health = max(0, new_health)
 
-	if is_network_master() and health <= 0:
+	if is_network_master() and health <= 0 and not game_over_called:
+		# set game_over_called here to not spawn the game over menu twice
+		# if the RPC call takes too long
+		game_over_called = true
 		rpc('game_over')
 
 
 remotesync func game_over():
+	# set game_over_called here again for the other machine that
+	# didn't set it in `set_health`
+	game_over_called = true
+	player.paused_input = true
 	GameManager.game_over(player_number, get_tree().multiplayer.get_network_unique_id())
